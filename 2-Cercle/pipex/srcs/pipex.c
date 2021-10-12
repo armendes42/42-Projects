@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:24:50 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/11 17:26:08 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:59:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	child_one(int fd_infile, char *cmd1, int *pipefd, char **envp)
 	if (dup_in_out(fd_infile, pipefd[1]) == -1)
 		return ;
 	close(pipefd[0]);
+	close(pipefd[1]);
 	close(fd_infile);
 	i = -1;
 	paths = parsing_paths(envp);
@@ -45,6 +46,7 @@ void	child_two(int fd_outfile, char *cmd2, int *pipefd, char **envp)
 
 	if (dup_in_out(pipefd[0], fd_outfile) == -1)
 		return ;
+	close(pipefd[0]);
 	close(pipefd[1]);
 	close(fd_outfile);
 	i = -1;
