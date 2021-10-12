@@ -5,41 +5,9 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/08 15:44:38 by armendes          #+#    #+#              #
-#    Updated: 2021/10/12 18:42:10 by armendes         ###   ########.fr        #
+#    Created: 2021/10/12 18:39:50 by armendes          #+#    #+#              #
+#    Updated: 2021/10/12 18:43:49 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/ft_putstr_fd.c\
-		srcs/ft_split.c\
-		srcs/ft_strjoin.c\
-		srcs/ft_strlcpy.c\
-		srcs/ft_strlen.c\
-		srcs/ft_strncmp.c\
-		srcs/pipex.c\
-		srcs/utils.c
-
-OBJS =	${SRC:.=.o};
-
-CC =	cc
-
-CFLAGS =	-Wall -Wextra -Werror -I includes
-
-NAME =	pipex
-
-RM =	rm -rf
-
-all:	${NAME}
-
-${NAME}:	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS}	
-
-clean:
-	${RM} ${OBJS}
-
-fclean:		clean
-	${RM} ${NAME}
-
-re:			fclean all
-
-.PHONY:		all clean fclean re
+FLAGS =	
