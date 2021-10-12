@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:00:05 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/11 17:05:02 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:09:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ int	openfile(int fd_infile, int fd_outfile, char *infile, char *outfile)
 		return (-1);
 	}
 	return (0);
+}
+
+void	error_command(char *arg)
+{
+	ft_putstr_fd("command not found: ", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("\n", 2);
 }

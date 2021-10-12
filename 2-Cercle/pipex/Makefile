@@ -6,7 +6,7 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 15:44:38 by armendes          #+#    #+#              #
-#    Updated: 2021/10/11 17:04:44 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/12 17:07:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS =	srcs/ft_putstr_fd.c\
 
 OBJS =	${SRC:.=.o};
 
-CC =	gcc
+CC =	cc
 
 CFLAGS =	-Wall -Wextra -Werror -I includes
 
