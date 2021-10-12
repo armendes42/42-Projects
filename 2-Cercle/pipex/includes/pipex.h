@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:44:21 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/08 15:48:41 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:26:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	**parsing_paths(char ** envp);
+int		dup_in_out(int	fd_in, int fd_out);
+int		openfile(int fd_infile, int fd_outfile, char *infile, char *outfile);
 
 #endif
