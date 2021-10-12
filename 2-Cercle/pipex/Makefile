@@ -6,7 +6,7 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 15:44:38 by armendes          #+#    #+#              #
-#    Updated: 2021/10/12 18:42:10 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/12 18:58:45 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS =	srcs/ft_putstr_fd.c\
 		srcs/pipex.c\
 		srcs/utils.c
 
-OBJS =	${SRC:.=.o};
+OBJS =	${SRCS:.c=.o};
 
 CC =	cc
 
