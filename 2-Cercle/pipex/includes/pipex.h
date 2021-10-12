@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:44:21 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/12 17:09:30 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/12 21:51:21 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
