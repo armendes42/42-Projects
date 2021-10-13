@@ -6,7 +6,7 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 18:39:50 by armendes          #+#    #+#              #
-#    Updated: 2021/10/13 18:05:03 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/13 19:28:42 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJS	= ${SRCS:.c=.o}
 
 NAME	= so_long
 
-CC		= cc -I /usr/local/include
+CC		= cc -I /usr/local/include -fsanitize=address
 
 CFLAGS	= -Wall -Wextra -Werror -I includes
 
@@ -27,7 +27,7 @@ RM		= rm -rf
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-		${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${MLX}
+		${CC} ${CFLAGS} ${MLX} -o ${NAME} ${SRCS}
 
 clean:
 		${RM} ${OBJS}

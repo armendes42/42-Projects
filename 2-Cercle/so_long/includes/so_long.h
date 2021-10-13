@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 18:05:04 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:28:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,14 @@ typedef struct s_window
 	int		size_x;
 	int		size_y;
 }				t_window;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_data;
 
 #endif
