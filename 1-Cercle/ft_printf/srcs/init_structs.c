@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 21:40:02 by armendes          #+#    #+#             */
-/*   Updated: 2021/07/05 21:40:11 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:51:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_converter	*init_converters(void)
 	return (converters);
 }
 
-void		init_format_info(t_format *f_info)
+void	init_format_info(t_format *f_info)
 {
 	f_info->width = 0;
 	f_info->length = 0;

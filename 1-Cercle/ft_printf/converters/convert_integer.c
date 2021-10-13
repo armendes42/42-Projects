@@ -6,15 +6,15 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 21:27:53 by armendes          #+#    #+#             */
-/*   Updated: 2021/07/05 21:28:06 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:28:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
-int		convert_integer(va_list *vargs, t_format *f_info)
+int	convert_integer(va_list *vargs, t_format *f_info)
 {
-	int		*n;
+	int	*n;
 
 	n = malloc(sizeof(int));
 	if (n == NULL)

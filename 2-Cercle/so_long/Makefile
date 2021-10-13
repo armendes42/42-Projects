@@ -6,26 +6,28 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 18:39:50 by armendes          #+#    #+#              #
-#    Updated: 2021/10/12 19:29:51 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/13 16:09:39 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=
+SRCS	= srcs/so_long.c
 
 OBJS	= ${SRCS:.c=.o}
 
 NAME	= so_long
 
-CC		= cc
+CC		= cc -I /usr/local/include
 
 CFLAGS	= -Wall -Wextra -Werror -I includes
+
+MLX		= -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
 RM		= rm -rf
 
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-		${CC} ${CFLAGS} -o ${NAME} ${SRCS}
+		${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${MLX}
 
 clean:
 		${RM} ${OBJS}

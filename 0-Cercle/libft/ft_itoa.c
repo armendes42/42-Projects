@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 15:18:13 by armendes          #+#    #+#             */
-/*   Updated: 2020/12/25 22:03:14 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:24:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		power_ten(int power)
+int	power_ten(int power)
 {
 	int	result;
 
@@ -25,7 +25,7 @@ int		power_ten(int power)
 	return (result);
 }
 
-int		len_nb(unsigned int n)
+int	len_nb(unsigned int n)
 {
 	int	len;
 

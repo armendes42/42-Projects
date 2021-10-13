@@ -6,13 +6,14 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/12 19:34:02 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:08:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-
+# include <mlx.h>
+# include <stdlib.h>
 
 #endif

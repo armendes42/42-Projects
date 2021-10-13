@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 10:31:51 by armendes          #+#    #+#             */
-/*   Updated: 2020/11/29 23:53:02 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:22:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_atoi(const char *nptr)
 	neg = 1;
 	i = 0;
 	while (nptr[i] == '\f' || nptr[i] == '\n' || nptr[i] == '\r'
-			|| nptr[i] == '\t' || nptr[i] == '\v' || nptr[i] == ' ')
+		|| nptr[i] == '\t' || nptr[i] == '\v' || nptr[i] == ' ')
 		i++;
 	if (nptr[i] == '-')
 	{

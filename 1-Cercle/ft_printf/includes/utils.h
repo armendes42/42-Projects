@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 21:32:12 by armendes          #+#    #+#             */
-/*   Updated: 2021/07/05 21:32:33 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:34:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 ** STRUCTURE TO STORE FORMAT SPECIFIER, FLAG AND PRECISION INFO
 */
 
-typedef struct	s_format
+typedef struct s_format
 {
 	int			width;
 	int			length;
@@ -67,8 +67,8 @@ int				ft_printf(char *format, ...);
 */
 
 unsigned int	get_int(char **format);
-void			get_format_info(char **format, t_format *f_info
-								, va_list *vargs);
+void			get_format_info(char **format, t_format *f_info,
+					va_list *vargs);
 t_converter		*init_converters(void);
 t_printer		*init_printers(void);
 void			init_format_info(t_format *f_info);

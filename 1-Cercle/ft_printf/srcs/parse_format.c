@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 21:40:24 by armendes          #+#    #+#             */
-/*   Updated: 2021/07/05 21:40:44 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:53:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ static void	get_spec(char const c, t_format *f_info)
 	}
 }
 
-void		get_conv(char const c, va_list *vargs, t_format *f_info)
+void	get_conv(char const c, va_list *vargs, t_format *f_info)
 {
 	size_t			index;
 	t_converter		*converters;
+	int				control;
 
 	converters = init_converters();
 	if (converters == NULL)
@@ -78,17 +79,20 @@ void		get_conv(char const c, va_list *vargs, t_format *f_info)
 	while (SPECS[index])
 	{
 		if (SPECS[index] == c)
-			if ((converters[index])(vargs, f_info) == -1)
+		{
+			control = (converters[index])(vargs, f_info);
+			if (control == -1)
 			{
 				free(converters);
 				return ;
 			}
+		}
 		++index;
 	}
 	free(converters);
 }
 
-void		get_format_info(char **format, t_format *f_info, va_list *vargs)
+void	get_format_info(char **format, t_format *f_info, va_list *vargs)
 {
 	init_format_info(f_info);
 	++(*format);

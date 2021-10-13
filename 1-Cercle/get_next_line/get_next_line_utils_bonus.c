@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:17:48 by armendes          #+#    #+#             */
-/*   Updated: 2021/02/17 18:02:39 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:57:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (0);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	if (!(result = malloc(sizeof(char) * (len + 1))))
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
 		return (0);
 	j = -1;
 	if (s1)
@@ -51,7 +52,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-int		has_return(char *str)
+int	has_return(char *str)
 {
 	int	i;
 

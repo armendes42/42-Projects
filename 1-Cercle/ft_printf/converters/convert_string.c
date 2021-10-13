@@ -6,15 +6,15 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 21:29:57 by armendes          #+#    #+#             */
-/*   Updated: 2021/07/05 21:30:05 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:29:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
-int		convert_string(va_list *vargs, t_format *f_info)
+int	convert_string(va_list *vargs, t_format *f_info)
 {
-	char		*str;
+	char	*str;
 
 	str = va_arg(*vargs, char *);
 	if (str != NULL)
