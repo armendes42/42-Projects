@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 18:05:04 by armendes         ###   ########.fr       */
+/*   Created: 2021/07/05 21:50:43 by armendes          #+#    #+#             */
+/*   Updated: 2021/07/05 21:50:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
-
-typedef struct s_window
+int	ft_isspace(int c)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		size_x;
-	int		size_y;
-}				t_window;
-
-#endif
+	return ((c >= 9 && c <= 13) || c == 32);
+}
