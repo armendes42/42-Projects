@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 19:28:38 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:11:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,28 +94,61 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_window	win;
-	//t_data		img;
-	void		*img;
-	int			img_width;
-	int			img_height;
-	
+	t_data		img;
+	//void		*img2;
+	//int			img_width;
+	//int			img_height;
+
 	(void)argc;
 	win.size_x = 1000;
 	win.size_y = 1000;
 
 	win.mlx_ptr = mlx_init();
-
+	if (win.mlx_ptr == NULL)
+	{
+		printf("%s\n", "init casse");
+		return (1);
+	}
 	win.win_ptr = mlx_new_window(win.mlx_ptr, win.size_x, win.size_y, argv[0]);
-	
-	//img.img = mlx_new_image(win.mlx_ptr, 250, 250);
-	//img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
+	if (win.win_ptr == NULL)
+	{
+		printf("%s\n", "window casse");
+		return (1);
+	}
+	img.img = mlx_new_image(win.mlx_ptr, 250, 250);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
 
+	/*img2 = mlx_xpm_file_to_image(win.mlx_ptr, "./srcs/Dirt.xpm", &img_width, &img_height);
+	  if (img2 == NULL)
+	  {
+	  printf("%s\n", "xpm file to image casse");
+	  return (1);
+	  }
+	  mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img2, 0, 0);*/
 
-	img = mlx_xpm_file_to_image(win.mlx_ptr, "./sample_640x426.xpm", &img_width, &img_height);
-	//mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img, 0, 0);
+	int color = create_trgb(127, 124, 0, 0);
+	//my_mlx_pixel_put(&img, 5, 5, color);
+	int x = 0;
+	int y;
+	while (x < 100)
+	{
+		y = 0;
+		while (y < 100)
+		{
+			my_mlx_pixel_put(&img, x, y, color);
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img, 0, 0);
 
 	mlx_key_hook(win.win_ptr, deal_key, &win);
 	mlx_loop(win.mlx_ptr);

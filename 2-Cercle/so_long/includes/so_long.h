@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 19:28:40 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:56:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <libc.h>
 
 typedef struct s_window
 {
