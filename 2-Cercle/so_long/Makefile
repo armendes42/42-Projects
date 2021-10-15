@@ -6,11 +6,14 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 18:39:50 by armendes          #+#    #+#              #
-#    Updated: 2021/10/13 19:28:42 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/15 17:58:37 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= srcs/so_long.c
+SRCS	= srcs/so_long.c\
+		  srcs/parsing_map.c\
+		  srcs/get_next_line.c\
+		  srcs/get_next_line_utils.c
 
 OBJS	= ${SRCS:.c=.o}
 

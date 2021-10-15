@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/14 15:11:30 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/15 18:45:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,40 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+int	openfile(char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	return (fd);
+}
+
 int	main(int argc, char **argv)
 {
 	t_window	win;
-	t_data		img;
-	//void		*img2;
-	//int			img_width;
-	//int			img_height;
+	//t_data		img;
+	void		*img2;
+	int			img_width;
+	int			img_height;
+	char		**map;
 
-	(void)argc;
 	win.size_x = 1000;
 	win.size_y = 1000;
 
+	if (argc != 2)
+	{
+		printf("you need to put a map as the first argument !\n");
+		return (1);
+	}
+	map = NULL;
+	if (valid_map(argv[1], &map) == -1)
+	{
+		printf("Error\nMap is not valid");
+		return (1);
+	}
+	/*int i = -1;
+	while (map[++i])
+		printf("ttt%s\n", map[i]);*/
 	win.mlx_ptr = mlx_init();
 	if (win.mlx_ptr == NULL)
 	{
@@ -123,18 +145,18 @@ int	main(int argc, char **argv)
 		printf("%s\n", "window casse");
 		return (1);
 	}
-	img.img = mlx_new_image(win.mlx_ptr, 250, 250);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
+	//img.img = mlx_new_image(win.mlx_ptr, 250, 250);
+	//img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
 
-	/*img2 = mlx_xpm_file_to_image(win.mlx_ptr, "./srcs/Dirt.xpm", &img_width, &img_height);
+	img2 = mlx_xpm_file_to_image(win.mlx_ptr, "./srcs/Dirt.xpm", &img_width, &img_height);
 	  if (img2 == NULL)
 	  {
 	  printf("%s\n", "xpm file to image casse");
 	  return (1);
 	  }
-	  mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img2, 0, 0);*/
+	  mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img2, 0, 0);
 
-	int color = create_trgb(127, 124, 0, 0);
+	/*int color = create_trgb(127, 124, 0, 0);
 	//my_mlx_pixel_put(&img, 5, 5, color);
 	int x = 0;
 	int y;
@@ -148,8 +170,7 @@ int	main(int argc, char **argv)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img, 0, 0);
-
+	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img, 0, 0);*/
 	mlx_key_hook(win.win_ptr, deal_key, &win);
 	mlx_loop(win.mlx_ptr);
 	return (0);
