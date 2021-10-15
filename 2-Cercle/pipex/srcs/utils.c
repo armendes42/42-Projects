@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:00:05 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/12 17:09:32 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/15 16:40:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**parsing_paths(char **envp)
 {
 	int		i;
 	char	**paths;
+	char	**tmp;
 
 	i = -1;
 	while (envp[++i] != NULL)
@@ -23,9 +24,13 @@ char	**parsing_paths(char **envp)
 			break ;
 	paths = ft_split(&envp[i][5], ':');
 	i = -1;
+	tmp = paths;
 	while (paths[++i])
-		paths[i] = ft_strjoin(paths[i], "/");
-	return (paths);
+	{
+		tmp[i] = ft_strjoin(paths[i], "/");
+		free(paths[i]);
+	}
+	return (tmp);
 }
 
 int	dup_in_out(int fd_in, int fd_out)

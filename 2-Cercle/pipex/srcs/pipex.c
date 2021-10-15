@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:24:50 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/12 17:09:28 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/15 16:40:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	child_one(int fd_infile, char *cmd1, int *pipefd, char **envp)
 			execve(cmd, cmdargs, envp);
 		free(cmd);
 	}
+	free(paths);
 	error_command(cmdargs[0]);
 	exit(EXIT_FAILURE);
 }
@@ -64,6 +65,7 @@ void	child_two(int fd_outfile, char *cmd2, int *pipefd, char **envp)
 			execve(cmd, cmdargs, envp);
 		free(cmd);
 	}
+	free(paths);
 	error_command(cmdargs[0]);
 	exit(EXIT_FAILURE);
 }
