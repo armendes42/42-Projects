@@ -34,5 +34,8 @@ char	**parsing_paths(char **envp);
 int		dup_in_out(int fd_in, int fd_out);
 int		openfile(int fd_infile, int fd_outfile, char *infile, char *outfile);
 void	error_command(char *arg);
+void	all_cmd_empty(int fd_infile, int fd_outfile, char **envp);
+void	cmd1_empty(int fd_infile, int fd_outfile, char *cmd2, char **envp);
+void	cmd2_empty(int fd_infile, int fd_outfile, char *cmd1, char **envp);
 
 #endif

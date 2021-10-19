@@ -17,7 +17,8 @@ SRCS =	srcs/ft_putstr_fd.c\
 		srcs/ft_strlen.c\
 		srcs/ft_strncmp.c\
 		srcs/pipex.c\
-		srcs/utils.c
+		srcs/utils.c\
+		srcs/utils2.c
 
 OBJS =	${SRCS:.c=.o};
 
