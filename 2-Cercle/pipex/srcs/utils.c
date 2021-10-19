@@ -12,6 +12,16 @@
 
 #include "../includes/pipex.h"
 
+char	**create_tab(int i)
+{
+	char	**tmp;
+
+	tmp = malloc(sizeof(char *) * (i + 1));
+	if (!tmp)
+		return (NULL);
+	return (tmp);
+}
+
 char	**parsing_paths(char **envp)
 {
 	int		i;
@@ -23,13 +33,19 @@ char	**parsing_paths(char **envp)
 		if (ft_strncmp("PATH=", envp[i], 5) == 0)
 			break ;
 	paths = ft_split(&envp[i][5], ':');
+	i = 0;
+	while (paths[i])
+		i++;
+	tmp = create_tab(i);
 	i = -1;
-	tmp = paths;
 	while (paths[++i])
 	{
 		tmp[i] = ft_strjoin(paths[i], "/");
 		free(paths[i]);
 	}
+	tmp[i] = NULL;
+	free(paths[i]);
+	free(paths);
 	return (tmp);
 }
 

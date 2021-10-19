@@ -23,7 +23,7 @@ OBJS =	${SRCS:.c=.o};
 
 CC =	cc
 
-CFLAGS =	-Wall -Wextra -Werror -I includes
+CFLAGS =	-Wall -Wextra -Werror -g2 -fsanitize=address -I includes
 
 NAME =	pipex
 
