@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:00:05 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/15 16:40:14 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:34:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,23 @@ int	dup_in_out(int fd_in, int fd_out)
 	return (0);
 }
 
-int	openfile(int fd_infile, int fd_outfile, char *infile, char *outfile)
+int	openfile(int fd_infile, int fd_outfile, char **argv, char **envp)
 {
 	if (fd_infile < 0 && fd_outfile < 0)
 	{
-		perror(infile);
-		perror(outfile);
+		perror(argv[1]);
+		perror(argv[4]);
 		return (-1);
 	}
 	else if (fd_infile < 0)
 	{
-		perror(infile);
+		perror(argv[1]);
+		fill_second_file(fd_outfile, argv[3], envp);
 		return (-1);
 	}
 	else if (fd_outfile < 0)
 	{
-		perror(outfile);
+		perror(argv[4]);
 		return (-1);
 	}
 	return (0);

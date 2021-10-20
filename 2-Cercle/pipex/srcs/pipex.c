@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:24:50 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/15 16:40:41 by armendes         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:30:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ void	child_one(int fd_infile, char *cmd1, int *pipefd, char **envp)
 		if (access(cmd, F_OK | X_OK) == 0)
 			execve(cmd, cmdargs, envp);
 		free(cmd);
-		free(paths[i]);
 	}
-	free(paths[i]);
-	free(paths);
+	free_tab(paths);
 	error_command(cmdargs[0]);
 	exit(EXIT_FAILURE);
 }
@@ -66,10 +64,8 @@ void	child_two(int fd_outfile, char *cmd2, int *pipefd, char **envp)
 		if (access(cmd, F_OK | X_OK) == 0)
 			execve(cmd, cmdargs, envp);
 		free(cmd);
-		free(paths[i]);
 	}
-	free(paths[i]);
-	free(paths);
+	free_tab(paths);
 	error_command(cmdargs[0]);
 	exit(EXIT_FAILURE);
 }
@@ -111,7 +107,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	fd_infile = open(argv[1], O_RDONLY);
 	fd_outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 00644);
-	if (openfile(fd_infile, fd_outfile, argv[1], argv[4]) == -1)
+	if (openfile(fd_infile, fd_outfile, argv, envp) == -1)
 		return (-1);
 	if (ft_strncmp(argv[2], "", 1) == 0 && ft_strncmp(argv[3], "", 1) == 0)
 		all_cmd_empty(fd_infile, fd_outfile, envp);
