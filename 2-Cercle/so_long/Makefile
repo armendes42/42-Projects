@@ -6,38 +6,44 @@
 #    By: armendes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 18:39:50 by armendes          #+#    #+#              #
-#    Updated: 2021/10/15 17:58:37 by armendes         ###   ########.fr        #
+#    Updated: 2021/10/25 15:49:16 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= srcs/so_long.c\
-		  srcs/parsing_map.c\
-		  srcs/get_next_line.c\
-		  srcs/get_next_line_utils.c
+SRCS =	srcs/so_long.c\
+		srcs/parsing_map.c\
+		srcs/get_next_line.c\
+		srcs/get_next_line_utils.c\
+		srcs/ft_strdup.c
 
-OBJS	= ${SRCS:.c=.o}
+OBJS 		= ${SRCS:.c=.o}
 
-NAME	= so_long
+UNAME		:= $(shell uname)
 
-CC		= cc -I /usr/local/include -fsanitize=address
+PATH_MLX	= mlx_linux
+CC 			= cc -g2 -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -I includes
+RM			= rm -rf
+NAME		= so_long
+FLAGS		= -ldl -Imlx -Lmlx -lmlx -lm -lbsd -lXext -lX11 -Wl,-rpath=./bass/,-rpath=./mlx/,-rpath=./delay/
 
-CFLAGS	= -Wall -Wextra -Werror -I includes
+all: 		${NAME}
 
-MLX		= -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+.c.o:
+			${CC} ${CFLAGS} -Imlx -Ibass -c $< -o ${<:.c=.o}
 
-RM		= rm -rf
-
-all:	${NAME}
-
-${NAME}:	${OBJS}
-		${CC} ${CFLAGS} ${MLX} -o ${NAME} ${SRCS}
+$(NAME): 	$(OBJS)
+			make -C $(PATH_MLX)
+			${CC} $(CFLAGS) -o $(NAME) $(FLAGS) ${SRCS}
 
 clean:
-		${RM} ${OBJS}
+			make -C $(PATH_MLX) clean
+			${RM} ${OBJS}
 
-fclean:	clean
-		${RM} ${NAME}
+fclean: 	clean
+			make -C $(PATH_MLX) clean
+			${RM} ${NAME}
 
-re:		fclean all
+re: 		fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:		all clean fclean re

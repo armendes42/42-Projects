@@ -6,13 +6,13 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/15 18:45:17 by armendes         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:58:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	deal_key(int key, t_window *win)
+/*int	deal_key(int key, t_window *win)
 {
 	int	x;
 	int	y;
@@ -97,7 +97,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
-}
+}*/
 
 int	openfile(char *filename)
 {
@@ -109,31 +109,40 @@ int	openfile(char *filename)
 
 int	main(int argc, char **argv)
 {
-	t_window	win;
+	/*t_window	win;
 	//t_data		img;
 	void		*img2;
 	int			img_width;
-	int			img_height;
+	int			img_height;*/
 	char		**map;
 
-	win.size_x = 1000;
-	win.size_y = 1000;
+//	win.size_x = 1000;
+//	win.size_y = 1000;
 
 	if (argc != 2)
 	{
 		printf("you need to put a map as the first argument !\n");
 		return (1);
 	}
-	map = NULL;
-	if (valid_map(argv[1], &map) == -1)
+	map = parse_map(argv[1]);
+	if (map == NULL)
 	{
 		printf("Error\nMap is not valid");
 		return (1);
 	}
-	/*int i = -1;
+	int i = -1;
+	if (valid_map_rectangle(map) == -1)
+		printf("Bad!\n");
+	else
+		printf("Good!\n");
 	while (map[++i])
-		printf("ttt%s\n", map[i]);*/
-	win.mlx_ptr = mlx_init();
+	{
+		printf("%s\n", map[i]);
+		free(map[i]);
+	}
+	free(map[i]);
+	free(map);
+	/*win.mlx_ptr = mlx_init();
 	if (win.mlx_ptr == NULL)
 	{
 		printf("%s\n", "init casse");
@@ -156,7 +165,7 @@ int	main(int argc, char **argv)
 	  }
 	  mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img2, 0, 0);
 
-	/*int color = create_trgb(127, 124, 0, 0);
+	int color = create_trgb(127, 124, 0, 0);
 	//my_mlx_pixel_put(&img, 5, 5, color);
 	int x = 0;
 	int y;
@@ -170,8 +179,8 @@ int	main(int argc, char **argv)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img, 0, 0);*/
+	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img, 0, 0);
 	mlx_key_hook(win.win_ptr, deal_key, &win);
 	mlx_loop(win.mlx_ptr);
-	return (0);
+	return (0);*/
 }
