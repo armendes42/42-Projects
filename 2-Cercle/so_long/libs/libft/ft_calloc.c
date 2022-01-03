@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/22 23:56:16 by armendes          #+#    #+#             */
+/*   Updated: 2021/10/13 16:23:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
-	t_win	*win;
+	void	*p;
+	size_t	size;
 
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
-	return (0);
+	size = nelem * elsize;
+	p = malloc(size);
+	if (!p)
+		return (NULL);
+	ft_memset(p, 0, size);
+	return (p);
 }

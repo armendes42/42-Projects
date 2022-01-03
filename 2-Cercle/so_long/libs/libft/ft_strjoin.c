@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/21 14:11:21 by armendes          #+#    #+#             */
+/*   Updated: 2021/10/13 16:26:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_win	*win;
+	char		*result;
+	size_t		len;
+	int			i;
+	int			j;
 
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
-	return (0);
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i])
+		result[++j] = s1[i];
+	i = -1;
+	while (s2[++i])
+		result[++j] = s2[i];
+	result[++j] = '\0';
+	return (result);
 }

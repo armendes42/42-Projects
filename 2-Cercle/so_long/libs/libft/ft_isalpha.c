@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/17 10:31:21 by armendes          #+#    #+#             */
+/*   Updated: 2020/11/29 23:54:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_isalpha(int c)
 {
-	t_win	*win;
-
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1024);
 	return (0);
 }

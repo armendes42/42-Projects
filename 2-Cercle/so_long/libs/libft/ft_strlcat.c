@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/17 21:43:07 by armendes          #+#    #+#             */
+/*   Updated: 2021/10/13 16:20:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_win	*win;
+	size_t	i;
+	size_t	j;
+	size_t	sizedest;
 
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
-	return (0);
+	i = ft_strlen(dst);
+	sizedest = i;
+	j = 0;
+	if (i < size)
+	{
+		while (src[j] && i < size - 1)
+		{
+			dst[i] = src[j];
+			i++;
+			j++;
+		}
+		dst[i] = '\0';
+	}
+	if (size < sizedest)
+		return (size + ft_strlen(src));
+	else
+		return (ft_strlen(src) + sizedest);
 }

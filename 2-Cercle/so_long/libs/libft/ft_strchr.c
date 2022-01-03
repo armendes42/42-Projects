@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/17 17:11:30 by armendes          #+#    #+#             */
+/*   Updated: 2021/10/13 16:20:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	t_win	*win;
+	int	i;
 
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == (unsigned char)c)
+		return ((char *)&s[i]);
+	return (NULL);
 }

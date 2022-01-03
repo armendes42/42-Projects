@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:07:14 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/21 13:22:21 by armendes          #+#    #+#             */
+/*   Updated: 2021/07/16 15:40:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_win	*win;
+	char			*result;
+	unsigned int	i;
+	size_t			j;
 
-	win = NULL;
-	if (ac != 2)
-		error(win, ARGNB_ERR);
-	win = win_init(av);
-	get_collectibles(win);
-	get_player_pos(win);
-	get_exit(win);
-	loops(win);
-	mlx_loop(win->mlx_ptr);
-	return (0);
+	i = 0;
+	if (!s)
+		return (NULL);
+	result = malloc(sizeof(char) * len + 1);
+	if (!result)
+		return (NULL);
+	while (s[i] && i < start)
+		i++;
+	j = 0;
+	while (s[i] && j < len)
+	{
+		result[j] = s[i];
+		i++;
+		j++;
+	}
+	result[j] = '\0';
+	return (result);
 }
