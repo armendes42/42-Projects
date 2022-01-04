@@ -12,21 +12,21 @@
 
 #include "so_long.h"
 
-void    render_map(t_win *win)
+void	render_map(t_win *win)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = -1;
-    while (win->map->map[++i])
-    {
-        j = -1;
-        while (win->map->map[i][++j])
-        {
-            if (win->map->map[i][j] == '1')
-                draw_sprite(win, i * 16, j * 16, 1);
-            else
-                draw_sprite(win, i * 16, j * 16, 0);
-        }
-    }
+	i = -1;
+	while (win->map->map[++i])
+	{
+		j = -1;
+		while (win->map->map[i][++j])
+		{
+			if (win->map->map[i][j] == '1')
+				draw_sprite(win, i * 16, j * 16, 1);
+			else
+				draw_sprite(win, i * 16, j * 16, 0);
+		}
+	}
 }

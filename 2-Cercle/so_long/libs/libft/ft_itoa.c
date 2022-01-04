@@ -40,8 +40,11 @@ int	len_nb(unsigned int n)
 	return (len);
 }
 
-void	itoa(char *result, int len, unsigned int nb, int i)
+void	itoa(char *result, unsigned int nb, int i)
 {
+	int	len;
+
+	len = len_nb(nb) - 1;
 	while (len >= 0)
 	{
 		result[i] = (nb / power_ten(len) % 10) + 48;
@@ -54,13 +57,13 @@ char	*ft_itoa(int n)
 {
 	char			*result;
 	int				i;
-	int				len;
 	unsigned int	nb;
 
 	if (n >= 0)
 	{
 		nb = n;
-		if (!(result = malloc(sizeof(char) * (len_nb(nb) + 1))))
+		result = malloc(sizeof(char) * (len_nb(nb) + 1));
+		if (!result)
 			return (NULL);
 		i = 0;
 		result[len_nb(nb)] = '\0';
@@ -68,13 +71,13 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		nb = -n;
-		if (!(result = malloc(sizeof(char) * (len_nb(nb) + 2))))
+		result = malloc(sizeof(char) * (len_nb(nb) + 2));
+		if (!result)
 			return (NULL);
 		result[0] = '-';
 		result[len_nb(nb) + 1] = '\0';
 		i = 1;
 	}
-	len = len_nb(nb) - 1;
-	itoa(result, len, nb, i);
+	itoa(result, nb, i);
 	return (result);
 }

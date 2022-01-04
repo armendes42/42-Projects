@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-void    error(t_win *win, char *err_msg)
+void	error(t_win *win, char *err_msg)
 {
-    (void)win;
-    printf("Error : %s", err_msg);
-    exit(EXIT_FAILURE);
+	(void)win;
+	printf("Error : %s", err_msg);
+	exit(EXIT_FAILURE);
 }

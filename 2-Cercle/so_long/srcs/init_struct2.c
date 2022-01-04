@@ -12,23 +12,13 @@
 
 #include "so_long.h"
 
-/*void	exit_init(t_win *win)
+void	key_init(t_win *win)
 {
-	win->exit = malloc(sizeof(t_exit *));
-	if (win->exit == NULL)
+	win->key = malloc(sizeof(t_key));
+	if (win->key == NULL)
 		error(win, MALLOC_ERR);
-	win->exit->open = 0;
-	win->exit->x = 0;
-	win->exit->y = 0;
-}*/
-
-void    key_init(t_win *win)
-{
-    win->key = malloc(sizeof(t_key));
-    if (win->key == NULL)
-        error(win, MALLOC_ERR);
-    win->key->key = 0;
-    win->key->pressed = 0;
+	win->key->key = 0;
+	win->key->pressed = 0;
 	win->key->delay = 0;
 }
 

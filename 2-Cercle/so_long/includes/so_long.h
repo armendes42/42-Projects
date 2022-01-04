@@ -56,7 +56,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	int 	coll;
+	int		coll;
 }				t_player;
 
 typedef struct s_collectible
@@ -76,9 +76,9 @@ typedef struct s_exit
 
 typedef struct s_key
 {
-	int key;
-	int pressed;
-	int delay;
+	int	key;
+	int	pressed;
+	int	delay;
 }				t_key;
 
 typedef struct s_win
@@ -98,28 +98,24 @@ typedef struct s_win
 
 }				t_win;
 
-void    error(t_win *win, char *err_msg);
-t_win    *win_init(char **av);
-//void	exit_init(t_win *win);
-void    key_init(t_win *win);
-void	img_init(t_win *win);
-void    get_collectibles(t_win *win);
-void    get_player_pos(t_win *win);
-void    get_exit(t_win *win);
-void    loops(t_win *win);
-void    draw_sprite(t_win *win, int y, int x, int index);
-int     trgb(int t, int r, int g, int b);
-t_sprite    *import_sprite(t_win *win, char *path);
-void    get_map_info(char *filename, t_win *win);
-void    check_required(t_win *win);
-int render_all(t_win *win);
-void    render_collectibles(t_win *win);
-void    render_exit(t_win *win);
-void    render_map(t_win *win);
-void    render_player(t_win *win);
-void    render_move_counter(t_win *win);
-
-
-
+void		error(t_win *win, char *err_msg);
+t_win		*win_init(char **av);
+void		key_init(t_win *win);
+void		img_init(t_win *win);
+void		get_collectibles(t_win *win);
+void		get_player_pos(t_win *win);
+void		get_exit(t_win *win);
+void		loops(t_win *win);
+void		draw_sprite(t_win *win, int y, int x, int index);
+int			trgb(int t, int r, int g, int b);
+t_sprite	*import_sprite(t_win *win, char *path);
+void		get_map_info(char *filename, t_win *win);
+void		check_required(t_win *win);
+int			render_all(t_win *win);
+void		render_collectibles(t_win *win);
+void		render_exit(t_win *win);
+void		render_map(t_win *win);
+void		render_player(t_win *win);
+void		render_move_counter(t_win *win);
 
 #endif

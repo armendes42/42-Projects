@@ -65,28 +65,21 @@ char	*before_return(char *save)
 
 int	get_next_line(int fd, char **line)
 {
-	char		*buff;
+	char		buff[BUFFER_SIZE + 1];
 	static char	*save;
 	int			bytes_read;
 
 	bytes_read = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
-		return (-1);
 	while (!has_return(save) && bytes_read != 0)
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buff);
 			return (-1);
-		}
 		buff[bytes_read] = '\0';
 		save = gnl_strjoin(save, buff);
 	}
-	free(buff);
 	*line = before_return(save);
 	save = after_return(save);
 	if (bytes_read == 0)
