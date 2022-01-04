@@ -68,8 +68,8 @@ static void    check_closed(t_win *win)
             error(win, PARSE_ERR);
     i = -1;
     while (win->map->map[++i])
-        if ((win->map->map[i][0] != '1' ||
-        win->map->map[i][win->map->length - 1] != '1') && i >= win->map->height)
+        if (win->map->map[i][0] != '1' ||
+        win->map->map[i][win->map->length - 1] != '1')
             error(win, PARSE_ERR);
 }
 
