@@ -5,43 +5,47 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/10 19:21:42 by armendes         ###   ########.fr        #
+#    Created: 2020/11/24 00:07:24 by armendes          #+#    #+#              #
+#    Updated: 2022/01/10 18:59:53 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/push_swap.c		\
-		srcs/bubble_sort.c		\
-		srcs/check_input.c		\
-		srcs/error.c			\
-		srcs/sort_small_stack.c	\
-		srcs/utils.c			\
+SRCS	=	ft_lstadd_back.c	\
+			ft_lstadd_front.c	\
+			ft_lstclear.c		\
+			ft_lstdelone.c		\
+			ft_lstiter.c		\
+			ft_lstlast.c		\
+			ft_lstmap.c			\
+			ft_lstnew.c			\
+			ft_lstsize.c		\
+			ft_putstr_fd.c		\
+			ft_split.c			\
+			ft_isdigit.c		\
+			ft_atoi.c			\
+			ft_strjoin.c		\
+			ft_strlen.c			\
 
-LIB_DIR =	libft
+OBJS	=	${SRCS:.c=.o}
 
-LIB_NAME =	libft/libft.a
+NAME	=	libft.a
 
-OBJS =	${SRCS:.c=.o};
+CC		=	gcc
 
-CC =	cc
+CFLAGS	=	-Wall -Wextra -Werror
 
-CFLAGS =	-Wall -Wextra -Werror -g2 -fsanitize=address -I includes
+RM		=	rm -f
 
-NAME =	push_swap
+all:		${NAME}
 
-RM =	rm -rf
+$(NAME):	${OBJS}
+			ar -rcs ${NAME} ${OBJS}
 
-all:	${NAME}
-
-${NAME}:	${OBJS}
-			make -C ${LIB_DIR}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${LIB_NAME}
-
-clean:
-	${RM} ${OBJS}
+clean:	
+			${RM} ${OBJS}
 
 fclean:		clean
-	${RM} ${NAME}
+			${RM} ${NAME}
 
 re:			fclean all
 

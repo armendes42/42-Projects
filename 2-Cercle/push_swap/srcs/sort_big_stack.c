@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:46:06 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/06 15:37:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:13:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	radix_sort(t_list *a)
 		j = -1;
 		while (++j < size)
 		{
-			num = (ft_lstlast(a))->value;
+			num = (int)ft_lstlast(a)->content;
 			if ((num >> i) & 1 == 1)
 				ra();
 			else
@@ -52,7 +52,7 @@ void	sort_big_stack(t_list *input)
 	tmp = change_to_tab(input); /////ecrire change to tab qui transforme liste chainee en tab int 
 	bubble_sort(tmp, ft_lstsize(input));
 	while (input != NULL)
-		input->value = binary_search(tmp, input->value);
+		input->content = binary_search(tmp, input->content);
 	a = input;
 	radix_sort(a);
 }

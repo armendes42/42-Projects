@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 19:42:20 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/21 14:11:21 by armendes          #+#    #+#             */
+/*   Updated: 2021/10/13 16:26:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	//t_list	*input;
-	int		*tab_input;
+	char		*result;
+	size_t		len;
+	int			i;
+	int			j;
 
-	if (argc <= 1)
-		error(NULL, ARGNB_ERR);
-	tab_input = check_input(argc, argv);
-	free(tab_input);
-	//input = change_to_list(tab_input);
-	/*if (check_sorted(input) == 0) 
-		return (0);
-	if (ft_lstsize(input) <= 5)
-		sort_small_stack(input);
-	else
-		sort_big_stack(input);*/
-	return (0);
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i])
+		result[++j] = s1[i];
+	i = -1;
+	while (s2[++i])
+		result[++j] = s2[i];
+	result[++j] = '\0';
+	return (result);
 }

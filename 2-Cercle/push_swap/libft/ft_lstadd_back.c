@@ -1,13 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small_stack.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 14:46:31 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 16:27:27 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/30 00:22:04 by armendes          #+#    #+#             */
+/*   Updated: 2020/11/30 20:52:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+
+void	ft_lstadd_back(t_list **alst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (alst == NULL || new == NULL)
+		return ;
+	if (*alst == NULL)
+		*alst = new;
+	else
+	{
+		tmp = ft_lstlast(*alst);
+		tmp->next = new;
+	}
+}

@@ -1,3 +1,8 @@
 {
-    "C_Cpp.dimInactiveRegions": true
+	"C_Cpp.dimInactiveRegions": true,
+	"files.associations": {
+		"type_traits": "c",
+		"unistd.h": "c",
+		"libft.h": "c"
+	}
 }
