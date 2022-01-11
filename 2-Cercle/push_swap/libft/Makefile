@@ -6,25 +6,18 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 00:07:24 by armendes          #+#    #+#              #
-#    Updated: 2022/01/10 18:59:53 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/11 17:02:12 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	ft_lstadd_back.c	\
-			ft_lstadd_front.c	\
-			ft_lstclear.c		\
-			ft_lstdelone.c		\
-			ft_lstiter.c		\
-			ft_lstlast.c		\
-			ft_lstmap.c			\
-			ft_lstnew.c			\
-			ft_lstsize.c		\
-			ft_putstr_fd.c		\
+SRCS	=	ft_putstr_fd.c		\
 			ft_split.c			\
 			ft_isdigit.c		\
 			ft_atoi.c			\
 			ft_strjoin.c		\
 			ft_strlen.c			\
+			ft_itoa.c			\
+			ft_strncmp.c		\
 
 OBJS	=	${SRCS:.c=.o}
 

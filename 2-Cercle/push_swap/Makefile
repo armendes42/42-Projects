@@ -6,17 +6,17 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/10 19:21:42 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/11 17:04:59 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	srcs/push_swap.c		\
+		srcs/check_arg.c 		\
 		srcs/bubble_sort.c		\
-		srcs/check_input.c		\
 		srcs/error.c			\
 		srcs/sort_small_stack.c	\
-		srcs/utils.c			\
-
+		srcs/free.c 			\
+		
 LIB_DIR =	libft
 
 LIB_NAME =	libft/libft.a
