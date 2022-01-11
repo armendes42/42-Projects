@@ -6,53 +6,20 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:20:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 19:12:56 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:46:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*change_to_list(int *tab_input)
-{
-	int		i;
-	t_list	*input;
-	t_list	*elem;
-
-	i = 0;
-	while (tab_input[i])
-	{
-		elem = ft_lstnew(tab_input[i]);
-		ft_lstadd_back(&input, elem);
-		i++;
-	}
-	return (input);
-}
-
-int	check_sorted(t_list *tab)
-{
-	t_list	*tmp;
-
-	tmp = tab->next;
-	if (ft_lstsize(tab) == 1)
-		return (0);
-	while (tmp != NULL)
-	{
-		if (tab->content >= tmp->content)
-			return (-1);
-		tab = tmp;
-		tmp = tab->next;
-	}
-	return (0);
-}
-
-/*int	binary_search(int *tab, int value)
+int	binary_search(int *tab, int value, int size)
 {
 	int	first_index;
 	int	last_index;
 	int	middle_index;
 
 	first_index = 0;
-	last_index = intlen(tab);
+	last_index = size - 1;
 	while (first_index <= last_index)
 	{
 		middle_index = (first_index + last_index) / 2;
@@ -64,4 +31,24 @@ int	check_sorted(t_list *tab)
 			first_index = middle_index + 1;
 	}
 	return (0);
-}*/
+}
+
+int	len_stack(t_list **stack)
+{
+	int		i;
+	t_list	*tmp;
+
+	if (stack == NULL || *stack == NULL)
+		return (0);
+	if ((*stack)->next == NULL)
+		return (1);
+	tmp = *stack;
+	i = 0;
+	while (tmp->next != NULL)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	i++;
+	return (i);
+}

@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble_sort.c                                      :+:      :+:    :+:   */
+/*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 17:26:39 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 16:27:29 by armendes         ###   ########.fr       */
+/*   Created: 2022/01/11 19:57:55 by armendes          #+#    #+#             */
+/*   Updated: 2022/01/11 20:10:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(int *a, int *b)
+int	check_sorted(t_list **stack)
 {
-	int tmp;
+	t_list	*tmp1;
+	t_list	*tmp2;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	bubble_sort(int *tab, int size)
-{
-	int nb_compare;
-	int count;
-
-	nb_compare = size - 1;
-	count = -1;
-	while (nb_compare-- > 0)
+	if (stack == NULL || *stack == NULL)
+		return (1);
+	if ((*stack)->next == NULL)
 	{
-		while (count++ < nb_compare)
-		{
-			if (tab[count] > tab[count + 1])
-			{
-				swap(&tab[count], &tab[count + 1]);
-			}
-		}
-		count = -1;
+		free_stack(stack);
+		return (0);
 	}
+	tmp1 = *stack;
+	while (tmp1->next != NULL)
+	{
+		tmp2 = tmp1->next;
+		if (tmp1->value > tmp2->value)
+			return (1);
+		tmp1 = tmp1->next;
+	}
+	free_stack(stack);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:29:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/11 17:02:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:46:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define EMPTY_ERR "One of the arguments is empty"
-# define NOT_INT_ERR "One of the arguments is not an integer"
-# define OVERFLOW_ERR "One of the arguments is too big for an integer"
-# define DUP_ERR "Two arguments are the same"
-# define MALLOC_ERR "Memory allocation error"
-
-# define WHITE_SPACE " \t\n\v\f\r"
-
 typedef struct s_list
 {
 	int				value;
@@ -32,10 +24,14 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-void	bubble_sort(int *tab, int size);
-void	error(char *err_msg);
-void	error_stack(t_list *input, char *err_msg);
-void	free_tab(char **tab);
+void	error(void);
+void	free_char_tab(char **tab);
+void	free_stack(t_list **stack);
 int		check_arg(int argc, char **argv);
+t_list	*set_stack_a(int argc, char **argv);
+int		check_sorted(t_list **stack);
+void	get_pos_stack(t_list **stack);
+int		binary_search(int *tab, int value, int size);
+int		len_stack(t_list **stack);
 
 #endif

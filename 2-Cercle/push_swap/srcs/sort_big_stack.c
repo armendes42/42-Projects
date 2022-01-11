@@ -6,34 +6,37 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:46:06 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 19:13:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:57:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	radix_sort(t_list *a)
+static int	search_max_bits(int size)
+{
+	int	max_num;
+	int	max_bits;
+
+	max_num = size - 1;
+	max_bits = 0;
+	while ((max_num >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}
+
+static void	radix_sort(t_list **a, int size, int max_bits)
 {
 	t_list	*b;
-	int		size;
-	int		max_bits;
-	int		max_num;
-
 	int	i;
 	int	j;
 	int	num;
 
-	size = ft_lstsize(a);
-	max_num = size - 1;
-	while ((max_num >> max_bits) != 0)
-		++max_bits;
 	i = -1;
 	while (++i < max_bits)
 	{
 		j = -1;
 		while (++j < size)
 		{
-			num = (int)ft_lstlast(a)->content;
 			if ((num >> i) & 1 == 1)
 				ra();
 			else
@@ -44,15 +47,13 @@ static void	radix_sort(t_list *a)
 		pa();
 }
 
-void	sort_big_stack(t_list *input)
+void	sort_big_stack(t_list **stack_a)
 {
-	int		*tmp;
-	t_list	*a;
+	int	size;
+	int	max_num;
+	int	max_bits;
 
-	tmp = change_to_tab(input); /////ecrire change to tab qui transforme liste chainee en tab int 
-	bubble_sort(tmp, ft_lstsize(input));
-	while (input != NULL)
-		input->content = binary_search(tmp, input->content);
-	a = input;
-	radix_sort(a);
+	size = len_stack(stack_a);
+	max_bits = search_max_bits(size);
+	radix_sort(stack_a, size, max_bits);
 }

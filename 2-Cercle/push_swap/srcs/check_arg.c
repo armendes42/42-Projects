@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/11 17:17:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:30:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ static int	check_empty(char *str)
 	return (0);
 }
 
+static int	check_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '-')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 static int	check_int(char *str)
 {
 	int		i;
@@ -28,12 +42,10 @@ static int	check_int(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) || (i == 0 && str[i] == '-' && ft_isdigit(str[i + 1]))
-			|| (i > 0 && str[i] == '-' && str[i - 1] == ' '
-			&& ft_isdigit(str[i + 1])) || str[i] == ' ')
-			i++;
-		else
+		if ((str[i] == '-' && !ft_isdigit(str[i + 1]))
+			|| (i > 0 && str[i] == '-' && str[i - 1] != ' '))
 			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -45,7 +57,7 @@ static int	check_int_overflow(char *str)
 	int		after_atoi;
 	char	*after_itoa;
 
-	tab = ft_split(str, WHITE_SPACE);
+	tab = ft_split(str, " ");
 	i = 0;
 	while (tab[i])
 	{
@@ -54,13 +66,13 @@ static int	check_int_overflow(char *str)
 		if (ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])))
 		{
 			free(after_itoa);
-			free_tab(tab);
+			free_char_tab(tab);
 			return (1);
 		}
 		free(after_itoa);
 		i++;
 	}
-	free_tab(tab);
+	free_char_tab(tab);
 	return (0);
 }
 
@@ -74,11 +86,13 @@ int	check_arg(int argc, char **argv)
 	while (i < argc)
 	{
 		if (check_empty(argv[i]))
-			error(EMPTY_ERR);
+			error();
+		if (check_digit(argv[i]))
+			error();
 		if (check_int(argv[i]))
-			error(NOT_INT_ERR);
+			error();
 		if (check_int_overflow(argv[i]))
-			error(OVERFLOW_ERR);
+			error();
 		i++;
 	}
 	return (0);
