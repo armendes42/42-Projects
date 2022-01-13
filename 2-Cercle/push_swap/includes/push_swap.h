@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:29:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/11 20:46:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:33:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ int		check_sorted(t_list **stack);
 void	get_pos_stack(t_list **stack);
 int		binary_search(int *tab, int value, int size);
 int		len_stack(t_list **stack);
+void	sort_big_stack(t_list **stack_a);
+void	ra(t_list **a);
+void	pb(t_list **a, t_list **b);
+void	pa(t_list **a, t_list **b);
 
 #endif

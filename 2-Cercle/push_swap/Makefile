@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/11 20:38:39 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/13 15:33:55 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS =	srcs/push_swap.c		\
 		srcs/check_sorted.c		\
 		srcs/get_pos_stack.c 	\
 		srcs/utils.c			\
+		srcs/sort_big_stack.c	\
+		srcs/stack_operation.c	\
 		
 LIB_DIR =	libft
 

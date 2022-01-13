@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:46:06 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/11 20:57:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:18:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	radix_sort(t_list **a, int size, int max_bits)
 	t_list	*b;
 	int	i;
 	int	j;
-	int	num;
 
 	i = -1;
 	while (++i < max_bits)
@@ -37,20 +36,19 @@ static void	radix_sort(t_list **a, int size, int max_bits)
 		j = -1;
 		while (++j < size)
 		{
-			if ((num >> i) & 1 == 1)
-				ra();
+			if ((((*a)->pos >> i) & 1) == 1)
+				ra(a);
 			else
-				pb();
+				pb(a, &b);
 		}
+		while (b != NULL)
+			pa(a, &b);
 	}
-	while (ft_lstsize(b) > 0)
-		pa();
 }
 
 void	sort_big_stack(t_list **stack_a)
 {
 	int	size;
-	int	max_num;
 	int	max_bits;
 
 	size = len_stack(stack_a);
