@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:46:06 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/13 15:18:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:21:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,25 @@ static int	search_max_bits(int size)
 static void	radix_sort(t_list **a, int size, int max_bits)
 {
 	t_list	*b;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
-	i = -1;
-	while (++i < max_bits)
+	i = 0;
+	b = NULL;
+	while (i < max_bits)
 	{
-		j = -1;
-		while (++j < size)
+		j = 0;
+		while (j < size)
 		{
 			if ((((*a)->pos >> i) & 1) == 1)
 				ra(a);
 			else
 				pb(a, &b);
+			j++;
 		}
 		while (b != NULL)
 			pa(a, &b);
+		i++;
 	}
 }
 

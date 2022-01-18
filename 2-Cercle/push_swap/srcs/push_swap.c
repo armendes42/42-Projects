@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/13 15:14:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:22:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 
@@ -23,9 +23,9 @@ int main(int argc, char **argv)
 	if (!check_sorted(&stack_a))
 		return (0);
 	get_pos_stack(&stack_a);
-	/*if (argc<= 6)
+	if (argc <= 6)
 		sort_small_stack(&stack_a);
-	else*/
+	else
 		sort_big_stack(&stack_a);
 	free_stack(&stack_a);
 	return (0);

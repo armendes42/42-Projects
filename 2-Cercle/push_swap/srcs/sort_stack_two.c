@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   sort_stack_two.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 16:41:16 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:19:27 by armendes         ###   ########.fr       */
+/*   Created: 2022/01/18 18:51:31 by armendes          #+#    #+#             */
+/*   Updated: 2022/01/18 20:18:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(void)
+void	sort_stack_two(t_list **a)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
+	sa(a);
 }

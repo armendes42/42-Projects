@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:18:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/13 15:33:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:18:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 void	ra(t_list **a)
 {
 	t_list	*tmp;
-	t_list	*tmp2;
+	t_list	*last;
 
-	if (a == NULL || *a == NULL)
+	if (lstsize(*a) < 2)
 		return ;
+	last = *a;
+	while (last->next != NULL)
+		last = last->next;
 	tmp = *a;
-	tmp2 = (*a)->next->next;
 	*a = (*a)->next;
-	(*a)->next = tmp;
-	tmp->next = tmp2;
+	last->next = tmp;
+	tmp->next = NULL;
 	write(1, "ra\n", 3);
 }
 
@@ -35,14 +37,14 @@ void	pb(t_list **a, t_list **b)
 		return ;
 	tmp = *a;
 	*a = (*a)->next;
-	if ((*b) == NULL)
+	if (*b == NULL)
 	{
 		*b = tmp;
 		(*b)->next = NULL;
 	}
 	else
 	{
-		tmp->next = (*b);
+		tmp->next = *b;
 		*b = tmp;
 	}
 	write(1, "pb\n", 3);
@@ -59,4 +61,36 @@ void	pa(t_list **a, t_list **b)
 	tmp->next = *a;
 	*a = tmp;
 	write(1, "pa\n", 3);
+}
+
+void	sa(t_list **a)
+{
+	t_list	*tmp;
+
+	if (lstsize(*a) < 2)
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = (*a)->next;
+	(*a)->next = tmp;
+	write(1, "sa\n", 3);
+}
+
+void	rra(t_list **a)
+{
+	t_list	*last;
+	t_list	*before_last;
+
+	if (lstsize(*a) < 2)
+		return ;
+	before_last = *a;
+	while (before_last->next->next != NULL)
+		before_last = before_last->next;
+	last = *a;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = *a;
+	before_last->next = NULL;
+	*a = last;
+	write(1, "rra\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:20:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/11 20:46:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:21:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,35 @@ int	len_stack(t_list **stack)
 	}
 	i++;
 	return (i);
+}
+
+int	lstsize(t_list *lst)
+{
+	t_list	*tmp;
+	int		result;
+
+	result = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		result++;
+		tmp = tmp->next;
+	}
+	return (result);
+}
+
+int	lstsort(t_list *a)
+{
+	t_list	*tmp;
+
+	if (a == NULL)
+		return (0);
+	tmp = a;
+	while (tmp->next != NULL)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
