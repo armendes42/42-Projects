@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:02:48 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/19 16:55:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:14:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	set_next_node(t_list **stack_a, char *str)
 	tmp->next = elem;
 }
 
-static int	check_duplicate(t_list **stack)
+int	check_duplicate(t_list **stack)
 {
 	t_list	*tmp1;
 	t_list	*tmp2;
@@ -87,11 +87,6 @@ t_list	*set_stack_a(int argc, char **argv)
 				set_next_node(&stack_a, tab[j]);
 		}
 		free_char_tab(tab);
-	}
-	if (check_duplicate(&stack_a))
-	{
-		free_stack(&stack_a);
-		error();
 	}
 	return (stack_a);
 }

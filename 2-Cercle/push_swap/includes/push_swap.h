@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:29:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/19 16:30:10 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:14:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_stack(t_list **stack);
 int		check_arg(int argc, char **argv);
 t_list	*set_stack_a(int argc, char **argv);
 int		check_sorted(t_list **stack);
+int		check_duplicate(t_list **stack);
 void	get_pos_stack(t_list **stack);
 int		binary_search(int *tab, int value, int size);
 int		len_stack(t_list **stack);
