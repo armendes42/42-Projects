@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:19:54 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 16:56:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:26:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,21 @@ char	*before_return(char *save)
 
 int	get_next_line(int fd, char **line)
 {
-	char		*buff;
+	char		buff[BUFFER_SIZE + 1];
 	static char	*save[256];
 	int			bytes_read;
 
 	bytes_read = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
-		return (-1);
 	while (!has_return(save[fd]) && bytes_read != 0)
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buff);
 			return (-1);
-		}
 		buff[bytes_read] = '\0';
 		save[fd] = ft_strjoin(save[fd], buff);
 	}
-	free(buff);
 	*line = before_return(save[fd]);
 	save[fd] = after_return(save[fd]);
 	if (bytes_read == 0)
