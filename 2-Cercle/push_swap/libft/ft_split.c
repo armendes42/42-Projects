@@ -6,97 +6,68 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:39:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:19:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:54:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_charset(char c, char *charset)
+static size_t	count_words(char const *s, char c)
 {
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	nb_mall(char *str, char *charset)
-{
-	int	result;
 	int	is_true;
+	int	result;
 
-	result = 0;
 	is_true = 0;
-	while (*str)
+	result = 0;
+	while (s != NULL && *s)
 	{
-		if (check_charset(*str, charset))
+		if (*s == c)
 			is_true = 0;
 		else if (is_true == 0)
 		{
 			is_true = 1;
 			result++;
 		}
-		str++;
+		s++;
 	}
 	return (result);
 }
 
-int	len_str(char *str, char *charset, int nb)
+static size_t	wordlen(char const *s, char c)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (str[nb])
-	{
-		if (!check_charset(str[nb], charset))
-			i++;
-		nb++;
-	}
-	return (i);
+	len = 0;
+	while (*s && *s++ != c)
+		len++;
+	return (len);
 }
 
-void	split(char **result, char *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	j;
-	int	k;
+	char	**str;
+	size_t	nb_mall;
+	size_t	l_word;
 
-	i = -1;
-	j = 0;
-	k = 0;
-	while (str[++i])
-	{
-		if (!check_charset(str[i], charset))
-		{
-			if (k == 0)
-				if (!(result[j] = malloc(sizeof(char)
-							* (len_str(str, charset, i) + 1))))
-					return ;
-			result[j][k] = str[i];
-			result[j][k + 1] = '\0';
-			k++;
-		}
-		if ((check_charset(str[i], charset)
-				&& !check_charset(str[i + 1], charset) && k > 0)
-			&& (k = 0) == 0)
-			j++;
-	}
-}
-
-char	**ft_split(char *str, char *charset)
-{
-	char	**result;
-
-	if (!(result = (char **)malloc(sizeof(char *)
-				* (nb_mall(str, charset) + 1))))
+	nb_mall = count_words(s, c) + 1;
+	str = malloc(sizeof(char **) * nb_mall);
+	if (!str)
 		return (NULL);
-	split(result, str, charset);
-	result[nb_mall(str, charset)] = NULL;
-	return (result);
+	while (s != NULL && *s)
+	{
+		if (*s != c)
+		{
+			l_word = wordlen(s, c) + 1;
+			*str = malloc(sizeof(char) * l_word);
+			if (!*str)
+				return (NULL);
+			ft_strlcpy(*str, s, l_word);
+			s += l_word - 1;
+			str++;
+		}
+		else
+			s++;
+	}
+	*str = NULL;
+	return (str - nb_mall + 1);
 }

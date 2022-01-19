@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:02:48 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:20:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:55:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_list	*set_stack_a(int argc, char **argv)
 	while (++i < argc)
 	{
 		j = -1;
-		tab = ft_split(argv[i], " ");
+		tab = ft_split(argv[i], ' ');
 		while (tab[++j])
 		{
 			if (stack_a == NULL)

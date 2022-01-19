@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/19 16:19:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:55:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	check_int_overflow(char *str)
 	int		after_atoi;
 	char	*after_itoa;
 
-	tab = ft_split(str, " ");
+	tab = ft_split(str, ' ');
 	i = 0;
 	while (tab[i])
 	{

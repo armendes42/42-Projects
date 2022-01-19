@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:39:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/10 16:56:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:53:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,16 @@ char	**ft_split(char const *s, char c)
 	size_t	l_word;
 
 	nb_mall = count_words(s, c) + 1;
-	if (!(str = malloc(sizeof(char **) * nb_mall)))
+	str = malloc(sizeof(char **) * nb_mall);
+	if (!str)
 		return (NULL);
 	while (s != NULL && *s)
 	{
 		if (*s != c)
 		{
 			l_word = wordlen(s, c) + 1;
-			if (!(*str = malloc(sizeof(char) * l_word)))
+			*str = malloc(sizeof(char) * l_word);
+			if (!*str)
 				return (NULL);
 			ft_strlcpy(*str, s, l_word);
 			s += l_word - 1;

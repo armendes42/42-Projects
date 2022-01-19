@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 00:07:24 by armendes          #+#    #+#              #
-#    Updated: 2022/01/19 16:02:42 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/19 16:57:26 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ SRCS	=	ft_putstr_fd.c		\
 			ft_atoi.c			\
 			ft_strjoin.c		\
 			ft_strlen.c			\
-			ft_itoa.c		\
+			ft_itoa.c			\
 			ft_strncmp.c		\
+			ft_strlcpy.c		\
 
 OBJS	=	${SRCS:.c=.o}
 
