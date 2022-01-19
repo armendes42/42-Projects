@@ -6,11 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:29:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:17:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:30:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
