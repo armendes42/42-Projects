@@ -6,29 +6,29 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/18 20:08:23 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/19 15:38:48 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/push_swap.c			\
-		srcs/check_arg.c 			\
-		srcs/error.c				\
-		srcs/free.c 				\
-		srcs/set_stack_a.c			\
-		srcs/check_sorted.c			\
-		srcs/get_pos_stack.c 		\
-		srcs/utils.c				\
-		srcs/sort_big_stack.c		\
-		srcs/stack_operation.c		\
-		srcs/sort_small_stack.c		\
-		srcs/sort_stack_two.c		\
-		srcs/sort_stack_three.c		\
-		srcs/sort_stack_four.c		\
-		srcs/sort_stack_five.c		\
-		srcs/extract_zero_pos_four.c\
-		srcs/extract_zero_pos_five.c\
-		srcs/extract_one_pos_five.c\
-		
+SRCS =	srcs/push_swap.c					\
+		srcs/stack_operation.c				\
+		srcs/utils.c						\
+		srcs/arg_check/check_arg.c			\
+		srcs/arg_check/check_sorted.c		\
+		srcs/error_and_free/error.c			\
+		srcs/error_and_free/free.c			\
+		srcs/set_stack/get_pos_stack.c		\
+		srcs/set_stack/set_stack_a.c		\
+		srcs/sort/extract_one_pos_five.c	\
+		srcs/sort/extract_zero_pos_five.c	\
+		srcs/sort/extract_zero_pos_four.c	\
+		srcs/sort/sort_big_stack.c			\
+		srcs/sort/sort_small_stack.c		\
+		srcs/sort/sort_stack_five.c			\
+		srcs/sort/sort_stack_four.c			\
+		srcs/sort/sort_stack_three.c		\
+		srcs/sort/sort_stack_two.c			\
+
 LIB_DIR =	libft
 
 LIB_NAME =	libft/libft.a

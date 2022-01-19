@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:19:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:19:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	check_int_overflow(char *str)
 	while (tab[i])
 	{
 		after_atoi = ft_atoi(tab[i]);
-		after_itoa = ft_itoa_base(after_atoi, "0123456789");
+		after_itoa = ft_itoa(after_atoi);
 		if (ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])))
 		{
 			free(after_itoa);
