@@ -6,13 +6,13 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 16:32:19 by armendes          #+#    #+#              #
-#    Updated: 2021/12/23 19:08:50 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/24 20:28:21 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        	=   so_long
 
-CC          	=   gcc
+CC          	=   clang
 
 SRC_DIR			= 	$(shell find srcs -type d)
 INC_DIR			= 	$(shell find includes -type d) \
