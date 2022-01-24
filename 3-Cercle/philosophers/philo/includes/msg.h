@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:10:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 19:05:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/24 20:56:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@
  nb_of_times_philo_must_eat\n"
 # define INT_ERROR "One of the arguments is not an int\n"
 # define OVERFLOW_ERROR "One of the arguments is too big for an integer\n"
+
+# define FORK "has taken a fork"
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define DIE "died"
 
 #endif

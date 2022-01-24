@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 19:28:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/24 20:47:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_philo	*init_philo(int argc, char **argv)
 		philos[i].times_eaten = 0;
 		philos[i].forks = forks_tab;
 		philos[i].mutex_forks = mutex_forks_tab;
+		philos[i].last_time_eat = 0;
 	}
 	return (philos);
 }

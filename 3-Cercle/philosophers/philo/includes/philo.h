@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 19:27:07 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/24 20:46:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_info
 
 typedef struct s_philo
 {
+	int				last_time_eat;
 	pthread_t		philo_thread;
 	int				philo_nb;
 	int				times_eaten;
