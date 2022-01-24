@@ -6,24 +6,15 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 16:43:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:30:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*init_philo(char **argv)
+/*void	take_fork(t_philo philo)
 {
-	t_philo	*philos;
-	int		i;
-	
-	while ()
-	return (philos);
-}
-
-void	take_fork(t_philo philo)
-{
-	pthread_mutex_lock();
+	while(pthread_mutex_lock());
 }
 
 void	eat(t_philo philo)
@@ -34,9 +25,9 @@ void	eat(t_philo philo)
 void	release_fork(t_philo philo)
 {
 
-}
+}*/
 
-void	philo_loop(t_philo philo)
+static void	philo_loop(void *philo)
 {
 	while (1)
 	{
@@ -47,12 +38,17 @@ void	philo_loop(t_philo philo)
 	}
 }
 
-void	create_philo(char **argv)
+int	create_philo(int argc, char **argv)
 {
 	t_philo	*philos;
 	int		i;
 
-	philos = init_philo(argv);
-	i = 0;
-	while (i < (philos[0])->info->)
+	philos = init_philo(argc, argv);
+	if (!philos)
+		return (-1);
+	i = -1;
+	while (++i < philos->info.nb_of_philos)
+	{
+		if (pthread_create(philos[i].philo_thread, NULL, &philo_loop, philos[i]) != 0);
+	}
 }

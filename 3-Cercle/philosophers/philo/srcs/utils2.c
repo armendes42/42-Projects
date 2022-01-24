@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 18:20:29 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 19:00:36 by armendes         ###   ########.fr       */
+/*   Created: 2022/01/24 19:23:17 by armendes          #+#    #+#             */
+/*   Updated: 2022/01/24 19:24:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	if (check_arg(argc, argv) == -1)
-		return (-1);
-	if (create_philo(argc, argv) == -1)
-		return (-1);
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*s_1;
+	unsigned char	*s_2;
+	size_t			i;
+
+	i = 0;
+	s_1 = (unsigned char *)s1;
+	s_2 = (unsigned char *)s2;
+	while ((s_1[i] || s_2[i]) && i < n)
+	{
+		if (s_1[i] != s_2[i])
+			return (s_1[i] - s_2[i]);
+		else
+			i++;
+	}
+	return (0);
 }
