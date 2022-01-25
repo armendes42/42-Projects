@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:36:33 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:53:23 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:48:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ static void	get_map_size(int fd, t_win *win)
 {
 	int		tmp;
 	char	*line;
+	int		length;
 
 	tmp = 1;
+	length = -1;
 	while (tmp > 0)
 	{
 		tmp = get_next_line(fd, &line);
 		if (tmp < 0)
 			error(win, MALLOC_ERR);
+		if (length != -1 && length != (int)ft_strlen(line))
+			error(win, PARSE_ERR);
+		if (length == -1)
+			length = ft_strlen(line);
 		if (tmp != 0)
 			win->map->length = ft_strlen(line);
 		win->map->height++;

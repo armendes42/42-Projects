@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/19 18:13:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:05:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 
 	stack_a = NULL;
-	if (check_arg(argc, argv))
-		return (-1);
+	check_arg(argc, argv);
 	stack_a = set_stack_a(argc, argv);
+	if (!stack_a)
+		error();
 	if (check_duplicate(&stack_a))
 	{
 		free_stack(&stack_a);

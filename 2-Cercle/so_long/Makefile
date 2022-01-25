@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 16:32:19 by armendes          #+#    #+#              #
-#    Updated: 2022/01/24 20:28:21 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/25 16:41:55 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OBJ_BONUS	=	$(addprefix $(OBJ_DIR_BONUS)/, $(SRC:%.c=%.o))
 
 # Compilation flags -------------------------------------------------
 
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 LFLAGS		=	$(foreach dir, $(LIB_DIR), -L $(dir))
 

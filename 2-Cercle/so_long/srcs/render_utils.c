@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 22:44:18 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 19:02:27 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:48:28 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,18 @@ t_sprite	*import_sprite(t_win *win, char *path)
 	sprite = malloc(sizeof(t_sprite));
 	if (sprite == NULL)
 		error(win, MALLOC_ERR);
+	printf("gate IS\n");
+	printf("path = %s\n",path);
 	sprite->img = mlx_xpm_file_to_image(win->mlx_ptr, path,
 			&sprite->iw, &sprite->ih);
+	printf("gate 0\n");
+	printf("gate 0\n");
 	if (sprite->img == NULL)
-		error(win, MALLOC_ERR);
+		error(win, MALLOC_ERR);// pad malloc error
 	if (sprite->iw != 16 || sprite->ih != 16)
 		error(win, SPRITE_ERR);
 	sprite->addr = mlx_get_data_addr(sprite->img, &sprite->bpp,
-			&sprite->ll, &sprite->endian);
+			&sprite->ll, &sprite->endian); // pe pas error
 	if (sprite->addr == NULL)
 		error(win, MALLOC_ERR);
 	return (sprite);

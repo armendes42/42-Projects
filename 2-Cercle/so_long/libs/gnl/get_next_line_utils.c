@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:17:48 by armendes          #+#    #+#             */
-/*   Updated: 2021/11/24 16:46:21 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:48:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	len = gnl_strlen(s1) + gnl_strlen(s2);
 	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
-		return (0);
+		return (NULL);
 	j = -1;
 	if (s1)
 	{

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:46:06 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:21:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:05:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	sort_big_stack(t_list **stack_a)
 	int	max_bits;
 
 	size = len_stack(stack_a);
+	if (size <= 0)
+		error();
 	max_bits = search_max_bits(size);
 	radix_sort(stack_a, size, max_bits);
 }

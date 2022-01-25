@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 15:45:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:35:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	init_mutex_tab(pthread_mutex_tab **mutex_tab, int nb_philo)
 		{
 			free(*mutex_tab);
 			return (-1);
-
-	return (mutex_tab);
+		}
+	return (0);
 }
 
 static int	*init_fork_tab(int nb_philos)

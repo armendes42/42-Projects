@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 21:54:57 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:48:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct s_win
 	t_exit			*exit;
 	t_key			*key;
 	t_img			*img;
-
 }				t_win;
 
 void		error(t_win *win, char *err_msg);

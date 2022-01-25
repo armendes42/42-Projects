@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 18:55:19 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 21:56:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:23:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	img_init(t_win *win)
 	win->img->img = mlx_new_image(win->mlx_ptr,
 			win->map->length * 16,
 			win->map->height * 16);
+			//echouer
 	win->img->addr = mlx_get_data_addr(win->img->img, &win->img->bpp,
 			&win->img->ll, &win->img->endian);
 }

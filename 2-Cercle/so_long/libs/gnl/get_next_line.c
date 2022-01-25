@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:19:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/19 16:26:37 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:48:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ char	*after_return(char *save)
 	i = 0;
 	j = 0;
 	if (!save)
-		return (0);
+		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
 	if (!save[i])
 	{
 		free(save);
-		return (0);
+		return (NULL);
 	}
 	tmp = malloc(sizeof(char) * ((gnl_strlen(save) - i) + 1));
 	if (!tmp)
-		return (0);
+		return (NULL);
 	i++;
 	while (save[i])
 		tmp[j++] = save[i++];
@@ -47,12 +47,12 @@ char	*before_return(char *save)
 
 	i = 0;
 	if (!save)
-		return (0);
+		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
 	tmp = malloc(sizeof(char) * (i + 1));
 	if (!tmp)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (save[i] && save[i] != '\n')
 	{
@@ -79,9 +79,24 @@ int	get_next_line(int fd, char **line)
 			return (-1);
 		buff[bytes_read] = '\0';
 		save = gnl_strjoin(save, buff);
+		if (!save)
+		{
+			free(save);
+			return (-1);
+		}
 	}
 	*line = before_return(save);
+	if (!*line)
+	{
+		free(save);
+		return (-1);
+	}
 	save = after_return(save);
+	if (!save)
+	{
+		free(save);
+		return (-1);
+	}
 	if (bytes_read == 0)
 		return (0);
 	return (1);
