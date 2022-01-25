@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 20:47:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:00:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_philo	*init_philo(int argc, char **argv)
 		return (NULL);
 	i = 0;
 	while (++i <= info.nb_of_philos)
+
 	{
 		philos[i].info = info;
 		philos[i].philo_nb = i;

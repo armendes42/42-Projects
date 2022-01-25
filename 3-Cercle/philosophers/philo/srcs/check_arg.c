@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:47:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/24 19:28:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:46:11 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_int(char *str)
 	while (str[i])
 	{
 		if (str[i] < 48 || str[i] > 57)
-			return (1);
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -36,7 +36,7 @@ static int	check_overflow(char *str)
 	if (ft_strncmp(str, after_itoa, ft_strlen(str)))
 	{
 		free(after_itoa);
-		return (1);
+		return (-1);
 	}
 	free(after_itoa);
 	return (0);
