@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 14:59:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:39:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	create_philo(int argc, char **argv)
 	t_philo	*philos;
 	int		i;
 
-	philos = init_philo(argc, argv);
+	philos = NULL;
+	init_philo(&philos, argc, argv);
 	if (!philos)
 		return (-1);
 	i = -1;
