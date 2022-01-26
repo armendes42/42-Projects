@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 15:16:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:40:28 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ int	main(int argc, char **argv)
 		error();
 	if (check_duplicate(&stack_a) == -1)
 	{
-		printf("bonjour inside");
 		free_stack(&stack_a);
 		error();
-		printf("bonjour outside");
 	}
 	if (check_sorted(&stack_a) == 0)
 		return (0);
