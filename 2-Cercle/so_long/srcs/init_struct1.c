@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:33:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 17:48:17 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:26:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	set_win_to_zero(t_win *win)
 	win->player = NULL;
 	win->sprites = NULL;
 	win->collectibles = NULL;
+	win->img = NULL;
 	win->exit = NULL;
+	win->key = NULL;
 	win->nb_coll = 0;
 	win->nb_exit = 0;
 	win->nb_moves = 0;

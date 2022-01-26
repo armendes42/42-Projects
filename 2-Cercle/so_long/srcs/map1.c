@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:36:33 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 17:48:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:28:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ static void	get_map_size(int fd, t_win *win)
 	{
 		tmp = get_next_line(fd, &line);
 		if (tmp < 0)
+		{
+			free(line);
 			error(win, MALLOC_ERR);
+		}
 		if (length != -1 && length != (int)ft_strlen(line))
 			error(win, PARSE_ERR);
 		if (length == -1)

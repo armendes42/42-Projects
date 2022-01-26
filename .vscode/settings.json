@@ -4,6 +4,8 @@
 		"type_traits": "c",
 		"unistd.h": "c",
 		"libft.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"*.tcc": "c",
+		"fstream": "c"
 	}
 }
