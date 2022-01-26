@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 19:54:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:13:18 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
+
 	if (argc > 1)
 	{
 		stack_a = NULL;

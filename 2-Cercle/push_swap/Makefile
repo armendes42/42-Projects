@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/26 17:51:57 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/26 20:11:01 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,14 @@ ${NAME}:	${OBJS}
 			${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${LIB_NAME}
 
 clean:
-	${RM} ${OBJS}
+		make clean -C ${LIB_DIR}
+		${RM} ${OBJS}
 
-fclean:		clean
-	${RM} ${NAME}
+fclean:	clean
+		${RM} ${LIB_NAME}
+		${RM} ${NAME}
 
-re:			fclean all
+re:		fclean all
 
 malloc_test: ${OBJS}
 			make -C ${LIB_DIR}

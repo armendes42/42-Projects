@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:02:48 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 19:46:42 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:08:43 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ int	check_duplicate(t_list **stack)
 		while (tmp2 != NULL)
 		{
 			if (tmp1->value == tmp2->value)
-			{
-				free_stack(stack);
 				return (-1);
-			}
 			tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
