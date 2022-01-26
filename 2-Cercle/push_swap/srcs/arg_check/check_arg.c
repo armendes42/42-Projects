@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 17:56:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:57:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ static int	check_int_overflow(char *str)
 	char	*after_itoa;
 
 	tab = ft_split(str, ' ');
-	if (!tab)
-		return (-1);
+	if (tab == NULL)
+	{
+		free_char_tab(tab);
+		error();
+	}
 	i = 0;
 	while (tab[i])
 	{
 		after_atoi = ft_atoi(tab[i]);
 		after_itoa = ft_itoa(after_atoi);
-		if (ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])) || !after_itoa)
+		if (after_itoa == NULL || ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])))
 		{
 			free(after_itoa);
 			free_char_tab(tab);

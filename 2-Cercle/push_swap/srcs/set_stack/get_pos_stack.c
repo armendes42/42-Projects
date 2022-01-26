@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 20:13:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 18:04:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:23:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	get_pos_stack(t_list **stack)
 	len_stack_a = len_stack(stack);
 	copy = copy_stack(stack);
 	if (!copy)
+	{
+		free_stack(stack);
 		error();
+	}
 	bubble_sort(copy, len_stack_a);
 	tmp = *stack;
 	while (tmp->next != NULL)

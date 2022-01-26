@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/19 15:38:48 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/26 17:51:57 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ LIB_DIR =	libft
 
 LIB_NAME =	libft/libft.a
 
-OBJS =	${SRCS:.c=.o};
+OBJS =	${SRCS:.c=.o}
 
 CC =	cc
 
-CFLAGS =	-Wall -Wextra -Werror -I includes
+CFLAGS =	-Wall -Wextra -Werror -g -I includes
 
 NAME =	push_swap
 
@@ -56,5 +56,9 @@ fclean:		clean
 	${RM} ${NAME}
 
 re:			fclean all
+
+malloc_test: ${OBJS}
+			make -C ${LIB_DIR}
+			${CC} ${CFLAGS} -fsanitize=undefined -rdynamic -o $@ ${OBJS} ${LIB_NAME} -L. -lmallocator
 
 .PHONY:		all clean fclean re
