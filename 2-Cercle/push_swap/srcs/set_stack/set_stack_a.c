@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:02:48 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 18:57:41 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:46:42 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,37 +71,28 @@ int	check_duplicate(t_list **stack)
 	return (0);
 }
 
-t_list	*set_stack_a(int argc, char **argv)
+void	set_stack_a(t_list **stack_a, int argc, char **argv)
 {
 	int		i;
 	int		j;
 	char	**tab;
-	t_list	*stack_a;
 
 	i = 0;
-	stack_a = NULL;
 	while (++i < argc)
 	{
 		j = -1;
 		tab = ft_split(argv[i], ' ');
 		if (tab == NULL)
-		{
-			free_char_tab(tab);
-			return (NULL);
-		}
+			free_stack_and_tab_and_error(stack_a, tab);
 		while (tab[++j])
 		{
-			if (stack_a == NULL)
-				if (set_first_node(&stack_a, tab[j]))
-				{
-					free_stack(&stack_a);
-					return (NULL);
-				}
-			if (stack_a != NULL)
-				if (set_next_node(&stack_a, tab[j]))
-					return (NULL);
+			if (*stack_a == NULL)
+				if (set_first_node(stack_a, tab[j]))
+					free_stack_and_tab_and_error(stack_a, tab);
+			if (*stack_a != NULL)
+				if (set_next_node(stack_a, tab[j]))
+					free_stack_and_tab_and_error(stack_a, tab);
 		}
 		free_char_tab(tab);
 	}
-	return (stack_a);
 }

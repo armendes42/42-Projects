@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:05:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 18:57:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:57:27 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,13 @@ static int	check_int_overflow(char *str)
 
 	tab = ft_split(str, ' ');
 	if (tab == NULL)
-	{
-		free_char_tab(tab);
-		error();
-	}
+		free_stack_and_tab_and_error(NULL, tab);
 	i = 0;
 	while (tab[i])
 	{
 		after_atoi = ft_atoi(tab[i]);
 		after_itoa = ft_itoa(after_atoi);
-		if (after_itoa == NULL || ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])))
+		if (!after_itoa || ft_strncmp(tab[i], after_itoa, ft_strlen(tab[i])))
 		{
 			free(after_itoa);
 			free_char_tab(tab);
@@ -84,9 +81,17 @@ static int	check_int_overflow(char *str)
 void	check_arg(int argc, char **argv)
 {
 	int	i;
+	int	control;
 
-	if (argc == 1)
-		error();
+	i = 0;
+	control = 0;
+	while (++i < argc)
+	{
+		if (check_empty(argv[i]))
+			control++;
+	}
+	if (control == (argc - 1))
+		exit(EXIT_SUCCESS);
 	i = 0;
 	while (++i < argc)
 	{

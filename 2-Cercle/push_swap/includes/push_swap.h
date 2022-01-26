@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:29:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 18:48:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:49:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-
-#include <stdio.h>
 
 typedef struct s_list
 {
@@ -29,8 +27,9 @@ typedef struct s_list
 void	error(void);
 void	free_char_tab(char **tab);
 void	free_stack(t_list **stack);
+void	free_stack_and_tab_and_error(t_list **stack, char **tab);
 void	check_arg(int argc, char **argv);
-t_list	*set_stack_a(int argc, char **argv);
+void	set_stack_a(t_list **stack_a, int argc, char **argv);
 int		check_sorted(t_list **stack);
 int		check_duplicate(t_list **stack);
 void	get_pos_stack(t_list **stack);

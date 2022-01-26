@@ -6,6 +6,8 @@
 		"libft.h": "c",
 		"stdio.h": "c",
 		"*.tcc": "c",
-		"fstream": "c"
+		"fstream": "c",
+		"chrono": "c",
+		"algorithm": "c"
 	}
 }

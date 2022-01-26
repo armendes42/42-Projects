@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:57:57 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 18:59:27 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:49:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,11 @@ void	free_char_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+void	free_stack_and_tab_and_error(t_list **stack, char **tab)
+{
+	free_char_tab(tab);
+	free_stack(stack);
+	error();
 }
