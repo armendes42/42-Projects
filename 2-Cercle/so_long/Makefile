@@ -5,136 +5,61 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/24 16:32:19 by armendes          #+#    #+#              #
-#    Updated: 2022/01/26 16:21:14 by armendes         ###   ########.fr        #
+#    Created: 2022/01/26 20:21:54 by armendes          #+#    #+#              #
+#    Updated: 2022/01/26 20:44:07 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        	=   so_long
+SRCS =	srcs/error.c				\
+		srcs/init_struct1.c			\
+		srcs/init_struct2.c			\
+		srcs/loops.c				\
+		srcs/map1.c					\
+		srcs/map2.c					\
+		srcs/render_all.c			\
+		srcs/render_collectibles.c	\
+		srcs/render_exit.c			\
+		srcs/render_map.c			\
+		srcs/render_player.c		\
+		srcs/render_utils.c			\
+		srcs/so_long.c
 
-CC          	=   gcc
+LIB_DIR =	libs/libft libs/gnl libs/minilibx_linux
 
-SRC_DIR			= 	$(shell find srcs -type d)
-INC_DIR			= 	$(shell find includes -type d) \
-					$(shell find libs/libft -type d) \
-					$(shell find libs/gnl -type d)
-LIB_DIR			=	libs/libft libs/gnl
-OBJ_DIR			=	.objs
-LIB				=	libs/libft/libft.a libs/gnl/gnl.a
+LIB_FLAGS =	-L libs/libft -L libs/gnl -L libs/minilibx_linux
 
-vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
+LIB_NAME =	libs/libft/libft.a libs/gnl/gnl.a libs/minilibx_linux/libmlx_Linux.a
 
-UNAME_S			=	$(shell uname -s)
-ifeq ($(UNAME_S), Linux)
-LIB_DIR			+=	libs/minilibx_linux
-LIB				+=	libs/minilibx_linux/libmlx_Linux.a
-MLX				=	-lXext -lX11
-IFLAGS			=	$(foreach dir, $(INC_DIR), -I $(dir)) \
-					-I libs/minilibx_linux
-else
-LIB_DIR			+=	libs/minilibx_mac
-MLX				=	libs/minilibx_mac/libmlx.dylib -framework OpenGL -framework AppKit
-IFLAGS			=	$(foreach dir, $(INC_DIR), -I $(dir)) \
-					-I libs/minilibx_mac
-endif
+MLX_FLAGS =	-lm -lmlx_Linux -lXext -lX11
 
-BUILD			=	$(CC) $(CFLAGS) ${IFLAGS} $(OBJ) $(LFLAGS) $(LIB) -o $(NAME) ${MLX}
+OBJS =	${SRCS:.c=.o}
 
-# library -----------------------------------------------------------
+CC =	gcc
 
-SRC			= 	error.c\
-				init_struct1.c\
-				init_struct2.c\
-				loops.c\
-				map1.c\
-				map2.c\
-				render_all.c\
-				render_collectibles.c\
-				render_exit.c\
-				render_map.c\
-				render_player.c\
-				render_utils.c\
-				so_long.c
+CFLAGS =	-Wall -Wextra -Werror -g -I includes -I libs/libft -I libs/gnl -I libs/minilibx_linux
 
-OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
+NAME =	so_long
 
-OBJ_BONUS	=	$(addprefix $(OBJ_DIR_BONUS)/, $(SRC:%.c=%.o))
+RM =	rm -rf
 
-# Compilation flags -------------------------------------------------
+all:	${NAME}
 
-CFLAGS		=	-Wall -Wextra -Werror -g3
-
-LFLAGS		=	$(foreach dir, $(LIB_DIR), -L $(dir))
-
-# Colors ------------------------------------------------------------
-
-_NOCOLOR=\033[0m
-_RED=\033[0;31m
-_GREEN=\033[0;32m
-_ORANGE=\033[0;33m
-_BLUE=\033[0;34m
-_PURPLE=\033[0;35m
-_CYAN=\033[0;36m
-_LIGHTGRAY=\033[0;37m
-_DARKGRAY=\033[1;30m
-_LIGHTRED=\033[1;31m
-_LIGHTGREEN=\033[1;32m
-_YELLOW=\033[1;33m
-_LIGHTBLUE=\033[1;34m
-_LIGHTPURPLE=\033[1;35m
-_LIGHTCYAN=\033[1;36m
-_WHITE=\033[1;37m
-
-# main part ---------------------------------------------------------
-
-all:
-	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
-	@make $(NAME)
-
-bonus: fclean
-	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
-	@make BONUS=$(D_BONUS) $(NAME)
-
-show:
-	@echo "$(_BLUE)SRC :\n$(_YELLOW)$(SRC)$(_WHITE)"
-	@echo "$(_BLUE)OBJ :\n$(_YELLOW)$(OBJ)$(_WHITE)"
-	@echo "$(_BLUE)CFLAGS :\n$(_YELLOW)$(CFLAGS)$(_WHITE)"
-	@echo "$(_BLUE)IFLAGS :\n$(_YELLOW)$(IFLAGS)$(_WHITE)"
-	@echo "$(_BLUE)LFLAGS :\n$(_YELLOW)$(LFLAGS)$(_WHITE)"
-	@echo "$(_BLUE)LIB_DIR :\n$(_YELLOW)$(LIB_DIR)$(_WHITE)"
-	@echo "\n-----\n"
-	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)$(_WHITE)"
-
-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir);)
-
-re-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir) re;)
-
-fclean-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir) fclean;)
-
-$(NAME): install $(OBJ)
-	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
-	@${BUILD}
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
-
-$(OBJ_DIR)/%.o : %.c
-	@echo "Compiling $(_YELLOW)$@$(_WHITE) ... \c"
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(BONUS) $(IFLAGS) -o $@ -c $<
-	@echo "$(_GREEN)DONE$(_WHITE)"
-
-re:	fclean all
+${NAME}:	${OBJS}
+			make -C libs/libft
+			make -C libs/gnl
+			make -C libs/minilibx_linux
+			${CC} ${CFLAGS} ${LIB_FLAGS} ${OBJS} -o ${NAME} -lft ${MLX_FLAGS} ${LIB_NAME}
 
 clean:
-	@echo "$(_WHITE)Deleting Objects Directory $(_YELLOW)$(OBJ_DIR)$(_WHITE) ... \c"
-	@$(foreach file, $(OBJ), rm -rf $(file))
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+		make clean -C libs/libft
+		make clean -C libs/gnl
+		make clean -C libs/minilibx_linux
+		${RM} ${OBJS}
 
 fclean:	clean
-	@echo "Deleting Binary File $(_YELLOW)$(NAME)$(_WHITE) ... \c"
-	@rm -f $(NAME)
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+		${RM} ${LIB_NAME}
+		${RM} ${NAME}
 
-.PHONY: all bonus show install re-install re clean fclean
+re:		fclean all
+
+.PHONY:		all clean fclean re
