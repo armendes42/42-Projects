@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:51:13 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:18:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:29:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void	sort_stack_four(t_list **a)
 	if (lstsort(*a) && (lstsize(*a) == 4))
 		return ;
 	sort_three_numbers_left(a);
-	pa(a, &b);
+	while (lstsize(b) >= 1)
+		pa(a, &b);
+	free_stack(&b);
 }

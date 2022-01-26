@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:20:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/18 20:21:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:25:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int	lstsize(t_list *lst)
 	t_list	*tmp;
 	int		result;
 
+	if (lst == NULL)
+		return (0);
 	result = 0;
 	tmp = lst;
-	while (tmp)
+	while (tmp->next != NULL)
 	{
 		result++;
 		tmp = tmp->next;
