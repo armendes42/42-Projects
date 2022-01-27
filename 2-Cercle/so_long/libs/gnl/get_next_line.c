@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:19:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 17:48:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:07:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,24 @@ int	get_next_line(int fd, char **line)
 			return (-1);
 		buff[bytes_read] = '\0';
 		save = gnl_strjoin(save, buff);
-		if (!save)
+		/*if (!save)
 		{
 			free(save);
-			return (-1);
-		}
+			return (2);
+		}*/
 	}
 	*line = before_return(save);
-	if (!*line)
+	/*if (!*line)
 	{
 		free(save);
-		return (-1);
-	}
+		return (2);
+	}*/
 	save = after_return(save);
-	if (!save)
+	/*if (!save)
 	{
 		free(save);
-		return (-1);
-	}
+		return (2);
+	}*/
 	if (bytes_read == 0)
 		return (0);
 	return (1);

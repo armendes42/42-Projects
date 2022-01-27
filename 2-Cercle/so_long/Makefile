@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 20:21:54 by armendes          #+#    #+#              #
-#    Updated: 2022/01/26 20:44:07 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/27 21:27:29 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,5 +61,11 @@ fclean:	clean
 		${RM} ${NAME}
 
 re:		fclean all
+
+malloc_test:	${OBJS}
+			make -C libs/libft
+			make -C libs/gnl
+			make -C libs/minilibx_linux
+			${CC} ${CFLAGS} -fsanitize=undefined -rdynamic -o $@ ${OBJS} ${LIB_FLAGS} -lft ${MLX_FLAGS} ${LIB_NAME} -L. -lmallocator
 
 .PHONY:		all clean fclean re

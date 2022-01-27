@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:36:33 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 20:51:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:26:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	get_map_info(char *filename, t_win *win)
 	if (fd < 0)
 		error(win, OPEN_ERR);
 	get_map(fd, win);
-	printf("gate 6\n");
 	check_closed(win);
 	check_required(win);
 }
