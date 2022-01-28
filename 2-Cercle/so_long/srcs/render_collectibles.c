@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 20:12:38 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 21:49:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:44:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	get_collectibles(t_win *win)
 		{
 			if (win->map->map[i][j] == 'C')
 			{
-				set_collectible(&(win->collectibles[k]), i, j);
+				set_collectible(&win->collectibles[k], i, j);
 				k++;
 			}
 		}

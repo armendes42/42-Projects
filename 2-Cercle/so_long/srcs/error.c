@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:26:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 16:35:57 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:55:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ static void	free_map(t_map *map)
 	}
 }
 
-static void	free_all(t_win *win)
+static void	free_coll(t_win *win, t_collectible **coll)
+{
+	int	i;
+
+	i = -1;
+	while (++i < win->nb_coll)
+	{
+		free(coll[i]);
+	}
+	free(win->collectibles);
+}
+
+void	free_all(t_win *win)
 {
 	if (win->collectibles)
-		free(win->collectibles);
+		free_coll(win, &(win->collectibles));
 	if (win->map)
 	{
 		free_map(win->map);
@@ -69,13 +81,15 @@ static void	free_all(t_win *win)
 		free(win->key);
 	if (win->win_ptr)
 		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
-	free(win->mlx_ptr);
-	free(win);
+	if (win->mlx_ptr)
+		mlx_destroy_display(win->mlx_ptr);
 }
 
 void	error(t_win *win, char *err_msg)
 {
-	free_all(win);
+	if (win)
+		free_all(win);
+	free(win);
 	printf("Error : %s", err_msg);
 	exit(EXIT_FAILURE);
 }

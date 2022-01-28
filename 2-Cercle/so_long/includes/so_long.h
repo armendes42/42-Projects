@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:32:46 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 20:43:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:52:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_win
 }				t_win;
 
 void		error(t_win *win, char *err_msg);
+void		free_all(t_win *win);
 t_win		*win_init(char **av);
 void		key_init(t_win *win);
 void		img_init(t_win *win);

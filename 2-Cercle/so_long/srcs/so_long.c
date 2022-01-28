@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:33:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/27 21:08:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:53:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int	main(int ac, char **av)
 	get_exit(win);
 	loops(win);
 	mlx_loop(win->mlx_ptr);
+	free_all(win);
+	free(win);
 	return (0);
 }
