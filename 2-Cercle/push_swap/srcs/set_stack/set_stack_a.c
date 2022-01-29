@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:02:48 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/26 20:08:43 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:50:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_duplicate(t_list **stack)
 	tmp1 = *stack;
 	while (tmp1->next != NULL)
 	{
-		tmp2 = tmp1->next->next;
+		tmp2 = tmp1->next;
 		while (tmp2 != NULL)
 		{
 			if (tmp1->value == tmp2->value)
@@ -84,9 +84,11 @@ void	set_stack_a(t_list **stack_a, int argc, char **argv)
 		while (tab[++j])
 		{
 			if (*stack_a == NULL)
+			{
 				if (set_first_node(stack_a, tab[j]))
 					free_stack_and_tab_and_error(stack_a, tab);
-			if (*stack_a != NULL)
+			}
+			else if (*stack_a != NULL)
 				if (set_next_node(stack_a, tab[j]))
 					free_stack_and_tab_and_error(stack_a, tab);
 		}
