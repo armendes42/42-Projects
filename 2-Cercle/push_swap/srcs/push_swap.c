@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/29 16:50:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:12:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		if (check_sorted(&stack_a) == 0)
 			return (0);
 		get_pos_stack(&stack_a);
-		if (argc <= 6)
+		if (lstsize(stack_a) <= 5)
 			sort_small_stack(&stack_a);
 		else
 			sort_big_stack(&stack_a);

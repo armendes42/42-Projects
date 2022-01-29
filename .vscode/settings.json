@@ -8,6 +8,7 @@
 		"*.tcc": "c",
 		"fstream": "c",
 		"chrono": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"push_swap.h": "c"
 	}
 }

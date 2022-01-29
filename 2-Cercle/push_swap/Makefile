@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 19:36:46 by armendes          #+#    #+#              #
-#    Updated: 2022/01/26 20:14:06 by armendes         ###   ########.fr        #
+#    Updated: 2022/01/29 17:18:12 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ all:	${NAME}
 
 ${NAME}:	${OBJS}
 			make -C ${LIB_DIR}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS} ${LIB_NAME}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIB_NAME}
 
 clean:
 		make clean -C ${LIB_DIR}
