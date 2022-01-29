@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:19:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/28 15:18:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 19:34:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ char	*before_return(char *save)
 	return (tmp);
 }
 
+static int	gnl_return_and_free(char *save, int return_value)
+{
+	free(save);
+	return (return_value);
+}
+
 int	get_next_line(int fd, char **line)
 {
 	char		buff[BUFFER_SIZE + 1];
@@ -71,33 +77,22 @@ int	get_next_line(int fd, char **line)
 
 	bytes_read = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
-		return (-1);
+		return (gnl_return_and_free(save, -1));
 	while (!has_return(save) && bytes_read != 0)
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (-1);
+			return (gnl_return_and_free(save, -1));
 		buff[bytes_read] = '\0';
 		save = gnl_strjoin(save, buff);
 		if (!save)
-		{
-			free(save);
-			return (2);
-		}
+			return (gnl_return_and_free(save, -1));
 	}
 	*line = before_return(save);
-	/*if (!*line)
-	{
-		free(save);
-		return (2);
-	}*/
 	save = after_return(save);
 	if (!save)
 		free(save);
 	if (bytes_read == 0)
-	{
-		free(save);
-		return (0);
-	}
+		return (gnl_return_and_free(save, 0));
 	return (1);
 }

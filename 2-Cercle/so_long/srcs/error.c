@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:26:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/29 18:13:36 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 19:16:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ static void	free_map(t_win *win)
 	free(win->map);
 }
 
+static void	free_all_two(t_win *win)
+{
+	if (win->player)
+		free(win->player);
+	if (win->key)
+		free(win->key);
+	if (win->win_ptr)
+		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
+	if (win->mlx_ptr)
+	{
+		mlx_destroy_display(win->mlx_ptr);
+		free(win->mlx_ptr);
+	}
+}
+
 void	free_all(t_win *win)
 {	
 	if (win)
@@ -63,25 +78,14 @@ void	free_all(t_win *win)
 			mlx_destroy_image(win->mlx_ptr, win->img->img);
 			free(win->img);
 		}
-		if (win->player)
-			free(win->player);
-		if (win->key)
-			free(win->key);
-		if (win->win_ptr)
-			mlx_destroy_window(win->mlx_ptr, win->win_ptr);
-		if (win->mlx_ptr)
-		{
-			mlx_destroy_display(win->mlx_ptr);
-			free(win->mlx_ptr);
-		}
+		free_all_two(win);
 		free(win);
 	}
 }
 
 void	error(t_win *win, char *err_msg)
 {
-	if (win)
-		free_all(win);
+	free_all(win);
 	printf("Error : %s", err_msg);
 	exit(EXIT_FAILURE);
 }

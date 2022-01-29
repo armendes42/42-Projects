@@ -6,11 +6,17 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:36:33 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/29 17:50:21 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 19:34:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	free_line_and_error(char *line, char *err_msg, t_win *win)
+{
+	free(line);
+	error(win, err_msg);
+}
 
 static void	get_map_size(int fd, t_win *win)
 {
@@ -24,14 +30,11 @@ static void	get_map_size(int fd, t_win *win)
 	{
 		tmp = get_next_line(fd, &line);
 		if (tmp < 0)
-		{
-			free(line);
-			break ;
-		}
+			free_line_and_error(line, PARSE_ERR, win);
 		if (length != -1 && length != (int)ft_strlen(line))
 		{
-			free(line);
-			error(win, PARSE_ERR);
+			get_next_line(-1, &line);
+			free_line_and_error(line, PARSE_ERR, win);
 		}
 		if (length == -1)
 			length = ft_strlen(line);
@@ -39,8 +42,6 @@ static void	get_map_size(int fd, t_win *win)
 		free(line);
 		line = NULL;
 	}
-	if (tmp <= 0)
-		free(line);
 	win->map->length = length;
 }
 
