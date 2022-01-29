@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 16:35:06 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 19:04:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*void	take_fork(t_philo philo, int nb_of_philo)
 {
 	pthread_mutex_lock(&philo.mutex_forks[nb_of_philo- 1]);
-	if (philo.forks[nb_of_philo - 1] != 0)
+	if (philo.forks[nb_of_philo - 1] == 0)
 	{
 		philo.forks[nb_of_philo - 1]++;
 		printf("%d %d %s",timestamp ,nb_of_philo, FORK);
@@ -26,7 +26,7 @@
 
 static void	philo_eat(t_philo philo)
 {
-	take_fork(philo, philo.philo_nb);
+	while (take_fork(philo, philo.philo_nb) && pas mort());
 	take_fork(philo, philo.philo_nb + 1);
 }
 
@@ -48,6 +48,7 @@ static void	*philo_loop(void *philo)
 		philo_eat(philo);
 		release_fork(philo);
 		philo_sleep(philo);
+		printf(THINK);
 	}
 }*/
 

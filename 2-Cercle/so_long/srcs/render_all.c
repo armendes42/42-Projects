@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 17:29:06 by armendes          #+#    #+#             */
-/*   Updated: 2021/12/23 21:52:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:46:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	render_all(t_win *win)
 	{
 		if (win->exit[i].x == win->player->x
 			&& win->exit[i].y == win->player->y && win->nb_coll == 0)
+		{
+			free_all(win);
 			exit(EXIT_SUCCESS);
+		}
 		i++;
 	}
 	return (0);
