@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 18:11:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/31 20:46:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ int	init_philo(t_philo **philos, int argc, char **argv)
 	forks_tab = init_fork_tab(info.nb_of_philos);
 	if (!*philos || !forks_tab)
 		return (-1);
-	i = 0;
+	i = -1;
 	while (++i < info.nb_of_philos)
 	{
 		(*philos)[i].info = info;
-		(*philos)[i].philo_nb = i;
+		(*philos)[i].philo_nb = i + 1;
 		(*philos)[i].times_eaten = 0;
 		(*philos)[i].forks = forks_tab;
 		(*philos)[i].mutex_forks = mutex_forks_tab;
