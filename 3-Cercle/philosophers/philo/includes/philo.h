@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/29 19:04:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:08:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 
 typedef struct s_info
 {
-	int	nb_of_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	nb_of_meal;
+	int			nb_of_philos;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			nb_of_meal;
+	pthread_t	mutex_info;
 }				t_info;
 
 typedef struct s_philo
@@ -48,5 +49,6 @@ int		init_philo(t_philo **philos, int argc, char **argv);
 char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *s);
+long	get_time(void);
 
 #endif
