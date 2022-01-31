@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 18:07:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/31 20:00:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ static void	*philo_loop(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (1)
+	while (philo->times_eaten < philo->info.nb_of_meal && !is_end(philo))
 	{
-		philo_eat(philo);
-		release_fork(philo);
+		philo->last_time_eat = philo_eat(philo);
+		if (philo->last_time_eat == -1)
+			return (-1);
+		philo->times_eaten++;
 		philo_sleep(philo);
-		print_message();
 	}
 }
 

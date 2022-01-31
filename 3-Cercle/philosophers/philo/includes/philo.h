@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 18:08:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:55:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_info
 	int			time_to_sleep;
 	int			nb_of_meal;
 	pthread_t	mutex_info;
+	int			end;
 }				t_info;
 
 typedef struct s_philo
