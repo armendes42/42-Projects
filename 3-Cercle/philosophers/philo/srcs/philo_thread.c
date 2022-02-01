@@ -6,65 +6,63 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 20:54:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:25:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	take_fork(t_philo *philo, int philo_nb)
-{
-	if (philo_nb > philo->info.nb_of_philos)
-		philo_nb = 1;
-	pthread_mutex_lock(&philo->mutex_forks[philo_nb - 1]);
-	if (philo->forks[philo_nb - 1] == 0)
-	{
-		philo->forks[philo_nb - 1]++;
-		pthread_mutex_unlock(&philo->mutex_forks[philo_nb - 1]);
-	}
-	pthread_mutex_unlock(&philo->mutex_forks[philo_nb - 1]);
-}
-
-static void	philo_eat(t_philo *philo)
-{
-	take_fork(philo, philo->philo_nb));
-	take_fork(philo, philo->philo_nb + 1));
-}
-
-void	philo_sleep(t_philo *philo)
-{
-	
-}
 
 static void	*philo_loop(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (philo->times_eaten < philo->info.nb_of_meal && !is_end(philo))
+	while (philo->meals_needed != 0 && is_end(philo) == 0)
 	{
-		philo->last_time_eat = philo_eat(philo);
-		if (philo->last_time_eat == -1)
-			return (-1);
-		philo->times_eaten++;
-		philo_sleep(philo);
+		if (is_end(philo) == 0)
+		{
+			philo->last_time_eat = philo_eat(philo);
+			if (philo->last_time_eat == -1)
+				return (NULL);
+		}
+		if (is_end(philo) == 0 && (philo->meals_needed - 1 > 0))
+			philo_sleep(philo);
+		if (philo->meals_needed > 0)
+			philo->meals_needed--;
 	}
+	return (NULL);
 }
 
-int	create_philo(int argc, char **argv)
+int	create_philo(t_philo *philos)
 {
-	t_philo	*philos;
-	int		i;
+	int	i;
 
-	philos = NULL;
-	init_philo(&philos, argc, argv);
-	if (!philos)
-		return (-1);
-	i = -1;
-	while (++i < philos->info.nb_of_philos)
+	i = 0;
+	while (i < philos->info.nb_of_philos)
 	{
-		if (pthread_create(&philos[i].philo_thread, NULL, &philo_loop, &philos[i]))
+		if (pthread_create(&(philos[i].philo_thread), NULL, &philo_loop, &philos[i]))
+		{
+			free(philos);
 			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	end_philo(t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos->info.nb_of_philos)
+	{
+		if (pthread_join(philos[i].philo_thread, NULL))
+		{
+			free(philos);
+			return (-1);
+		}
+		i++;
 	}
 	return (0);
 }

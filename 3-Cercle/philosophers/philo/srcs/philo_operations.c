@@ -6,24 +6,57 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:03:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 19:44:27 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:25:28 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_philo_dead(t_philo *philo)
+void	is_philo_dead(t_philo *philo)
 {
 	long	time;
 
 	time = get_time();
 	pthread_mutex_lock(&philo->info.mutex_info);
-	if (time - philo->last_time_eat >= philo->info.time_to_die)
+	if ((time - philo->last_time_eat) > philo->info.time_to_die && philo->info.end == 0)
 	{
-		print_message(philo->philo_nb, DIE);
+		printf("%ld %d died\n", get_time(), philo->philo_nb + 1);
+		philo->info.end = 1;
+	}
+	pthread_mutex_unlock(&philo->info.mutex_info);
+}
+
+int	is_end(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->info.mutex_info);
+	if (philo->info.end == 1)
+	{
 		pthread_mutex_unlock(&philo->info.mutex_info);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->info.mutex_info);
 	return (0);
+}
+
+int	philo_eat(t_philo *philo)
+{
+	long	time;
+
+	print_message(philo, THINK);
+	take_two_forks(philo, philo->info.nb_of_philos);
+	print_message(philo, EAT);
+	time = get_time();
+	pthread_mutex_lock(&philo->info.mutex_info);
+	usleep(1000 * philo->info.time_to_eat);
+	pthread_mutex_unlock(&philo->info.mutex_info);
+	release_two_forks(philo);
+	return (time);
+}
+
+void	philo_sleep(t_philo *philo)
+{
+	print_message(philo, SLEEP);
+	pthread_mutex_lock(&philo->info.mutex_info);
+	usleep(1000 * philo->info.time_to_sleep);
+	pthread_mutex_unlock(&philo->info.mutex_info);
 }

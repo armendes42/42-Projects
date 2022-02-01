@@ -6,18 +6,26 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 18:19:27 by armendes          #+#    #+#              #
-#    Updated: 2022/01/31 17:52:35 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/01 20:25:30 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/philo.c		\
-		srcs/manage_time.c	\
+SRCS =	srcs/philo.c			\
+		srcs/check_arg.c		\
+		srcs/init_struct.c		\
+		srcs/manage_fork.c		\
+		srcs/manage_time.c		\
+		srcs/philo_operations.c	\
+		srcs/philo_thread.c		\
+		srcs/print_message.c	\
+		srcs/utils.c			\
+		srcs/utils2.c			\
 
 OBJS =	${SRCS:.c=.o};
 
 CC =	gcc
 
-CFLAGS =	-Wall -Wextra -Werror -I includes -g -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -pthread -I includes -g -fsanitize=thread
 
 NAME =	philo
 

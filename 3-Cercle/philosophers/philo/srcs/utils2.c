@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 19:23:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 18:11:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:42:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 			i++;
 	}
 	return (0);
-}
-
-void	print_message(int philo_nb, int action)
-{
-	if (action == 0)
-		printf("%d %d %s",get_time() ,philo_nb, FORK);
 }

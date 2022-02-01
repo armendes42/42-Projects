@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:47:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 15:21:07 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/01 19:48:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	check_arg(int argc, char **argv)
 		printf("%s", ARGC_ERROR);
 		return (-1);
 	}
-	i = 0;
-	while (++i < argc)
+	i = 1;
+	while (i < argc)
 	{
 		if (check_int(argv[i]))
 		{
@@ -64,6 +64,7 @@ int	check_arg(int argc, char **argv)
 			printf("%s", OVERFLOW_ERROR);
 			return (-1);
 		}
+		i++;
 	}
 	return (0);
 }

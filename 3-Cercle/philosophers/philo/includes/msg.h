@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:10:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/25 16:35:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:25:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # define INT_ERROR "One of the arguments is not an int\n"
 # define OVERFLOW_ERROR "One of the arguments is too big for an integer\n"
 
-# define FORK "has taken a fork"
-# define EAT "is eating"
-# define SLEEP "is sleeping"
-# define THINK "is thinking"
-# define DIE "died"
+# define FORK 0
+# define EAT 1
+# define SLEEP 2
+# define THINK 3
+# define DIE 4
 
 #endif
