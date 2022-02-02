@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:41:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:46:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	print_message(t_philo *philo, int action)
 {
 	is_philo_dead(philo);
-	pthread_mutex_lock(&philo->info.mutex_info);
-	if (philo->info.end == 1)
+	pthread_mutex_lock(&philo->info->mutex_info);
+	if (philo->info->end == 1)
 	{
-		pthread_mutex_unlock(&philo->info.mutex_info);
-		return (0);
+		pthread_mutex_unlock(&philo->info->mutex_info);
+		return (-1);
 	}
-	pthread_mutex_unlock(&philo->info.mutex_info);
+	pthread_mutex_unlock(&philo->info->mutex_info);
 	if (action == 0)
 		printf("%ld %d has taken a fork\n",get_time(), philo->philo_nb + 1);
 	if (action == 1)

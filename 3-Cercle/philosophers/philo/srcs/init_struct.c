@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:29:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,39 @@ static int	*init_fork_tab(int nb_philos)
 	return (fork_tab);
 }
 
+static void	init_each_philo(t_info *info, t_philo **philos, int *forks_tab,
+	pthread_mutex_t *mutex_forks_tab, int i)
+{
+	(*philos)[i].info = info;
+	(*philos)[i].philo_nb = i;
+	(*philos)[i].meals_needed = info->nb_of_meal;
+	(*philos)[i].forks = forks_tab;
+	(*philos)[i].mutex_forks = mutex_forks_tab;
+	(*philos)[i].last_time_eat = 0;
+}
+
 int	init_philo(t_philo **philos, int argc, char **argv)
 {
-	t_info			info;
+	t_info			*info;
 	int				*forks_tab;
 	pthread_mutex_t	*mutex_forks_tab;
 	int				i;
 
-	if (init_info(&info, argc, argv))
+	info = malloc(sizeof(t_info));
+	if (!info)
 		return (-1);
-	*philos = malloc(sizeof(t_philo) * info.nb_of_philos);
-	if (init_mutex_tab(&mutex_forks_tab, info.nb_of_philos))
+	if (init_info(info, argc, argv))
 		return (-1);
-	forks_tab = init_fork_tab(info.nb_of_philos);
+	*philos = malloc(sizeof(t_philo) * info->nb_of_philos);
+	if (init_mutex_tab(&mutex_forks_tab, info->nb_of_philos))
+		return (-1);
+	forks_tab = init_fork_tab(info->nb_of_philos);
 	if (!*philos || !forks_tab)
 		return (-1);
 	i = 0;
-	while (i < info.nb_of_philos)
+	while (i < info->nb_of_philos)
 	{
-		(*philos)[i].info = info;
-		(*philos)[i].philo_nb = i;
-		(*philos)[i].meals_needed = info.nb_of_meal;
-		(*philos)[i].forks = forks_tab;
-		(*philos)[i].mutex_forks = mutex_forks_tab;
-		(*philos)[i].last_time_eat = 0;
+		init_each_philo(info, philos, forks_tab, mutex_forks_tab, i);
 		i++;
 	}
 	return (0);

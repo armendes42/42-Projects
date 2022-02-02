@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:33:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 	pthread_t		philo_thread;
 	int				philo_nb;
 	int				meals_needed;
-	t_info			info;
+	t_info			*info;
 	int				*forks;
 	pthread_mutex_t *mutex_forks;
 }				t_philo;

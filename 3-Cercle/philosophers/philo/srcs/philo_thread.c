@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:05:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 static void	*philo_loop(void *arg)
 {
 	t_philo	*philo;
+	long	time;
 
 	philo = (t_philo *)arg;
-	while (philo->meals_needed != 0 && is_end(philo) == 0)
+	pthread_mutex_lock(&philo->info->mutex_info);
+	time = 1000 * philo->info->time_to_sleep / 2;
+	pthread_mutex_unlock(&philo->info->mutex_info);
+	if (philo->philo_nb % 2 == 0)
+		usleep(time);
+	while (philo->meals_needed && is_end(philo) == 0)
 	{
 		if (is_end(philo) == 0)
 		{
@@ -38,7 +44,7 @@ int	create_philo(t_philo *philos)
 	int	i;
 
 	i = 0;
-	while (i < philos->info.nb_of_philos)
+	while (i < philos->info->nb_of_philos)
 	{
 		if (pthread_create(&(philos[i].philo_thread), NULL, &philo_loop, &philos[i]))
 		{
@@ -55,7 +61,7 @@ int	end_philo(t_philo *philos)
 	int	i;
 
 	i = 0;
-	while (i < philos->info.nb_of_philos)
+	while (i < philos->info->nb_of_philos)
 	{
 		if (pthread_join(philos[i].philo_thread, NULL))
 		{
