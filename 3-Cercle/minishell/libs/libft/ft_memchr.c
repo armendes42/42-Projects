@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 20:09:31 by armendes         ###   ########.fr       */
+/*   Created: 2020/11/24 15:56:15 by armendes          #+#    #+#             */
+/*   Updated: 2020/12/25 21:43:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
-# include "get_next_line.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*src;
+	size_t			i;
 
-#endif
+	src = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (src[i] == (unsigned char)c)
+			return (&src[i]);
+		i++;
+	}
+	return (NULL);
+}
