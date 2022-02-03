@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:20:05 by armendes          #+#    #+#             */
-/*   Updated: 2021/10/13 16:27:04 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:04:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ int	check_set(char const *set, char c)
 		i++;
 	}
 	return (0);
+}
+
+int	return_len(char const *s1, char const *set)
+{
+	int	len;
+	
+	len = ft_strlen(s1) - 1;
+	while (len > 0 && check_set(set, s1[len]))
+		len--;
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
