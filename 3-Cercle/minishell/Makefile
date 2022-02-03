@@ -6,11 +6,12 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/03 20:07:50 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/03 20:46:04 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	parsing/parsing.c\
+SRCS =	parsing/parsing.c			\
+		parsing/cut_cmd_line.c		\
 
 OBJS =	${SRCS:.c=.o}
 
@@ -20,7 +21,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -pthread -I includes -I libs/gnl -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -pthread -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
 
 NAME =	minishell
 

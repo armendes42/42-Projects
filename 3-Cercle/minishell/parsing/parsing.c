@@ -6,39 +6,39 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:51:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 20:08:43 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 21:07:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parsing(int argc, char **argv)
+static int	parsing(char *line)
 {
-	char *path;
+	char 		**path;
+	t_command	*cmd_line;
 
-	(void)argc;
-	(void)argv;
-	path = getenv("PATH");
+	path = ft_split(getenv("PATH"), ':');
 	if (path == NULL) 
 	{
-		printf("PATH n'existe pas");
+		write(0, "PATH n'existe pas", 17);
 		return (-1);
 	}
-	write(0, path, ft_strlen(path));
+	cmd_line = cut_cmd_line(line);
+	if (cmd_line == NULL)
+		return (-1);
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	char *line;
 
-	write(0, "~>", 2);
-	while (get_next_line(0, &line) > 0)
+	line = "";
+	while (line)
 	{
-		if (parsing(argc, argv) == -1)
+		line = readline("~>");
+		if (parsing(line) == -1)
 			return (-1);
-		write(0, "\n", 1);
-		write(0, "~>", 2);
 	}
 	free(line);
 	return (0);
