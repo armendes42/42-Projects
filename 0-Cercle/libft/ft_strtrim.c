@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:20:05 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 19:04:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:52:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ int	check_set(char const *set, char c)
 	return (0);
 }
 
-int	return_len(char const *s1, char const *set)
+void	compute_len_and_i(int *len, int *i, char const *s1, char const *set)
 {
-	int	len;
-	
-	len = ft_strlen(s1) - 1;
-	while (len > 0 && check_set(set, s1[len]))
-		len--;
+	int	len_tmp;
+	int	i_tmp;
+
+	len_tmp = ft_strlen(s1) - 1;
+	while (len_tmp > 0 && check_set(set, s1[len_tmp]))
+		len_tmp--;
+	i_tmp = 0;
+	while (s1[i_tmp] && check_set(set, s1[i_tmp]))
+		i_tmp++;
+	*len = len_tmp;
+	*i = i_tmp;
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -42,14 +48,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		j;
 	int		len;
 
-	i = 0;
 	if (!s1)
 		return (NULL);
-	len = ft_strlen(s1) - 1;
-	while (len > 0 && check_set(set, s1[len]))
-		len--;
-	while (s1[i] && check_set(set, s1[i]))
-		i++;
+	compute_len_and_i(&len, &i, s1, set);
 	if (len - i > 0)
 	{
 		result = malloc(sizeof(char) * len - i + 2);
@@ -60,7 +61,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 			result[j++] = s1[i++];
 		result[j] = '\0';
 	}
-	else if (!(result = malloc(sizeof(char))))
-		return (NULL);
+	else
+	{
+		result = malloc(sizeof(char));
+		if (!result)
+			return (NULL);
+	}
 	return (result);
 }
