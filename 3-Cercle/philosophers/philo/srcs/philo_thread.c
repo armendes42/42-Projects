@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:50:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/02 19:05:40 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:40:27 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*philo_loop(void *arg)
 			if (philo->last_time_eat == -1)
 				return (NULL);
 		}
-		if (is_end(philo) == 0 && (philo->meals_needed - 1 > 0))
+		if (is_end(philo) == 0 && (philo->meals_needed - 1 != 0))
 			philo_sleep(philo);
 		if (philo->meals_needed > 0)
 			philo->meals_needed--;
@@ -46,7 +46,8 @@ int	create_philo(t_philo *philos)
 	i = 0;
 	while (i < philos->info->nb_of_philos)
 	{
-		if (pthread_create(&(philos[i].philo_thread), NULL, &philo_loop, &philos[i]))
+		if (pthread_create(&(philos[i].philo_thread), NULL,
+				&philo_loop, &philos[i]))
 		{
 			free(philos);
 			return (-1);

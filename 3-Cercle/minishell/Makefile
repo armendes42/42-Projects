@@ -5,37 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/19 18:19:27 by armendes          #+#    #+#              #
-#    Updated: 2022/02/03 18:49:55 by armendes         ###   ########.fr        #
+#    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
+#    Updated: 2022/02/03 17:54:33 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/philo.c			\
-		srcs/check_arg.c		\
-		srcs/init_struct.c		\
-		srcs/init_struct_utils.c\
-		srcs/manage_fork.c		\
-		srcs/manage_time.c		\
-		srcs/philo_operations.c	\
-		srcs/philo_thread.c		\
-		srcs/print_message.c	\
-		srcs/utils.c			\
-		srcs/utils2.c			\
+SRCS =	parsing/parsing.c\
 
-OBJS =	${SRCS:.c=.o};
+OBJS =	${SRCS:.c=.o}
+
+LIB_DIR =	libs/gnl 
+
+LIB_NAME =	libs/gnl/gnl.a
 
 CC =	gcc
 
-CFLAGS =	-Wall -Wextra -Werror -pthread -I includes -g -fsanitize=thread
+CFLAGS =	-Wall -Wextra -Werror -pthread -I includes -I libs/gnl -g -fsanitize=address
 
-NAME =	philo
+NAME =	minishell
 
 RM =	rm -rf
 
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS}
+			make -C ${LIB_DIR}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIB_NAME}
 
 clean:
 	${RM} ${OBJS}

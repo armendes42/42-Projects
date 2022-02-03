@@ -5,44 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/19 18:19:27 by armendes          #+#    #+#              #
-#    Updated: 2022/02/03 18:49:55 by armendes         ###   ########.fr        #
+#    Created: 2021/03/08 14:49:36 by seciurte          #+#    #+#              #
+#    Updated: 2021/11/24 16:37:59 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/philo.c			\
-		srcs/check_arg.c		\
-		srcs/init_struct.c		\
-		srcs/init_struct_utils.c\
-		srcs/manage_fork.c		\
-		srcs/manage_time.c		\
-		srcs/philo_operations.c	\
-		srcs/philo_thread.c		\
-		srcs/print_message.c	\
-		srcs/utils.c			\
-		srcs/utils2.c			\
+SRCS	= 	get_next_line.c\
+			get_next_line_utils.c
 
-OBJS =	${SRCS:.c=.o};
+OBJS	=	${SRCS:.c=.o}
 
-CC =	gcc
+CC		=	gcc
 
-CFLAGS =	-Wall -Wextra -Werror -pthread -I includes -g -fsanitize=thread
+CFLAGS	+=	-Wall -Wextra -Werror
 
-NAME =	philo
+NAME	=	gnl.a
 
-RM =	rm -rf
+RM		=	rm -f
 
-all:	${NAME}
+all:		${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS}
+		ar -rcs ${NAME} ${OBJS}
 
 clean:
-	${RM} ${OBJS}
+		${RM} ${OBJS}
 
 fclean:		clean
-	${RM} ${NAME}
+		${RM} ${NAME}
 
-re:			fclean all
+re:		fclean all
 
 .PHONY:		all clean fclean re

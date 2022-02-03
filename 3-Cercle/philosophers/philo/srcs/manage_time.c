@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 17:42:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/01/31 19:41:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:42:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 long	get_time(void)
 {
 	static int				for_the_first_time;
-	static struct timeval 	tv1;
-	struct timeval 			tv2;
-	struct timeval 			tv3;
+	static struct timeval	tv1;
+	struct timeval			tv2;
+	struct timeval			tv3;
 
 	if (for_the_first_time == 0)
 	{

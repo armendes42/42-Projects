@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:41:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/02 18:46:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:40:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	print_message(t_philo *philo, int action)
 	}
 	pthread_mutex_unlock(&philo->info->mutex_info);
 	if (action == 0)
-		printf("%ld %d has taken a fork\n",get_time(), philo->philo_nb + 1);
+		printf("%ld %d has taken a fork\n", get_time(), philo->philo_nb + 1);
 	if (action == 1)
-		printf("%ld %d is eating\n",get_time(), philo->philo_nb + 1);
+		printf("%ld %d is eating\n", get_time(), philo->philo_nb + 1);
 	if (action == 2)
-		printf("%ld %d is sleeping\n",get_time(), philo->philo_nb + 1);
+		printf("%ld %d is sleeping\n", get_time(), philo->philo_nb + 1);
 	if (action == 3)
-		printf("%ld %d is thinking\n",get_time(), philo->philo_nb + 1);
+		printf("%ld %d is thinking\n", get_time(), philo->philo_nb + 1);
 	return (0);
 }

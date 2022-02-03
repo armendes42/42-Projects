@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/02 18:29:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:49:28 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	init_mutex_tab(pthread_mutex_t **mutex_tab, int nb_philo)
 	*mutex_tab = malloc(sizeof(pthread_mutex_t) * nb_philo);
 	if (!*mutex_tab)
 		return (-1);
-	i = 0;	
+	i = 0;
 	while (i < nb_philo)
 	{
 		if (pthread_mutex_init(&(*mutex_tab)[i], NULL))
@@ -69,17 +69,6 @@ static int	*init_fork_tab(int nb_philos)
 	return (fork_tab);
 }
 
-static void	init_each_philo(t_info *info, t_philo **philos, int *forks_tab,
-	pthread_mutex_t *mutex_forks_tab, int i)
-{
-	(*philos)[i].info = info;
-	(*philos)[i].philo_nb = i;
-	(*philos)[i].meals_needed = info->nb_of_meal;
-	(*philos)[i].forks = forks_tab;
-	(*philos)[i].mutex_forks = mutex_forks_tab;
-	(*philos)[i].last_time_eat = 0;
-}
-
 int	init_philo(t_philo **philos, int argc, char **argv)
 {
 	t_info			*info;
@@ -101,7 +90,8 @@ int	init_philo(t_philo **philos, int argc, char **argv)
 	i = 0;
 	while (i < info->nb_of_philos)
 	{
-		init_each_philo(info, philos, forks_tab, mutex_forks_tab, i);
+		init_each_philo(info, philos, i);
+		init_each_philo_2(philos, forks_tab, mutex_forks_tab, i);
 		i++;
 	}
 	return (0);
