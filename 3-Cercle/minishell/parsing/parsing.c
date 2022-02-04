@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:51:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 21:07:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:08:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	parsing(char *line)
 {
-	char 		**path;
-	t_command	*cmd_line;
+	char 	**path;
+	t_cmd	*cmd_line;
 
 	path = ft_split(getenv("PATH"), ':');
 	if (path == NULL) 
@@ -25,6 +25,8 @@ static int	parsing(char *line)
 	}
 	cmd_line = cut_cmd_line(line);
 	if (cmd_line == NULL)
+		return (-1);
+	if (check_pipe(&cmd_line))
 		return (-1);
 	return (0);
 }

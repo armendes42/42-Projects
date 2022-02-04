@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 21:06:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:39:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,24 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef	struct	s_command
+typedef struct	s_cmd_pipe
 {
 	char				*cmd;
-	char				*cmd_pipe;
-	struct s_command	*prev;
-	struct s_command	*next;
-}				t_command;
+	struct s_cmd_pipe	*prev;
+	struct s_cmd_pipe	*next;
+	
+}				t_cmd_pipe;
 
-t_command	*cut_cmd_line(char *line);
+
+typedef	struct	s_cmd
+{
+	char				*cmd;
+	struct s_cmd_pipe	*cmd_pipe;
+	struct s_cmd		*prev;
+	struct s_cmd		*next;
+}				t_cmd;
+
+t_cmd	*cut_cmd_line(char *line);
+int		check_pipe(t_cmd **cmd_line);
 
 #endif

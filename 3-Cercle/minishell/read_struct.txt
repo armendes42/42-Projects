@@ -1,0 +1,17 @@
+	while (cmd_line)
+	{
+		write(0, cmd_line->cmd, ft_strlen(cmd_line->cmd));
+		write(0, "\n", 1);
+		if (cmd_line->cmd_pipe != NULL)
+		{
+			write(0, "----\n", 5);
+			while(cmd_line->cmd_pipe)
+			{
+				write(0, cmd_line->cmd_pipe->cmd, ft_strlen(cmd_line->cmd_pipe->cmd));
+				write(0, "\n", 1);
+				cmd_line->cmd_pipe = cmd_line->cmd_pipe->next;
+			}
+			write(0, "----\n", 5);
+		}
+		cmd_line = cmd_line->next;
+	}
