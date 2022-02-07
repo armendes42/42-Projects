@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/04 16:39:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:19:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ typedef	struct	s_cmd
 
 t_cmd	*cut_cmd_line(char *line);
 int		check_pipe(t_cmd **cmd_line);
+int		simple_quote(char *cmd);
 
 #endif
