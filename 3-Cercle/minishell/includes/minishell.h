@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/07 17:19:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/08 17:39:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# define QUOTE_ERR "Erreur de quote"
 
 typedef struct	s_cmd_pipe
 {
