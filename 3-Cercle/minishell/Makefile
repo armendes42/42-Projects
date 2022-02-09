@@ -6,11 +6,16 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/08 17:39:17 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/09 18:22:48 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	parsing/parsing_new.c			\
+SRCS =	parsing/parsing.c				\
+		parsing/check_quote.c			\
+		parsing/create_cmd_struct.c		\
+		parsing/error.c					\
+		parsing/parsing_utils.c			\
+		parsing/find_pipe.c				\
 
 OBJS =	${SRCS:.c=.o}
 

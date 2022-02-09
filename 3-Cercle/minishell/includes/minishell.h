@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/08 20:49:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/09 18:23:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define QUOTE_ERR "Erreur de quote"
+# define QUOTE_ERR "A quote is unclosed"
+# define CMD_ERR "A problem occured during the formation of the struct cmd"
+# define MALLOC_ERR "Error during a memory allocation"
 
 typedef enum type
 {
@@ -35,24 +37,34 @@ typedef enum type
 	LIMITOR,
 	EXIT_FILE,
 	EXIT_FILE_RET,
-}				t_token;
+}			e_type;
+
+typedef enum quote
+{
+	NOTHING,
+	SIMPLE,
+	DOUBLE,
+}			e_quote;
 
 typedef struct s_token
 {
-	char			*cmd;
-	enum			e_type;
+	char			*word;
+	e_type			type;
 	struct s_token	*next;
 }				t_token;
 
 typedef struct s_cmd
 {
 	char			*cmd;
-	struct s_token	*cmd_pipe;
+	struct s_token	*words;
 	struct s_cmd	*next;
-}				t_token;
+}				t_cmd;
 
-t_cmd	*cut_cmd_line(char *line);
-int		check_pipe(t_cmd **cmd_line);
-int		simple_quote(char *cmd);
+void	error(char *err_msg);
+e_quote	update_quote_status(char c, e_quote quote);
+int		check_quote(char *line);
+char	*format_str(char *line, int start, int end);
+int		add_cmd(t_cmd **cmd, int start, int end, char *line);
+t_cmd	*find_pipe(char *line);
 
 #endif

@@ -9,6 +9,7 @@
 		"fstream": "c",
 		"chrono": "c",
 		"algorithm": "c",
-		"push_swap.h": "c"
+		"push_swap.h": "c",
+		"minishell.h": "c"
 	}
 }

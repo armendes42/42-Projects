@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote_error.c                                      :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 17:22:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/08 17:35:21 by armendes         ###   ########.fr       */
+/*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
+/*   Updated: 2022/02/09 18:13:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	quote_error(void)
+char	*format_str(char *line, int start, int end)
 {
-	write()
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc(sizeof(char) * (end - start + 1));
+	if (!str)
+		return (NULL);
+	while (start < end)
+	{
+		str[i] = line[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return (str);
 }
