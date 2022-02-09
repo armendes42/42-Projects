@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 18:23:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:44:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
 int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
+void	cut_into_words(t_cmd **cmd);
 
 #endif

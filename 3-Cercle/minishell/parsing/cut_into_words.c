@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_pipe.c                                        :+:      :+:    :+:   */
+/*   cut_into_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 18:20:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 19:59:50 by armendes         ###   ########.fr       */
+/*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
+/*   Updated: 2022/02/09 19:54:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*find_pipe(char *line)
+static void	cut_cmd(t_cmd *cmd)
 {
+	t_token	*words;
 	int		i;
 	e_quote	quote;
-	int		start_for_pipe;
-	t_cmd	*cmd;
+	int		start;
 
+	words = NULL;
 	i = 0;
-	quote = NOTHING	;
-	start_for_pipe = 0;
-	cmd = NULL;
-	while (line[i])
+	quote = NOTHING;
+	start = 0;
+	while (cmd->cmd[i])
 	{
-		quote = update_quote_status(line[i], quote);
-		if (line[i] == '|' && quote == NOTHING)
-		{
-			if (add_cmd(&cmd, start_for_pipe, i, line))
-				return (NULL);
-			start_for_pipe = i + 1;
-		}
+		if (cmd->cmd[i] == '\'')
+			quote = update_quote_status(cmd->cmd[i], quote);
+		if (cmd->cmd[i] == '"')
+			quote = update_quote_status(cmd->cmd[i], quote);
 		i++;
 	}
-	add_cmd(&cmd, start_for_pipe, i, line);
-	return (cmd);
+}
+
+void	cut_into_words(t_cmd **cmd)
+{
+	t_cmd	*tmp;
+
+	tmp = *cmd;
+	while(tmp)
+	{
+		cut_cmd(&tmp);
+		tmp = tmp->next;
+	}
 }

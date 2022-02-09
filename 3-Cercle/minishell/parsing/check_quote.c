@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:12:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 18:13:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:59:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int	check_quote(char *line)
 	quote = NOTHING;
 	while (line[i])
 	{
-		if (line[i] == '\'')
-			quote = update_quote_status('\'', quote);
-		else if (line[i] == '"')
-			quote = update_quote_status('"', quote);
+		quote = update_quote_status(line[i], quote);
 		i++;
 	}
 	if (quote != NOTHING)
