@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 15:42:52 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:17:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define CMD_ERR "A problem occured during the formation of the struct cmd"
 # define MALLOC_ERR "Error during a memory allocation"
 # define WORD_ERR "A problem occured during the formation of the struct word"
-
 
 typedef enum type
 {
@@ -63,12 +62,13 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }				t_cmd;
 
-void	error(char *err_msg);
+void	error(t_cmd **cmd, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);
 int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
 int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
 int		cut_into_words(t_cmd **cmd);
+void	free_all(t_cmd **cmd);
 
 #endif

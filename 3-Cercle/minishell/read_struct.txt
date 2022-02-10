@@ -1,17 +1,22 @@
-	while (cmd_line)
+	t_cmd	*tmp = cmd;
+	while (tmp)
 	{
-		write(0, cmd_line->cmd, ft_strlen(cmd_line->cmd));
+		write(0, tmp->cmd, ft_strlen(tmp->cmd));
 		write(0, "\n", 1);
-		if (cmd_line->cmd_pipe != NULL)
+		tmp = tmp->next;
+	}
+	write(0, "\n", 1);
+
+
+	t_cmd	*tmp2 = cmd;
+	while (tmp2)
+	{
+		while (tmp2->words)
 		{
-			write(0, "----\n", 5);
-			while(cmd_line->cmd_pipe)
-			{
-				write(0, cmd_line->cmd_pipe->cmd, ft_strlen(cmd_line->cmd_pipe->cmd));
-				write(0, "\n", 1);
-				cmd_line->cmd_pipe = cmd_line->cmd_pipe->next;
-			}
-			write(0, "----\n", 5);
+			write(0, tmp2->words->word, ft_strlen(tmp2->words->word));
+			write(0, "\n", 1);
+			tmp2->words = tmp2->words->next;
 		}
-		cmd_line = cmd_line->next;
+		write(0, "\n", 1);
+		tmp2 = tmp2->next;
 	}

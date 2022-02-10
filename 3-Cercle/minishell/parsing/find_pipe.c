@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:20:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 19:59:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:55:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmd	*find_pipe(char *line)
 	t_cmd	*cmd;
 
 	i = 0;
-	quote = NOTHING	;
+	quote = NOTHING;
 	start_for_pipe = 0;
 	cmd = NULL;
 	while (line[i])

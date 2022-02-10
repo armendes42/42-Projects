@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 00:04:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 15:20:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:49:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*ft_strdup_size(const char *s, int size)
 
 	i = 0;
 	j = 0;
-	if (size <= 0)
+	if (size < 0)
 		return (NULL);
 	dest = malloc(sizeof(char) * (size + 1));
 	if (!dest)
 		return (NULL);
-	while (s[i] && size)
+	while (s[i] && size > 0)
 	{
 		dest[j] = s[i];
 		i++;

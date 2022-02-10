@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 18:13:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:06:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ char	*format_str(char *line, int start, int end)
 	int		i;
 
 	i = 0;
+	if (end - start <= 0)
+		return (NULL);
+	while (line[start] && line[start] == ' ')
+		start++;
+	if (end - start <= 0)
+		return (NULL);
 	str = malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (NULL);

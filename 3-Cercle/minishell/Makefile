@@ -6,14 +6,14 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/09 19:42:12 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/10 17:03:42 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	parsing/parsing.c				\
 		parsing/check_quote.c			\
 		parsing/create_cmd_struct.c		\
-		parsing/error.c					\
+		parsing/error_and_free.c		\
 		parsing/parsing_utils.c			\
 		parsing/find_pipe.c				\
 		parsing/cut_into_words.c		\
