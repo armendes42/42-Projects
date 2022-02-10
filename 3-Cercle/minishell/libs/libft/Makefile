@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 00:07:24 by armendes          #+#    #+#              #
-#    Updated: 2021/10/13 17:30:37 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/10 15:20:53 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	=	ft_atoi.c		\
 			ft_putstr_fd.c	\
 			ft_split.c		\
 			ft_strchr.c		\
+			ft_strdup_size.c\
 			ft_strdup.c		\
 			ft_strjoin.c	\
 			ft_strlcat.c	\

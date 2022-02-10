@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:12:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 19:59:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:45:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ e_quote	update_quote_status(char c, e_quote quote)
 {
 	e_quote	new_quote;
 
+	new_quote = quote;
 	if (quote == NOTHING && c == '\'')
 		new_quote = SIMPLE;
 	else if (quote == NOTHING && c == '"')
