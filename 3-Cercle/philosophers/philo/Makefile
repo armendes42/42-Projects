@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 18:19:27 by armendes          #+#    #+#              #
-#    Updated: 2022/02/09 16:47:47 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/10 14:49:33 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ SRCS =	srcs/philo.c			\
 		srcs/utils.c			\
 		srcs/utils2.c			\
 
-OBJS =	${SRCS:.c=.o};
+OBJS =	${SRCS:.c=.o}
 
 CC =	gcc
 
-CFLAGS =	-Wall -Wextra -Werror -pthread -I includes -g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -I includes -g -pthread
 
 NAME =	philo
 
@@ -35,7 +35,7 @@ RM =	rm -rf
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${SRCS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
 clean:
 	${RM} ${OBJS}

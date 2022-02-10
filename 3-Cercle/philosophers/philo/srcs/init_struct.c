@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:05:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 18:49:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:12:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	init_info(t_info *info, int argc, char **argv)
 	if (info->time_to_die < 0 || info->time_to_eat < 0
 		|| info->time_to_sleep < 0 || info->nb_of_philos <= 0
 		|| (info->nb_of_meal < 0 && argc == 6))
+	{
+		printf("%s", ARG_ERROR);
 		return (-1);
+	}
 	if (pthread_mutex_init(&info->mutex_info, NULL))
 		return (-1);
 	return (0);

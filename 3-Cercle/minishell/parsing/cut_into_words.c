@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/09 19:54:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:05:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	cut_cmd(t_cmd *cmd)
 			quote = update_quote_status(cmd->cmd[i], quote);
 		if (cmd->cmd[i] == '"')
 			quote = update_quote_status(cmd->cmd[i], quote);
+		if ()
 		i++;
 	}
 }

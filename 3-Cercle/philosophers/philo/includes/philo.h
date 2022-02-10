@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/03 18:49:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:09:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int		is_end(t_philo *philo);
 void	init_each_philo(t_info *info, t_philo **philos, int i);
 void	init_each_philo_2(t_philo **philos, int *forks_tab,
 			pthread_mutex_t *mutex_forks_tab, int i);
+void	free_all(t_philo **philos);
 
 #endif

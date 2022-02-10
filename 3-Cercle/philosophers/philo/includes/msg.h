@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:10:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:12:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
  nb_of_times_philo_must_eat\n"
 # define INT_ERROR "One of the arguments is not an int\n"
 # define OVERFLOW_ERROR "One of the arguments is too big for an integer\n"
+# define ARG_ERROR "One of the arguments is negative or there is no philo"
 
 # define FORK 0
 # define EAT 1
