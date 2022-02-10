@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 18:10:59 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:30:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	add_word(t_token **words, char *str, e_quote quote)
 		if (quote == SIMPLE)
 			add_word_to_struct(words, new_str, ARG_IN_SIMPLE);
 		else
-			add_word_to_struct(words, new_str, ARG);
+			add_word_to_struct(words, new_str, ARG_IN_DOUBLE);
 	}
 	return (i);
 }
@@ -117,6 +117,22 @@ static t_token	*cut_cmd(char *str)
 	return (words);
 }
 
+static void	skip_empty_words(t_token **words)
+{
+	t_token	*tmp;
+	t_token	*tmp_prev;
+
+	tmp = *words;
+	while (tmp)
+	{
+		if (is_empty(tmp->word))
+		{
+
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	cut_into_words(t_cmd **cmd)
 {
 	t_cmd	*tmp;
@@ -127,6 +143,7 @@ int	cut_into_words(t_cmd **cmd)
 		tmp->words = cut_cmd(tmp->cmd);
 		if (tmp->words == NULL)
 			return (-1);
+		skip_empty_words(&tmp->words);
 		tmp = tmp->next;
 	}
 	return (0);

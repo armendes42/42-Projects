@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 17:17:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:28:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum type
 	NONE,
 	ARG,
 	ARG_IN_SIMPLE,
+	ARG_IN_DOUBLE,
 	FILE_IN,
 	HERE_DOC,
 	FILE_OUT,
@@ -70,5 +71,6 @@ int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
 int		cut_into_words(t_cmd **cmd);
 void	free_all(t_cmd **cmd);
+int		is_empty(char *str);
 
 #endif
