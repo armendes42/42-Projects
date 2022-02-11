@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 16:33:17 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:31:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	trim_space_in_word(t_token **words)
 	tmp = *words;
 	while (tmp)
 	{
-		if (tmp->word[0] == ' ' && tmp->type == ARG)
+		if (tmp->word[0] == ' ' && tmp->type == ARG && !is_empty(tmp->word))
 			tmp->word = format_str(tmp->word, 0, ft_strlen(tmp->word));
 		tmp = tmp->next;
 	}
@@ -64,7 +64,7 @@ int	cut_into_words(t_cmd **cmd)
 		tmp->words = cut_cmd(tmp->cmd);
 		if (tmp->words == NULL)
 			return (-1);
-		skip_empty_words(&tmp->words);
+		//skip_empty_words(&tmp->words);
 		trim_space_in_word(&tmp->words);
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 16:22:04 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:32:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ typedef enum type
 	ARG,
 	ARG_IN_SIMPLE,
 	ARG_IN_DOUBLE,
-	FILE_IN,
+	RED_IN,
 	HERE_DOC,
-	FILE_OUT,
-	FILE_OUT_SUR,
-	OPEN_FILE,
+	RED_OUT,
+	RED_OUT_APPEND,
+	INFILE,
 	LIMITOR,
-	EXIT_FILE,
-	EXIT_FILE_RET,
+	OUTFILE,
+	OUTFILE_APPEND,
 }			e_type;
 
 typedef enum quote

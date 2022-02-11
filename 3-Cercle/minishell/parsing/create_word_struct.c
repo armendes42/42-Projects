@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:44:26 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 15:45:36 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:31:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static int	add_word_when_no_quote(t_token **words, char *str)
 		return (i);
 	while (str[i] && str[i] != ' ' && str[i] != '\'' && str[i] != '"')
 		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
 	new_str = ft_strdup_size(str, i);
 	if (!new_str)
 		return (-1);
@@ -81,9 +83,7 @@ int	add_word(t_token **words, char *str, e_quote quote)
 				i++;
 		new_str = ft_strdup_size(str, i);
 		if (!new_str)
-		{
 			return (-1);
-		}
 		if (quote == SIMPLE)
 			add_word_to_struct(words, new_str, ARG_IN_SIMPLE);
 		else
