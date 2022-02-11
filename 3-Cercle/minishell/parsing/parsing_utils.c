@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 18:27:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/11 15:37:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_empty(char *str)
 	i = 0;
 	while (str[i] && str[i] == ' ')
 		i++;
-	if (i == ft_strlen(i))
+	if (i == ft_strlen(str))
 		return (1);
 	return (0);
 }

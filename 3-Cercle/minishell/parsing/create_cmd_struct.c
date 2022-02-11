@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:14:01 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 17:32:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/11 15:37:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_cmd	*create_elem(char *line, int start, int end)
 	if (!elem)
 		return (NULL);
 	elem->next = NULL;
+	elem->prev = NULL;
 	elem->words = NULL;
 	str = format_str(line, start, end);
 	if (!str)
@@ -52,6 +53,7 @@ int	add_cmd(t_cmd **cmd, int start, int end, char *line)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = elem;
+		elem->prev = tmp;
 	}
 	return (0);
 }
