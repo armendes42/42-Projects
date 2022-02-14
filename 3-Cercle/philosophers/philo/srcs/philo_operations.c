@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:03:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/02 18:45:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 15:37:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ int	philo_eat(t_philo *philo)
 	long	time;
 	long	time_sleep;
 
-	print_message(philo, THINK);
+	if (print_message(philo, THINK))
+		return (-1);
 	take_two_forks(philo, philo->info->nb_of_philos);
-	print_message(philo, EAT);
+	if (print_message(philo, EAT))
+		return (-1);
 	time = get_time();
 	pthread_mutex_lock(&philo->info->mutex_info);
 	time_sleep = 1000 * philo->info->time_to_eat;
@@ -60,7 +62,8 @@ void	philo_sleep(t_philo *philo)
 {
 	long	time;
 
-	print_message(philo, SLEEP);
+	if (print_message(philo, SLEEP))
+		return (-1);
 	pthread_mutex_lock(&philo->info->mutex_info);
 	time = 1000 * philo->info->time_to_sleep;
 	pthread_mutex_unlock(&philo->info->mutex_info);
