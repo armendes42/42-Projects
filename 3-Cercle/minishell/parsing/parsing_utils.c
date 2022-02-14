@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 17:31:56 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:47:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,31 @@ int	is_empty(char *str)
 	if (i == ft_strlen(str))
 		return (1);
 	return (0);
+}
+
+int	search_space_end(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str) - 1;
+	if (str[i] == ' ')
+		return (1);
+	return (0);
+}
+
+int	search_space_start(char *str)
+{
+	if (str[0] == ' ')
+		return (1);
+	return (0);
+}
+
+t_token	*last_cell(t_token **words)
+{
+	t_token	*tmp;
+
+	tmp = *words;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }

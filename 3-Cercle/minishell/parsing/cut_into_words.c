@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 16:41:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:47:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,80 +52,75 @@ static t_token	*cut_cmd(char *str)
 			tmp->word = format_str(tmp->word, 0, ft_strlen(tmp->word));
 		tmp = tmp->next;
 	}
-}
-
-static int	concat_two_words(t_token **words, int index)
-{
-	t_token	*tmp;
-
-	tmp = *words;
-	while (index-- && tmp)
-		tmp = tmp->next;
-	
-}
-
-static void	attach_words(t_token **words)
-{
-	t_token	*tmp;
-	int		i;
-
-	tmp = *words;
-	i = 0;
-	while (tmp->next)
-	{
-		if (tmp->type != ARG || tmp->next->type != ARG)
-		{
-			if (search_space_end(tmp->word) == 0 || is_empty(tmp->next->word))
-			{
-				concat_two_words(words, i);
-			}
-		}
-		tmp = tmp->next;
-		i++;
-	}
 }*/
 
-static int	search_space_end(char *str)
+static int	search_redirection(char *str)
 {
 	int	i;
 
-	i = ft_strlen(str) - 1;
-	if (str[i] == ' ')
-		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '<')
+		{
+			if (str[i + 1] == '<')
+				return (3);
+			return (1);
+		}
+		if (str[i] == '>')
+		{
+			if (str[i + 1] == '>')
+				return (4);
+			return (2);
+		}
+		i++;
+	}
 	return (0);
 }
 
-static int	search_space_start(char *str)
+static int	cut_for_input(t_token **words, t_token *tmp)
 {
-	if (str[0] == ' ')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
 }
 
-static void	detect_concat(t_token **words)
+static int	cut_for_output(t_token **words, t_token *tmp)
+{
+	
+}
+
+static int	cut_for_delimiter(t_token **words, t_token *tmp)
+{
+	
+}
+
+static int	cut_for_append(t_token **words, t_token *tmp)
+{
+	
+}
+
+static int	cut_redirection(t_token **words)
 {
 	t_token	*tmp;
+	int		control;
 
 	tmp = *words;
-	while (tmp->next)
+	control = 0;
+	while (tmp)
 	{
-		if (tmp->type != ARG || tmp->next->type != ARG)
+		if (tmp->type == ARG)
 		{
-			if (tmp->type == ARG)
-			{
-				if (search_space_end(tmp->word) == 0)
-					tmp->need_to_concat = 1;
-			}
-			else if (tmp->next->type == ARG)
-			{
-				if (search_space_start(tmp->next->word) == 0)
-					tmp->need_to_concat = 1;
-			}
-			else
-			{
-				if (!is_empty(tmp->next->word))
-					tmp->need_to_concat = 1;
-			}
+			if (search_redirection(tmp->word) == 1)
+				control = cut_for_input();
+			else if (search_redirection(tmp->word) == 2)
+				control = cut_for_output();
+			else if (search_redirection(tmp->word) == 3)
+				control = cut_for_delimiter();
+			else if (search_redirection(tmp->word) == 4)
+				control = cut_for_append();
+			if (control != 0)
+				return (-1);
 		}
 		tmp = tmp->next;
 	}
@@ -141,10 +136,15 @@ int	cut_into_words(t_cmd **cmd)
 		tmp->words = cut_cmd(tmp->cmd);
 		if (tmp->words == NULL)
 			return (-1);
-		skip_empty_words(&tmp->words);
+		if (cut_redirection(&tmp->words))
+			return (-1);
+		//skip_empty_words(&tmp->words);
+		//detect_concat(&tmp->words);
+		//skip_space_words(&tmp->words);
+		//if (concat_words_prev(&tmp->words))
+		//	return (-1);
 		//trim_space_in_word(&tmp->words);
 		//attach_words(&tmp->words);
-		detect_concat(&tmp->words);
 		tmp = tmp->next;
 	}
 	return (0);

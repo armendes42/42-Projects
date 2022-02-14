@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 16:17:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:47:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,11 @@ int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
 void	free_word(t_token *tmp);
 void	skip_empty_words(t_token **words);
+void	skip_space_words(t_token **words);
+int		search_space_start(char *str);
+int		search_space_end(char *str);
+t_token	*last_cell(t_token **words);
+int		concat_words_prev(t_token **words);
+void	detect_concat(t_token **words);
 
 #endif

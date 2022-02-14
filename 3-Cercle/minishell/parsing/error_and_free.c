@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 17:31:53 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:55:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ static void	free_words(t_token **words)
 	}
 }
 
-void	free_word(t_token *tmp)
-{
-	free(tmp->word);
-	free(tmp);
-}
-
 void	free_all(t_cmd **cmd)
 {
 	t_cmd	*tmp_cmd;
@@ -54,6 +48,12 @@ void	free_all(t_cmd **cmd)
 			tmp_cmd = tmp_cmd2;
 		}
 	}
+}
+
+void	free_word(t_token *tmp)
+{
+	free(tmp->word);
+	free(tmp);
 }
 
 void	error(t_cmd **cmd, char *err_msg)
