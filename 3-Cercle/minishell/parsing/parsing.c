@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 17:31:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:37:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	parsing(char *line)
 		error(&cmd, CMD_ERR);
 	if (cut_into_words(&cmd))
 		error(&cmd, WORD_ERR);
-
+/////////////////////////////////////////
 	t_cmd	*tmp = cmd;
 	while (tmp)
 	{
@@ -45,11 +45,16 @@ static void	parsing(char *line)
 				write(0, "type = arg_simple++\n", 20);
 			if (tmp2->words->type == ARG_IN_DOUBLE)
 				write(0, "type = arg_double++\n", 20);
+			if (tmp2->words->need_to_concat == 1)
+				write(0, "need_to_concat = 1\n", 19);
+			if (tmp2->words->need_to_concat == 0)
+				write(0, "need_to_concat = 0\n", 19);
 			tmp2->words = tmp2->words->next;
 		}
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
+/////////////////////////////
 	free_all(&cmd);
 }
 

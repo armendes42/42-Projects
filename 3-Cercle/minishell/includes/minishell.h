@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 17:32:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:17:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_token
 {
 	char			*word;
 	e_type			type;
+	int				need_to_concat;
 	struct s_token	*next;
 	struct s_token	*prev;
 }				t_token;

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:44:26 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/11 17:31:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:18:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_token	*create_word(char *str, e_type type)
 		return (NULL);
 	elem->word = str;
 	elem->type = type;
+	elem->need_to_concat = 0;
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);
