@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 17:21:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 20:15:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,23 @@ int	concat_words_prev(t_token **words)
 	t_token	*tmp_next;
 
 	tmp = last_cell(words);
-	while (tmp->prev)
+	while (tmp)
 	{
 		if (tmp->need_to_concat == 1)
 		{
+			tmp_next = tmp->next;
+			tmp->word = ft_strjoin(tmp->word, tmp->next->word);
+			if (tmp->word == NULL)
+				return (-1);
 			if (tmp->next->next == NULL)
-			{
-				tmp_next = tmp->next;
-				tmp->word = ft_strjoin(tmp->word, tmp->next->word);
-				if (tmp->word == NULL)
-					return (-1);
 				tmp->next = NULL;
-				tmp->need_to_concat = 0;
-				free_word(tmp_next);
-			}
 			else
 			{
-				tmp_next = tmp->next;
-				tmp->word = ft_strjoin(tmp->word, tmp->next->word);
-				if (tmp->word == NULL)
-					return (-1);
 				tmp->next->next->prev = tmp;
-				tmp->next = tmp->next->next;
-				tmp->need_to_concat = 0;
-				free_word(tmp_next);		
+				tmp->next = tmp->next->next;		
 			}
+			tmp->need_to_concat = 0;
+			free_word(tmp_next);
 		}
 		tmp = tmp->prev;
 	}
@@ -56,10 +48,12 @@ void	detect_concat(t_token **words)
 	tmp = *words;
 	while (tmp->next)
 	{
+		write(0, "b\n", 2);
 		if (tmp->type != ARG || tmp->next->type != ARG)
 		{
 			if (tmp->type == ARG)
 			{
+				write(0, "c\n", 2);
 				if (search_space_end(tmp->word) == 0)
 					tmp->need_to_concat = 1;
 			}

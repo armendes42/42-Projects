@@ -6,23 +6,24 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/15 16:59:45 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/15 19:48:13 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	parsing/parsing.c				\
-		parsing/check_quote.c			\
-		parsing/create_cmd_struct.c		\
-		parsing/error_and_free.c		\
-		parsing/parsing_utils.c			\
-		parsing/find_pipe.c				\
-		parsing/cut_into_words.c		\
-		parsing/create_word_struct.c	\
-		parsing/empty_word.c			\
-		parsing/concat_words.c			\
-		parsing/search_utils.c			\
-		parsing/manage_redirection.c	\
-		parsing/parsing_utils2.c		\
+SRCS =	parsing/parsing.c						\
+		parsing/check_quote.c					\
+		parsing/create_cmd_struct.c				\
+		parsing/error_and_free.c				\
+		parsing/parsing_utils.c					\
+		parsing/find_pipe.c						\
+		parsing/cut_into_words.c				\
+		parsing/create_word_struct.c			\
+		parsing/empty_word.c					\
+		parsing/concat_words.c					\
+		parsing/search_utils.c					\
+		parsing/manage_redirection.c			\
+		parsing/manage_string.c					\
+		parsing/create_cell_for_redirection.c	\
 
 OBJS =	${SRCS:.c=.o}
 

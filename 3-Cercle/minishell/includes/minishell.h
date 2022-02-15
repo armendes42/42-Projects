@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 16:57:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:47:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,11 @@ char	get_next_char(char *str);
 t_token	*create_word(char *str, e_type type);
 char	*cut_one_char(char *str);
 char	*cut_two_char(char *str);
+char	*before_redirection(char *str);
+char	*after_redirection(char *str);
+int		cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
+			e_type type);
+int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
+			e_type type);
 
 #endif

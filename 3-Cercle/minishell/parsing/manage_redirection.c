@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:40:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 17:03:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:48:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,97 +14,49 @@
 
 static int	cut_for_input(t_token **words, t_token **tmp)
 {
-	t_token	*new;
-
-	new = create_word("<", RED_IN);
-	if (!new)
-		return (-1);
-	if ((*tmp)->prev == NULL)
+	if ((*tmp)->word[0] == '<')
 	{
-		new->next = *tmp;
-		(*tmp)->prev = new;
-		(*words) = new;
+		cut_redirection_first_cell(words, tmp, "<", RED_IN);
+		(*tmp)->word = cut_one_char((*tmp)->word);
 	}
 	else
-	{
-		new->prev = (*tmp)->prev;
-		(*tmp)->prev->next = new;
-		new->next = *tmp;
-		(*tmp)->prev = new;
-	}
-	(*tmp)->word = cut_one_char((*tmp)->word);
+		cut_redirection_other_cell(words, tmp, "<", RED_IN);
 	return (0);
 }
 
 static int	cut_for_output(t_token **words, t_token **tmp)
 {
-	t_token	*new;
-
-	new = create_word(">", RED_IN);
-	if (!new)
-		return (-1);
-	if ((*tmp)->prev == NULL)
+	if ((*tmp)->word[0] == '>')
 	{
-		new->next = *tmp;
-		(*tmp)->prev = new;
-		(*words) = new;
+		cut_redirection_first_cell(words, tmp, ">", RED_OUT);
+		(*tmp)->word = cut_one_char((*tmp)->word);
 	}
 	else
-	{
-		new->prev = (*tmp)->prev;
-		(*tmp)->prev->next = new;
-		new->next = *tmp;
-		(*tmp)->prev = new;
-	}
-	(*tmp)->word = cut_one_char((*tmp)->word);
+		cut_redirection_other_cell(words, tmp, ">", RED_OUT);
 	return (0);
 }
 
 static int	cut_for_delimiter(t_token **words, t_token **tmp)
 {
-	t_token	*new;
-
-	new = create_word("<<", RED_IN);
-	if (!new)
-		return (-1);
-	if ((*tmp)->prev == NULL)
+	if ((*tmp)->word[0] == '<')
 	{
-		new->next = *tmp;
-		(*tmp)->prev = new;
-		(*words) = new;
+		cut_redirection_first_cell(words, tmp, "<<", HERE_DOC);
+		(*tmp)->word = cut_two_char((*tmp)->word);
 	}
 	else
-	{
-		new->prev = (*tmp)->prev;
-		(*tmp)->prev->next = new;
-		new->next = *tmp;
-		(*tmp)->prev = new;
-	}
-	(*tmp)->word = cut_two_char((*tmp)->word);
+		cut_redirection_other_cell(words, tmp, "<<", HERE_DOC);
 	return (0);
 }
 
 static int	cut_for_append(t_token **words, t_token **tmp)
 {
-	t_token	*new;
-
-	new = create_word(">>", RED_IN);
-	if (!new)
-		return (-1);
-	if ((*tmp)->prev == NULL)
+	if ((*tmp)->word[0] == '>')
 	{
-		new->next = *tmp;
-		(*tmp)->prev = new;
-		(*words) = new;
+		cut_redirection_first_cell(words, tmp, ">>", RED_OUT_APPEND);
+		(*tmp)->word = cut_two_char((*tmp)->word);
 	}
 	else
-	{
-		new->prev = (*tmp)->prev;
-		(*tmp)->prev->next = new;
-		new->next = *tmp;
-		(*tmp)->prev = new;
-	}
-	(*tmp)->word = cut_two_char((*tmp)->word);
+		cut_redirection_other_cell(words, tmp, ">>", RED_OUT_APPEND);
 	return (0);
 }
 

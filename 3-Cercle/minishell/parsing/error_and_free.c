@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 16:55:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:45:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	free_words(t_token **words)
 		tmp_w = *words;
 		while (tmp_w)
 		{
-			write(0, "salut\n", 6);
 			tmp_w2 = tmp_w->next;
 			free(tmp_w->word);
 			free(tmp_w);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 17:47:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:33:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	parsing(char *line)
 		tmp2 = tmp2->next;
 	}
 /////////////////////////////
+
 	free_all(&cmd);
 }
 
