@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/14 17:47:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:57:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,12 @@ int		search_space_end(char *str);
 t_token	*last_cell(t_token **words);
 int		concat_words_prev(t_token **words);
 void	detect_concat(t_token **words);
+int		search_redirection(char *str);
+int		cut_redirection(t_token **words);
+int		search_error_redirection(char *str);
+char	get_next_char(char *str);
+t_token	*create_word(char *str, e_type type);
+char	*cut_one_char(char *str);
+char	*cut_two_char(char *str);
 
 #endif

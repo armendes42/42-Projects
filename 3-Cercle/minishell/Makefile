@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/11 17:31:59 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/15 16:59:45 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ SRCS =	parsing/parsing.c				\
 		parsing/cut_into_words.c		\
 		parsing/create_word_struct.c	\
 		parsing/empty_word.c			\
+		parsing/concat_words.c			\
+		parsing/search_utils.c			\
+		parsing/manage_redirection.c	\
+		parsing/parsing_utils2.c		\
 
 OBJS =	${SRCS:.c=.o}
 
