@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 20:15:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:08:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	concat_words_prev(t_token **words)
 				tmp->next->next->prev = tmp;
 				tmp->next = tmp->next->next;		
 			}
+			/////
+			tmp->type = tmp_next->type;
+			/////
 			tmp->need_to_concat = 0;
 			free_word(tmp_next);
 		}

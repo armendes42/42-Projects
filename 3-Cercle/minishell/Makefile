@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/02/15 19:48:13 by armendes         ###   ########.fr        #
+#    Updated: 2022/02/17 16:10:38 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRCS =	parsing/parsing.c						\
 		parsing/create_cmd_struct.c				\
 		parsing/error_and_free.c				\
 		parsing/parsing_utils.c					\
+		parsing/parsing_utils2.c				\
 		parsing/find_pipe.c						\
 		parsing/cut_into_words.c				\
 		parsing/create_word_struct.c			\
@@ -24,6 +25,7 @@ SRCS =	parsing/parsing.c						\
 		parsing/manage_redirection.c			\
 		parsing/manage_string.c					\
 		parsing/create_cell_for_redirection.c	\
+		parsing/get_infile_and_outfile.C		\
 
 OBJS =	${SRCS:.c=.o}
 
@@ -33,7 +35,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -pthread -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
 
 NAME =	minishell
 
