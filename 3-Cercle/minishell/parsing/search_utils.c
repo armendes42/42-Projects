@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:41:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 20:00:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/18 16:10:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,20 @@ int	search_space_start(char *str)
 	if (str[0] == ' ')
 		return (1);
 	return (0);
+}
+
+int	search_dollar(char *str)
+{
+	int	i;
+	int	nb_of_dollars;
+
+	i = 0;
+	nb_of_dollars = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+			nb_of_dollars++;
+		i++;
+	}
+	return (nb_of_dollars);
 }

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/17 16:05:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:57:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int		cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
 int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
 			e_type type);
 void    get_infile_outfile(t_token **words);
+int		search_dollar(char *str);
 
 #endif
