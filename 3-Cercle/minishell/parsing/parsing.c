@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 19:33:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:30:21 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ static void	parsing(char *line)
 				write(0, "type = arg_simple++\n", 20);
 			if (tmp2->words->type == ARG_IN_DOUBLE)
 				write(0, "type = arg_double++\n", 20);
-			if (tmp2->words->need_to_concat == 1)
-				write(0, "need_to_concat = 1\n", 19);
-			if (tmp2->words->need_to_concat == 0)
-				write(0, "need_to_concat = 0\n", 19);
+			if (tmp2->words->type == RED_IN)
+				write(0, "type = redirection input++\n", 27);
+			if (tmp2->words->type == RED_OUT)
+				write(0, "type = redirection output\n", 26);
+			if (tmp2->words->type == HERE_DOC)
+				write(0, "type = here doc++\n", 18);
+			if (tmp2->words->type == RED_OUT_APPEND)
+				write(0, "type = redirection output append++\n", 35);
+			if (tmp2->words->type == INFILE)
+				write(0, "type = input file++\n", 20);
+			if (tmp2->words->type == OUTFILE)
+				write(0, "type = output file++\n", 21);
+			if (tmp2->words->type == LIMITOR)
+				write(0, "type = limitor++\n", 17);
+			if (tmp2->words->type == OUTFILE_APPEND)
+				write(0, "type = output file append++\n", 28);
 			tmp2->words = tmp2->words->next;
 		}
 		write(0, "+\n", 2);

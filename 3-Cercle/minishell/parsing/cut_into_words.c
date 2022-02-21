@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/18 15:53:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:44:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int	trim_space_in_word_end(t_token **words)
 	{
 		if (search_space_end(tmp->word) && tmp->type == ARG)
 		{
-			i = ft_strlen(tmp->word);
-			while (str[i] == ' ')
+			i = ft_strlen(tmp->word) - 1;
+			while (tmp->word[i] == ' ')
 				i--;
-			str = malloc(sizeof(char) * (i + 1));
+			str = malloc(sizeof(char) * (i + 2));
 			if (!str)
 				return (-1);
 			j = -1;
-			while (tmp->word[++j])
+			while (tmp->word[++j] && j <= i)
 				str[j] = tmp->word[j];
 			str[j] = '\0';
 			free(tmp->word);
@@ -81,6 +81,7 @@ static int	trim_space_in_word_end(t_token **words)
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
 int	cut_into_words(t_cmd **cmd)
@@ -99,20 +100,15 @@ int	cut_into_words(t_cmd **cmd)
 			return (-1);
 		if (get_var_env(&tmp->words))
 			return (-1);
-		//variables d'environnement
-		skip_empty_words(&tmp->words);
-		trim_space_in_word_start(&tmp->words);
-		detect_concat(&tmp->words);
-		if (concat_words_prev(&tmp->words))
-			//garder le type double ou simple pour imprimer les espaces FAIT
+		if (skip_empty_words(&tmp->words))
 			return (-1);
-		//////
-		get_infile_outfile(&tmp->words);
-		//////
-		//bien marquer les infiles et outfiles FAIT
+		detect_concat(&tmp->words);
+		trim_space_in_word_start(&tmp->words);
+		if (concat_words_prev(&tmp->words))
+			return (-1);
 		skip_space_words(&tmp->words);
 		trim_space_in_word_end(&tmp->words);
-		//trim ls espaces de la fin seulement pour les types nothing FAIT
+		get_infile_outfile(&tmp->words);
 		tmp = tmp->next;
 	}
 	return (0);

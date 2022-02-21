@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils2.c                                   :+:      :+:    :+:   */
+/*   get_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 16:56:13 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 16:58:01 by armendes         ###   ########.fr       */
+/*   Created: 2022/02/21 17:10:59 by armendes          #+#    #+#             */
+/*   Updated: 2022/02/21 17:23:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*cut_one_char(char *str)
+int	keep_till_dollar(char *str)
 {
 	int	i;
 
-	i = 1;
-	return (&str[i]);
+	i = 0;
+	while (str[i] && str[i] != '$')
+	{
+		i++;
+	}
+	i++;
+	return (i);
 }
 
-char	*cut_two_char(char *str)
+int	keep_till_end_of_var(char *str)
 {
 	int	i;
 
-	i = 2;
-	return (&str[i]);
+	i = 0;
+	while (str[i] && str[i] != '$' && (ft_isalnum(str[i]) || str[i] == '_'))
+		i++;
+	return (i);
 }

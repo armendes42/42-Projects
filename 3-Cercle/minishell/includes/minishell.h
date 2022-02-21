@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/18 15:57:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:45:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	free_all(t_cmd **cmd);
 int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
 void	free_word(t_token *tmp);
-void	skip_empty_words(t_token **words);
+int		skip_empty_words(t_token **words);
 void	skip_space_words(t_token **words);
 int		search_space_start(char *str);
 int		search_space_end(char *str);
@@ -97,7 +97,10 @@ int		cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
 			e_type type);
 int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
 			e_type type);
-void    get_infile_outfile(t_token **words);
+void	get_infile_outfile(t_token **words);
 int		search_dollar(char *str);
+int		get_var_env(t_token **words);
+int		keep_till_dollar(char *str);
+int		keep_till_end_of_var(char *str);
 
 #endif
