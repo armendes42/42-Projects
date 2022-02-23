@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/21 17:47:52 by armendes         ###   ########.fr       */
+/*   Updated: 2022/02/23 18:42:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	concat_words_prev(t_token **words)
 			tmp->word = ft_strjoin(tmp->word, tmp->next->word);
 			if (tmp->word == NULL)
 				return (-1);
+			tmp->type = tmp->next->type;
 			if (tmp->next->next == NULL)
 				tmp->next = NULL;
 			else
@@ -33,9 +34,8 @@ int	concat_words_prev(t_token **words)
 				tmp->next->next->prev = tmp;
 				tmp->next = tmp->next->next;
 			}
-			tmp->type = tmp_next->type;
 			tmp->need_to_concat = 0;
-			free_word(tmp_next);
+			free(tmp_next);
 		}
 		tmp = tmp->prev;
 	}

@@ -36,6 +36,10 @@
 				write(0, "type = limitor++\n", 17);
 			if (tmp2->words->type == OUTFILE_APPEND)
 				write(0, "type = output file append++\n", 28);
+			if (tmp2->words->need_to_concat == 0)
+				write(0, "need_to_concat = 0++\n", 21);
+			if (tmp2->words->need_to_concat == 1)
+				write(0, "need_to_concat = 1++\n", 21);
 			tmp2->words = tmp2->words->next;
 		}
 		write(0, "+\n", 2);
