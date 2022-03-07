@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 18:19:27 by armendes          #+#    #+#              #
-#    Updated: 2022/02/10 14:49:33 by armendes         ###   ########.fr        #
+#    Updated: 2022/03/07 16:36:44 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS =	${SRCS:.c=.o}
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I includes -g -pthread
+CFLAGS = -Wall -Wextra -Werror -I includes -g -pthread -fsanitize=address
 
 NAME =	philo
 

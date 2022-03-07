@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:41:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/18 16:10:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:54:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	search_error_redirection(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '>' && str[i + 1] == '<')
+			return (-1);
+		else if (str[i] == '<' && str[i + 1] == '>')
 			return (-1);
 		else if (str[i] == '<' && str[i + 1] == '<' && is_empty(&str[i + 2]))
 			return (-1);

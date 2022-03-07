@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:22:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/10 14:09:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:07:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ long	get_time(void);
 void	take_two_forks(t_philo *philo, int nb_of_philos);
 void	release_two_forks(t_philo *philo);
 int		philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
+int		philo_sleep(t_philo *philo);
 int		print_message(t_philo *philo, int action);
 void	is_philo_dead(t_philo *philo);
 int		is_end(t_philo *philo);

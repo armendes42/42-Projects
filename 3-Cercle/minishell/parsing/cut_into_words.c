@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:56:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:28:18 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	cut_into_words(t_cmd **cmd)
 			return (-1);
 		if (get_var_env(&tmp->words))
 			return (-1);
-		// if (skip_empty_words(&tmp->words))
-		// 	return (-1);
-		// detect_concat(&tmp->words);
-		// trim_space_in_word_start(&tmp->words);
-		// if (concat_words_prev(&tmp->words))
-		// 	return (-1);
-		// skip_space_words(&tmp->words);
-		// trim_space_in_word_end(&tmp->words);
-		// get_infile_outfile(&tmp->words);
+		if (skip_empty_words(&tmp->words))
+			return (-1);
+		detect_concat(&tmp->words);
+		trim_space_in_word_start(&tmp->words);
+		if (concat_words_prev(&tmp->words))
+			return (-1);
+		skip_space_words(&tmp->words);
+		trim_space_in_word_end(&tmp->words);
+		get_infile_outfile(&tmp->words);
 		tmp = tmp->next;
 	}
 	return (0);
