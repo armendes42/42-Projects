@@ -6,20 +6,20 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:50:23 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:48:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	free_words(t_token *words)
+static void	free_words(t_token **words)
 {
 	t_token	*tmp_w;
 	t_token	*tmp_w2;
 
-	if (words)
+	if (*words)
 	{
-		tmp_w = words;
+		tmp_w = *words;
 		while (tmp_w)
 		{
 			tmp_w2 = tmp_w->next;
@@ -27,31 +27,30 @@ static void	free_words(t_token *words)
 			free(tmp_w);
 			tmp_w = tmp_w2;
 		}
-		free(tmp_w);
 	}
 }
 
-void	free_all(t_cmd *cmd)
+void	free_all(t_cmd **cmd)
 {
 	t_cmd	*tmp_cmd;
 	t_cmd	*tmp_cmd2;
 
-	if (cmd)
+	if (*cmd)
 	{
-		tmp_cmd = cmd;
+		tmp_cmd = *cmd;
 		while (tmp_cmd)
 		{
-			free_words(tmp_cmd->words);
+			free_words(&tmp_cmd->words);
 			tmp_cmd2 = tmp_cmd->next;
 			free(tmp_cmd->cmd);
+			free(tmp_cmd->args);
 			free(tmp_cmd);
 			tmp_cmd = tmp_cmd2;
 		}
-		free(tmp_cmd);
 	}
 }
 
-void	error(t_cmd *cmd, char *err_msg)
+void	error(t_cmd **cmd, char *err_msg)
 {
 	free_all(cmd);
 	write(0, err_msg, ft_strlen(err_msg));

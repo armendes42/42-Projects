@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/07 15:24:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:08:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ static void	parsing(char *line)
 		error(NULL, QUOTE_ERR);
 	cmd = find_pipe(line);
 	if (!cmd)
-		error(cmd, CMD_ERR);
+		error(&cmd, CMD_ERR);
 	if (cut_into_words(&cmd))
-		error(cmd, WORD_ERR);
+		error(&cmd, WORD_ERR);
+	if (make_args(&cmd))
+		error(&cmd, ARG_ERR);
 
+////////////////////////////////
 	t_cmd	*tmp = cmd;
 	while (tmp)
 	{
@@ -70,8 +73,27 @@ static void	parsing(char *line)
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
-	
-	free_all(cmd);
+	// t_cmd	*tmp3 = cmd;
+	// int		i = 0;
+	// while (tmp3)
+	// {
+	// 	while (tmp3->args[i])
+	// 	{
+	// 		write(0, tmp3->args[i], ft_strlen(tmp3->args[i]));
+	// 		write(0, "==\n", 3);
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	tmp3 = tmp3->next;
+	// }
+	// write(0, "=\n", 2);
+//////////////////////
+
+	// char	*buff = NULL;
+	// getcwd(buff, 2000);
+	// write(0, buff, 2000);
+	// free(buff);
+	free_all(&cmd);
 }
 
 int	main(void)

@@ -6,11 +6,16 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:42:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:08:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// static e_type	find_type(e_type first_type, e_type second_type)
+// {
+
+// }
 
 int	concat_words_prev(t_token **words)
 {
@@ -42,6 +47,27 @@ int	concat_words_prev(t_token **words)
 	return (0);
 }
 
+static void	reequilibrate_concat(t_token **words)
+{
+	t_token	*tmp;
+
+	tmp = *words;
+	while (tmp->next)
+	{
+		if ((tmp->next->type == RED_IN || tmp->next->type == HERE_DOC
+				|| tmp->next->type == RED_OUT
+				|| tmp->next->type == RED_OUT_APPEND)
+			&& tmp->need_to_concat == 1)
+			tmp->need_to_concat = 0;
+		if ((tmp->type == RED_IN || tmp->type == HERE_DOC
+				|| tmp->type == RED_OUT
+				|| tmp->type == RED_OUT_APPEND)
+			&& tmp->need_to_concat == 1)
+			tmp->need_to_concat = 0;
+		tmp = tmp->next;
+	}
+}
+
 void	detect_concat(t_token **words)
 {
 	t_token	*tmp;
@@ -69,4 +95,5 @@ void	detect_concat(t_token **words)
 		}
 		tmp = tmp->next;
 	}
+	reequilibrate_concat(words);
 }

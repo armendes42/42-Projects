@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:56:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:56:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:26:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	trim_space_in_word_end(t_token **words)
 			while (tmp->word[++j] && j <= i)
 				str[j] = tmp->word[j];
 			str[j] = '\0';
-			free(tmp->word);
 			tmp->word = str;
 		}
 		tmp = tmp->next;

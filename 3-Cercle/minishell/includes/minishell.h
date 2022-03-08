@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:57:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:08:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define QUOTE_ERR "A quote is unclosed"
-# define CMD_ERR "A problem occured during the formation of the struct cmd"
-# define MALLOC_ERR "Error during a memory allocation"
-# define WORD_ERR "A problem occured during the formation of the struct word"
+# define QUOTE_ERR "A quote is unclosed\n"
+# define CMD_ERR "A problem occured during the formation of the struct cmd\n"
+# define MALLOC_ERR "Error during a memory allocation\n"
+# define WORD_ERR "A problem occured during the formation of the struct word\n"
+# define ARG_ERR "A problem occured during the formation of args\n"
 
 typedef enum type
 {
-	NONE,
 	ARG,
 	ARG_IN_SIMPLE,
 	ARG_IN_DOUBLE,
@@ -40,6 +41,7 @@ typedef enum type
 	LIMITOR,
 	OUTFILE,
 	OUTFILE_APPEND,
+	EXIT_STATUS,
 }			e_type;
 
 typedef enum quote
@@ -61,19 +63,20 @@ typedef struct s_token
 typedef struct s_cmd
 {
 	char			*cmd;
+	char			**args;
 	struct s_token	*words;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }				t_cmd;
 
-void	error(t_cmd *cmd, char *err_msg);
+void	error(t_cmd **cmd, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);
 int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
 int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
 int		cut_into_words(t_cmd **cmd);
-void	free_all(t_cmd *cmd);
+void	free_all(t_cmd **cmd);
 int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
 int		skip_empty_words(t_token **words);
@@ -103,5 +106,7 @@ int		keep_till_dollar(char *str);
 int		keep_till_end_of_var(char *str);
 void	trim_space_in_word_start(t_token **words);
 int		trim_space_in_word_end(t_token **words);
+int		make_args(t_cmd **cmd);
+int		search_space(char *str);
 
 #endif

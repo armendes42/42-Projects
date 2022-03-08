@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 00:04:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/21 17:59:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:34:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup_size(const char *s, int size)
+char	*ft_strdup_size(char *s, int size)
 {
 	char	*dest;
 	int		i;

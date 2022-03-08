@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:14:01 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/21 17:50:57 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:26:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,11 @@ static t_cmd	*create_elem(char *line, int start, int end)
 	elem->next = NULL;
 	elem->prev = NULL;
 	elem->words = NULL;
+	elem->args = NULL;
 	str = format_str(line, start, end);
 	if (!str)
-	{
-		free(elem);
 		return (NULL);
-	}
-	elem->cmd = ft_strdup(str);
-	free(str);
-	if (elem->cmd == NULL)
-		return (NULL);
+	elem->cmd = str;
 	return (elem);
 }
 

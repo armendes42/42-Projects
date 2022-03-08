@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:03:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/07 17:48:57 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:06:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,12 @@ int	philo_eat(t_philo *philo)
 int	philo_sleep(t_philo *philo)
 {
 	long	time;
-	long	i;
 
 	if (print_message(philo, SLEEP))
 		return (-1);
 	pthread_mutex_lock(&philo->info->mutex_info);
 	time = 1000 * philo->info->time_to_sleep;
 	pthread_mutex_unlock(&philo->info->mutex_info);
-	i = 0;
-	while (i < time)
-	{
-		is_philo_dead(philo);
-		usleep(1000);
-		i += 1000;
-	}
-	//usleep(time);
+	usleep(time);
 	return (0);
 }

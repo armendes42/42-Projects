@@ -10,6 +10,8 @@
 		"chrono": "c",
 		"algorithm": "c",
 		"push_swap.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"readline.h": "c",
+		"history.h": "c"
 	}
 }

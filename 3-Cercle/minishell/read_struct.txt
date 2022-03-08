@@ -45,4 +45,18 @@
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
+	t_cmd	*tmp3 = cmd;
+	int		i = 0;
+	while (tmp3)
+	{
+		while (tmp3->args[i])
+		{
+			write(0, tmp3->args[i], ft_strlen(tmp3->args[i]));
+			write(0, "==\n", 3);
+			i++;
+		}
+		i = 0;
+		tmp3 = tmp3->next;
+	}
+	write(0, "=\n", 2);
 /////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:11:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/23 18:43:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:12:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++i])
 		result[++j] = s2[i];
 	result[++j] = '\0';
-	free(s1);
-	free(s2);
 	return (result);
 }

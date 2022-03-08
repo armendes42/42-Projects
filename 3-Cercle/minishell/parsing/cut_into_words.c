@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/07 15:28:18 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:08:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,42 @@ static t_token	*cut_cmd(char *str)
 	return (words);
 }
 
+static char	*cut_before_space(char *str)
+{
+	
+}
+
+static char	*cut_after_space(char *str)
+{
+	
+}
+
+static int	cut_arg_nothing(t_token **words)
+{
+	t_token	*tmp;
+	t_token	*tmp_next;
+
+	tmp = *words;
+	while (tmp)
+	{
+		tmp_next = tmp->next;
+		if (tmp->type == ARG && search_space(str))
+		{
+			tmp->word = cut_before_space(tmp->word);
+			tmp->next = create_word(cut_after_space(tmp->word), ARG);
+			if (tmp_next = NULL)
+				tmp->next->next = NULL;
+			else
+			{
+				tmp->next->next = tmp_next;
+				tmp_next->prev = tmp->next;
+			}
+			tmp->next->prev = tmp;
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	cut_into_words(t_cmd **cmd)
 {
 	t_cmd	*tmp;
@@ -56,6 +92,8 @@ int	cut_into_words(t_cmd **cmd)
 		if (cut_redirection(&tmp->words))
 			return (-1);
 		if (get_var_env(&tmp->words))
+			return (-1);
+		if (cut_arg_nothing(&tmp->words))
 			return (-1);
 		if (skip_empty_words(&tmp->words))
 			return (-1);
