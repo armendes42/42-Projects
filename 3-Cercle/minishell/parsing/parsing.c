@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 19:08:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:42:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 static void	parsing(char *line)
 {
 	t_cmd	*cmd;
+	int		control;
 
 	if (check_quote(line))
 		error(NULL, QUOTE_ERR);
 	cmd = find_pipe(line);
 	if (!cmd)
 		error(&cmd, CMD_ERR);
-	if (cut_into_words(&cmd))
+	control = cut_into_words(&cmd);
+	if (control == -1)
 		error(&cmd, WORD_ERR);
+	else if (control == -2)
+		return ;
 	if (make_args(&cmd))
 		error(&cmd, ARG_ERR);
 
@@ -73,20 +77,20 @@ static void	parsing(char *line)
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
-	// t_cmd	*tmp3 = cmd;
-	// int		i = 0;
-	// while (tmp3)
-	// {
-	// 	while (tmp3->args[i])
-	// 	{
-	// 		write(0, tmp3->args[i], ft_strlen(tmp3->args[i]));
-	// 		write(0, "==\n", 3);
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	tmp3 = tmp3->next;
-	// }
-	// write(0, "=\n", 2);
+	t_cmd	*tmp3 = cmd;
+	int		i = 0;
+	while (tmp3)
+	{
+		while (tmp3->args[i])
+		{
+			write(0, tmp3->args[i], ft_strlen(tmp3->args[i]));
+			write(0, "==\n", 3);
+			i++;
+		}
+		i = 0;
+		tmp3 = tmp3->next;
+	}
+	write(0, "=\n", 2);
 //////////////////////
 
 	// char	*buff = NULL;

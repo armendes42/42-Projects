@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 16:59:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:37:11 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ static int	cut_arg_nothing(t_token **words)
 			tmp->next = create_word(cut_after_space(tmp_word), ARG);
 			if (tmp->word == NULL || tmp->next->word == NULL)
 				return (-1);
-			free(tmp_word);
 			if (tmp_next == NULL)
 				tmp->next->next = NULL;
 			else
@@ -137,7 +136,7 @@ int	cut_into_words(t_cmd **cmd)
 		if (cut_arg_nothing(&tmp->words))
 			return (-1);
 		if (skip_empty_words(&tmp->words))
-			return (-1);
+			return (-2);
 		detect_concat(&tmp->words);
 		trim_space_in_word_start(&tmp->words);
 		if (concat_words_prev(&tmp->words))
