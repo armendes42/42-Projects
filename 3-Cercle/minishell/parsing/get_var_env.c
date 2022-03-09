@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 18:47:41 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:15:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static char	*search_env_var(char *str)
 	int		j;
 	char	*result;
 
-	i = keep_till_dollar(&str[0]);
-	j = keep_till_end_of_var(&str[i]);
+	i = keep_going_till_dollar(&str[0]);
+	j = keep_going_till_end_of_var(&str[i]);
 	i += j;
 	result = malloc(sizeof(char) * (j + 1));
 	if (!result)
@@ -43,8 +43,8 @@ static char	*replace_env_var_by_nothing(char *str)
 	int		i;
 	int		j;
 
-	i = keep_till_dollar(&str[0]);
-	j = keep_till_end_of_var(&str[i]);
+	i = keep_going_till_dollar(&str[0]);
+	j = keep_going_till_end_of_var(&str[i]);
 	i += j;
 	new_word = malloc(sizeof(char) * (ft_strlen(str) - j));
 	if (!new_word)
@@ -53,7 +53,7 @@ static char	*replace_env_var_by_nothing(char *str)
 	j = -1;
 	while (str[++i] && str[i] != '$')
 		new_word[++j] = str[i];
-	i += keep_till_end_of_var(&str[i + 1]);
+	i += keep_going_till_end_of_var(&str[i + 1]);
 	while (str[++i])
 		new_word[++j] = str[i];
 	new_word[++j] = '\0';
@@ -68,8 +68,8 @@ static char	*replace_env_var_by_content(char *str, char *inside_var)
 	int		j;
 	int		k;
 
-	i = keep_till_dollar(&str[0]);
-	j = keep_till_end_of_var(&str[i]);
+	i = keep_going_till_dollar(&str[0]);
+	j = keep_going_till_end_of_var(&str[i]);
 	i += j;
 	new_word = malloc(sizeof(char)
 			* (ft_strlen(str) - j + ft_strlen(inside_var) + 1));
@@ -79,7 +79,7 @@ static char	*replace_env_var_by_content(char *str, char *inside_var)
 	j = -1;
 	while (str[++i] && str[i] != '$')
 		new_word[++j] = str[i];
-	i += keep_till_end_of_var(&str[i + 1]);
+	i += keep_going_till_end_of_var(&str[i + 1]);
 	k = -1;
 	while (inside_var[++k])
 		new_word[++j] = inside_var[k];

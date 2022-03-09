@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_utils.c                                    :+:      :+:    :+:   */
+/*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 17:10:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 16:11:54 by armendes         ###   ########.fr       */
+/*   Created: 2022/03/09 16:01:02 by armendes          #+#    #+#             */
+/*   Updated: 2022/03/09 16:02:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	keep_going_till_dollar(char *str)
+int	is_only_space(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '$')
+	while (str[i])
 	{
+		if (str[i] != ' ')
+			return (0);
 		i++;
 	}
-	i++;
-	return (i);
-}
-
-int	keep_going_till_end_of_var(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != '$' && (ft_isalnum(str[i]) || str[i] == '_'))
-		i++;
-	return (i);
+	return (1);
 }

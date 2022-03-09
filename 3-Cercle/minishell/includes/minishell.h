@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 19:08:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:11:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,12 @@ int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
 void	get_infile_outfile(t_token **words);
 int		search_dollar(char *str);
 int		get_var_env(t_token **words);
-int		keep_till_dollar(char *str);
-int		keep_till_end_of_var(char *str);
+int		keep_going_till_dollar(char *str);
+int		keep_going_till_end_of_var(char *str);
 void	trim_space_in_word_start(t_token **words);
 int		trim_space_in_word_end(t_token **words);
 int		make_args(t_cmd **cmd);
 int		search_space(char *str);
+int		is_only_space(char *str);
 
 #endif

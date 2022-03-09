@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 19:08:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:59:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,68 @@ static t_token	*cut_cmd(char *str)
 
 static char	*cut_before_space(char *str)
 {
-	
+	char	*result;
+	int		i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	while (str[i] && str[i] != ' ')
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	result = ft_strdup_size(str, i);
+	if (!result)
+		return (NULL);
+	return (result);
 }
 
 static char	*cut_after_space(char *str)
 {
-	
+	char	*result;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	while (str[i] && str[i] != ' ')
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	result = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	if (!result)
+		return (NULL);
+	j = 0;
+	while (str[i])
+	{
+		result[j] = str[i];
+		j++;
+		i++;
+	}
+	result[j] = '\0';
+	return (result);
 }
 
 static int	cut_arg_nothing(t_token **words)
 {
 	t_token	*tmp;
 	t_token	*tmp_next;
+	char	*tmp_word;
 
 	tmp = *words;
 	while (tmp)
 	{
 		tmp_next = tmp->next;
-		if (tmp->type == ARG && search_space(str))
+		if (tmp->type == ARG && search_space(tmp->word))
 		{
-			tmp->word = cut_before_space(tmp->word);
-			tmp->next = create_word(cut_after_space(tmp->word), ARG);
-			if (tmp_next = NULL)
+			tmp_word = tmp->word;
+			tmp->word = cut_before_space(tmp_word);
+			tmp->next = create_word(cut_after_space(tmp_word), ARG);
+			if (tmp->word == NULL || tmp->next->word == NULL)
+				return (-1);
+			free(tmp_word);
+			if (tmp_next == NULL)
 				tmp->next->next = NULL;
 			else
 			{
@@ -75,6 +115,7 @@ static int	cut_arg_nothing(t_token **words)
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
 int	cut_into_words(t_cmd **cmd)

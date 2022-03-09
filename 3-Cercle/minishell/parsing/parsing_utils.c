@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 18:55:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:39:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	search_space(char *str)
 	while (str[i])
 	{
 		if (str[i] == ' ')
-			retrun (1);
+			return (1);
 		i++;
 	}
 	return (0);
