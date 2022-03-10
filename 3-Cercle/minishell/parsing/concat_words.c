@@ -6,16 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 19:08:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:19:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static e_type	find_type(e_type first_type, e_type second_type)
-// {
-
-// }
 
 int	concat_words_prev(t_token **words)
 {

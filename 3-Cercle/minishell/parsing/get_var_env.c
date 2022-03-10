@@ -6,11 +6,16 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 16:15:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:49:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// static char	*my_getenv(char *var)
+// {
+
+// }
 
 static char	*search_env_var(char *str)
 {
@@ -108,6 +113,9 @@ int	get_var_env(t_token **words)
 				var = search_env_var(tmp->word);
 				if (var == NULL)
 					return (-1);
+				////////////
+				//if (var == "$?")
+				////////////
 				inside_var = getenv(var);
 				free(var);
 				if (inside_var == NULL)

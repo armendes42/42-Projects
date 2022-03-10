@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 18:42:04 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/10 20:12:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,8 @@ int		trim_space_in_word_end(t_token **words);
 int		make_args(t_cmd **cmd);
 int		search_space(char *str);
 int		is_only_space(char *str);
+
+void	builtins(char **args);
+void	builtin_echo(char **args);
 
 #endif

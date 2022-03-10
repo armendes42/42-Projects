@@ -6,17 +6,18 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 18:42:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/10 20:09:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parsing(char *line)
+static void	parsing(char *line, char **envp)
 {
 	t_cmd	*cmd;
 	int		control;
 
+	(void)envp;
 	if (check_quote(line))
 		error(NULL, QUOTE_ERR);
 	cmd = find_pipe(line);
@@ -100,15 +101,17 @@ static void	parsing(char *line)
 	free_all(&cmd);
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 
+	(void)argc;
+	(void)argv;
 	line = "";
 	while (line)
 	{
 		line = readline("~>");
-		parsing(line);
+		parsing(line, envp);
 	}
 	free(line);
 	return (0);
