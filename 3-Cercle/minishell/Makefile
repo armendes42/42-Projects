@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/03/10 20:13:25 by armendes         ###   ########.fr        #
+#    Updated: 2022/03/10 20:47:09 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS =	parsing/parsing.c						\
 		parsing/trim_space_start_or_end.c		\
 		parsing/create_args.c					\
 		parsing/parsing_utils2.c				\
-		builtins/builtins.c						\
+		#builtins/builtins.c						\
 		builtins/echo.c							\
 
 OBJS =	${SRCS:.c=.o}

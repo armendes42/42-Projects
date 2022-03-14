@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/10 20:12:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 16:35:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }				t_cmd;
+
+typedef struct s_info
+{
+	char			**env;
+	struct s_cmd	*cmd;
+}				t_info;
 
 void	error(t_cmd **cmd, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);

@@ -6,33 +6,31 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/10 20:09:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:11:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parsing(char *line, char **envp)
+static void	parsing(char *line, t_cmd **cmd)
 {
-	t_cmd	*cmd;
 	int		control;
 
-	(void)envp;
 	if (check_quote(line))
 		error(NULL, QUOTE_ERR);
-	cmd = find_pipe(line);
-	if (!cmd)
-		error(&cmd, CMD_ERR);
-	control = cut_into_words(&cmd);
+	*cmd = find_pipe(line);
+	if (!(*cmd))
+		error(cmd, CMD_ERR);
+	control = cut_into_words(cmd);
 	if (control == -1)
-		error(&cmd, WORD_ERR);
+		error(cmd, WORD_ERR);
 	else if (control == -2)
 		return ;
-	if (make_args(&cmd))
-		error(&cmd, ARG_ERR);
+	if (make_args(cmd))
+		error(cmd, ARG_ERR);
 
 ////////////////////////////////
-	t_cmd	*tmp = cmd;
+	t_cmd	*tmp = *cmd;
 	while (tmp)
 	{
 		write(0, tmp->cmd, ft_strlen(tmp->cmd));
@@ -40,7 +38,7 @@ static void	parsing(char *line, char **envp)
 		tmp = tmp->next;
 	}
 	write(0, "-\n", 2);
-	t_cmd	*tmp2 = cmd;
+	t_cmd	*tmp2 = *cmd;
 	while (tmp2)
 	{
 		while (tmp2->words)
@@ -78,7 +76,7 @@ static void	parsing(char *line, char **envp)
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
-	t_cmd	*tmp3 = cmd;
+	t_cmd	*tmp3 = *cmd;
 	int		i = 0;
 	while (tmp3)
 	{
@@ -98,20 +96,27 @@ static void	parsing(char *line, char **envp)
 	// getcwd(buff, 2000);
 	// write(0, buff, 2000);
 	// free(buff);
-	free_all(&cmd);
+	free_all(cmd);
+}
+
+static char	**copy_env(char **envp)
+{
+	
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
+	t_info	info;
 
 	(void)argc;
 	(void)argv;
 	line = "";
+	info.env = copy_env(envp);
 	while (line)
 	{
 		line = readline("~>");
-		parsing(line, envp);
+		parsing(line, &info.cmd);
 	}
 	free(line);
 	return (0);
