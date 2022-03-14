@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 18:54:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:35:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ int		trim_space_in_word_end(t_token **words);
 int		make_args(t_cmd **cmd);
 int		search_space(char *str);
 int		is_only_space(char *str);
+int		cut_arg_nothing(t_token **words);
+char	*ft_getenv(char *var, char **env);
+char	**copy_env(char **envp);
+int		get_exit_status(t_token **words, int exit_status);
 
 void	builtins(char **args);
 void	builtin_echo(char **args);

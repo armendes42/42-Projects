@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 18:54:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:43:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,82 +41,6 @@ static t_token	*cut_cmd(char *str)
 	return (words);
 }
 
-static char	*cut_before_space(char *str)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
-	while (str[i] && str[i] != ' ')
-		i++;
-	while (str[i] && str[i] == ' ')
-		i++;
-	result = ft_strdup_size(str, i);
-	if (!result)
-		return (NULL);
-	return (result);
-}
-
-static char	*cut_after_space(char *str)
-{
-	char	*result;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
-	while (str[i] && str[i] != ' ')
-		i++;
-	while (str[i] && str[i] == ' ')
-		i++;
-	result = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!result)
-		return (NULL);
-	j = 0;
-	while (str[i])
-	{
-		result[j] = str[i];
-		j++;
-		i++;
-	}
-	result[j] = '\0';
-	return (result);
-}
-
-static int	cut_arg_nothing(t_token **words)
-{
-	t_token	*tmp;
-	t_token	*tmp_next;
-	char	*tmp_word;
-
-	tmp = *words;
-	while (tmp)
-	{
-		tmp_next = tmp->next;
-		if (tmp->type == ARG && search_space(tmp->word))
-		{
-			tmp_word = tmp->word;
-			tmp->word = cut_before_space(tmp_word);
-			tmp->next = create_word(cut_after_space(tmp_word), ARG);
-			if (tmp->word == NULL || tmp->next->word == NULL)
-				return (-1);
-			if (tmp_next == NULL)
-				tmp->next->next = NULL;
-			else
-			{
-				tmp->next->next = tmp_next;
-				tmp_next->prev = tmp->next;
-			}
-			tmp->next->prev = tmp;
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
 int	cut_into_words(t_info *info)
 {
 	t_cmd	*tmp;
@@ -132,12 +56,14 @@ int	cut_into_words(t_info *info)
 		if (cut_redirection(&tmp->words))
 			return (-1);
 		skip_space_words(&tmp->words);
+		if (get_exit_status(&tmp->words, info->exit_status))
+			return (-2);
 		if (get_var_env(&tmp->words, info->env))
 			return (-1);
 		if (cut_arg_nothing(&tmp->words))
 			return (-1);
 		if (skip_empty_words(&tmp->words))
-			return (-2);
+			return (-1);
 		detect_concat(&tmp->words);
 		trim_space_in_word_start(&tmp->words);
 		if (concat_words_prev(&tmp->words))

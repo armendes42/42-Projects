@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 18:53:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:49:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 static void	parsing(char *line, t_info *info)
 {
-	int		control;
-
 	if (check_quote(line))
 		error(NULL, QUOTE_ERR);
 	info->cmd = find_pipe(line);
 	if (!(&info->cmd))
 		error(&info->cmd, CMD_ERR);
-	control = cut_into_words(info);
-	if (control == -1)
-		error(&info->cmd, WORD_ERR);
-	else if (control == -2)
-		return ;
+	if (cut_into_words(info))
+		error(&info->cmd, WORD_ERR);	
 	if (make_args(&info->cmd))
 		error(&info->cmd, ARG_ERR);
 
@@ -99,27 +94,6 @@ static void	parsing(char *line, t_info *info)
 	free_all(&info->cmd);
 }
 
-static char	**copy_env(char **envp)
-{
-	int		i;
-	char	**env;
-
-	i = 0;
-	while (envp[i])
-		i++;
-	env = malloc(sizeof(char *) * (i + 1));
-	if (!env)
-		return (NULL);
-	i = 0;
-	while (envp[i])
-	{
-		env[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	env[i] = NULL;
-	return (env);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
@@ -131,9 +105,17 @@ int	main(int argc, char **argv, char **envp)
 	info.env = copy_env(envp);
 	if (!info.env)
 		error(NULL, ENV_ERR);
+	info.exit_status = 127;
 	while (line)
 	{
 		line = readline("~>");
+		if (line == NULL)
+		{
+			free(line);
+			return (-1);
+		}
+		if (line && *line)
+			add_history(line);
 		parsing(line, &info);
 	}
 	free(line);
