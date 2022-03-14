@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 20:42:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:51:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,16 @@ int	get_exit_status(t_token **words, int exit_status)
 	tmp = *words;
 	while (tmp)
 	{
-		if (search_exit_status(tmp->word))
-			tmp->word = replace_env_var_by_exit_status(tmp->word, exit_status);
-		if (tmp->word == NULL)
-			return (-1);
+		if (tmp->type == ARG || tmp->type == ARG_IN_DOUBLE)
+		{
+			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
+			{
+				if (search_exit_status(tmp->word))
+					tmp->word = replace_env_var_by_exit_status(tmp->word, exit_status);
+				if (tmp->word == NULL)
+					return (-1);
+			}
+		}
 		tmp = tmp->next;
 	}
 	return (0);
