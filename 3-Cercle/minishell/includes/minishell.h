@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 16:35:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:54:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MALLOC_ERR "Error during a memory allocation\n"
 # define WORD_ERR "A problem occured during the formation of the struct word\n"
 # define ARG_ERR "A problem occured during the formation of args\n"
+# define ENV_ERR "A problem occured during copy of env"
 
 typedef enum type
 {
@@ -71,6 +72,7 @@ typedef struct s_cmd
 
 typedef struct s_info
 {
+	int				exit_status;
 	char			**env;
 	struct s_cmd	*cmd;
 }				t_info;
@@ -81,7 +83,7 @@ int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
 int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
-int		cut_into_words(t_cmd **cmd);
+int		cut_into_words(t_info *info);
 void	free_all(t_cmd **cmd);
 int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
@@ -107,7 +109,7 @@ int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
 			e_type type);
 void	get_infile_outfile(t_token **words);
 int		search_dollar(char *str);
-int		get_var_env(t_token **words);
+int		get_var_env(t_token **words, char **env);
 int		keep_going_till_dollar(char *str);
 int		keep_going_till_end_of_var(char *str);
 void	trim_space_in_word_start(t_token **words);

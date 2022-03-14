@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/10 16:28:36 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:54:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,11 @@ static int	cut_arg_nothing(t_token **words)
 	return (0);
 }
 
-int	cut_into_words(t_cmd **cmd)
+int	cut_into_words(t_info *info)
 {
 	t_cmd	*tmp;
 
-	tmp = *cmd;
+	tmp = info->cmd;
 	while (tmp)
 	{
 		tmp->words = cut_cmd(tmp->cmd);
@@ -131,7 +131,8 @@ int	cut_into_words(t_cmd **cmd)
 			return (-1);
 		if (cut_redirection(&tmp->words))
 			return (-1);
-		if (get_var_env(&tmp->words))
+		skip_space_words(&tmp->words);
+		if (get_var_env(&tmp->words, info->env))
 			return (-1);
 		if (cut_arg_nothing(&tmp->words))
 			return (-1);

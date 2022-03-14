@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/10 16:49:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:56:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,12 @@ static char	*replace_env_var_by_content(char *str, char *inside_var)
 	return (new_word);
 }
 
-int	get_var_env(t_token **words)
+static char	*ft_getenv(char *var, char **env)
+{
+	
+}
+
+int	get_var_env(t_token **words, char **env)
 {
 	t_token	*tmp;
 	char	*var;
@@ -107,22 +112,26 @@ int	get_var_env(t_token **words)
 	{
 		if (tmp->type == ARG || tmp->type == ARG_IN_DOUBLE)
 		{
-			nb_of_dollars = search_dollar(tmp->word);
-			while (nb_of_dollars-- > 0)
+			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
 			{
-				var = search_env_var(tmp->word);
-				if (var == NULL)
-					return (-1);
-				////////////
-				//if (var == "$?")
-				////////////
-				inside_var = getenv(var);
-				free(var);
-				if (inside_var == NULL)
-					tmp->word = replace_env_var_by_nothing(tmp->word);
-				else
-					tmp->word = replace_env_var_by_content(tmp->word,
-							inside_var);
+				nb_of_dollars = search_dollar(tmp->word);
+				while (nb_of_dollars-- > 0)
+				{
+					var = search_env_var(tmp->word);
+					if (var == NULL)
+						return (-1);
+					////////////
+					//if (var == "$?")
+					////////////
+					// inside_var = getenv(var);
+					inside_var = ft_getenv(var, env);
+					free(var);
+					if (inside_var == NULL)
+						tmp->word = replace_env_var_by_nothing(tmp->word);
+					else
+						tmp->word = replace_env_var_by_content(tmp->word,
+								inside_var);
+				}
 			}
 		}
 		tmp = tmp->next;

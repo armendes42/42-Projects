@@ -6,31 +6,31 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 17:11:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:53:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parsing(char *line, t_cmd **cmd)
+static void	parsing(char *line, t_info *info)
 {
 	int		control;
 
 	if (check_quote(line))
 		error(NULL, QUOTE_ERR);
-	*cmd = find_pipe(line);
-	if (!(*cmd))
-		error(cmd, CMD_ERR);
-	control = cut_into_words(cmd);
+	info->cmd = find_pipe(line);
+	if (!(&info->cmd))
+		error(&info->cmd, CMD_ERR);
+	control = cut_into_words(info);
 	if (control == -1)
-		error(cmd, WORD_ERR);
+		error(&info->cmd, WORD_ERR);
 	else if (control == -2)
 		return ;
-	if (make_args(cmd))
-		error(cmd, ARG_ERR);
+	if (make_args(&info->cmd))
+		error(&info->cmd, ARG_ERR);
 
 ////////////////////////////////
-	t_cmd	*tmp = *cmd;
+	t_cmd	*tmp = info->cmd;
 	while (tmp)
 	{
 		write(0, tmp->cmd, ft_strlen(tmp->cmd));
@@ -38,7 +38,7 @@ static void	parsing(char *line, t_cmd **cmd)
 		tmp = tmp->next;
 	}
 	write(0, "-\n", 2);
-	t_cmd	*tmp2 = *cmd;
+	t_cmd	*tmp2 = info->cmd;
 	while (tmp2)
 	{
 		while (tmp2->words)
@@ -76,7 +76,7 @@ static void	parsing(char *line, t_cmd **cmd)
 		write(0, "+\n", 2);
 		tmp2 = tmp2->next;
 	}
-	t_cmd	*tmp3 = *cmd;
+	t_cmd	*tmp3 = info->cmd;
 	int		i = 0;
 	while (tmp3)
 	{
@@ -96,12 +96,28 @@ static void	parsing(char *line, t_cmd **cmd)
 	// getcwd(buff, 2000);
 	// write(0, buff, 2000);
 	// free(buff);
-	free_all(cmd);
+	free_all(&info->cmd);
 }
 
 static char	**copy_env(char **envp)
 {
-	
+	int		i;
+	char	**env;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	env = malloc(sizeof(char *) * (i + 1));
+	if (!env)
+		return (NULL);
+	i = 0;
+	while (envp[i])
+	{
+		env[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	env[i] = NULL;
+	return (env);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -113,10 +129,12 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	line = "";
 	info.env = copy_env(envp);
+	if (!info.env)
+		error(NULL, ENV_ERR);
 	while (line)
 	{
 		line = readline("~>");
-		parsing(line, &info.cmd);
+		parsing(line, &info);
 	}
 	free(line);
 	return (0);
