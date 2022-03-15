@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:45:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 19:48:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:01:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
+int	cut_redirection_first_char(t_token **words, t_token **tmp, char *sign,
 	e_type type)
 {
 	t_token	*new;
@@ -32,7 +32,7 @@ int	cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
 	return (0);
 }
 
-int	cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
+int	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 	e_type type)
 {
 	t_token	*new;

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:15:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/07 15:27:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:45:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	skip_empty_words(t_token **words)
 		tmp = *words;
 		while (tmp)
 		{
-			if (ft_strlen(tmp->word) == 0 && tmp->type == ARG)
+			if (ft_strlen(tmp->word) == 0)
 			{
 				if (word_is_empty(words, &tmp))
 					return (-1);

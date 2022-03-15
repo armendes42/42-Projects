@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/10 16:19:53 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:51:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ static void	reequilibrate_concat(t_token **words)
 		if ((tmp->type == RED_IN || tmp->type == HERE_DOC
 				|| tmp->type == RED_OUT
 				|| tmp->type == RED_OUT_APPEND)
+			&& tmp->need_to_concat == 1)
+			tmp->need_to_concat = 0;
+		if (tmp->type == JUST_DOLLAR && search_space_end(tmp->word)
 			&& tmp->need_to_concat == 1)
 			tmp->need_to_concat = 0;
 		tmp = tmp->next;

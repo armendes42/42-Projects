@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 20:49:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:54:42 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ static void	parsing(char *line, t_info *info)
 				write(0, "type = limitor++\n", 17);
 			if (tmp2->words->type == OUTFILE_APPEND)
 				write(0, "type = output file append++\n", 28);
+			if (tmp2->words->type == JUST_DOLLAR)
+				write(0, "type = just_dollar++\n", 21);
+			if (tmp2->words->type == JUST_DOLLAR_DOUBLE)
+				write(0, "type = just_dollar_double++\n", 28);
 			if (tmp2->words->need_to_concat == 0)
 				write(0, "need_to_concat = 0++\n", 21);
 			if (tmp2->words->need_to_concat == 1)

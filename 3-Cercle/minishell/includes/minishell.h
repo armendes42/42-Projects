@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 20:35:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:46:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef enum type
 	LIMITOR,
 	OUTFILE,
 	OUTFILE_APPEND,
-	EXIT_STATUS,
+	JUST_DOLLAR,
+	JUST_DOLLAR_DOUBLE,
 }			e_type;
 
 typedef enum quote
@@ -103,9 +104,9 @@ char	*cut_one_char(char *str);
 char	*cut_two_char(char *str);
 char	*before_redirection(char *str);
 char	*after_redirection(char *str);
-int		cut_redirection_first_cell(t_token **words, t_token **tmp, char *sign,
+int		cut_redirection_first_char(t_token **words, t_token **tmp, char *sign,
 			e_type type);
-int		cut_redirection_other_cell(t_token **words, t_token **tmp, char *sign,
+int		cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 			e_type type);
 void	get_infile_outfile(t_token **words);
 int		search_dollar(char *str);
@@ -121,6 +122,8 @@ int		cut_arg_nothing(t_token **words);
 char	*ft_getenv(char *var, char **env);
 char	**copy_env(char **envp);
 int		get_exit_status(t_token **words, int exit_status);
+int		get_just_dollar(t_token **words);
+void	change_just_dollar_to_arg(t_token **words);
 
 void	builtins(char **args);
 void	builtin_echo(char **args);

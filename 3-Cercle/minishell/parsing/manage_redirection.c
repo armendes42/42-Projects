@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:40:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/08 18:21:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:23:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static int	cut_for_input(t_token **words, t_token **tmp)
 {
 	if ((*tmp)->word[0] == '<')
 	{
-		cut_redirection_first_cell(words, tmp, "<", RED_IN);
+		if (cut_redirection_first_char(words, tmp, "<", RED_IN))
+			return (-1);
 		(*tmp)->word = cut_one_char((*tmp)->word);
 	}
 	else
-		cut_redirection_other_cell(words, tmp, "<", RED_IN);
+		if (cut_redirection_other_char(words, tmp, "<", RED_IN))
+			return (-1);
 	return (0);
 }
 
@@ -28,11 +30,13 @@ static int	cut_for_output(t_token **words, t_token **tmp)
 {
 	if ((*tmp)->word[0] == '>')
 	{
-		cut_redirection_first_cell(words, tmp, ">", RED_OUT);
+		if (cut_redirection_first_char(words, tmp, ">", RED_OUT))
+			return (-1);
 		(*tmp)->word = cut_one_char((*tmp)->word);
 	}
 	else
-		cut_redirection_other_cell(words, tmp, ">", RED_OUT);
+		if (cut_redirection_other_char(words, tmp, ">", RED_OUT))
+			return (-1);
 	return (0);
 }
 
@@ -40,11 +44,13 @@ static int	cut_for_delimiter(t_token **words, t_token **tmp)
 {
 	if ((*tmp)->word[0] == '<')
 	{
-		cut_redirection_first_cell(words, tmp, "<<", HERE_DOC);
+		if (cut_redirection_first_char(words, tmp, "<<", HERE_DOC))
+			return (-1);
 		(*tmp)->word = cut_two_char((*tmp)->word);
 	}
 	else
-		cut_redirection_other_cell(words, tmp, "<<", HERE_DOC);
+		if (cut_redirection_other_char(words, tmp, "<<", HERE_DOC))
+			return (-1);
 	return (0);
 }
 
@@ -52,11 +58,13 @@ static int	cut_for_append(t_token **words, t_token **tmp)
 {
 	if ((*tmp)->word[0] == '>')
 	{
-		cut_redirection_first_cell(words, tmp, ">>", RED_OUT_APPEND);
+		if (cut_redirection_first_char(words, tmp, ">>", RED_OUT_APPEND))
+			return (-1);
 		(*tmp)->word = cut_two_char((*tmp)->word);
 	}
 	else
-		cut_redirection_other_cell(words, tmp, ">>", RED_OUT_APPEND);
+		if (cut_redirection_other_char(words, tmp, ">>", RED_OUT_APPEND))
+			return (-1);
 	return (0);
 }
 
