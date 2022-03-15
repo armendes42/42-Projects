@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:40:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 17:23:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:46:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ int	cut_redirection(t_token **words)
 				control = cut_for_append(words, &tmp);
 			if (control != 0)
 				return (-1);
+			if (search_redirection(tmp->word) == 0)
+				tmp = tmp->next;
 		}
-		if (search_redirection(tmp->word) == 0)
+		else
 			tmp = tmp->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 18:52:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:37:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	cut_into_words(t_info *info)
 		if (tmp->words == NULL)
 			return (-1);
 		if (search_error_redirection(tmp->cmd))
+			return (-1);
+		if (search_error_var_env(tmp->cmd))
 			return (-1);
 		if (cut_redirection(&tmp->words))
 			return (-1);
