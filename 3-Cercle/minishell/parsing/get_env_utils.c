@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:10:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 20:49:52 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:20:18 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	keep_going_till_end_of_var(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '$' && (ft_isalnum(str[i]) || str[i] == '_'))
+	while (str[i] && str[i] != '$' && str[i] != ' '
+		&& (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
 	return (i);
 }

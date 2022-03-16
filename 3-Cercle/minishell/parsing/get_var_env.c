@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 19:00:07 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:43:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,23 @@ static char	*search_env_var(char *str)
 	char	*result;
 
 	i = keep_going_till_dollar(&str[0]);
-	j = keep_going_till_end_of_var(&str[i]);
-	i += j;
+	if (str[i] == '{')
+		j = keep_going_till_end_of_var(&str[i + 1]);
+	else
+		j = keep_going_till_end_of_var(&str[i]);
 	result = malloc(sizeof(char) * (j + 1));
 	if (!result)
 		return (NULL);
-	i -= j;
-	j = 0;
-	while (str[i] && str[i] != ' ' && str[i] != '$'
+	j = -1;
+	if (str[i] == '{')
+		i++;
+	while (str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '}'
 		&& (ft_isalnum(str[i]) || str[i] == '_'))
 	{
-		result[j] = str[i];
-		j++;
+		result[++j] = str[i];
 		i++;
 	}
-	result[j] = '\0';
+	result[++j] = '\0';
 	return (result);
 }
 
@@ -44,8 +46,10 @@ static char	*replace_env_var_by_nothing(char *str)
 	int		j;
 
 	i = keep_going_till_dollar(&str[0]);
-	j = keep_going_till_end_of_var(&str[i]);
-	i += j;
+	if (str[i] == '{')
+		j = keep_going_till_end_of_var(&str[i + 1]) + 1;
+	else
+		j = keep_going_till_end_of_var(&str[i]);
 	new_word = malloc(sizeof(char) * (ft_strlen(str) - j));
 	if (!new_word)
 		return (NULL);
@@ -53,7 +57,10 @@ static char	*replace_env_var_by_nothing(char *str)
 	j = -1;
 	while (str[++i] && str[i] != '$')
 		new_word[++j] = str[i];
-	i += keep_going_till_end_of_var(&str[i + 1]);
+	if (str[i + 1] == '{')
+		i += keep_going_till_end_of_var(&str[i + 2]) + 2;
+	else
+		i += keep_going_till_end_of_var(&str[i + 1]);
 	while (str[++i])
 		new_word[++j] = str[i];
 	new_word[++j] = '\0';
@@ -69,8 +76,10 @@ static char	*replace_env_var_by_content(char *str, char *inside_var)
 	int		k;
 
 	i = keep_going_till_dollar(&str[0]);
-	j = keep_going_till_end_of_var(&str[i]);
-	i += j;
+	if (str[i] == '{')
+		j = keep_going_till_end_of_var(&str[i + 1]) + 3;
+	else
+		j = keep_going_till_end_of_var(&str[i]);
 	new_word = malloc(sizeof(char)
 			* (ft_strlen(str) - j + ft_strlen(inside_var) + 1));
 	if (!new_word)
@@ -79,7 +88,10 @@ static char	*replace_env_var_by_content(char *str, char *inside_var)
 	j = -1;
 	while (str[++i] && str[i] != '$')
 		new_word[++j] = str[i];
-	i += keep_going_till_end_of_var(&str[i + 1]);
+	if (str[i + 1] == '{')
+		i += keep_going_till_end_of_var(&str[i + 2]) + 2;
+	else
+		i += keep_going_till_end_of_var(&str[i + 1]);
 	k = -1;
 	while (inside_var[++k])
 		new_word[++j] = inside_var[k];
