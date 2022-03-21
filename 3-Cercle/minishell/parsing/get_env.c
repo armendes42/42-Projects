@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 20:11:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:29:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ char	**copy_env(char **envp)
 	return (env);
 }
 
+char	*ft_getenv_var(char *str)
+{
+	int		i;
+	char	*env_var;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	env_var = ft_strdup_size(str, i);
+	if (!env_var)
+		return (NULL);
+	return (env_var);
+}
+
+int	ft_len_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		i++;
+	}
+	i++;
+	return (i);
+}
+
 char	*ft_getenv(char *var, char **env)
 {
 	int		i;
@@ -46,10 +73,14 @@ char	*ft_getenv(char *var, char **env)
 		while (env[i][j] && env[i][j] != '=')
 			j++;
 		env_var = ft_strdup_size(env[i], j);
+		if (!env_var)
+			return (NULL);
 		if (ft_strncmp(var, env_var, 500) == 0)
 		{
 			free(env_var);
 			env_var = ft_strdup_size(&env[i][j + 1], 500);
+			if (!env_var)
+				return (NULL);
 			return (env_var);
 		}
 		i++;

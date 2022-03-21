@@ -6,10 +6,21 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/07 15:50:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:28:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	builtin_env(char **env)
+{
+	int	i;
 
+	i = 0;
+	while (env[i] != NULL)
+	{
+		ft_putstr_fd(env[i], 0);
+		ft_putchar_fd('\n', 0);
+		i++;
+	}
+}

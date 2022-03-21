@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 17:54:42 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:28:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static void	parsing(char *line, t_info *info)
 	// getcwd(buff, 2000);
 	// write(0, buff, 2000);
 	// free(buff);
-	free_all(&info->cmd);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -121,6 +120,8 @@ int	main(int argc, char **argv, char **envp)
 		if (line && *line)
 			add_history(line);
 		parsing(line, &info);
+		check_if_builtin(&info);
+		free_all(&info.cmd);
 	}
 	free(line);
 	return (0);
