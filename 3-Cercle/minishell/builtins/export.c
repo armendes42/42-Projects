@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 18:54:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:15:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	check_format_of_var(char *str)
 			return (0);
 		i++;
 	}
-	i++;
+	if (!str[i])
+		return (0);
 	return (1);
 }
 
@@ -35,7 +36,7 @@ static int	is_in_args(char **args, char *str_env)
 	char	*env_var;
 	char	*env_arg;
 
-	i = 0;
+	i = 1;
 	env_var = ft_getenv_var(str_env);
 	while (args[i])
 	{
@@ -63,30 +64,24 @@ static char	**update_env(char **env, char **args, int control)
 	char	**new_env;
 
 	i = 0;
-	j = 0;
+	j = -1;
 	new_env = malloc(sizeof(char *) * (ft_len_env(env) + control + 1));
 	if (!new_env)
 		return (NULL);
 	while (env[i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
-		{
-			new_env[j] = ft_strdup(env[i]);
-			j++;
-		}
+			new_env[++j] = ft_strdup(env[i]);
 		i++;
 	}
 	i = 1;
 	while (args[i])
 	{
 		if (check_format_of_var(args[i]))
-		{
-			new_env[j] = args[i];
-			j++;
-		}
+			new_env[++j] = args[i];
 		i++;
 	}
-	new_env[j] = NULL;
+	new_env[++j] = NULL;
 	return (new_env);
 }
 
@@ -96,7 +91,7 @@ int	builtin_export(t_info *info)
 	int		control;
 	char	*env_var;
 
-	i = 0;
+	i = 1;
 	control = 0;
 	while (info->cmd->args[++i])
 	{
@@ -111,14 +106,8 @@ int	builtin_export(t_info *info)
 		}
 	}
 	info->env = update_env(info->env, info->cmd->args, control);
+	if (!info->env)
+		return (-1);
 	//free l'ancien env
-	///////
-	i = 0;
-	while (info->env[i])
-	{
-		ft_putstr_fd(info->env[i], 0);
-		ft_putchar_fd('\n', 0);
-		i++;
-	}
 	return (0);
 }

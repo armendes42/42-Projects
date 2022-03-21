@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 17:53:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:38:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 
 # define QUOTE_ERR "A quote is unclosed\n"
 # define CMD_ERR "A problem occured during the formation of the struct cmd\n"
@@ -131,5 +132,7 @@ int		ft_len_env(char **env);
 void	check_if_builtin(t_info *info);
 void	builtin_env(char **env);
 int		builtin_export(t_info *info);
+int		builtin_unset(t_info *info);
+int		builtin_pwd(void);
 
 #endif
