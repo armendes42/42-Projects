@@ -6,11 +6,141 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/22 17:09:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:25:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	check_long_long5(char *str, int neg, int i)
+{
+	if (str[i] > '5')
+						return (1);
+					else if (str[i] == '5')
+					{
+						i++;
+						if (str[i] > '8')
+							return (1);
+						else if (str[i] == '8')
+						{
+							i++;
+							if (str[i] > '0')
+								return (1);
+							else if (str[i] == '0')
+							{
+								i++;
+								if ((str[i] > '7' && neg == 0) || (str[i] > '8' && neg == 1))
+									return (1);
+							}
+						}
+					}
+}
+
+static int	check_long_long4(char *str, int neg, int i)
+{
+	if (str[i] > '5')
+		return (1);
+	else if (str[i] == '5')
+	{
+		i++;
+		if (str[i] > '4')
+			return (1);
+		else if (str[i] == '4')
+		{
+			i++;
+			if (str[i] > '7')
+				return (1);
+			else if (str[i] == '7')
+			{
+				i++;
+				if (str[i] > '7')
+					return (1);
+				else if (str[i] == '7')
+				{
+					i++;
+					if (str[i] > '5')
+						return (1);
+					else if (str[i] == '5')
+					{
+						i++;
+						if (str[i] > '8')
+							return (1);
+						else if (str[i] == '8')
+						{
+							i++;
+							if (str[i] > '0')
+								return (1);
+							else if (str[i] == '0')
+							{
+								i++;
+								if ((str[i] > '7' && neg == 0) || (str[i] > '8' && neg == 1))
+									return (1);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+static int	check_long_long3(char *str, int neg, int i)
+{
+	if (str[i] > '0')
+		return (1);
+	else if (str[i] == '0')
+	{
+		i++;
+		if (str[i] > '3')
+			return (1);
+		else if (str[i] == '3')
+		{
+			i++;
+			if (str[i] > '6')
+				return (1);
+			else if (str[i] == '6')
+			{
+				i++;
+				if (str[i] > '8')
+					return (1);
+				else if (str[i] == '8')
+				{
+					i++;
+					return (check_long_long4(str, neg, i));
+				}
+			}
+		}
+	}	
+}
+
+static int	check_long_long2(char *str, int neg, int i)
+{
+	if (str[i] > '3')
+		return (1);
+	else if (str[i] == '3')
+	{
+		i++;
+		if (str[i] > '3')
+			return (1);
+		else if (str[i] == '3')
+		{
+			i++;
+			if (str[i] > '7')
+				return (1);
+			else if (str[i] == '7')
+			{
+				i++;
+				if (str[i] > '2')
+					return (1);
+				else if (str[i] == '2')
+				{
+					i++;
+					return (check_long_long3(str, neg, i));
+				}
+			}
+		}
+	}
+}
 
 static int	check_long_long(char *str)
 {
@@ -35,98 +165,7 @@ static int	check_long_long(char *str)
 		else if (str[i] == '2')
 		{
 			i++;
-			if (str[i] > '3')
-				return (1);
-			else if (str[i] == '3')
-			{
-				i++;
-				if (str[i] > '3')
-					return (1);
-				else if (str[i] == '3')
-				{
-					i++;
-					if (str[i] > '7')
-						return (1);
-					else if (str[i] == '7')
-					{
-						i++;
-						if (str[i] > '2')
-							return (1);
-						else if (str[i] == '2')
-						{
-							i++;
-							if (str[i] > '0')
-								return (1);
-							else if (str[i] == '0')
-							{
-								i++;
-								if (str[i] > '3')
-									return (1);
-								else if (str[i] == '3')
-								{
-									i++;
-									if (str[i] > '6')
-										return (1);
-									else if (str[i] == '6')
-									{
-										i++;
-										if (str[i] > '8')
-											return (1);
-										else if (str[i] == '8')
-										{
-											i++;
-											if (str[i] > '5')
-												return (1);
-											else if (str[i] == '5')
-											{
-												i++;
-												if (str[i] > '4')
-													return (1);
-												else if (str[i] == '4')
-												{
-													i++;
-													if (str[i] > '7')
-														return (1);
-													else if (str[i] == '7')
-													{
-														i++;
-														if (str[i] > '7')
-															return (1);
-														else if (str[i] == '7')
-														{
-															i++;
-															if (str[i] > '5')
-																return (1);
-															else if (str[i] == '5')
-															{
-																i++;
-																if (str[i] > '8')
-																	return (1);
-																else if (str[i] == '8')
-																{
-																	i++;
-																	if (str[i] > '0')
-																		return (1);
-																	else if (str[i] == '0')
-																	{
-																		i++;
-																		if ((str[i] > '7' && neg == 0) || (str[i] > '8' && neg == 1))
-																			return (1);
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			return (check_long_long2(str, neg, i));
 		}
 	}
 	return (0);
