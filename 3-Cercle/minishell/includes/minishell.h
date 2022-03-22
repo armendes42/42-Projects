@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 20:38:23 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:08:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,11 @@ char	*ft_getenv_var(char *str);
 int		ft_len_env(char **env);
 
 void	check_if_builtin(t_info *info);
-void	builtin_env(char **env);
+void	builtin_echo(char **args);
+int		builtin_pwd(void);
 int		builtin_export(t_info *info);
 int		builtin_unset(t_info *info);
-int		builtin_pwd(void);
+void	builtin_env(char **env);
+void	builtin_exit(t_info *info);
 
 #endif

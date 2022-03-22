@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:00 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 20:38:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:40:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	builtin_pwd(void)
 	buff = getcwd(NULL, 0);
 	if (buff == NULL)
 		return (-1);
-	ft_putstr_fd(buff, 0);
-	ft_putchar_fd('\n', 0);
+	ft_putstr_fd(buff, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	return (0);
 }

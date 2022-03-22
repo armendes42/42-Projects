@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/03/21 20:32:44 by armendes         ###   ########.fr        #
+#    Updated: 2022/03/22 17:08:34 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ SRCS =	parsing/parsing.c						\
 		parsing/get_env.c						\
 		parsing/just_dollar.c					\
 		builtins/builtins.c						\
-		builtins/env.c							\
+		builtins/echo.c							\
+		builtins/pwd.c							\
 		builtins/export.c						\
 		builtins/unset.c						\
-		builtins/pwd.c							\
+		builtins/env.c							\
+		builtins/exit.c							\
 
 OBJS =	${SRCS:.c=.o}
 
@@ -48,7 +50,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
+CFLAGS = -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
 
 NAME =	minishell
 
