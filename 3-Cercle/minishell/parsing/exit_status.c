@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/14 20:51:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:39:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	while (str[i++])
 		new_word[++j] = str[i];
 	new_word[j] = '\0';
-	write(0, new_word, ft_strlen(new_word));
+	write(1, new_word, ft_strlen(new_word));
 	free(str);
 	return (new_word);
 }

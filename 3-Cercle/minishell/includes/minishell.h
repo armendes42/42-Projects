@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/22 17:08:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:03:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,15 @@ typedef struct s_info
 	struct s_cmd	*cmd;
 }				t_info;
 
-void	error(t_cmd **cmd, char *err_msg);
+int		error(t_info *info, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);
 int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
 int		add_cmd(t_cmd **cmd, int start, int end, char *line);
 t_cmd	*find_pipe(char *line);
 int		cut_into_words(t_info *info);
-void	free_all(t_cmd **cmd);
+void	free_cmd(t_cmd *cmd);
+void	free_info(t_info *info);
 int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
 int		skip_empty_words(t_token **words);

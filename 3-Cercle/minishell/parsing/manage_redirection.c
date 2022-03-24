@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:40:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 20:46:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:59:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 static int	cut_for_input(t_token **words, t_token **tmp)
 {
+	char	*new_word;
+
 	if ((*tmp)->word[0] == '<')
 	{
 		if (cut_redirection_first_char(words, tmp, "<", RED_IN))
 			return (-1);
-		(*tmp)->word = cut_one_char((*tmp)->word);
+		new_word = cut_one_char((*tmp)->word);
+		free((*tmp)->word);
+		(*tmp)->word = new_word;
 	}
 	else
 		if (cut_redirection_other_char(words, tmp, "<", RED_IN))
@@ -28,11 +32,15 @@ static int	cut_for_input(t_token **words, t_token **tmp)
 
 static int	cut_for_output(t_token **words, t_token **tmp)
 {
+	char	*new_word;
+
 	if ((*tmp)->word[0] == '>')
 	{
 		if (cut_redirection_first_char(words, tmp, ">", RED_OUT))
 			return (-1);
-		(*tmp)->word = cut_one_char((*tmp)->word);
+		new_word = cut_one_char((*tmp)->word);
+		free((*tmp)->word);
+		(*tmp)->word = new_word;
 	}
 	else
 		if (cut_redirection_other_char(words, tmp, ">", RED_OUT))
@@ -42,11 +50,15 @@ static int	cut_for_output(t_token **words, t_token **tmp)
 
 static int	cut_for_delimiter(t_token **words, t_token **tmp)
 {
+	char	*new_word;
+
 	if ((*tmp)->word[0] == '<')
 	{
 		if (cut_redirection_first_char(words, tmp, "<<", HERE_DOC))
 			return (-1);
-		(*tmp)->word = cut_two_char((*tmp)->word);
+		new_word = cut_two_char((*tmp)->word);
+		free((*tmp)->word);
+		(*tmp)->word = new_word;
 	}
 	else
 		if (cut_redirection_other_char(words, tmp, "<<", HERE_DOC))
@@ -56,11 +68,15 @@ static int	cut_for_delimiter(t_token **words, t_token **tmp)
 
 static int	cut_for_append(t_token **words, t_token **tmp)
 {
+	char	*new_word;
+
 	if ((*tmp)->word[0] == '>')
 	{
 		if (cut_redirection_first_char(words, tmp, ">>", RED_OUT_APPEND))
 			return (-1);
-		(*tmp)->word = cut_two_char((*tmp)->word);
+		new_word = cut_two_char((*tmp)->word);
+		free((*tmp)->word);
+		(*tmp)->word = new_word;
 	}
 	else
 		if (cut_redirection_other_char(words, tmp, ">>", RED_OUT_APPEND))

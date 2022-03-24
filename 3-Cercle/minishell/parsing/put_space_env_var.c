@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:03:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/16 16:43:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:28:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,11 @@ int	cut_arg_nothing(t_token **words)
 			tmp_word = tmp->word;
 			tmp->word = cut_before_space(tmp_word);
 			tmp->next = create_word(cut_after_space(tmp_word), ARG);
+			free(tmp_word);
 			if (tmp->word == NULL || tmp->next->word == NULL)
 				return (-1);
-			if (tmp_next == NULL)
-				tmp->next->next = NULL;
-			else
-			{
-				tmp->next->next = tmp_next;
-				tmp_next->prev = tmp->next;
-			}
+			tmp->next->next = tmp_next;
+			tmp_next->prev = tmp->next;
 			tmp->next->prev = tmp;
 		}
 		tmp = tmp->next;

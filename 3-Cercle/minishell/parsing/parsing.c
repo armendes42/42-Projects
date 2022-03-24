@@ -6,25 +6,24 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/22 16:13:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:54:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parsing(char *line, t_info *info)
+static int	parsing(char *line, t_info *info)
 {
 	if (check_quote(line))
-		error(NULL, QUOTE_ERR);
+		return (error(info, QUOTE_ERR));
 	info->cmd = find_pipe(line);
-	if (!(&info->cmd))
-		error(&info->cmd, CMD_ERR);
+	if (!(info->cmd))
+		return (error(info, CMD_ERR));
 	if (cut_into_words(info))
-		error(&info->cmd, WORD_ERR);	
+		return (error(info, WORD_ERR));	
 	if (make_args(&info->cmd))
-		error(&info->cmd, ARG_ERR);
-
-////////////////////////////////
+		return (error(info, ARG_ERR));
+/////////////////////////////////////////
 	t_cmd	*tmp = info->cmd;
 	while (tmp)
 	{
@@ -62,10 +61,6 @@ static void	parsing(char *line, t_info *info)
 				write(0, "type = limitor++\n", 17);
 			if (tmp2->words->type == OUTFILE_APPEND)
 				write(0, "type = output file append++\n", 28);
-			if (tmp2->words->type == JUST_DOLLAR)
-				write(0, "type = just_dollar++\n", 21);
-			if (tmp2->words->type == JUST_DOLLAR_DOUBLE)
-				write(0, "type = just_dollar_double++\n", 28);
 			if (tmp2->words->need_to_concat == 0)
 				write(0, "need_to_concat = 0++\n", 21);
 			if (tmp2->words->need_to_concat == 1)
@@ -89,8 +84,10 @@ static void	parsing(char *line, t_info *info)
 		tmp3 = tmp3->next;
 	}
 	write(0, "=\n", 2);
-//////////////////////
+/////////////////////////////
+	return (0);
 }
+
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -102,7 +99,7 @@ int	main(int argc, char **argv, char **envp)
 	line = "";
 	info.env = copy_env(envp);
 	if (!info.env)
-		error(NULL, ENV_ERR);
+		error(&info, ENV_ERR);
 	info.exit_status = 127;
 	while (line)
 	{
@@ -114,9 +111,9 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (line && *line)
 			add_history(line);
-		parsing(line, &info);
-		check_if_builtin(&info);
-		free_all(&info.cmd);
+		if (parsing(line, &info) == 0)
+			check_if_builtin(&info);
+		//free_info(&info);
 	}
 	free(line);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:15:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 18:45:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:39:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	word_is_empty(t_token **words, t_token **tmp)
 
 	if ((*tmp)->prev == NULL && (*tmp)->next == NULL)
 	{
+		free((*tmp)->word);
 		free(*tmp);
 		*words = NULL;
 		return (-1);
@@ -26,12 +27,14 @@ static int	word_is_empty(t_token **words, t_token **tmp)
 	{
 		*words = (*tmp)->next;
 		(*words)->prev = NULL;
+		free((*tmp)->word);
 		free(*tmp);
 		*tmp = *words;
 	}
 	else if ((*tmp)->next == NULL)
 	{
 		(*tmp)->prev->next = NULL;
+		free((*tmp)->word);
 		free(*tmp);
 		*tmp = NULL;
 	}
@@ -40,6 +43,7 @@ static int	word_is_empty(t_token **words, t_token **tmp)
 		tmp_prev = (*tmp)->prev;
 		(*tmp)->next->prev = tmp_prev;
 		tmp_prev->next = (*tmp)->next;
+		free((*tmp)->word);
 		free(*tmp);
 		*tmp = tmp_prev->next;
 	}
