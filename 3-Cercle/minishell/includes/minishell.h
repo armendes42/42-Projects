@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 17:01:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:51:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_cmd	*find_pipe(char *line);
 int		cut_into_words(t_info *info);
 void	free_cmd(t_cmd *cmd);
 void	free_info(t_info *info);
+void	free_env(char **env);
 int		is_empty(char *str);
 int		add_word(t_token **words, char *str, e_quote quote);
 int		skip_empty_words(t_token **words);

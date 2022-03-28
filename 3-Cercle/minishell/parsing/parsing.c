@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 17:24:10 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:56:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	parsing(char *line, t_info *info)
 		return (error(info, WORD_ERR));	
 	if (make_args(&info->cmd))
 		return (error(info, ARG_ERR));
-	read_struct(info);
+	// read_struct(info);
 	return (0);
 }
 
@@ -51,11 +51,10 @@ int	main(int argc, char **argv, char **envp)
 		if (line && *line)
 			add_history(line);
 		if (parsing(line, &info) == 0)
-		{
 			check_if_builtin(&info);
-			// free_info(&info);
-		}
+		free_info(&info);
 	}
+	free_env(info.env);
 	free(line);
 	return (0);
 }

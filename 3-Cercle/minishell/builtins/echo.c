@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:42:13 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:08:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:00:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ void	builtin_echo(char **args)
 	int	i;
 	int	new_line;
 
-	i = 1;
+	i = 0;
 	new_line = 0;
-	while (check_arg_format(args[i]) == 0)
+	if (args[1] == NULL)
 	{
-		new_line++;
-		i++;
+		ft_putchar_fd('\n', STDIN_FILENO);
+		return ;
 	}
+	while (args[++i] && check_arg_format(args[i]) == 0)
+		new_line++;
+	if (!args[i])
+		return ;
 	while (args[i])
 	{
 		ft_putstr_fd(args[i], STDOUT_FILENO);

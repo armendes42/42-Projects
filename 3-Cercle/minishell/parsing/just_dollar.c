@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:38:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 18:40:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:14:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,18 @@ static char	*cut_after_only_space(char *str)
 static int	cut_cell_for_dollar_first_char(t_token **words, t_token **cell)
 {
 	t_token	*new;
+	char	*new_word;
 
+	new = NULL;
 	if ((*cell)->type == ARG)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR);
 	else if ((*cell)->type == ARG_IN_DOUBLE)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR_DOUBLE);
 	if (!new)
 		return (-1);
-	(*cell)->word = cut_after_only_space((*cell)->word);
+	new_word = cut_after_only_space((*cell)->word);
+	free((*cell)->word);
+	(*cell)->word = new_word;
 	new->next = (*cell);
 	if ((*cell)->prev == NULL)
 		*words = new;
@@ -163,7 +167,9 @@ static int	cut_cell_for_dollar_other_char(t_token **words, t_token **cell)
 {
 	t_token	*new;
 	t_token	*prev;
+	char	*new_word;
 
+	new = NULL;
 	if ((*cell)->type == ARG)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR);
 	else if ((*cell)->type == ARG_IN_DOUBLE)
@@ -173,7 +179,9 @@ static int	cut_cell_for_dollar_other_char(t_token **words, t_token **cell)
 	prev = create_word(cut_before_only_space((*cell)->word), (*cell)->type);
 	if (!prev)
 		return (-1);
-	(*cell)->word = cut_after_only_space((*cell)->word);
+	new_word = cut_after_only_space((*cell)->word);
+	free((*cell)->word);
+	(*cell)->word = new_word;
 	prev->next = new;
 	new->prev = prev;
 	new->next = *cell;

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 17:29:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:34:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	*ft_getenv(char *var, char **env)
 				return (NULL);
 			return (env_var);
 		}
+		free(env_var);
 		i++;
 	}
 	return (NULL);

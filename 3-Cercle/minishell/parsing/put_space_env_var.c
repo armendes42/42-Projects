@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:03:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:28:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:55:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int	cut_arg_nothing(t_token **words)
 			if (tmp->word == NULL || tmp->next->word == NULL)
 				return (-1);
 			tmp->next->next = tmp_next;
-			tmp_next->prev = tmp->next;
+			if (tmp_next != NULL)
+				tmp_next->prev = tmp->next;
 			tmp->next->prev = tmp;
 		}
 		tmp = tmp->next;

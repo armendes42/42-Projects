@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 17:23:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:56:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	free_cmd(t_cmd *cmd)
 			while (tmp_w)
 			{
 				tmp_w2 = tmp_w->next;
-				if (tmp_w->word)
-				{
-					ft_putstr_fd(tmp_w->word, 1);
-					ft_putstr_fd("\n", 1);
+				if (tmp_w->word && tmp_w->type != RED_IN
+					&& tmp_w->type != RED_OUT && tmp_w->type != RED_OUT_APPEND
+					&& tmp_w->type != HERE_DOC)
 					free(tmp_w->word);
-				}
 				free(tmp_w);
 				tmp_w = tmp_w2;
 			}
@@ -61,17 +59,18 @@ void	free_cmd(t_cmd *cmd)
 	}
 }
 
-// static void	free_env(char **env)
-// {
-// 	int	i;
+void	free_env(char **env)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (env[i])
-// 	{
-// 		free(env);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (env[i])
+	{
+		free(env[i]);
+		i++;
+	}
+	free(env);
+}
 
 void	free_info(t_info *info)
 {

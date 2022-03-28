@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:08:32 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/22 16:43:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:46:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	check_if_builtin(t_info *info)
 {
 	int	control;
 
+	control = 0;
 	if (ft_strncmp(info->cmd->args[0], "echo", 5) == 0)
 		builtin_echo(info->cmd->args);
 	// else if (info.cmd->args[0] == "cd")

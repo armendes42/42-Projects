@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:34:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:24:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	get_var_env(t_token **words, char **env)
 					else
 						tmp->word = replace_env_var_by_content(tmp->word,
 								inside_var);
+					free(inside_var);
 					if (tmp->word == NULL)
 						return (-1);
 				}

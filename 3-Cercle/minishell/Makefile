@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/03/28 17:02:13 by armendes         ###   ########.fr        #
+#    Updated: 2022/03/28 18:55:17 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -lreadline -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -I includes -I libs/gnl -I libs/libft -fsanitize=address
 
 NAME =	minishell
 
@@ -62,7 +62,7 @@ all:	${NAME}
 ${NAME}:	${OBJS}
 			make -C libs/libft
 			make -C libs/gnl
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIB_NAME}
+			${CC} ${CFLAGS} -lreadline ${OBJS} ${LIB_NAME} -o ${NAME}
 
 clean:
 	make clean -C libs/libft
