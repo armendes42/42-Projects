@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:26:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:23:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ void	free_cmd(t_cmd *cmd)
 			while (tmp_w)
 			{
 				tmp_w2 = tmp_w->next;
-				free(tmp_w->word);
+				if (tmp_w->word)
+				{
+					ft_putstr_fd(tmp_w->word, 1);
+					ft_putstr_fd("\n", 1);
+					free(tmp_w->word);
+				}
 				free(tmp_w);
 				tmp_w = tmp_w2;
 			}

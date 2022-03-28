@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:14:50 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/15 19:32:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:52:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,50 @@
 
 char	*cut_one_char(char *str)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*new_word;
 
+	i = 0;
+	while (str[i])
+		i++;
+	new_word = malloc(sizeof(char) * i);
+	if (!new_word)
+		return (NULL);
 	i = 1;
-	return (&str[i]);
+	j = 0;
+	while (str[i])
+	{
+		new_word[j] = str[i];
+		i++;
+		j++;
+	}
+	new_word[j] = '\0';
+	return (new_word);
 }
 
 char	*cut_two_char(char *str)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*new_word;
 
+	i = 0;
+	while (str[i])
+		i++;
+	new_word = malloc(sizeof(char) * (i - 1));
+	if (!new_word)
+		return (NULL);
 	i = 2;
-	return (&str[i]);
+	j = 0;
+	while (str[i])
+	{
+		new_word[j] = str[i];
+		i++;
+		j++;
+	}
+	new_word[j] = '\0';
+	return (new_word);
 }
 
 char	*before_redirection(char *str)

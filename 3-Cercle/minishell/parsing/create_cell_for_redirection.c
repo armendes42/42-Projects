@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:45:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 17:01:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:47:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 {
 	t_token	*new;
 	t_token	*prev;
+	char	*new_word;
 
 	new = create_word(sign, type);
 	if (!new)
@@ -55,6 +56,8 @@ int	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 		prev->prev = (*tmp)->prev;
 	}
 	(*tmp)->prev = new;
-	(*tmp)->word = after_redirection((*tmp)->word);
+	new_word = after_redirection((*tmp)->word);
+	free((*tmp)->word);
+	(*tmp)->word = new_word;
 	return (0);
 }

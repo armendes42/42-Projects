@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:03:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:01:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ typedef struct s_info
 	char			**env;
 	struct s_cmd	*cmd;
 }				t_info;
+
+
+
+void	read_struct(t_info *info);
+
+
+
 
 int		error(t_info *info, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);
