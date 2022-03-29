@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 17:01:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:25:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,8 @@ int	get_var_env_files(t_token **words, char **env)
 					if (inside_var == NULL)
 					{
 						free(inside_var);
-						ft_putstr_fd(tmp->word, 2);
-						ft_putstr_fd(": ambiguous redirect\n", 2);
+						ft_putstr_fd(tmp->word, STDERR_FILENO);
+						ft_putstr_fd(": ambiguous redirect\n", STDERR_FILENO);
 						return (0);
 					}
 					else

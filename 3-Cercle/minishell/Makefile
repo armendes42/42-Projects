@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/03/28 18:55:17 by armendes         ###   ########.fr        #
+#    Updated: 2022/03/29 18:28:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS =	parsing/parsing.c						\
 		parsing/just_dollar.c					\
 		builtins/builtins.c						\
 		builtins/echo.c							\
+		builtins/cd.c							\
 		builtins/pwd.c							\
 		builtins/export.c						\
 		builtins/unset.c						\

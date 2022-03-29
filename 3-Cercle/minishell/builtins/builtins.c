@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:08:32 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 15:39:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:34:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	check_if_builtin(t_info *info)
 	control = 0;
 	if (ft_strncmp(info->cmd->args[0], "echo", 5) == 0)
 		builtin_echo(info->cmd->args);
-	// else if (info.cmd->args[0] == "cd")
-	// 	builtin_cd();
+	else if (ft_strncmp(info->cmd->args[0], "cd", 3) == 0)
+		builtin_cd(info->cmd->args);
 	if (ft_strncmp(info->cmd->args[0], "pwd", 4) == 0)
 		builtin_pwd();
 	else if (ft_strncmp(info->cmd->args[0], "export", 7) == 0)

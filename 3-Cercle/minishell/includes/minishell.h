@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 16:52:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:34:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ int		get_var_env_files(t_token **words, char **env);
 
 void	check_if_builtin(t_info *info);
 void	builtin_echo(char **args);
+int		builtin_cd(char **args);
 int		builtin_pwd(void);
 int		builtin_export(t_info *info);
 int		builtin_unset(t_info *info);
