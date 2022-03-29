@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/21 20:18:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:52:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ static char	**update_env(char **env, char **args, int control)
 	{
 		if (!is_in_args(args, env[i]))
 			new_env[++j] = ft_strdup(env[i]);
+		free(env[i]);
 		i++;
 	}
+	free(env);
 	new_env[++j] = NULL;
 	return (new_env);
 }
@@ -79,6 +81,7 @@ int	builtin_unset(t_info *info)
 	int		i;
 	int		control;
 	char	*env_var;
+	char	*var;
 
 	i = 1;
 	control = 0;
@@ -89,8 +92,13 @@ int	builtin_unset(t_info *info)
 			env_var = ft_getenv_var(info->cmd->args[i]);
 			if (!env_var)
 				return (-1);
-			if (ft_getenv(env_var, info->env))
+			var = ft_getenv(env_var, info->env);
+			if (var != NULL)
+			{
+				free(var);
 				control++;
+			}
+			free(env_var);
 		}
 		i++;
 	}

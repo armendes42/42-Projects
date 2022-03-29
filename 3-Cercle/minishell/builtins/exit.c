@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:12:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:52:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static int	is_arg_numeric(char *str)
 
 void	my_exit(t_info *info)
 {
+	free_env(info->env);
 	free_info(info);
 	exit(EXIT_SUCCESS);
 }

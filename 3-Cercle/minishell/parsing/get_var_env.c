@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:53:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 18:24:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:01:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ int	get_var_env(t_token **words, char **env)
 	{
 		if (tmp->type == ARG || tmp->type == ARG_IN_DOUBLE)
 		{
-			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
+			if (!(tmp->prev != NULL && (tmp->prev->type == HERE_DOC
+				|| tmp->prev->type == RED_IN || tmp->prev->type == RED_OUT
+				|| tmp->prev->type == RED_OUT_APPEND)))
 			{
 				nb_of_dollars = search_dollar(tmp->word);
 				while (nb_of_dollars-- > 0)
@@ -126,6 +128,49 @@ int	get_var_env(t_token **words, char **env)
 					free(var);
 					if (inside_var == NULL)
 						tmp->word = replace_env_var_by_nothing(tmp->word);
+					else
+						tmp->word = replace_env_var_by_content(tmp->word,
+								inside_var);
+					free(inside_var);
+					if (tmp->word == NULL)
+						return (-1);
+				}
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	get_var_env_files(t_token **words, char **env)
+{
+	t_token	*tmp;
+	char	*var;
+	char	*inside_var;
+	int		nb_of_dollars;
+
+	tmp = *words;
+	while (tmp)
+	{
+		if (tmp->type == ARG || tmp->type == ARG_IN_DOUBLE)
+		{
+			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
+			{
+				nb_of_dollars = search_dollar(tmp->word);
+				while (nb_of_dollars-- > 0)
+				{
+					var = search_env_var(tmp->word);
+					if (var == NULL)
+						return (-1);
+					inside_var = ft_getenv(var, env);
+					free(var);
+					if (inside_var == NULL)
+					{
+						free(inside_var);
+						ft_putstr_fd(tmp->word, 2);
+						ft_putstr_fd(": ambiguous redirect\n", 2);
+						return (0);
+					}
 					else
 						tmp->word = replace_env_var_by_content(tmp->word,
 								inside_var);

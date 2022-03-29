@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:03:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 19:55:36 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:51:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int	cut_arg_nothing(t_token **words)
 	while (tmp)
 	{
 		tmp_next = tmp->next;
-		if (tmp->prev != NULL
-			&& (tmp->prev->type == RED_IN || tmp->prev->type == RED_OUT) 
-			&& tmp->type == ARG)
-			tmp->type = ARG_IN_DOUBLE;
+		// if (tmp->prev != NULL
+		// 	&& (tmp->prev->type == RED_IN || tmp->prev->type == RED_OUT) 
+		// 	&& tmp->type == ARG)
+		// 	tmp->type = ARG_IN_DOUBLE;
 		if (tmp->type == ARG && search_space(tmp->word))
 		{
 			tmp_word = tmp->word;

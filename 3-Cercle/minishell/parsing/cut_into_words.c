@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 19:56:40 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:04:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	cut_into_words(t_info *info)
 		if (skip_empty_words(&tmp->words))
 			return (-1);
 		detect_concat(&tmp->words);
+		if (get_var_env_files(&tmp->words, info->env))
+			return (-1);
 		change_just_dollar_to_arg(&tmp->words);
 		trim_space_in_word_start(&tmp->words);
 		if (concat_words_prev(&tmp->words))

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 19:56:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:05:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	parsing(char *line, t_info *info)
 {
 	if (check_quote(line))
-		return (error(info, QUOTE_ERR));
+		return (error(NULL, QUOTE_ERR));
 	info->cmd = find_pipe(line);
 	if (!(info->cmd))
 		return (error(info, CMD_ERR));

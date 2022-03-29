@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 18:51:04 by armendes         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:52:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void	change_just_dollar_to_arg(t_token **words);
 int		search_error_var_env(char *str);
 char	*ft_getenv_var(char *str);
 int		ft_len_env(char **env);
+int		get_var_env_files(t_token **words, char **env);
 
 void	check_if_builtin(t_info *info);
 void	builtin_echo(char **args);
