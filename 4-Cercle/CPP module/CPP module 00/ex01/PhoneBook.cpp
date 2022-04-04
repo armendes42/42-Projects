@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/30 16:48:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:37:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ PhoneBook::~PhoneBook( void )
 {
 	std::cout << "Destructor called" << std::endl;
 	return;
+}
+
+void	PhoneBook::setContact( int id )
+{
+	tabContact[id % 8] = this;
 }
