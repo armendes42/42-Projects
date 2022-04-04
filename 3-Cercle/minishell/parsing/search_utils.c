@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:41:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/15 20:28:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:34:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,34 @@ int	search_redirection(char *str)
 	return (0);
 }
 
+static int	search_error_redirection_two(char *str, int i)
+{
+	if (str[i] == '>' && str[i + 1] == '<')
+		return (-1);
+	else if (str[i] == '<' && str[i + 1] == '>')
+		return (-1);
+	else if (str[i] == '<' && str[i + 1] == '<' && is_empty(&str[i + 2]))
+		return (-1);
+	else if (str[i] == '>' && str[i + 1] == '>' && is_empty(&str[i + 2]))
+		return (-1);
+	else if ((str[i] == '<' || str[i] == '>') && is_empty(&str[i + 1]))
+		return (-1);
+	else if (str[i] == '<' && str[i + 1] == '<'
+		&& (get_next_char(&str[i + 2]) == '<'
+			|| get_next_char(&str[i + 2]) == '>'))
+		return (-1);
+	else if (str[i] == '>' && str[i + 1] == '>'
+		&& (get_next_char(&str[i + 2]) == '<'
+			|| get_next_char(&str[i + 2]) == '>'))
+		return (-1);
+	return (0);
+}
+
 int	search_error_redirection(char *str)
 {
 	int		i;
 	e_quote	quote;
+	int		control;
 
 	i = -1;
 	quote = NOTHING;
@@ -48,43 +72,11 @@ int	search_error_redirection(char *str)
 		quote = update_quote_status(str[i], quote);
 		if (quote == NOTHING)
 		{
-			if (str[i] == '>' && str[i + 1] == '<')
-				return (-1);
-			else if (str[i] == '<' && str[i + 1] == '>')
-				return (-1);
-			else if (str[i] == '<' && str[i + 1] == '<' && is_empty(&str[i + 2]))
-				return (-1);
-			else if (str[i] == '>' && str[i + 1] == '>' && is_empty(&str[i + 2]))
-				return (-1);
-			else if ((str[i] == '<' || str[i] == '>') && is_empty(&str[i + 1]))
-				return (-1);
-			else if (str[i] == '<' && str[i + 1] == '<'
-				&& (get_next_char(&str[i + 2]) == '<'
-					|| get_next_char(&str[i + 2]) == '>'))
-				return (-1);
-			else if (str[i] == '>' && str[i + 1] == '>'
-				&& (get_next_char(&str[i + 2]) == '<'
-					|| get_next_char(&str[i + 2]) == '>'))
+			control = search_error_redirection_two(str, i);
+			if (control == -1)
 				return (-1);
 		}
 	}
-	return (0);
-}
-
-int	search_space_end(char *str)
-{
-	int	i;
-
-	i = ft_strlen(str) - 1;
-	if (str[i] == ' ')
-		return (1);
-	return (0);
-}
-
-int	search_space_start(char *str)
-{
-	if (str[0] == ' ')
-		return (1);
 	return (0);
 }
 

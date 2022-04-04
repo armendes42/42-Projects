@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 16:48:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:11:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,11 @@ int		cut_for_output(t_token **words, t_token **tmp);
 int		cut_for_delimiter(t_token **words, t_token **tmp);
 int		cut_for_append(t_token **words, t_token **tmp);
 int		cut_for_redirection(t_token **words, t_token **tmp, int i);
+char	*cut_before_only_space(char *str);
+char	*cut_only_space(char *str);
+char	*cut_after_only_space(char *str);
+int		cut_cell_for_dollar_first_char(t_token **words, t_token **cell);
+int		cut_cell_for_dollar_other_char(t_token **words, t_token **cell);
 
 void	check_if_builtin(t_info *info);
 void	builtin_echo(char **args);

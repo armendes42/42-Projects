@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 18:26:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:35:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	get_exit_status(t_token **words, int exit_status)
 			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
 			{
 				if (search_exit_status(tmp->word))
-					tmp->word = replace_env_var_by_exit_status(tmp->word, exit_status);
+					tmp->word = replace_env_var_by_exit_status(tmp->word,
+							exit_status);
 				if (tmp->word == NULL)
 					return (-1);
 			}

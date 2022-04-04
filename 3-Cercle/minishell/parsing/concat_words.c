@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 17:04:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:25:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,23 @@ int	concat_words_prev_two(t_token **tmp)
 	(*tmp)->need_to_concat = 0;
 	free(tmp_next->word);
 	free(tmp_next);
+	return (0);
 }
 
 int	concat_words_prev(t_token **words)
 {
 	t_token	*tmp;
-	t_token	*tmp_next;
-	char	*new_word;
+	int		control;
 
 	tmp = last_cell(words);
 	while (tmp)
 	{
 		if (tmp->need_to_concat == 1)
-			concat_words_prev_two(&tmp);
+		{
+			control = concat_words_prev_two(&tmp);
+			if (control == -1)
+				return (-1);
+		}
 		tmp = tmp->prev;
 	}
 	return (0);
@@ -76,6 +80,25 @@ static void	reequilibrate_concat(t_token **words)
 	}
 }
 
+static void	detect_concat_two(t_token **tmp)
+{
+	if ((*tmp)->type == ARG)
+	{
+		if (search_space_end((*tmp)->word) == 0)
+			(*tmp)->need_to_concat = 1;
+	}
+	else if ((*tmp)->next->type == ARG)
+	{
+		if (search_space_start((*tmp)->next->word) == 0)
+			(*tmp)->need_to_concat = 1;
+	}
+	else
+	{
+		if (!is_empty((*tmp)->next->word))
+			(*tmp)->need_to_concat = 1;
+	}
+}
+
 void	detect_concat(t_token **words)
 {
 	t_token	*tmp;
@@ -84,20 +107,7 @@ void	detect_concat(t_token **words)
 	while (tmp->next)
 	{
 		if (tmp->type != ARG || tmp->next->type != ARG)
-		{
-			if (tmp->type == ARG && search_space_end(tmp->word) == 0)
-					tmp->need_to_concat = 1;
-			else if (tmp->next->type == ARG)
-			{
-				if (search_space_start(tmp->next->word) == 0)
-					tmp->need_to_concat = 1;
-			}
-			else
-			{
-				if (!is_empty(tmp->next->word))
-					tmp->need_to_concat = 1;
-			}
-		}
+			detect_concat_two(&tmp);
 		tmp = tmp->next;
 	}
 	reequilibrate_concat(words);

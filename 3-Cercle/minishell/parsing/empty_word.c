@@ -6,11 +6,28 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:15:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:39:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	prev_only_null(t_token **words, t_token **tmp)
+{
+	*words = (*tmp)->next;
+	(*words)->prev = NULL;
+	free((*tmp)->word);
+	free(*tmp);
+	*tmp = *words;
+}
+
+static void	next_only_null(t_token **tmp)
+{
+	(*tmp)->prev->next = NULL;
+	free((*tmp)->word);
+	free(*tmp);
+	*tmp = NULL;
+}
 
 static int	word_is_empty(t_token **words, t_token **tmp)
 {
@@ -24,20 +41,9 @@ static int	word_is_empty(t_token **words, t_token **tmp)
 		return (-1);
 	}
 	else if ((*tmp)->prev == NULL)
-	{
-		*words = (*tmp)->next;
-		(*words)->prev = NULL;
-		free((*tmp)->word);
-		free(*tmp);
-		*tmp = *words;
-	}
+		prev_only_null(words, tmp);
 	else if ((*tmp)->next == NULL)
-	{
-		(*tmp)->prev->next = NULL;
-		free((*tmp)->word);
-		free(*tmp);
-		*tmp = NULL;
-	}
+		next_only_null(tmp);
 	else
 	{
 		tmp_prev = (*tmp)->prev;

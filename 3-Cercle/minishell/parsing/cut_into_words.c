@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 16:08:41 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:36:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,41 @@ static t_token	*cut_cmd(char *str)
 	return (words);
 }
 
-int	cut_into_words(t_info *info)
+static int	cut_into_words_two(t_info *info, t_cmd **cell)
 {
 	t_cmd	*tmp;
 
+	tmp = *cell;
+	if (get_just_dollar(&tmp->words))
+		return (-1);
+	if (get_var_env(&tmp->words, info->env))
+		return (-1);
+	if (cut_arg_nothing(&tmp->words))
+		return (-1);
+	if (skip_empty_words(&tmp->words))
+		return (-1);
+	detect_concat(&tmp->words);
+	if (get_var_env_files(&tmp->words, info->env))
+		return (-1);
+	change_just_dollar_to_arg(&tmp->words);
+	trim_space_in_word_start(&tmp->words);
+	if (concat_words_prev(&tmp->words))
+		return (-1);
+	skip_space_words(&tmp->words);
+	if (skip_empty_words(&tmp->words))
+		return (-1);
+	trim_space_in_word_end(&tmp->words, info);
+	get_infile_outfile(&tmp->words);
+	return (0);
+}
+
+int	cut_into_words(t_info *info)
+{
+	t_cmd	*tmp;
+	int		control;
+
 	tmp = info->cmd;
+	control = 0;
 	while (tmp)
 	{
 		tmp->words = cut_cmd(tmp->cmd);
@@ -57,29 +87,12 @@ int	cut_into_words(t_info *info)
 			return (-1);
 		if (cut_redirection(&tmp->words))
 			return (-1);
-		skip_space_words(&tmp->words);
+		// skip_space_words(&tmp->words);
 		if (get_exit_status(&tmp->words, info->exit_status))
 			return (-1);
-		if (get_just_dollar(&tmp->words))
+		control = cut_into_words_two(info, &tmp);
+		if (control == -1)
 			return (-1);
-		if (get_var_env(&tmp->words, info->env))
-			return (-1);
-		if (cut_arg_nothing(&tmp->words))
-			return (-1);
-		if (skip_empty_words(&tmp->words))
-			return (-1);
-		detect_concat(&tmp->words);
-		if (get_var_env_files(&tmp->words, info->env))
-			return (-1);
-		change_just_dollar_to_arg(&tmp->words);
-		trim_space_in_word_start(&tmp->words);
-		if (concat_words_prev(&tmp->words))
-			return (-1);
-		skip_space_words(&tmp->words);
-		if (skip_empty_words(&tmp->words))
-			return (-1);
-		trim_space_in_word_end(&tmp->words, info);
-		get_infile_outfile(&tmp->words);
 		tmp = tmp->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 16:50:41 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:14:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ static int	parsing(char *line, t_info *info)
 	if (!(info->cmd))
 		return (error(info, CMD_ERR));
 	if (cut_into_words(info))
-		return (error(info, WORD_ERR));	
+		return (error(info, WORD_ERR));
 	if (make_args(&info->cmd))
 		return (error(info, ARG_ERR));
 	// read_struct(info);
 	return (0);
 }
-
 
 int	main(int argc, char **argv, char **envp)
 {

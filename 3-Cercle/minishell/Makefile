@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/04/04 16:40:50 by armendes         ###   ########.fr        #
+#    Updated: 2022/04/04 19:09:10 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SRCS =	parsing/parsing.c						\
 		parsing/exit_status.c					\
 		parsing/get_env.c						\
 		parsing/just_dollar.c					\
+		parsing/just_dollar_two.c				\
+		parsing/just_dollar_three.c				\
 		builtins/builtins.c						\
 		builtins/echo.c							\
 		builtins/cd.c							\
