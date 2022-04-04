@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/03/29 18:28:43 by armendes         ###   ########.fr        #
+#    Updated: 2022/04/04 16:40:50 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,12 @@ SRCS =	parsing/parsing.c						\
 		parsing/concat_words.c					\
 		parsing/search_utils.c					\
 		parsing/manage_redirection.c			\
+		parsing/manage_redirection_utils.c		\
 		parsing/manage_string.c					\
 		parsing/create_cell_for_redirection.c	\
 		parsing/get_infile_and_outfile.c		\
 		parsing/get_var_env.c					\
+		parsing/get_var_env_two.c				\
 		parsing/get_env_utils.c					\
 		parsing/trim_space_start_or_end.c		\
 		parsing/create_args.c					\

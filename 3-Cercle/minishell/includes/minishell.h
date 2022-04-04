@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 18:34:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:48:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ typedef struct s_info
 	struct s_cmd	*cmd;
 }				t_info;
 
-
-
 void	read_struct(t_info *info);
-
-
-
 
 int		error(t_info *info, char *err_msg);
 e_quote	update_quote_status(char c, e_quote quote);
@@ -124,7 +119,7 @@ int		get_var_env(t_token **words, char **env);
 int		keep_going_till_dollar(char *str);
 int		keep_going_till_end_of_var(char *str);
 void	trim_space_in_word_start(t_token **words);
-int		trim_space_in_word_end(t_token **words);
+void	trim_space_in_word_end(t_token **words, t_info *info);
 int		make_args(t_cmd **cmd);
 int		search_space(char *str);
 int		is_only_space(char *str);
@@ -138,6 +133,15 @@ int		search_error_var_env(char *str);
 char	*ft_getenv_var(char *str);
 int		ft_len_env(char **env);
 int		get_var_env_files(t_token **words, char **env);
+char	*search_env_var(char *str);
+char	*replace_env_var_by_nothing(char *str);
+char	*replace_env_var_by_content(char *str, char *inside_var);
+int		type_is_redirection(e_type type);
+int		cut_for_input(t_token **words, t_token **tmp);
+int		cut_for_output(t_token **words, t_token **tmp);
+int		cut_for_delimiter(t_token **words, t_token **tmp);
+int		cut_for_append(t_token **words, t_token **tmp);
+int		cut_for_redirection(t_token **words, t_token **tmp, int i);
 
 void	check_if_builtin(t_info *info);
 void	builtin_echo(char **args);

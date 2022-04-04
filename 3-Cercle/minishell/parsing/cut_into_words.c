@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 17:04:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:08:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	cut_into_words(t_info *info)
 		skip_space_words(&tmp->words);
 		if (skip_empty_words(&tmp->words))
 			return (-1);
-		trim_space_in_word_end(&tmp->words);
+		trim_space_in_word_end(&tmp->words, info);
 		get_infile_outfile(&tmp->words);
 		tmp = tmp->next;
 	}

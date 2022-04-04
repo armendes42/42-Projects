@@ -6,11 +6,35 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 18:49:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:04:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	concat_words_prev_two(t_token **tmp)
+{
+	t_token	*tmp_next;
+	char	*new_word;
+
+	tmp_next = (*tmp)->next;
+	new_word = ft_strjoin((*tmp)->word, (*tmp)->next->word);
+	free((*tmp)->word);
+	(*tmp)->word = new_word;
+	if ((*tmp)->word == NULL)
+		return (-1);
+	(*tmp)->type = (*tmp)->next->type;
+	if ((*tmp)->next->next == NULL)
+		(*tmp)->next = NULL;
+	else
+	{
+		(*tmp)->next->next->prev = *tmp;
+		(*tmp)->next = (*tmp)->next->next;
+	}
+	(*tmp)->need_to_concat = 0;
+	free(tmp_next->word);
+	free(tmp_next);
+}
 
 int	concat_words_prev(t_token **words)
 {
@@ -22,25 +46,7 @@ int	concat_words_prev(t_token **words)
 	while (tmp)
 	{
 		if (tmp->need_to_concat == 1)
-		{
-			tmp_next = tmp->next;
-			new_word = ft_strjoin(tmp->word, tmp->next->word);
-			free(tmp->word);
-			tmp->word = new_word;
-			if (tmp->word == NULL)
-				return (-1);
-			tmp->type = tmp->next->type;
-			if (tmp->next->next == NULL)
-				tmp->next = NULL;
-			else
-			{
-				tmp->next->next->prev = tmp;
-				tmp->next = tmp->next->next;
-			}
-			tmp->need_to_concat = 0;
-			free(tmp_next->word);
-			free(tmp_next);
-		}
+			concat_words_prev_two(&tmp);
 		tmp = tmp->prev;
 	}
 	return (0);
@@ -79,11 +85,8 @@ void	detect_concat(t_token **words)
 	{
 		if (tmp->type != ARG || tmp->next->type != ARG)
 		{
-			if (tmp->type == ARG)
-			{
-				if (search_space_end(tmp->word) == 0)
+			if (tmp->type == ARG && search_space_end(tmp->word) == 0)
 					tmp->need_to_concat = 1;
-			}
 			else if (tmp->next->type == ARG)
 			{
 				if (search_space_start(tmp->next->word) == 0)
