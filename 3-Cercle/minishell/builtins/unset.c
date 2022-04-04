@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 15:52:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:57:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,35 +76,40 @@ static char	**update_env(char **env, char **args, int control)
 	return (new_env);
 }
 
+static int	update_control(char *arg, char **env)
+{
+	char	*env_var;
+	char	*var;
+
+	env_var = ft_getenv_var(arg);
+	if (!env_var)
+		return (-1);
+	var = ft_getenv(env_var, env);
+	if (var != NULL)
+	{
+		free(var);
+		free(env_var);
+		return (1);
+	}
+	free(env_var);
+	return (0);
+}
+
 int	builtin_unset(t_info *info)
 {
 	int		i;
 	int		control;
-	char	*env_var;
-	char	*var;
 
 	i = 1;
 	control = 0;
 	while (info->cmd->args[i])
 	{
 		if (check_format_of_var(info->cmd->args[i]))
-		{
-			env_var = ft_getenv_var(info->cmd->args[i]);
-			if (!env_var)
-				return (-1);
-			var = ft_getenv(env_var, info->env);
-			if (var != NULL)
-			{
-				free(var);
-				control++;
-			}
-			free(env_var);
-		}
+			control += update_control(info->cmd->args[i], info->env);
 		i++;
 	}
 	info->env = update_env(info->env, info->cmd->args, control);
 	if (!info->env)
 		return (-1);
-	// free l'ancien env
 	return (0);
 }

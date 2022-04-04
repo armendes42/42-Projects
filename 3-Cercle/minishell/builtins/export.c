@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/29 15:49:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:02:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,51 @@ static char	**update_env(char **env, char **args, int control)
 	int		j;
 	char	**new_env;
 
-	i = 0;
+	i = -1;
 	j = -1;
 	new_env = malloc(sizeof(char *) * (ft_len_env(env) + control + 1));
 	if (!new_env)
 		return (NULL);
-	while (env[i] != NULL)
+	while (env[++i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
 			new_env[++j] = ft_strdup(env[i]);
 		free(env[i]);
-		i++;
 	}
 	free(env);
-	i = 1;
-	while (args[i])
+	i = 0;
+	while (args[++i])
 	{
 		if (check_format_of_var(args[i]))
 			new_env[++j] = ft_strdup(args[i]);
-		i++;
 	}
 	new_env[++j] = NULL;
 	return (new_env);
+}
+
+static int	update_control(char *arg, char **env)
+{
+	char	*env_var;
+	char	*var;
+
+	env_var = ft_getenv_var(arg);
+	if (!env_var)
+		return (-1);
+	var = ft_getenv(env_var, env);
+	if (var != NULL)
+	{
+		free(var);
+		free(env_var);
+		return (1);
+	}
+	free(env_var);
+	return (0);
 }
 
 int	builtin_export(t_info *info)
 {
 	int		i;
 	int		control;
-	char	*env_var;
-	char	*var;
 
 	i = 0;
 	control = 0;
@@ -103,16 +118,7 @@ int	builtin_export(t_info *info)
 		if (check_format_of_var(info->cmd->args[i]))
 		{
 			control++;
-			env_var = ft_getenv_var(info->cmd->args[i]);
-			if (!env_var)
-				return (-1);
-			var = ft_getenv(env_var, info->env);
-			if (var != NULL)
-			{
-				free(var);
-				control--;
-			}
-			free(env_var);
+			control -= update_control(info->cmd->args[i], info->env);
 		}
 	}
 	info->env = update_env(info->env, info->cmd->args, control);

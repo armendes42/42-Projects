@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:08:32 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/30 15:06:21 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:57:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	check_if_builtin(t_info *info)
 		builtin_env(info->env);
 	else if (ft_strncmp(info->cmd->args[0], "exit", 5) == 0)
 		builtin_exit(info);
-	// else
-	// 	exec_binaire();
 	if (control == -1)
 		return ;
 }
