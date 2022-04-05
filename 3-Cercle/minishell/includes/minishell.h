@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 19:11:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:32:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_info
 void	read_struct(t_info *info);
 
 int		error(t_info *info, char *err_msg);
+void	error_and_exit(t_info *info);
 e_quote	update_quote_status(char c, e_quote quote);
 int		check_quote(char *line);
 char	*format_str(char *line, int start, int end);
@@ -148,13 +149,13 @@ char	*cut_after_only_space(char *str);
 int		cut_cell_for_dollar_first_char(t_token **words, t_token **cell);
 int		cut_cell_for_dollar_other_char(t_token **words, t_token **cell);
 
-void	check_if_builtin(t_info *info);
+void	check_if_builtin(t_info *info, t_cmd *cmd);
 void	builtin_echo(char **args);
 int		builtin_cd(char **args);
 int		builtin_pwd(void);
-int		builtin_export(t_info *info);
-int		builtin_unset(t_info *info);
+int		builtin_export(t_info *info, t_cmd *cmd);
+int		builtin_unset(t_info *info, t_cmd *cmd);
 void	builtin_env(char **env);
-void	builtin_exit(t_info *info);
+void	builtin_exit(t_info *info, t_cmd *cmd);
 
 #endif

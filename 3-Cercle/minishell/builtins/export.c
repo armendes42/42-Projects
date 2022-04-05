@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 16:02:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:31:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,24 +104,24 @@ static int	update_control(char *arg, char **env)
 	return (0);
 }
 
-int	builtin_export(t_info *info)
+int	builtin_export(t_info *info, t_cmd *cmd)
 {
 	int		i;
 	int		control;
 
 	i = 0;
 	control = 0;
-	if (info->cmd->args[1] == NULL)
+	if (cmd->args[1] == NULL)
 		return (-1);
-	while (info->cmd->args[++i])
+	while (cmd->args[++i])
 	{
-		if (check_format_of_var(info->cmd->args[i]))
+		if (check_format_of_var(cmd->args[i]))
 		{
 			control++;
-			control -= update_control(info->cmd->args[i], info->env);
+			control -= update_control(cmd->args[i], info->env);
 		}
 	}
-	info->env = update_env(info->env, info->cmd->args, control);
+	info->env = update_env(info->env, cmd->args, control);
 	if (!info->env)
 		return (-1);
 	return (0);
