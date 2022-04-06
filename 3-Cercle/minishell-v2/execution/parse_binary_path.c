@@ -6,7 +6,7 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 12:00:45 by imaalem           #+#    #+#             */
-/*   Updated: 2022/04/05 15:46:17 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/06 11:32:02 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ char	*parse_path(t_info *info, t_cmd *cmd)
 	path = recover_cmd_path(tab_path, cmd->args[0]);
 	if (!path)
 		perror("path of the cmd not found");
-	free_tab(tab_path);
+	free_tab_char(tab_path);
 	return (path);
 }

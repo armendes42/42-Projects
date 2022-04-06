@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:08:38 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 19:11:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:48:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cut_cell_for_dollar_first_char(t_token **words, t_token **cell)
+void	cut_cell_for_dollar_first_char(t_token **words, t_token **cell)
 {
 	t_token	*new;
 	char	*new_word;
@@ -22,8 +22,6 @@ int	cut_cell_for_dollar_first_char(t_token **words, t_token **cell)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR);
 	else if ((*cell)->type == ARG_IN_DOUBLE)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR_DOUBLE);
-	if (!new)
-		return (-1);
 	new_word = cut_after_only_space((*cell)->word);
 	free((*cell)->word);
 	(*cell)->word = new_word;
@@ -36,7 +34,6 @@ int	cut_cell_for_dollar_first_char(t_token **words, t_token **cell)
 		(*cell)->prev->next = new;
 	}
 	(*cell)->prev = new;
-	return (0);
 }
 
 static void	change_links_for_dollar_other_char(t_token **words, t_token **cell,
@@ -55,7 +52,7 @@ static void	change_links_for_dollar_other_char(t_token **words, t_token **cell,
 	(*cell)->prev = *new;
 }
 
-int	cut_cell_for_dollar_other_char(t_token **words, t_token **cell)
+void	cut_cell_for_dollar_other_char(t_token **words, t_token **cell)
 {
 	t_token	*new;
 	t_token	*prev;
@@ -66,14 +63,9 @@ int	cut_cell_for_dollar_other_char(t_token **words, t_token **cell)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR);
 	else if ((*cell)->type == ARG_IN_DOUBLE)
 		new = create_word(cut_only_space((*cell)->word), JUST_DOLLAR_DOUBLE);
-	if (!new)
-		return (-1);
 	prev = create_word(cut_before_only_space((*cell)->word), (*cell)->type);
-	if (!prev)
-		return (-1);
 	new_word = cut_after_only_space((*cell)->word);
 	free((*cell)->word);
 	(*cell)->word = new_word;
 	change_links_for_dollar_other_char(words, cell, &prev, &new);
-	return (0);
 }

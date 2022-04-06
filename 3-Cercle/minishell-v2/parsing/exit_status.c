@@ -6,11 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 18:35:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:50:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//#define malloc(x) NULL
 
 static int	search_exit_status(char *str)
 {
@@ -38,7 +40,7 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	new_word = malloc(sizeof(char)
 			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
 	if (!new_word)
-		return (NULL);
+		error_and_exit(get_info());
 	i = -1;
 	j = -1;
 	while (str[++i] && str[i] != '$')
@@ -55,7 +57,7 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	return (new_word);
 }
 
-int	get_exit_status(t_token **words, int exit_status)
+void	get_exit_status(t_token **words, int exit_status)
 {
 	t_token	*tmp;
 
@@ -69,11 +71,8 @@ int	get_exit_status(t_token **words, int exit_status)
 				if (search_exit_status(tmp->word))
 					tmp->word = replace_env_var_by_exit_status(tmp->word,
 							exit_status);
-				if (tmp->word == NULL)
-					return (-1);
 			}
 		}
 		tmp = tmp->next;
 	}
-	return (0);
 }

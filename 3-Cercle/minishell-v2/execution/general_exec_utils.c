@@ -6,13 +6,13 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 12:04:52 by imaalem           #+#    #+#             */
-/*   Updated: 2022/04/04 14:56:38 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/06 11:33:40 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_tab(char **tab)
+void	free_tab_char(char **tab)
 {
 	int	i;
 

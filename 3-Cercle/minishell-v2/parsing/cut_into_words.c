@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:41:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 19:36:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:52:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static t_token	*cut_cmd(char *str)
 			diff = add_word(&words, &str[i + 1], quote) + 1;
 		else
 			diff = add_word(&words, &str[i], quote);
-		if (diff == -1)
-			return (NULL);
-		else if (diff == 0)
+		if (diff == 0)
 			i++;
 		else
 			i += diff;
@@ -46,25 +44,20 @@ static int	cut_into_words_two(t_info *info, t_cmd **cell)
 	t_cmd	*tmp;
 
 	tmp = *cell;
-	if (get_just_dollar(&tmp->words))
-		return (-1);
-	if (get_var_env(&tmp->words, info->env))
-		return (-1);
-	if (cut_arg_nothing(&tmp->words))
-		return (-1);
+	get_just_dollar(&tmp->words);
+	get_var_env(&tmp->words, info->env);
+	cut_arg_nothing(&tmp->words);
 	if (skip_empty_words(&tmp->words))
 		return (-1);
 	detect_concat(&tmp->words);
-	if (get_var_env_files(&tmp->words, info->env))
-		return (-1);
+	get_var_env_files(&tmp->words, info->env);
 	change_just_dollar_to_arg(&tmp->words);
 	trim_space_in_word_start(&tmp->words);
-	if (concat_words_prev(&tmp->words))
-		return (-1);
+	concat_words_prev(&tmp->words);
 	skip_space_words(&tmp->words);
 	if (skip_empty_words(&tmp->words))
 		return (-1);
-	trim_space_in_word_end(&tmp->words, info);
+	trim_space_in_word_end(&tmp->words);
 	get_infile_outfile(&tmp->words);
 	return (0);
 }
@@ -79,8 +72,6 @@ int	cut_into_words(t_info *info)
 	while (tmp)
 	{
 		tmp->words = cut_cmd(tmp->cmd);
-		if (tmp->words == NULL)
-			return (-1);
 		if (search_error_redirection(tmp->cmd))
 			return (-1);
 		if (search_error_var_env(tmp->cmd))
@@ -88,8 +79,7 @@ int	cut_into_words(t_info *info)
 		if (cut_redirection(&tmp->words))
 			return (-1);
 		// skip_space_words(&tmp->words);
-		if (get_exit_status(&tmp->words, info->exit_status))
-			return (-1);
+		get_exit_status(&tmp->words, info->exit_status);
 		control = cut_into_words_two(info, &tmp);
 		if (control == -1)
 			return (-1);

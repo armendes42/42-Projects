@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 18:34:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:32:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ char	**copy_env(char **envp)
 		i++;
 	env = malloc(sizeof(char *) * (i + 1));
 	if (!env)
-		return (NULL);
+		error_and_exit(get_info());
 	i = 0;
 	while (envp[i])
 	{
 		env[i] = ft_strdup(envp[i]);
+		if (!env[i])
+			error_and_exit(get_info());
 		i++;
 	}
 	env[i] = NULL;
@@ -43,7 +45,7 @@ char	*ft_getenv_var(char *str)
 		i++;
 	env_var = ft_strdup_size(str, i);
 	if (!env_var)
-		return (NULL);
+		error_and_exit(get_info());
 	return (env_var);
 }
 
@@ -74,13 +76,13 @@ char	*ft_getenv(char *var, char **env)
 			j++;
 		env_var = ft_strdup_size(env[i], j);
 		if (!env_var)
-			return (NULL);
+			error_and_exit(get_info());
 		if (ft_strncmp(var, env_var, 500) == 0)
 		{
 			free(env_var);
 			env_var = ft_strdup_size(&env[i][j + 1], 500);
 			if (!env_var)
-				return (NULL);
+				error_and_exit(get_info());
 			return (env_var);
 		}
 		free(env_var);

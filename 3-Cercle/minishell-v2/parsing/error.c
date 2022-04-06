@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 15:49:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 19:02:21 by armendes         ###   ########.fr       */
+/*   Created: 2022/04/06 15:56:42 by armendes          #+#    #+#             */
+/*   Updated: 2022/04/06 17:21:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_cd(char **args, char **env)
+int	error(t_info *info, char *err_msg)
 {
-	if (args[1] == NULL)
-	{
-		if (chdir(ft_getenv("HOME", env)))
-			return (-1);
-	}
-	else if (args[2] == NULL)
-	{
-		if (chdir(args[1]))
-			return (-1);
-	}
-	else
-		ft_putstr_fd("~>: cd: too many arguments\n", STDERR_FILENO);
-	return (0);
+	free_info(info);
+	write(1, err_msg, ft_strlen(err_msg));
+	return (1);
+}
+
+void	error_and_exit(t_info *info)
+{
+	ft_putnbr_fd(info->exit_status, 1);
+	free_info(info);
+	exit(EXIT_FAILURE);
 }

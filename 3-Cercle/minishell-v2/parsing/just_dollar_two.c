@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:08:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:28:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:33:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*cut_before_only_space(char *str)
 	}
 	result = malloc(sizeof(char) * (i + 1));
 	if (!result)
-		error_and_exit(info);
+		error_and_exit(get_info());
 	i = 0;
 	while (str[i])
 	{
@@ -75,7 +75,7 @@ char	*cut_only_space(char *str)
 	count_i_and_j_for_only_space(str, &i, &j);
 	result = malloc(sizeof(char) * (j + 1));
 	if (!result)
-		error_and_exit(info);
+		error_and_exit(get_info());
 	i -= j;
 	i++;
 	result[0] = '$';
@@ -120,7 +120,7 @@ char	*cut_after_only_space(char *str)
 	count_i_for_after_only_space(str, &i);
 	result = malloc(sizeof(char) * (ft_strlen(str) - i + 2));
 	if (!result)
-		error_and_exit(info);
+		error_and_exit(get_info());
 	j = 0;
 	while (str[i])
 	{

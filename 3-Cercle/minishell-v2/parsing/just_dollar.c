@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:38:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 19:12:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:50:51 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,10 @@ void	change_just_dollar_to_arg(t_token **words)
 	}
 }
 
-static int	get_just_dollar_two(t_token **words, t_token **tmp)
-{
-	if (search_only_dollar((*tmp)->word) == 0)
-	{
-		if (cut_cell_for_dollar_first_char(words, tmp))
-			return (-1);
-	}
-	else if (search_only_dollar((*tmp)->word) > 0)
-		if (cut_cell_for_dollar_other_char(words, tmp))
-			return (-1);
-	return (0);
-}
-
-int	get_just_dollar(t_token **words)
+void	get_just_dollar(t_token **words)
 {
 	t_token	*tmp;
 	int		nb_of_dollars;
-	int		control;
 
 	tmp = *words;
 	while (tmp)
@@ -70,13 +56,13 @@ int	get_just_dollar(t_token **words)
 				nb_of_dollars = search_dollar(tmp->word);
 				while (nb_of_dollars-- > 0)
 				{
-					control = get_just_dollar_two(words, &tmp);
-					if (control == -1)
-						return (-1);
+					if (search_only_dollar(tmp->word) == 0)
+						cut_cell_for_dollar_first_char(words, &tmp);
+					else if (search_only_dollar(tmp->word) > 0)
+						cut_cell_for_dollar_other_char(words, &tmp);
 				}
 			}
 		}
 		tmp = tmp->next;
 	}
-	return (0);
 }

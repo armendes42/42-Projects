@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:08:49 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/06 17:53:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	**update_env(char **env, char **args, int control)
 	j = -1;
 	new_env = malloc(sizeof(char *) * (ft_len_env(env) - control));
 	if (!new_env)
-		return (NULL);
+		error_and_exit(get_info());
 	while (env[i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
@@ -82,8 +82,6 @@ static int	update_control(char *arg, char **env)
 	char	*var;
 
 	env_var = ft_getenv_var(arg);
-	if (!env_var)
-		return (-1);
 	var = ft_getenv(env_var, env);
 	if (var != NULL)
 	{
@@ -109,7 +107,5 @@ int	builtin_unset(t_info *info, t_cmd *cmd)
 		i++;
 	}
 	info->env = update_env(info->env, cmd->args, control);
-	if (!info->env)
-		return (-1);
 	return (0);
 }

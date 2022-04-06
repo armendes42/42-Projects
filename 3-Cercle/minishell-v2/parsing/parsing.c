@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:26:53 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:45:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,24 @@ static int	parsing(char *line, t_info *info)
 	return (0);
 }
 
+t_info	*get_info(void)
+{
+	static t_info	info;
+
+	return (&info);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
-	t_info	info;
+	t_info	*info;
 
 	(void)argc;
 	(void)argv;
 	line = "";
-	info.env = copy_env(envp);
-	// if (!info.env)
-	// 	error(&info, ENV_ERR);
-	info.exit_status = 127;
+	info = get_info();
+	info->env = copy_env(envp);
+	info->exit_status = 127;
 	while (line)
 	{
 		line = readline("~>");
@@ -54,13 +60,13 @@ int	main(int argc, char **argv, char **envp)
 		// 	check_if_builtin(&info, info.cmd);
 		// 	free_info(&info);
 		// }
-		parsing(line, &info); // est ce qu'on pourrait parser bultins et binaire ?
-		// verifier si la commande est un binaire ou un builtin et rediriger en fonction
-		exec_builtin(&info, info.cmd);
+		parsing(line, info);
+		exec_builtin(info, info->cmd);
+		// execution(info);
 		// exec_binary(&info);
-		free_info(&info);
+		free_info(info);
 	}
-	free_env(info.env);
+	free_env(info->env);
 	free(line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:28:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:21:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:52:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	**create_args(t_token *words)
 	tmp = words;
 	args = malloc(sizeof(char *) * (i + 1));
 	if (!args)
-		error_and_exit(info);
+		error_and_exit(get_info());
 	i = 0;
 	while (tmp)
 	{
@@ -63,8 +63,6 @@ int	make_args(t_cmd **cmd)
 	while (tmp)
 	{
 		tmp->args = create_args(tmp->words);
-		// if (tmp->args == NULL)
-		// 	return (-1);
 		tmp = tmp->next;
 	}
 	return (0);

@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+         #
+#    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/04/05 16:56:28 by imaalem          ###   ########.fr        #
+#    Updated: 2022/04/06 17:15:12 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	parsing/parsing.c						\
 		parsing/check_quote.c					\
 		parsing/create_cmd_struct.c				\
-		parsing/error_and_free.c				\
+		parsing/error.c							\
+		parsing/free.c							\
 		parsing/parsing_utils.c					\
 		parsing/find_pipe.c						\
 		parsing/cut_into_words.c				\
@@ -47,10 +48,9 @@ SRCS =	parsing/parsing.c						\
 		builtins/env.c							\
 		builtins/exit.c							\
 		parsing/readstructILFAUTENLEVER.c		\
-		builtins/cd.c							\
 		execution/execution.c					\
-		parse_binary_path.c 					\
-		general_exec_utils.c
+		execution/parse_binary_path.c 			\
+		execution/general_exec_utils.c
 
 OBJS =	${SRCS:.c=.o}
 
@@ -60,7 +60,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -g
+CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -g -fsanitize=address
 
 NAME =	minishell
 

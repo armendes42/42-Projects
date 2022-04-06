@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:03:01 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/06 19:01:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <stdbool.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 # define QUOTE_ERR "A quote is unclosed\n"
 # define CMD_ERR "A problem occured during the formation of the struct cmd\n"
@@ -103,7 +105,7 @@ void	skip_space_words(t_token **words);
 int		search_space_start(char *str);
 int		search_space_end(char *str);
 t_token	*last_cell(t_token **words);
-int		concat_words_prev(t_token **words);
+void	concat_words_prev(t_token **words);
 void	detect_concat(t_token **words);
 int		search_redirection(char *str);
 int		cut_redirection(t_token **words);
@@ -120,24 +122,24 @@ int		cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 			e_type type);
 void	get_infile_outfile(t_token **words);
 int		search_dollar(char *str);
-int		get_var_env(t_token **words, char **env);
+void	get_var_env(t_token **words, char **env);
 int		keep_going_till_dollar(char *str);
 int		keep_going_till_end_of_var(char *str);
 void	trim_space_in_word_start(t_token **words);
-void	trim_space_in_word_end(t_token **words, t_info *info);
+void	trim_space_in_word_end(t_token **words);
 int		make_args(t_cmd **cmd);
 int		search_space(char *str);
 int		is_only_space(char *str);
-int		cut_arg_nothing(t_token **words);
+void	cut_arg_nothing(t_token **words);
 char	*ft_getenv(char *var, char **env);
 char	**copy_env(char **envp);
-int		get_exit_status(t_token **words, int exit_status);
-int		get_just_dollar(t_token **words);
+void	get_exit_status(t_token **words, int exit_status);
+void	get_just_dollar(t_token **words);
 void	change_just_dollar_to_arg(t_token **words);
 int		search_error_var_env(char *str);
 char	*ft_getenv_var(char *str);
 int		ft_len_env(char **env);
-int		get_var_env_files(t_token **words, char **env);
+void	get_var_env_files(t_token **words, char **env);
 char	*search_env_var(char *str);
 char	*replace_env_var_by_nothing(char *str);
 char	*replace_env_var_by_content(char *str, char *inside_var);
@@ -150,15 +152,16 @@ int		cut_for_redirection(t_token **words, t_token **tmp, int i);
 char	*cut_before_only_space(char *str);
 char	*cut_only_space(char *str);
 char	*cut_after_only_space(char *str);
-int		cut_cell_for_dollar_first_char(t_token **words, t_token **cell);
-int		cut_cell_for_dollar_other_char(t_token **words, t_token **cell);
+void	cut_cell_for_dollar_first_char(t_token **words, t_token **cell);
+void	cut_cell_for_dollar_other_char(t_token **words, t_token **cell);
+t_info	*get_info(void);
 
 // execution
 int		execution(t_info *info);
 
 	//builtin
 int		check_if_builtin(t_cmd *cmd);
-int		builtin_cd(char **args);
+int		builtin_cd(char **args, char **env);
 void	builtin_echo(char **args);
 int		builtin_pwd(void);
 int		builtin_export(t_info *info, t_cmd *cmd);
@@ -168,14 +171,14 @@ void	builtin_exit(t_info *info, t_cmd *cmd);
 void	exec_builtin(t_info *info, t_cmd *cmd);
 
 	//binary
-int		exec_binary(t_info *info, t_cmd *cmd, int **pipefd);
+int		exec_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
 char	*parse_path(t_info *info, t_cmd *cmd);
 
 	// executable
 int		exec_executable(t_cmd *cmd, int *pipefd);
 
 	//general
-void	free_tab(char **tab);
+void	free_tab_char(char **tab);
 void	print_tab(char **tab);
 void	set_up_range(t_info *info);
 int		count_nb_cmd(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:44:26 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/24 17:57:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:31:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*create_word(char *str, e_type type)
 
 	elem = malloc(sizeof(t_token));
 	if (!elem)
-		return (NULL);
+		error_and_exit(get_info());
 	elem->word = str;
 	elem->type = type;
 	elem->need_to_concat = 0;
@@ -61,7 +61,7 @@ static int	add_word_when_no_quote(t_token **words, char *str)
 		i++;
 	new_str = ft_strdup_size(str, i);
 	if (!new_str)
-		return (-1);
+		error_and_exit(get_info());
 	add_word_to_struct(words, new_str, ARG);
 	return (i);
 }
@@ -84,7 +84,7 @@ int	add_word(t_token **words, char *str, e_quote quote)
 				i++;
 		new_str = ft_strdup_size(str, i);
 		if (!new_str)
-			return (-1);
+			error_and_exit(get_info());
 		if (quote == SIMPLE)
 			add_word_to_struct(words, new_str, ARG_IN_SIMPLE);
 		else

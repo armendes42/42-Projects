@@ -6,11 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:35:24 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 16:39:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:52:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//#define malloc(x) NULL
 
 char	*search_env_var(char *str)
 {
@@ -25,7 +27,7 @@ char	*search_env_var(char *str)
 		j = keep_going_till_end_of_var(&str[i]);
 	result = malloc(sizeof(char) * (j + 1));
 	if (!result)
-		return (NULL);
+		error_and_exit(get_info());
 	j = -1;
 	if (str[i] == '{')
 		i++;
@@ -52,7 +54,7 @@ char	*replace_env_var_by_nothing(char *str)
 		j = keep_going_till_end_of_var(&str[i]);
 	new_word = malloc(sizeof(char) * (ft_strlen(str) - j));
 	if (!new_word)
-		return (NULL);
+		error_and_exit(get_info());
 	i = -1;
 	j = -1;
 	while (str[++i] && str[i] != '$')
@@ -82,7 +84,7 @@ static char	*create_malloc_for_env_content(char *str, char *inside_var)
 	new_word = malloc(sizeof(char)
 			* (ft_strlen(str) - j + ft_strlen(inside_var) + 1));
 	if (!new_word)
-		return (NULL);
+		error_and_exit(get_info());
 	return (new_word);
 }
 
@@ -94,8 +96,6 @@ char	*replace_env_var_by_content(char *str, char *inside_var)
 	int		k;
 
 	new_word = create_malloc_for_env_content(str, inside_var);
-	if (!new_word)
-		return (NULL);
 	i = -1;
 	j = -1;
 	while (str[++i] && str[i] != '$')

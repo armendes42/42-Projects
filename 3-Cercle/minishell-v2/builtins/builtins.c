@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:08:32 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 17:19:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:01:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exec_builtin(t_info *info, t_cmd *cmd) // est ce que tu peux  le refaire av
 	if (ft_strncmp(cmd->args[0], "echo", 5) == 0)
 		builtin_echo(cmd->args);
 	else if (ft_strncmp(cmd->args[0], "cd", 3) == 0)
-		builtin_cd(cmd->args); 
+		builtin_cd(cmd->args, info->env); 
 	else if (ft_strncmp(cmd->args[0], "pwd", 4) == 0)
 		builtin_pwd();
 	else if (ft_strncmp(cmd->args[0], "export", 7) == 0)
