@@ -6,7 +6,7 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 12:04:52 by imaalem           #+#    #+#             */
-/*   Updated: 2022/04/06 11:33:40 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/07 17:31:48 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,14 @@ int	check_if_executable(t_cmd *cmd)
 	if (ft_strncmp(cmd->args[0], "/", 1) == 0)
 		return (0);
 	return (-1);
+}
+
+int	check_error(int error, char *message)
+{
+	if (error == ERROR)
+	{
+		perror(message);
+		return (ERROR);
+	}
+	return (SUCCESS);
 }

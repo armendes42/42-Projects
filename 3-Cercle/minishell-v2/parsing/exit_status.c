@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/07 16:30:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:07:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ static int	search_exit_status(char *str)
 	return (0);
 }
 
+static char	*create_malloc_for_exit_status(char *str, char *exit)
+{
+	char	*new_word;
+
+	new_word = malloc(sizeof(char)
+			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
+	if (!new_word)
+		error_and_exit(get_info());
+	return (new_word);
+}
+
 static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 {
 	char	*new_word;
@@ -37,10 +48,7 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	exit = ft_itoa(exit_status);
 	if (!exit)
 		error_and_exit(get_info());
-	new_word = malloc(sizeof(char)
-			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
-	if (!new_word)
-		error_and_exit(get_info());
+	new_word = create_malloc_for_exit_status(str, exit);
 	i = -1;
 	j = -1;
 	while (str[++i] && str[i] != '$')

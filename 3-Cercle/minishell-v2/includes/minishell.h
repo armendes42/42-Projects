@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 19:01:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:11:35 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ t_info	*get_info(void);
 
 // execution
 int		execution(t_info *info);
+void	pipe_odd_or_even(t_cmd *cmd, int(*pipefd)[2]);
+void	close_pipe(t_cmd *cmd, int (*pipefd)[2]);
 
 	//builtin
 int		check_if_builtin(t_cmd *cmd);
@@ -165,6 +167,8 @@ int		builtin_cd(char **args, char **env);
 void	builtin_echo(char **args);
 int		builtin_pwd(void);
 int		builtin_export(t_info *info, t_cmd *cmd);
+char	**update_env_two(char **args, char **new_env, int j);
+int		check_format_of_var_export(char *str);
 int		builtin_unset(t_info *info, t_cmd *cmd);
 void	builtin_env(char **env);
 void	builtin_exit(t_info *info, t_cmd *cmd);
@@ -173,6 +177,10 @@ void	exec_builtin(t_info *info, t_cmd *cmd);
 	//binary
 int		exec_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
 char	*parse_path(t_info *info, t_cmd *cmd);
+int		exec_first_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
+int		exec_odd_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
+int		exec_even_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
+int		exec_binary(t_info *info, t_cmd *cmd, int (*pipefd)[2]);
 
 	// executable
 int		exec_executable(t_cmd *cmd, int *pipefd);
@@ -183,5 +191,6 @@ void	print_tab(char **tab);
 void	set_up_range(t_info *info);
 int		count_nb_cmd(t_info *info);
 int		check_if_executable(t_cmd *cmd);
+int		check_error(int error, char *message); // en attente de settle la gestion d'erreur
 
 #endif

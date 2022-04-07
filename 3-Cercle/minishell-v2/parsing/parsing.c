@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/07 16:15:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:14:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	main(int argc, char **argv, char **envp)
 		// 	free_info(&info);
 		// }
 		parsing(line, info);
-		exec_builtin(info, info->cmd);
-		// execution(info);
+		// exec_builtin(info, info->cmd);
+		execution(info);
 		// exec_binary(&info);
 		free_info(info);
 	}

@@ -6,7 +6,7 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 12:00:45 by imaalem           #+#    #+#             */
-/*   Updated: 2022/04/06 11:32:02 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/07 17:35:51 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char *recover_cmd_path(char **tab_path, char *word)
 	i = 0;
 	while (tab_path[i])
 	{
+		// verifier en amont qu'on a bien le droit d'acceder au path avec F_OK
 		tmp = format_path(tab_path[i], word);
 		if (access(tmp, X_OK) == 0)
 			return (tmp);
@@ -59,11 +60,28 @@ char *recover_cmd_path(char **tab_path, char *word)
 	return (NULL);
 }
 
+char	*check_right_executable(t_cmd *cmd)
+{
+	char *path;
+
+	path = malloc(sizeof(char) * (ft_strlen(cmd->args[0]) + 1));
+	path = cmd->args[0];
+	if (access(path, F_OK | X_OK) == -1)
+		return (NULL);
+	else
+		return (path);
+}
+
 char	*parse_path(t_info *info, t_cmd *cmd)
 {
 	char	**tab_path;
 	char	*path;
 
+	if (check_if_executable(cmd) == 0)
+	{
+		path = check_right_executable(cmd);
+		return (path);
+	}
 	tab_path = get_var_env_path(info->env);
 	if (!tab_path)
 		perror("error in get path in env\n");

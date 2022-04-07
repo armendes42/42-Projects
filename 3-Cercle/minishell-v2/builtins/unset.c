@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/07 16:57:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:02:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_format_of_var(char *str)
+static int	check_format_of_var_unset(char *str)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ static int	is_in_args(char **args, char *str_env)
 	env_var = ft_getenv_var(str_env);
 	while (args[i])
 	{
-		if (check_format_of_var(args[i]))
+		if (check_format_of_var_unset(args[i]))
 		{
 			env_arg = ft_getenv_var(args[i]);
 			if (ft_strncmp(env_arg, env_var, 500) == 0)
@@ -106,7 +106,7 @@ int	builtin_unset(t_info *info, t_cmd *cmd)
 	control = 0;
 	while (cmd->args[i])
 	{
-		if (check_format_of_var(cmd->args[i]))
+		if (check_format_of_var_unset(cmd->args[i]))
 			control += update_control(cmd->args[i], info->env);
 		i++;
 	}

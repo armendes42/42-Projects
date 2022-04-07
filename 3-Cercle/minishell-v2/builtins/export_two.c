@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   export_two.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 10:41:07 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/07 19:01:40 by armendes         ###   ########.fr       */
+/*   Created: 2022/04/07 18:59:04 by armendes          #+#    #+#             */
+/*   Updated: 2022/04/07 19:01:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_isalnum(int c)
+char	**update_env_two(char **args, char **new_env, int j)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (8);
-	return (0);
+	int	i;
+
+	i = 1;
+	while (args[i])
+	{
+		if (check_format_of_var_export(args[i]))
+		{
+			new_env[j] = ft_strdup(args[i]);
+			if (!new_env[j])
+				error_and_exit(get_info());
+			j++;
+		}
+		i++;
+	}
+	new_env[j] = NULL;
+	return (new_env);
 }
