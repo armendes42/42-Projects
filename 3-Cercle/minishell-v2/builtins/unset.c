@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 17:53:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:57:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ static char	**update_env(char **env, char **args, int control)
 	while (env[i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
+		{
 			new_env[++j] = ft_strdup(env[i]);
+			if (!new_env[j])
+				error_and_exit(get_info());
+		}
 		free(env[i]);
 		i++;
 	}

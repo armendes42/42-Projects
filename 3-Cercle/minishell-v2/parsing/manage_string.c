@@ -6,13 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:14:50 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 17:35:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:24:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//#define malloc(x) NULL
 
 char	*cut_one_char(char *str)
 {

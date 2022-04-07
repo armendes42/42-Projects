@@ -6,13 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 17:50:58 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:30:54 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//#define malloc(x) NULL
 
 static int	search_exit_status(char *str)
 {
@@ -37,6 +35,8 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	char	*exit;
 
 	exit = ft_itoa(exit_status);
+	if (!exit)
+		error_and_exit(get_info());
 	new_word = malloc(sizeof(char)
 			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
 	if (!new_word)

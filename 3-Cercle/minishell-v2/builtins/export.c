@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 17:53:06 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:37:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ static char	**update_env(char **env, char **args, int control)
 	while (env[++i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
+		{
 			new_env[++j] = ft_strdup(env[i]);
+			if (!new_env[j])
+				error_and_exit(get_info());
+		}
 		free(env[i]);
 	}
 	free(env);
@@ -79,7 +83,11 @@ static char	**update_env(char **env, char **args, int control)
 	while (args[++i])
 	{
 		if (check_format_of_var(args[i]))
+		{
 			new_env[++j] = ft_strdup(args[i]);
+			if (!new_env[j])
+				error_and_exit(get_info());
+		}
 	}
 	new_env[++j] = NULL;
 	return (new_env);

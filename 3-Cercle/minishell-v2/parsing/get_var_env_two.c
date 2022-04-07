@@ -6,13 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:35:24 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 17:52:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:28:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//#define malloc(x) NULL
 
 char	*search_env_var(char *str)
 {

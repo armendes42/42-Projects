@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 17:35:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 16:33:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:02:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 			add_history(line);
 		if (parsing(line, &info) == 0)
 		{
-			check_if_builtin(&info, info.cmd);
+			check_if_builtin(info.cmd);
 			free_info(&info);
 		}
 	}

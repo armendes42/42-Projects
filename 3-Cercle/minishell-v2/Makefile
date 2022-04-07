@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 15:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/04/06 17:15:12 by armendes         ###   ########.fr        #
+#    Updated: 2022/04/07 16:05:47 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LIB_NAME =	libs/gnl/gnl.a libs/libft/libft.a
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I includes -I libs/gnl -I libs/libft -g -fsanitize=address
+CFLAGS =  -I includes -I libs/gnl -I libs/libft -g -fsanitize=address
 
 NAME =	minishell
 

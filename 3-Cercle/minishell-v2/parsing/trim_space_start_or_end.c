@@ -6,13 +6,11 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:56:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/06 18:42:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:26:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// #define malloc(x) NULL
 
 void	trim_space_in_word_start(t_token **words)
 {
