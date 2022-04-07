@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:40:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 20:32:43 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:58:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	Contact::nbContact = 0;
 
 Contact::Contact( void )
 {
-	std::cout << "Constructor called" << std::endl;
 	this->id = this->nbContact;
 	this->nbContact++;
 	return;
@@ -25,8 +24,20 @@ Contact::Contact( void )
 
 Contact::~Contact( void )
 {
-	std::cout << "Destructor called" << std::endl;
 	return;
+}
+
+Contact	&Contact::operator=( const Contact &target )
+{
+	if (this == &target)
+		return (*this);
+	this->firstName = target.firstName;
+	this->lastName = target.lastName;
+	this->nickName = target.nickName;
+	this->phoneNumber = target.phoneNumber;
+	this->darkestSecret = target.darkestSecret;
+	this->id = target.id;
+	return (*this);
 }
 
 std::string	Contact::getFirstName( void	)
@@ -54,7 +65,7 @@ std::string	Contact::getDarkestSecret( void )
 	return (this->darkestSecret);
 }
 
-int			Contact::getId( void )
+int		Contact::getId( void )
 {
 	return (this->id);
 }

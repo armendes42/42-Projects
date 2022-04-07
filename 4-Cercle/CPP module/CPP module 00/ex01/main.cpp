@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:37:08 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 20:41:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:47:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,16 @@
 int	main()
 {
 	std::string	entry;
+	PhoneBook	repertory;
 
-	std::cin >> entry;
-	if (entry == "ADD")
-		std::cout << "bonjour" << std::endl;
+	while (true && entry.compare("EXIT") != 0 && !std::cin.eof())
+	{
+		std::cout << "Type your command: ";
+		std::getline(std::cin, entry);
+		if (entry.compare("ADD") == 0)
+			repertory.add();
+		if (entry.compare("SEARCH") == 0)
+			repertory.search();
+	}
 	return (0);
 }

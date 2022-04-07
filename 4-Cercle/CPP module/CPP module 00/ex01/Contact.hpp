@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:33:31 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 20:34:21 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:41:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ private:
 public:
 	Contact( void );
 	~Contact( void );
+
+	Contact	&operator=( const Contact &target );
 
 	std::string	getFirstName( void );
 	std::string	getLastName( void );
