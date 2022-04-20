@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:41:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 18:34:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:59:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,10 @@ int	search_redirection(char *str)
 	return (0);
 }
 
-static int	search_error_redirection_two(char *str, int i)
-{
-	if (str[i] == '>' && str[i + 1] == '<')
-		return (-1);
-	else if (str[i] == '<' && str[i + 1] == '>')
-		return (-1);
-	else if (str[i] == '<' && str[i + 1] == '<' && is_empty(&str[i + 2]))
-		return (-1);
-	else if (str[i] == '>' && str[i + 1] == '>' && is_empty(&str[i + 2]))
-		return (-1);
-	else if ((str[i] == '<' || str[i] == '>') && is_empty(&str[i + 1]))
-		return (-1);
-	else if (str[i] == '<' && str[i + 1] == '<'
-		&& (get_next_char(&str[i + 2]) == '<'
-			|| get_next_char(&str[i + 2]) == '>'))
-		return (-1);
-	else if (str[i] == '>' && str[i + 1] == '>'
-		&& (get_next_char(&str[i + 2]) == '<'
-			|| get_next_char(&str[i + 2]) == '>'))
-		return (-1);
-	return (0);
-}
-
 int	search_error_redirection(char *str)
 {
 	int		i;
-	e_quote	quote;
+	t_quote	quote;
 	int		control;
 
 	i = -1;
@@ -73,7 +50,7 @@ int	search_error_redirection(char *str)
 		if (quote == NOTHING)
 		{
 			control = search_error_redirection_two(str, i);
-			if (control == -1)
+			if (control != 0)
 				return (-1);
 		}
 	}

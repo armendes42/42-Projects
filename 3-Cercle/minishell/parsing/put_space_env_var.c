@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_space_env_var.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:03:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 18:31:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:26:50 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*cut_before_space(char *str)
 		i++;
 	result = ft_strdup_size(str, i);
 	if (!result)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	return (result);
 }
 
@@ -45,7 +45,7 @@ static char	*cut_after_space(char *str)
 		i++;
 	result = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!result)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	j = 0;
 	while (str[i])
 	{
@@ -57,7 +57,7 @@ static char	*cut_after_space(char *str)
 	return (result);
 }
 
-int	cut_arg_nothing(t_token **words)
+void	cut_arg_nothing(t_token **words)
 {
 	t_token	*tmp;
 	t_token	*tmp_next;
@@ -73,8 +73,6 @@ int	cut_arg_nothing(t_token **words)
 			tmp->word = cut_before_space(tmp_word);
 			tmp->next = create_word(cut_after_space(tmp_word), ARG);
 			free(tmp_word);
-			if (tmp->word == NULL || tmp->next->word == NULL)
-				return (-1);
 			tmp->next->next = tmp_next;
 			if (tmp_next != NULL)
 				tmp_next->prev = tmp->next;
@@ -82,5 +80,4 @@ int	cut_arg_nothing(t_token **words)
 		}
 		tmp = tmp->next;
 	}
-	return (0);
 }

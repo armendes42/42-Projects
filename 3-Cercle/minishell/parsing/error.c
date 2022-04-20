@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_redirection_utils.c                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 16:40:32 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/12 19:28:52 by armendes         ###   ########.fr       */
+/*   Created: 2022/04/06 15:56:42 by armendes          #+#    #+#             */
+/*   Updated: 2022/04/19 15:47:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cut_for_redirection(t_token **words, t_token **tmp, int i)
+int	error(t_info *info, char *err_msg, int exit_status)
 {
-	if (i == 1)
-		cut_for_input(words, tmp);
-	else if (i == 2)
-		cut_for_output(words, tmp);
-	else if (i == 3)
-		cut_for_delimiter(words, tmp);
-	else if (i == 4)
-		cut_for_append(words, tmp);
+	if (exit_status != -1)
+		g_exit_status = exit_status;
+	free_info(info);
+	if (err_msg != NULL)
+		write(2, err_msg, ft_strlen(err_msg));
+	return (1);
+}
+
+void	error_and_exit(t_info *info, int exit_status)
+{
+	g_exit_status = exit_status;
+	free_info(info);
+	exit(g_exit_status);
 }

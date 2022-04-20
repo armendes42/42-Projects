@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 16:32:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:46:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	check_long_long(char *str)
 	return (0);
 }
 
-static int	is_arg_numeric(char *str)
+int	is_arg_numeric(char *str)
 {
 	int	i;
 	int	len;
@@ -81,34 +81,17 @@ void	my_exit(t_info *info)
 {
 	free_env(info->env);
 	free_info(info);
-	exit(EXIT_SUCCESS);
+	exit(g_exit_status);
 }
 
-void	builtin_exit(t_info *info, t_cmd *cmd)
+int	builtin_exit(t_info *info, t_cmd *cmd)
 {
-	ft_putstr_fd("exit\n", STDOUT_FILENO);
-	if (cmd->args[1] == NULL)
-	{
-		info->exit_status = 0;
-		my_exit(info);
-		return ;
-	}
-	if (is_arg_numeric(cmd->args[1]) == 1)
-	{
-		info->exit_status = 1;
-		ft_putstr_fd("exit: ", STDOUT_FILENO);
-		ft_putstr_fd(cmd->args[1], STDOUT_FILENO);
-		ft_putstr_fd(": numeric argument required\n", STDOUT_FILENO);
-		my_exit(info);
-		return ;
-	}
-	if (cmd->args[2] != NULL)
-	{
-		info->exit_status = 1;
-		ft_putstr_fd("exit: too many arguments\n", STDOUT_FILENO);
-		return ;
-	}
-	info->exit_status = ft_atoi(cmd->args[1]) % 256;
-	info->exit_status = (256 + info->exit_status) % 256;
-	my_exit(info);
+	int	i;
+
+	i = count_nb_cmd(info);
+	if (i == 1)
+		builtin_exit_if_cmd_alone(info, cmd);
+	else
+		builtin_exit_if_multiple_cmd(cmd);
+	return (-1);
 }

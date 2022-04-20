@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:08:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 19:10:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:05:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,15 @@ char	*cut_before_only_space(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '$' && (ft_isalnum(str[i + 1]) != 0 || str[i + 1] == '_'))
+			i++;
 		if (str[i] == '$' && (str[i + 1] == ' ' || str[i + 1] == '\0'
-				|| str[i + 1] == '$'))
+				|| str[i + 1] == '$'
+				|| (ft_isalnum(str[i + 1]) == 0 && str[i] != '_')))
 			break ;
 		i++;
 	}
-	result = malloc(sizeof(char) * (i + 1));
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$' && (str[i + 1] == ' ' || str[i + 1] == '\0'
-				|| str[i + 1] == '$'))
-			break ;
-		result[i] = str[i];
-		i++;
-	}
-	result[i] = '\0';
+	result = cut_before_only_space_two(str, i);
 	return (result);
 }
 
@@ -75,7 +66,7 @@ char	*cut_only_space(char *str)
 	count_i_and_j_for_only_space(str, &i, &j);
 	result = malloc(sizeof(char) * (j + 1));
 	if (!result)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	i -= j;
 	i++;
 	result[0] = '$';
@@ -99,11 +90,12 @@ static void	count_i_for_after_only_space(char *str, int *i)
 		{
 			if (str[*i + 1] == '\0')
 				break ;
-			if (str[*i + 1] == ' ' || str[*i + 1] == '$')
+			else if (ft_isalnum(str[*i + 1]) != 0 || str[*i + 1] == '_')
+				(*i)++;
+			else if (str[*i + 1] == '$' || str[*i + 1] == ' '
+				|| ft_isalnum(str[*i + 1]) == 0)
 			{
 				(*i)++;
-				while (str[*i] == ' ')
-					(*i)++;
 				break ;
 			}
 		}
@@ -120,7 +112,7 @@ char	*cut_after_only_space(char *str)
 	count_i_for_after_only_space(str, &i);
 	result = malloc(sizeof(char) * (ft_strlen(str) - i + 2));
 	if (!result)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	j = 0;
 	while (str[i])
 	{

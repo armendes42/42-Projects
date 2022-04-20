@@ -6,23 +6,23 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:20:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 18:25:17 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:48:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	concat_words_prev_two(t_token **tmp)
+static void	concat_words_prev_two(t_token **tmp)
 {
 	t_token	*tmp_next;
 	char	*new_word;
 
 	tmp_next = (*tmp)->next;
 	new_word = ft_strjoin((*tmp)->word, (*tmp)->next->word);
+	if (!new_word)
+		error_and_exit(get_info(), 1);
 	free((*tmp)->word);
 	(*tmp)->word = new_word;
-	if ((*tmp)->word == NULL)
-		return (-1);
 	(*tmp)->type = (*tmp)->next->type;
 	if ((*tmp)->next->next == NULL)
 		(*tmp)->next = NULL;
@@ -34,26 +34,19 @@ int	concat_words_prev_two(t_token **tmp)
 	(*tmp)->need_to_concat = 0;
 	free(tmp_next->word);
 	free(tmp_next);
-	return (0);
 }
 
-int	concat_words_prev(t_token **words)
+void	concat_words_prev(t_token **words)
 {
 	t_token	*tmp;
-	int		control;
 
 	tmp = last_cell(words);
 	while (tmp)
 	{
 		if (tmp->need_to_concat == 1)
-		{
-			control = concat_words_prev_two(&tmp);
-			if (control == -1)
-				return (-1);
-		}
+			concat_words_prev_two(&tmp);
 		tmp = tmp->prev;
 	}
-	return (0);
 }
 
 static void	reequilibrate_concat(t_token **words)
@@ -108,6 +101,12 @@ void	detect_concat(t_token **words)
 	{
 		if (tmp->type != ARG || tmp->next->type != ARG)
 			detect_concat_two(&tmp);
+		else if (tmp->type == ARG && tmp->next->type == ARG)
+		{
+			if (search_space_end(tmp->word) == 0
+				&& search_space_start(tmp->next->word) == 0)
+				tmp->need_to_concat = 1;
+		}
 		tmp = tmp->next;
 	}
 	reequilibrate_concat(words);

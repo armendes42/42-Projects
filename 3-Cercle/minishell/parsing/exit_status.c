@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:26:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/04 18:35:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:25:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,31 @@
 static int	search_exit_status(char *str)
 {
 	int	i;
+	int	result;
 
 	i = 0;
+	result = 0;
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i + 1] == '?')
-			return (1);
+		{
+			result++;
+			i++;
+		}
 		i++;
 	}
-	return (0);
+	return (result);
+}
+
+static char	*create_malloc_for_exit_status(char *str, char *exit)
+{
+	char	*new_word;
+
+	new_word = malloc(sizeof(char)
+			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
+	if (!new_word)
+		error_and_exit(get_info(), 1);
+	return (new_word);
 }
 
 static char	*replace_env_var_by_exit_status(char *str, int exit_status)
@@ -35,10 +51,9 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	char	*exit;
 
 	exit = ft_itoa(exit_status);
-	new_word = malloc(sizeof(char)
-			* (ft_strlen(str) - 2 + ft_strlen(exit) + 1));
-	if (!new_word)
-		return (NULL);
+	if (!exit)
+		error_and_exit(get_info(), 1);
+	new_word = create_malloc_for_exit_status(str, exit);
 	i = -1;
 	j = -1;
 	while (str[++i] && str[i] != '$')
@@ -55,25 +70,24 @@ static char	*replace_env_var_by_exit_status(char *str, int exit_status)
 	return (new_word);
 }
 
-int	get_exit_status(t_token **words, int exit_status)
+void	get_exit_status(t_token **words, int exit_status)
 {
 	t_token	*tmp;
+	int		nb_exit_status;
 
 	tmp = *words;
 	while (tmp)
 	{
 		if (tmp->type == ARG || tmp->type == ARG_IN_DOUBLE)
 		{
-			if (!(tmp->prev != NULL && tmp->prev->type == HERE_DOC))
+			if (detect_here_doc(tmp) == 0)
 			{
-				if (search_exit_status(tmp->word))
+				nb_exit_status = search_exit_status(tmp->word);
+				while (nb_exit_status-- > 0)
 					tmp->word = replace_env_var_by_exit_status(tmp->word,
 							exit_status);
-				if (tmp->word == NULL)
-					return (-1);
 			}
 		}
 		tmp = tmp->next;
 	}
-	return (0);
 }

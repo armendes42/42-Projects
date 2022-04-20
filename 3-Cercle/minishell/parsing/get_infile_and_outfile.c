@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_infile_and_outfile.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:01:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/02/21 17:05:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/13 18:41:51 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_infile_outfile(t_token **words)
 		else if (tmp->type == RED_OUT_APPEND && tmp->next != NULL)
 			tmp->next->type = OUTFILE_APPEND;
 		else if (tmp->type == HERE_DOC && tmp->next != NULL)
-			tmp->next->type = LIMITOR;
+			tmp->next->type = LIMITER;
 		tmp = tmp->next;
 	}
 }

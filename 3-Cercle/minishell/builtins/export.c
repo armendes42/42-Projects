@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 16:31:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:54:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_format_of_var(char *str)
+int	check_format_of_var_export(char *str)
 {
 	int		i;
 
@@ -40,7 +40,7 @@ static int	is_in_args(char **args, char *str_env)
 	env_var = ft_getenv_var(str_env);
 	while (args[i])
 	{
-		if (check_format_of_var(args[i]))
+		if (check_format_of_var_export(args[i]))
 		{
 			env_arg = ft_getenv_var(args[i]);
 			if (ft_strncmp(env_arg, env_var, 500) == 0)
@@ -57,31 +57,30 @@ static int	is_in_args(char **args, char *str_env)
 	return (0);
 }
 
-static char	**update_env(char **env, char **args, int control)
+char	**update_env_export(char **env, char **args, int control)
 {
 	int		i;
 	int		j;
 	char	**new_env;
 
 	i = -1;
-	j = -1;
+	j = 0;
 	new_env = malloc(sizeof(char *) * (ft_len_env(env) + control + 1));
 	if (!new_env)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	while (env[++i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
-			new_env[++j] = ft_strdup(env[i]);
+		{
+			new_env[j] = ft_strdup(env[i]);
+			if (!new_env[j])
+				error_and_exit(get_info(), 1);
+			j++;
+		}
 		free(env[i]);
 	}
 	free(env);
-	i = 0;
-	while (args[++i])
-	{
-		if (check_format_of_var(args[i]))
-			new_env[++j] = ft_strdup(args[i]);
-	}
-	new_env[++j] = NULL;
+	new_env = update_env_two(args, new_env, j);
 	return (new_env);
 }
 
@@ -91,8 +90,6 @@ static int	update_control(char *arg, char **env)
 	char	*var;
 
 	env_var = ft_getenv_var(arg);
-	if (!env_var)
-		return (-1);
 	var = ft_getenv(env_var, env);
 	if (var != NULL)
 	{
@@ -112,17 +109,20 @@ int	builtin_export(t_info *info, t_cmd *cmd)
 	i = 0;
 	control = 0;
 	if (cmd->args[1] == NULL)
-		return (-1);
+	{
+		print_env_export(info->env);
+		return (0);
+	}
 	while (cmd->args[++i])
 	{
-		if (check_format_of_var(cmd->args[i]))
+		if (check_format_of_var_export(cmd->args[i]))
 		{
 			control++;
 			control -= update_control(cmd->args[i], info->env);
 		}
+		else
+			error_for_export_and_unset(cmd->args[i], 0);
 	}
-	info->env = update_env(info->env, cmd->args, control);
-	if (!info->env)
-		return (-1);
+	info->env = update_env_export(info->env, cmd->args, control);
 	return (0);
 }

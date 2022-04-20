@@ -6,20 +6,18 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:45:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/28 16:47:53 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:00:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cut_redirection_first_char(t_token **words, t_token **tmp, char *sign,
-	e_type type)
+void	cut_redirection_first_char(t_token **words, t_token **tmp, char *sign,
+	t_type type)
 {
 	t_token	*new;
 
 	new = create_word(sign, type);
-	if (!new)
-		return (-1);
 	new->next = *tmp;
 	if ((*tmp)->prev == NULL)
 		*words = new;
@@ -29,22 +27,17 @@ int	cut_redirection_first_char(t_token **words, t_token **tmp, char *sign,
 		(*tmp)->prev->next = new;
 	}
 	(*tmp)->prev = new;
-	return (0);
 }
 
-int	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
-	e_type type)
+void	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
+	t_type type)
 {
 	t_token	*new;
 	t_token	*prev;
 	char	*new_word;
 
 	new = create_word(sign, type);
-	if (!new)
-		return (-1);
 	prev = create_word(before_redirection((*tmp)->word), (*tmp)->type);
-	if (!prev)
-		return (-1);
 	prev->next = new;
 	new->prev = prev;
 	new->next = *tmp;
@@ -59,5 +52,4 @@ int	cut_redirection_other_char(t_token **words, t_token **tmp, char *sign,
 	new_word = after_redirection((*tmp)->word);
 	free((*tmp)->word);
 	(*tmp)->word = new_word;
-	return (0);
 }

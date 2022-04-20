@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:13:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 15:39:23 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:26:47 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*format_str(char *line, int start, int end)
 		return (NULL);
 	str = malloc(sizeof(char) * (end - start + 1));
 	if (!str)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	while (start < end)
 	{
 		str[i] = line[start];
@@ -61,7 +61,7 @@ t_token	*last_cell(t_token **words)
 	return (tmp);
 }
 
-char	get_next_char(char *str)
+char	*get_next_char(char *str)
 {
 	int	i;
 
@@ -69,8 +69,8 @@ char	get_next_char(char *str)
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-		return (' ');
-	return (str[i]);
+		return (NULL);
+	return (&str[i]);
 }
 
 int	search_space(char *str)

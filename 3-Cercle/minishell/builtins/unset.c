@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:50:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/05 16:31:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:43:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_format_of_var(char *str)
+static int	check_format_of_var_unset(char *str)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ static int	is_in_args(char **args, char *str_env)
 	env_var = ft_getenv_var(str_env);
 	while (args[i])
 	{
-		if (check_format_of_var(args[i]))
+		if (check_format_of_var_unset(args[i]))
 		{
 			env_arg = ft_getenv_var(args[i]);
 			if (ft_strncmp(env_arg, env_var, 500) == 0)
@@ -53,7 +53,7 @@ static int	is_in_args(char **args, char *str_env)
 	return (0);
 }
 
-static char	**update_env(char **env, char **args, int control)
+static char	**update_env_unset(char **env, char **args, int control)
 {
 	int		i;
 	int		j;
@@ -63,11 +63,15 @@ static char	**update_env(char **env, char **args, int control)
 	j = -1;
 	new_env = malloc(sizeof(char *) * (ft_len_env(env) - control));
 	if (!new_env)
-		return (NULL);
+		error_and_exit(get_info(), 1);
 	while (env[i] != NULL)
 	{
 		if (!is_in_args(args, env[i]))
+		{
 			new_env[++j] = ft_strdup(env[i]);
+			if (!new_env[j])
+				error_and_exit(get_info(), 1);
+		}
 		free(env[i]);
 		i++;
 	}
@@ -82,8 +86,6 @@ static int	update_control(char *arg, char **env)
 	char	*var;
 
 	env_var = ft_getenv_var(arg);
-	if (!env_var)
-		return (-1);
 	var = ft_getenv(env_var, env);
 	if (var != NULL)
 	{
@@ -104,12 +106,12 @@ int	builtin_unset(t_info *info, t_cmd *cmd)
 	control = 0;
 	while (cmd->args[i])
 	{
-		if (check_format_of_var(cmd->args[i]))
+		if (check_format_of_var_unset(cmd->args[i]))
 			control += update_control(cmd->args[i], info->env);
+		else
+			error_for_export_and_unset(cmd->args[i], 1);
 		i++;
 	}
-	info->env = update_env(info->env, cmd->args, control);
-	if (!info->env)
-		return (-1);
+	info->env = update_env_unset(info->env, cmd->args, control);
 	return (0);
 }

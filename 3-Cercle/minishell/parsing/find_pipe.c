@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:20:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/03/09 18:41:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:59:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_pipe(char *line)
 {
 	int		i;
 	int		control;
-	e_quote	quote;
+	t_quote	quote;
 
 	i = 0;
 	control = 0;
@@ -40,7 +40,7 @@ static int	check_pipe(char *line)
 t_cmd	*find_pipe(char *line)
 {
 	int		i;
-	e_quote	quote;
+	t_quote	quote;
 	int		start_for_pipe;
 	t_cmd	*cmd;
 
@@ -61,6 +61,7 @@ t_cmd	*find_pipe(char *line)
 		}
 		i++;
 	}
-	add_cmd(&cmd, start_for_pipe, i, line);
+	if (add_cmd(&cmd, start_for_pipe, i, line))
+		return (NULL);
 	return (cmd);
 }

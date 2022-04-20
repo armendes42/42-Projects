@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 17:43:55 by armendes          #+#    #+#             */
-/*   Updated: 2020/12/02 17:57:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/19 20:23:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	s_1 = (unsigned char *)s1;
 	s_2 = (unsigned char *)s2;
+	if (!s1 || !s2)
+		return (-1);
 	while ((s_1[i] || s_2[i]) && i < n)
 	{
 		if (s_1[i] != s_2[i])
