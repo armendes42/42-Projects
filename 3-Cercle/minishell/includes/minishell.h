@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:34:18 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/20 22:32:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:50:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ char	**update_env_two(char **args, char **new_env, int j);
 int		check_format_of_var_export(char *str);
 int		builtin_unset(t_info *info, t_cmd *cmd);
 void	builtin_env(char **env, int fd);
+int		has_equal(char *str);
 int		builtin_exit(t_info *info, t_cmd *cmd);
 void	builtin_exit_if_cmd_alone(t_info *info, t_cmd *cmd);
 void	builtin_exit_if_multiple_cmd(t_cmd *cmd);
@@ -247,6 +248,7 @@ int		exec_executable(t_cmd *cmd, int *pipefd);
 char	*recover_cmd_path(char **tab_path, char *word);
 char	*format_path(char *path_to_test, char *word);
 char	**get_var_env_path(char **ev);
+void	access_error(char *p, char *c, char *msg, int ex);
 
 	//general
 void	free_tab_char(char **tab);

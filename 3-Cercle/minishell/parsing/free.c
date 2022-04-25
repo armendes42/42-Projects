@@ -6,7 +6,7 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:11:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/18 21:12:30 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:27:59 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ void	free_env(char **env)
 	int	i;
 
 	i = 0;
-	while (env[i])
+	if (env)
 	{
-		free(env[i]);
-		i++;
+		while (env[i])
+		{
+			free(env[i]);
+			i++;
+		}
+		free(env);
 	}
-	free(env);
 }
 
 void	free_info(t_info *info)

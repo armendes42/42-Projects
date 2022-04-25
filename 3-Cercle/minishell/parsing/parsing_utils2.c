@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:01:02 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/20 22:14:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:03:23 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,14 @@ int	check_redir_before_pipe(char *str)
 		quote = update_quote_status(str[i], quote);
 		if ((str[i] == '<' || str[i] == '>') && quote == NOTHING)
 		{
-			tmp = get_next_char(&str[i + 1]);
-			if (tmp[0] == '|')
-				return (error(NULL, PIPE_ERR, 2));
+			if (str[i + 1])
+			{
+				tmp = get_next_char(&str[i + 1]);
+				if (!tmp)
+					return (error(NULL, NEWLINE_ERR, 2));
+				if (tmp[0] == '|')
+					return (error(NULL, PIPE_ERR, 2));
+			}
 		}
 		i++;
 	}

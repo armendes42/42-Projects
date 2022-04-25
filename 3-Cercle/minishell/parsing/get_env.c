@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/20 22:24:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:16:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	**copy_env(char **envp, char *arg)
 		i++;
 	}
 	env[i] = NULL;
-	env = update_shlvl(env, i);
 	return (env);
 }
 
@@ -109,6 +108,8 @@ char	*ft_getenv(char *var, char **env)
 		j = 0;
 		while (env[i][j] && env[i][j] != '=')
 			j++;
+		if (!env[i][j])
+			return (NULL);
 		env_var = ft_strdup_size(env[i], j);
 		if (!env_var)
 			error_and_exit(get_info(), 1);

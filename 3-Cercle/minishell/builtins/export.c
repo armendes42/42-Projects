@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:49:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/20 16:54:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:37:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	check_format_of_var_export(char *str)
 			return (0);
 		i++;
 	}
-	if (!str[i])
-		return (0);
 	return (1);
 }
 

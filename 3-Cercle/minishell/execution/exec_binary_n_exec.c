@@ -6,7 +6,7 @@
 /*   By: imaalem <imaalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 12:44:06 by imaalem           #+#    #+#             */
-/*   Updated: 2022/04/20 15:07:23 by imaalem          ###   ########.fr       */
+/*   Updated: 2022/04/21 19:43:01 by imaalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void	exec_binary_n_exec(t_info *info, t_cmd *cmd, int *pid)
 	{
 		if (execve(path, cmd->args, info->env) == -1)
 		{
-			if (path != NULL)
-				free(path);
 			if (pid != NULL)
 				free(pid);
-			error_and_exit(get_info(), 1);
+			access_error(path, NULL, NULL, 1);
 		}
 	}
 	exit(1);

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:59:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/20 17:01:49 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:38:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ void	print_env_export(char **env)
 		ft_putstr_fd("declare -x ", 1);
 		tmp = ft_getenv_var(env[i]);
 		ft_putstr_fd(tmp, 1);
-		ft_putstr_fd("=\"", 1);
-		tmp2 = ft_getenv(tmp, env);
-		free(tmp);
-		ft_putstr_fd(tmp2, 1);
-		free(tmp2);
-		ft_putstr_fd("\"\n", 1);
+		if (has_equal(env[i]))
+		{
+			ft_putstr_fd("=\"", 1);
+			tmp2 = ft_getenv(tmp, env);
+			free(tmp);
+			ft_putstr_fd(tmp2, 1);
+			free(tmp2);
+			ft_putstr_fd("\"\n", 1);
+		}
+		else
+			ft_putstr_fd("\n", 1);
 		i++;
 	}
 }
