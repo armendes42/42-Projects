@@ -6,11 +6,12 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/26 19:53:49 by armendes          #+#    #+#              #
-#    Updated: 2022/04/26 19:54:14 by armendes         ###   ########.fr        #
+#    Updated: 2022/04/26 20:48:14 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	
+SRCS =	Account.cpp	\
+		tests.cpp	\
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -18,7 +19,7 @@ CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =	
+NAME =	Account
 
 RM =	rm -rf
 
