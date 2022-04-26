@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:40:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/07 19:58:17 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:49:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	Contact::nbContact = 0;
 Contact::Contact( void )
 {
 	this->id = this->nbContact;
+	this->firstName = "";
+	this->lastName = "";
+	this->nickName = "";
+	this->phoneNumber = "";
+	this->darkestSecret = "";
 	this->nbContact++;
 	return;
 }
