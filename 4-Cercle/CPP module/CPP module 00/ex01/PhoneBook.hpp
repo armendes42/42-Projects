@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:16:16 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/26 16:01:57 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:09:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ public:
 	void	add( void );
 	void	search( void );
 	void	format_output( std::string line );
+	void	format_id( int id );
+	void	print_the_contact( int id );
+	int		check_id( int id );
 };
 
 #endif
