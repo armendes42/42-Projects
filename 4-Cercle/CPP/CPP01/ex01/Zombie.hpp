@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/27 16:24:07 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:12:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ private:
 	std::string	name;
 
 public:
-	Zombie(std::string name);
+	Zombie(void);
 	~Zombie(void);
 
 	void		setName(std::string name);
 	std::string	getName(void);
 	void		announce(void);
-	Zombie*		zombieHorde(int N, std::string name);
 };
+
+Zombie*		zombieHorde(int N, std::string name);
 
 #endif

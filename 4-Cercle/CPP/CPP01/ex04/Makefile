@@ -5,28 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/27 16:21:19 by armendes          #+#    #+#              #
-#    Updated: 2022/04/27 16:22:49 by armendes         ###   ########.fr        #
+#    Created: 2022/04/27 19:46:39 by armendes          #+#    #+#              #
+#    Updated: 2022/04/27 19:47:16 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp		\
-		Zombie.cpp		\
-		zombieHorde.cpp	\
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
+INCLUDES =	
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =	ZombieHorde
+NAME =	
 
 RM =	rm -rf
 
-all:	${NAME}
+%.o:	%.cpp ${INCLUDES}
+		${CC} ${FLAGS} -c $< -o $@
 
-${NAME}:	${OBJS}
+all:	${NAME} Makefile
+
+${NAME}:	${OBJS}	Makefile
 			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 clean:

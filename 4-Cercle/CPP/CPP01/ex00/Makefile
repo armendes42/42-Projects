@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/26 21:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/04/27 16:20:59 by armendes         ###   ########.fr        #
+#    Updated: 2022/04/27 18:20:44 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRCS =	main.cpp		\
 
 OBJS =	${SRCS:.cpp=.o}
 
+INCLUDES =	Zombie.hpp
+
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
@@ -25,9 +27,12 @@ NAME =	Zombie
 
 RM =	rm -rf
 
-all:	${NAME}
+%.o:	%.cpp ${INCLUDES}
+		${CC} ${FLAGS} -c $< -o $@
 
-${NAME}:	${OBJS}
+all:	${NAME} Makefile
+
+${NAME}:	${OBJS} Makefile
 			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 clean:
@@ -36,6 +41,6 @@ clean:
 fclean:		clean
 	${RM} ${NAME}
 
-re:			fclean all
+re:			fclean all 
 
 .PHONY:		all clean fclean re

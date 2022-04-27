@@ -1,0 +1,5 @@
+Makefile -> rajouter includes et regle .o ainsi que Makefile
+
+SEARCH -> regler le probleme de atoi qui renvoie zero pour une entree str classique : "sss" --> 0
+
+iomanip a utiliser au lieu de faire du classique pour le formattage des colonnes
