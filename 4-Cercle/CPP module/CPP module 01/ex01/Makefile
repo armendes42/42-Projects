@@ -5,15 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/26 21:23:12 by armendes          #+#    #+#              #
-#    Updated: 2022/04/27 16:20:59 by armendes         ###   ########.fr        #
+#    Created: 2022/04/27 16:21:19 by armendes          #+#    #+#              #
+#    Updated: 2022/04/27 16:22:49 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.cpp		\
 		Zombie.cpp		\
-		newZombie.cpp	\
-		randomChump.cpp	\
+		zombieHorde.cpp	\
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -21,7 +20,7 @@ CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =	Zombie
+NAME =	ZombieHorde
 
 RM =	rm -rf
 

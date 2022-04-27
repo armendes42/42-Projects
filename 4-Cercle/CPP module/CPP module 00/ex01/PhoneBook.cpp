@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:40:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/26 19:50:22 by armendes         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:42:43 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include <iostream>
 #include <math.h>
 
-PhoneBook::PhoneBook( void )
+PhoneBook::PhoneBook(void)
 {
 	return;
 }
 
-PhoneBook::~PhoneBook( void )
+PhoneBook::~PhoneBook(void)
 {
 	return;
 }
 
-void	PhoneBook::setContact( Contact contact )
+void	PhoneBook::setContact(Contact contact)
 {
 	int	id;
 
@@ -33,7 +33,7 @@ void	PhoneBook::setContact( Contact contact )
 	tabContact[id % 8] = contact;
 }
 
-void	PhoneBook::add( void )
+void	PhoneBook::add(void)
 {
 	std::string	firstName;
 	std::string	lastName;
@@ -76,7 +76,7 @@ void	PhoneBook::add( void )
 	this->setContact(contact);
 }
 
-void	PhoneBook::format_output( std::string line )
+void	PhoneBook::format_output(std::string line)
 {
 	int	len;
 	int	space;
@@ -103,7 +103,7 @@ void	PhoneBook::format_output( std::string line )
 	}
 }
 
-void	PhoneBook::format_id( int id )
+void	PhoneBook::format_id(int id)
 {
 	int	len;
 	int	copy_of_id;
@@ -137,7 +137,7 @@ void	PhoneBook::format_id( int id )
 	}
 }
 
-int		PhoneBook::check_id( int id )
+int		PhoneBook::check_id(int id)
 {
 	for (int i=0; i < 8; i++)
 	{
@@ -147,7 +147,7 @@ int		PhoneBook::check_id( int id )
 	return (0);
 }
 
-void	PhoneBook::print_the_contact( int id )
+void	PhoneBook::print_the_contact(int id)
 {
 	if (id < 0)
 		std::cout << "The index must be positive and on the list" << std::endl;
@@ -175,7 +175,7 @@ void	PhoneBook::print_the_contact( int id )
 	}
 }
 
-void	PhoneBook::search( void )
+void	PhoneBook::search(void)
 {
 	std::string	line;
 	int			id;

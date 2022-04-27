@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 16:16:16 by armendes          #+#    #+#             */
-/*   Updated: 2022/04/27 15:43:03 by armendes         ###   ########.fr       */
+/*   Created: 2022/04/27 15:37:17 by armendes          #+#    #+#             */
+/*   Updated: 2022/04/27 16:28:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-# include "Contact.hpp"
-# include <string.h>
+# include <string>
 
-class PhoneBook {
+class Zombie {
 
-private:
-	Contact	tabContact[8];
+private:	
+	std::string	name;
 
 public:
-	PhoneBook(void);
-	~PhoneBook(void);
+	Zombie(std::string name);
+	~Zombie(void);
 
-	void	setContact(Contact contact);
-	void	add(void);
-	void	search(void);
-	void	format_output( std::string line);
-	void	format_id(int id);
-	void	print_the_contact(int id);
-	int		check_id(int id);
+	void		setName(std::string name);
+	std::string	getName(void);
+	void		announce(void);
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
