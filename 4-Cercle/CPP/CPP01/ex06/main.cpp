@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 18:47:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/02 14:33:54 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/02 18:52:54 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/02 19:53:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "Harl.hpp"
 #include <iostream>
+#include <string>
 
-HumanB::HumanB(std::string name) : _name(name)
+int	main(int argc, char **argv)
 {
-	return;
-}
+	std::string	level;
+	Harl		Karen;
 
-HumanB::~HumanB(void)
-{
-	return;
-}
-
-void	HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-}
-
-void	HumanB::attack(void)
-{
-	if (this->_weapon)
-		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
+	if (argc != 2)
+	{
+		std::cerr << "You must enter a level!" << std::endl;
+		return (0);
+	}
+	else
+	{
+		level = argv[1];
+		Karen.switchComplain(level);
+	}
 }

@@ -58,7 +58,8 @@
 		"typeinfo": "cpp",
 		"ctime": "cpp",
 		"ratio": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"cstring": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

@@ -5,24 +5,27 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/27 19:46:39 by armendes          #+#    #+#              #
-#    Updated: 2022/05/02 19:18:08 by armendes         ###   ########.fr        #
+#    Created: 2022/05/02 19:27:14 by armendes          #+#    #+#              #
+#    Updated: 2022/05/02 19:28:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp
+SRCS =	main.cpp\
+		Harl.cpp
 
 OBJS =	${SRCS:.cpp=.o}
+
+INCLUDES =	Harl.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =	Sed
+NAME =	harlFilter
 
 RM =	rm -rf
 
-%.o:	%.cpp
+%.o:	%.cpp ${INCLUDES}
 		${CC} ${FLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
