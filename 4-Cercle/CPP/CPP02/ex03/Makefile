@@ -1,0 +1,44 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/02 20:24:57 by armendes          #+#    #+#              #
+#    Updated: 2022/05/02 20:47:29 by armendes         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRCS =	main.cpp\
+		Fixed.cpp
+
+OBJS =	${SRCS:.cpp=.o}
+
+INCLUDES =	Fixed.hpp
+
+CC =	c++
+
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
+
+NAME =	Fixed
+
+RM =	rm -rf
+
+%.o:	%.cpp ${INCLUDES}
+		${CC} ${FLAGS} -c $< -o $@
+
+all:	${NAME} Makefile
+
+${NAME}:	${OBJS}	Makefile
+			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+
+clean:
+	${RM} ${OBJS}
+
+fclean:		clean
+	${RM} ${NAME}
+
+re:			fclean all
+
+.PHONY:		all clean fclean re
