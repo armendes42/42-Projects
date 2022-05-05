@@ -14,16 +14,49 @@
 #include <iostream>
 
 int main( void ) {
-	Fixed a(10);
-	Fixed b(20);
+	Fixed a(20);
+	Fixed b(10);
 	bool verif_one = (a > b);
-
-	Fixed c(30);
-	Fixed d(20);
-	bool verif_two = (c > d);
-
 	std::cout << verif_one << std::endl;
-	
+	verif_one = (a < b);
+	std::cout << verif_one << std::endl;
+	verif_one = (a >= b);
+	std::cout << verif_one << std::endl;
+	verif_one = (a <= b);
+	std::cout << verif_one << std::endl;
+	verif_one = (a == b);
+	std::cout << verif_one << std::endl;
+	verif_one = (a != b);
+	std::cout << verif_one << std::endl;
+
+	Fixed c(a + b);
+	std::cout << c << std::endl;
+	c = (a - b);
+	std::cout << c << std::endl;
+	c = (a * b);
+	std::cout << c << std::endl;
+	c = (a / b);
+	std::cout << c << std::endl;
+
+	std::cout << "pre a " << a++ << std::endl;
+	std::cout << "post a " << a << std::endl;
+	std::cout << "pre a " << ++a << std::endl;
+	std::cout << "post a " << a << std::endl;
+	std::cout << "pre a " << a-- << std::endl;
+	std::cout << "post a " << a << std::endl;
+	std::cout << "pre a " << --a << std::endl;
+	std::cout << "post a " << a << std::endl;
+
+	Fixed d;
+	Fixed const e( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << d << std::endl;
+	std::cout << ++d << std::endl;
+	std::cout << d << std::endl;
+	std::cout << d++ << std::endl;
+	std::cout << d << std::endl;
+	std::cout << e << std::endl;
+	std::cout << Fixed::max( d, e ) << std::endl;
+
 	return 0;
 
 }
