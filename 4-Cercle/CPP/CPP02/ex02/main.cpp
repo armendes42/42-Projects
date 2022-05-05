@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 20:29:39 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/05 15:58:48 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/02 20:29:41 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/05 16:34:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#include "Fixed.hpp"
+#include <iostream>
 
-class Fixed {
+int main( void ) {
+	Fixed a(10);
+	Fixed b(20);
+	bool verif_one = (a > b);
 
-private:
-	int	_value;
-	static const int	_nb_of_bytes;
+	Fixed c(30);
+	Fixed d(20);
+	bool verif_two = (c > d);
 
-public:
-	Fixed(void);
-	Fixed(const Fixed &T);
-	Fixed &operator=(const Fixed &T);
-	~Fixed(void);
+	std::cout << verif_one << std::endl;
+	
+	return 0;
 
-	int	getRawBits(void) const;
-	void setRawBits(int const raw);
-
-};
-
-#endif
+}

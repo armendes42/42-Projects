@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:29:37 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/05 16:22:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/05 16:31:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ Fixed	&Fixed::operator=(const Fixed &T)
 		return (*this);
 	this->_value = T.getRawBits();
 	return (*this);
+}
+
+bool	Fixed::operator>(const Fixed &T)
+{
+	std::cout << "More than operator called" << std::endl;
+	if (this == &T)
+		return (false);
+	if (this->_value > T.getRawBits())
+		return (true);
+	return (false);
 }
 
 std::ostream	&operator<<(std::ostream &stdout, Fixed const &value)
