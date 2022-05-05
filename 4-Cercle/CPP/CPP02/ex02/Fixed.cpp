@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:29:37 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/05 16:31:53 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/05 19:55:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ Fixed::Fixed(int const value)
 {
 	// std::cout << "Int constructor called" << std::endl;
 	this->_value = (value << Fixed::_nb_of_bytes);
+	return ;
 }
 
 Fixed::Fixed(float const value)
 {
 	// std::cout << "Float constructor called" << std::endl;
 	this->_value = roundf(value * (1 << Fixed::_nb_of_bytes));
+	return ;
 }
 
 Fixed::Fixed(const Fixed &T)

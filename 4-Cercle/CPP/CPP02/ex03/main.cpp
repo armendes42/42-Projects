@@ -6,56 +6,36 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:29:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/05 16:34:30 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/05 20:44:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include "Point.hpp"
 #include <iostream>
 
+bool  bsp(Point const a, Point const b, Point const c, Point const point);
+
 int main( void ) {
-	Fixed a(20);
-	Fixed b(10);
-	bool verif_one = (a > b);
-	std::cout << verif_one << std::endl;
-	verif_one = (a < b);
-	std::cout << verif_one << std::endl;
-	verif_one = (a >= b);
-	std::cout << verif_one << std::endl;
-	verif_one = (a <= b);
-	std::cout << verif_one << std::endl;
-	verif_one = (a == b);
-	std::cout << verif_one << std::endl;
-	verif_one = (a != b);
-	std::cout << verif_one << std::endl;
+	Point a(-4, 4);
+	Point b(-2, 4);
+	Point c(-3, 2);
 
-	Fixed c(a + b);
-	std::cout << c << std::endl;
-	c = (a - b);
-	std::cout << c << std::endl;
-	c = (a * b);
-	std::cout << c << std::endl;
-	c = (a / b);
-	std::cout << c << std::endl;
+	// Point inside the triangle
+	Point point1(-3, 3);
+	std::cout << bsp(a, b, c, point1) << std::endl;
 
-	std::cout << "pre a " << a++ << std::endl;
-	std::cout << "post a " << a << std::endl;
-	std::cout << "pre a " << ++a << std::endl;
-	std::cout << "post a " << a << std::endl;
-	std::cout << "pre a " << a-- << std::endl;
-	std::cout << "post a " << a << std::endl;
-	std::cout << "pre a " << --a << std::endl;
-	std::cout << "post a " << a << std::endl;
+	// Point outside the triangle
+	Point point2(-3, 5);
+	std::cout << bsp(a, b, c, point2) << std::endl;
 
-	Fixed d;
-	Fixed const e( Fixed( 5.05f ) * Fixed( 2 ) );
-	std::cout << d << std::endl;
-	std::cout << ++d << std::endl;
-	std::cout << d << std::endl;
-	std::cout << d++ << std::endl;
-	std::cout << d << std::endl;
-	std::cout << e << std::endl;
-	std::cout << Fixed::max( d, e ) << std::endl;
+	// Point on a summit
+	Point point3(-3, 2);
+	std::cout << bsp(a, b, c, point3) << std::endl;
+
+	// Point on an edge
+	Point point4(-2.46f, 3.09f);
+	std::cout << bsp(a, b, c, point4) << std::endl;
 
 	return 0;
 

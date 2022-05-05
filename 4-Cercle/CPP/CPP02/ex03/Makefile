@@ -6,22 +6,25 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 20:24:57 by armendes          #+#    #+#              #
-#    Updated: 2022/05/02 20:47:29 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/05 20:00:06 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.cpp\
-		Fixed.cpp
+				Fixed.cpp\
+				Point.cpp\
+				bsp.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	Fixed.hpp
+INCLUDES =	Fixed.hpp\
+						Point.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =	Fixed
+NAME =	BSP
 
 RM =	rm -rf
 
