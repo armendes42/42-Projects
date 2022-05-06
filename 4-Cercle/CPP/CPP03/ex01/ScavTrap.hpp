@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 19:44:28 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:38:30 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/06 18:14:12 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/06 18:40:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_HPP
-# define POINT_HPP
+#ifndef SCAVTRAP_H
+# define SCAVTRAP_H
 
-# include "Fixed.hpp"
+#include <iostream>
+#include <string>
 
-class Point {
-
-private:
-  Fixed _x;
-  Fixed _y;
+class ScavTrap{
 
 public:
-  Point(void);
-  Point(const float x, const float y);
-  Point(const Point &T);
-  Point &operator=(const Point &T);
-  ~Point(void);
 
-  Fixed getX(void) const;
-  Fixed getY(void) const;
+	/*
+	** CANONICAL FUNCS
+	*/
+	ScavTrap(void);
+	ScavTrap(ScavTrap const & src);
+	~ScavTrap(void);
+	ScavTrap & operator=(ScavTrap const & rhs);
+
+private:
+
 };
 
 #endif

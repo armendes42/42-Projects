@@ -6,12 +6,12 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:43 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:38:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:29:42 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
 
 # include <string>
 
