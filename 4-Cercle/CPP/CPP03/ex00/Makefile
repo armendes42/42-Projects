@@ -6,12 +6,12 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/05 20:48:40 by armendes          #+#    #+#              #
-#    Updated: 2022/05/05 20:51:52 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/06 16:14:09 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.cpp\
-				Claptrap.cpp
+				ClapTrap.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
