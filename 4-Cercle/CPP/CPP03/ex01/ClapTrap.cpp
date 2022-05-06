@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 16:55:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:51:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ ClapTrap::ClapTrap(std::string name)
 {
   std::cout << "ClapTrap " << name << " is created!" << std::endl;
   this->_name = name;
-  this->_hitPoints = 10;
-  this->_energyPoints = 10;
-  this->_attackDamage = 0;
+  this->_hitPoints = 100;
+  this->_energyPoints = 50;
+  this->_attackDamage = 20;
 	return;
 }
 
