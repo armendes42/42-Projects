@@ -6,24 +6,26 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/05 20:48:40 by armendes          #+#    #+#              #
-#    Updated: 2022/05/09 16:11:53 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/09 16:27:52 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.cpp\
 				ClapTrap.cpp\
-				ScavTrap.cpp
+				ScavTrap.cpp\
+				FragTrap.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
 INCLUDES =	Claptrap.hpp\
-						ScavTrap.hpp
+						ScavTrap.hpp\
+						FragTrap.hpp
 
 CC =	c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
+CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME = ScavTrap
+NAME =	FragTrap
 
 RM =	rm -rf
 
