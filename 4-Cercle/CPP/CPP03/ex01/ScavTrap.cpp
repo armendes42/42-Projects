@@ -6,23 +6,24 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:14:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:52:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:59:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
 #include <string>
 
-ScavTrap::ScavTrap(void)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap " << name << " is created!" << std::endl;
 	return;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &T)
+ScavTrap::ScavTrap(ScavTrap const &T) : ClapTrap(T)
 {
-	std::cout << "Copy constructor called";
+	std::cout << "Copy constructor ScavTrap called" << std::endl;
 	*this = T;
 	return;
 }
@@ -36,6 +37,28 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &T)
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << "ScavTrap " << this->_name << " is destroyed!" << std::endl;
+	std::cout << "ScavTrap " << this->getName() << " is destroyed!" << std::endl;
 	return;
+}
+
+void ScavTrap::attack(const std::string &target)
+{
+  if (this->getEnergyPoints() != 0)
+  {
+    std::cout << "ScavTrap " << this->getName() << " attacks ";
+    std::cout << target << ", causing " << this->getAttackDamage();
+    std::cout << " points of damage!" << std::endl;
+    this->setEnergyPoints(this->getEnergyPoints() - 1);
+  }
+  else
+  {
+    std::cout << "ScavTrap " << this->getName();
+    std::cout << " can't attack because he has no more Energy Points!" << std::endl;
+  }
+}
+
+void ScavTrap::guardGate(void)
+{
+	std::cout << "ScavTrap " << this->getName() << " has entered Gate Keeper mode!";
+	std::cout << std::endl;
 }

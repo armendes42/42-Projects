@@ -6,30 +6,27 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:14:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:55:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:59:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
+# include "ClapTrap.hpp"
 # include <iostream>
 # include <string>
 
 class ScavTrap : public ClapTrap{
 
-private:
-	
-
 public:
-	ScavTrap(void);
+	ScavTrap(std::string name);
 	ScavTrap(ScavTrap const &T);
 	~ScavTrap(void);
 	ScavTrap &operator=(ScavTrap const &T);
 
-	void attack() {
-		/* code */
-	}
+	void attack(const std::string &target);
+	void guardGate(void);
 
 };
 
