@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:48:14 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/02 18:50:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:08:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,29 @@ int	main(int argc, char **argv)
 	std::ofstream	file_replace;
 	file_replace.open(name_of_file_replace, std::ios::out);
 
-	if (replaced.empty())
+	if (replaced.empty() == true)
 	{
-		while (!file.eof() && std::getline(file, str))	
+		while (!file.eof() && std::getline(file, str))
 			file_replace << str << std::endl;
-		return (0);
 	}
-	replaced = argv[2];
-	replacer = argv[3];
-	while (!file.eof() && std::getline(file, str))
+	else
 	{
-		found = 0;
-		while (found != std::string::npos)
+		replaced = argv[2];
+		replacer = argv[3];
+		while (!file.eof() && std::getline(file, str))
 		{
-			found = str.find(argv[2], 0, strlen(argv[2]));
-			if (found != std::string::npos)
+			found = 0;
+			while (found != std::string::npos)
 			{
-				str.erase(found, replaced.length());
-				str.insert(found, replacer);
+				found = str.find(argv[2], 0, strlen(argv[2]));
+				if (found != std::string::npos)
+				{
+					str.erase(found, replaced.length());
+					str.insert(found, replacer);
+				}
+				found = str.find(argv[2], 0, strlen(argv[2]));
 			}
-			found = str.find(argv[2], 0, strlen(argv[2]));
+			file_replace << str << std::endl;
 		}
-		file_replace << str << std::endl;
 	}
 }
