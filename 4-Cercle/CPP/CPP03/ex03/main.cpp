@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 17:19:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:12:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int main(void) {
   std::cout << " and my energy points are " << Diamond.getEnergyPoints();
   std::cout << " and my attack damage are " << Diamond.getAttackDamage() << std::endl;
   Diamond.attack("Barry");
+  Diamond.highFivesGuys();
   std::cout << std::endl;
 
   return 0;
