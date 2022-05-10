@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:17:42 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:10:40 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:20:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Animal &Animal::operator=(Animal const &T)
 {
 	if (this == &T)
 		return (*this);
-	this->type = T.type;
+	this->type = T.getType();
 	return (*this);
 }
 

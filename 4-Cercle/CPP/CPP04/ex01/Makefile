@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 18:15:30 by armendes          #+#    #+#              #
-#    Updated: 2022/05/09 19:27:46 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/10 15:31:31 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,23 @@ SRCS =	main.cpp\
 				Cat.cpp\
 				Dog.cpp\
 				WrongAnimal.cpp\
-				WrongCat.cpp
+				WrongCat.cpp\
+				Brain.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
 INCLUDES =	Animal.hpp\
 						Cat.hpp\
-						Dog.hpp
+						Dog.hpp\
+						WrongAnimal.hpp\
+						WrongCat.hpp\
+						Brain.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME = Animal
+NAME = Brain
 
 RM =	rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:21:31 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:12:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:22:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 # include <iostream>
 # include <string>
 
 class Cat : public Animal{
+
+private:
+	Brain *_brain;
 
 public:
 	Cat(void);
 	Cat(Cat const &T);
 	~Cat(void);
 	Cat &operator=(Cat const &T);
+	virtual Animal &operator=(Animal const &T);
 
   void makeSound(void) const;
+
+	Brain *getBrain(void) const;
 };
 
 #endif

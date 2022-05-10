@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 19:07:20 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:46:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:19:14 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ WrongCat &WrongCat::operator=(WrongCat const &T)
 {
 	if (this == &T)
 		return (*this);
-  this->type = T.type;
+  this->type = T.getType();
 	return (*this);
 }
 

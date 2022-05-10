@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 19:49:27 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:49:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:03:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 
 class Brain{
 
-private:
-
-
 public:
 	Brain(void);
 	Brain(Brain const &T);
 	~Brain(void);
 	Brain &operator=(Brain const &T);
+
+	std::string	ideas[100];
 
 };
 

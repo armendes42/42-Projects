@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:15:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:45:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:24:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,64 @@
 
 int main(void)
 {
-  const Animal* meta = new Animal();
-  const Animal* j = new Dog();
-  const Animal* i = new Cat();
+  // const Animal* meta = new Animal();
+  // const Animal* j = new Dog();
+  // const Animal* i = new Cat();
+  //
+  // std::cout << j->getType() << " " << std::endl;
+  // std::cout << i->getType() << " " << std::endl;
+  // i->makeSound(); //will output the cat sound!
+  // j->makeSound();
+  // meta->makeSound();
+  //
+  // delete meta;
+  // delete j;
+  // delete i;
+  //
+  // const WrongAnimal* a = new WrongAnimal();
+  // const WrongAnimal* b = new WrongCat();
+  //
+  // std::cout << a->getType() << " " << std::endl;
+  // std::cout << b->getType() << " " << std::endl;
+  // a->makeSound();
+  // b->makeSound();
+  //
+  // delete a;
+  // delete b;
 
-  std::cout << j->getType() << " " << std::endl;
-  std::cout << i->getType() << " " << std::endl;
-  i->makeSound(); //will output the cat sound!
-  j->makeSound();
-  meta->makeSound();
+  Animal* animalTab[10];
+  for (int i = 0; i < 10; i++)
+  {
+    if (i % 2)
+      animalTab[i] = new Dog();
+    else
+      animalTab[i] = new Cat();
+  }
 
-  delete meta;
-  delete j;
-  delete i;
+  for (int i = 0; i < 10; i++)
+  {
+    std::cout << "Animal 0: idea " << i << ": ";
+    std::cout << animalTab[0]->getBrain()->ideas[i] << " / ";
+    std::cout << "Animal 1: idea " << i << ": ";
+    std::cout << animalTab[1]->getBrain()->ideas[i] << std::endl;
+  }
+  std::cout << std::endl;
 
-  const WrongAnimal* a = new WrongAnimal();
-  const WrongAnimal* b = new WrongCat();
+  *(animalTab[1]) = *(animalTab[0]);
 
-  std::cout << a->getType() << " " << std::endl;
-  std::cout << b->getType() << " " << std::endl;
-  a->makeSound();
-  b->makeSound();
+  for (int i = 0; i < 10; i++)
+  {
+    std::cout << "Animal 0: idea " << i << ": ";
+    std::cout << animalTab[0]->getBrain()->ideas[i] << " / ";
+    std::cout << "Animal 1: idea " << i << ": ";
+    std::cout << animalTab[1]->getBrain()->ideas[i] << std::endl;
+  }
+  std::cout << std::endl;
 
-  delete a;
-  delete b;
+  for (int i = 0; i < 10; i++)
+  {
+    delete animalTab[i];
+  }
 
   return 0;
 }
