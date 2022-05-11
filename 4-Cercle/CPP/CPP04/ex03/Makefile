@@ -6,16 +6,26 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 16:34:55 by armendes          #+#    #+#              #
-#    Updated: 2022/05/10 16:39:34 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/11 17:51:30 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.cpp\
-				AMateria.cpp
+				AMateria.cpp\
+				Character.cpp\
+				Cure.cpp\
+				Ice.cpp\
+				MateriaSource.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	AMateria.hpp
+INCLUDES =	AMateria.hpp\
+						Character.hpp\
+						Cure.hpp\
+						Ice.hpp\
+						ICharacter.hpp\
+						IMateriaSource.hpp\
+						MateriaSource.hpp
 
 CC =	c++
 

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 16:41:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 16:14:55 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/11 16:54:00 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/11 17:42:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
 # include "AMateria.hpp"
 # include <iostream>
 # include <string>
 
-class Cure : public AMateria{
+class MateriaSource{
+
+private:
+  AMateria *_materiaLearnTab[4];
 
 public:
-	Cure(void);
-	Cure(Cure const &T);
-	~Cure(void);
-	Cure &operator=(Cure const &T);
+	MateriaSource(void);
+	MateriaSource(MateriaSource const &T);
+	~MateriaSource(void);
+	MateriaSource &operator=(MateriaSource const &T);
 
-  AMateria* clone() const;
-  void use(ICharacter& target);
+  void learnMateria(AMateria* m);
+  AMateria* createMateria(std::string const & type);
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:41:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:52:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:48:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ public:
 	Ice &operator=(Ice const &T);
 
   AMateria* clone() const;
+  void use(ICharacter& target);
 
 };
 
