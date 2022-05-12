@@ -6,27 +6,23 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:46:39 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/05 20:04:29 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:39:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point(void)
+Point::Point(void) : _x(0), _y(0)
 {
-  this->_x = 0;
-  this->_y = 0;
   return ;
 }
 
-Point::Point(const float x, const float y)
+Point::Point(const float x, const float y) : _x(x), _y(y)
 {
-  this->_x = x;
-  this->_y = y;
   return ;
 }
 
-Point::Point(const Point &T)
+Point::Point(const Point &T) : _x(T._x), _y(T._y)
 {
   *this = T;
   return ;
@@ -36,8 +32,6 @@ Point &Point::operator=(const Point &T)
 {
   if (this == &T)
     return (*this);
-  this->_x = T.getX();
-  this->_y = T.getY();
   return (*this);
 }
 

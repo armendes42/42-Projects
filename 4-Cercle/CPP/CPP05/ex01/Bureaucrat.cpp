@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 16:36:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:00:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,25 @@ void Bureaucrat::downGrade(void)
   if (tmpGrade > lowestGrade)
     throw GradeTooLowException();
   this->_grade = tmpGrade;
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+  int control;
+  control = form.beSigned(*this);
+  if (control == 1)
+  {
+    std::cout << this->_name << " couldn't sign " << form.getName();
+    std::cout << " because it is already signed" << std::endl;
+    return;
+  }
+  if (control == 2)
+  {
+    std::cout << this->_name << " couldn't sign " << form.getName();
+    std::cout << " because it doesn't have a grade high enough" << std::endl;
+    return;
+  }
+  std::cout << this->_name << " signed " << form.getName() << std::endl;
 }
 
 std::ostream	&operator<<(std::ostream &stdout, Bureaucrat const &person)

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:44:28 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:38:30 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:39:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class Point {
 
 private:
-  Fixed _x;
-  Fixed _y;
+  Fixed const _x;
+  Fixed const _y;
 
 public:
   Point(void);
