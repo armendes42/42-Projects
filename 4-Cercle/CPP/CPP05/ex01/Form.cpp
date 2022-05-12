@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:21:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 17:25:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:46:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name), _sig
 {
   // std::cout << "A Form has been created" << std::endl;
   this->_signed = false;
-  if (sign_grade < highestGrade || exec_grade < hid)
+  if (sign_grade < highestGrade || exec_grade < highestGrade)
+    throw GradeTooHighException();
+  if (sign_grade > lowestGrade || exec_grade > lowestGrade)
+    throw GradeTooLowException();
 	return;
 }
 
-Form::Form(Form const &T)
+Form::Form(Form const &T) : _name(T._name), _sign_grade(T._sign_grade), _exec_grade(T._exec_grade)
 {
   // std::cout << "Copy constructor of Form has been used" << std::endl;
 	*this = T;
@@ -63,33 +66,26 @@ int Form::getExecGrade(void) const
   return (this->_exec_grade);
 }
 
-int Form::beSigned(Bureaucrat &person)
+void Form::beSigned(Bureaucrat &person)
 {
   if (this->_signed == true)
-  {
-    std::cout << "The form " << this->_name << " is already signed" << std::endl;
-    return (1);
-  }
+    throw AlreadySignedException();
   if (person.getGrade() <= this->_sign_grade)
   {
     std::cout << "The form " << this->_name << " has been signed by " << person.getName() << std::endl;
     this->_signed = true;
-    return (0);
   }
   else
-  {
     throw GradeTooLowException();
-    return (2);
-  }
 }
 
 std::ostream &operator<<(std::ostream &stdout, Form const &form)
 {
   stdout << form.getName() << ", ";
   if (form.getSigned() == true)
-    stdout << "is signed ";
+    stdout << "is signed";
   else
-    stdout << "is not signed ";
+    stdout << "is not signed";
   stdout << ", grade required for signing: " << form.getSignGrade();
   stdout << ", grade required for executing: " << form.getExecGrade();
   stdout << ".";

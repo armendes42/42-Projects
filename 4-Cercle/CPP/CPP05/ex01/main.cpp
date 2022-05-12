@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:29 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 17:25:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:53:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ int main(void)
   try
   {
     Bureaucrat Billy("Billy", 2);
-    Form form1("First Form", 1)
+    Bureaucrat EvilBilly("EvilBilly", 1);
     std::cout << Billy << std::endl;
+    std::cout << EvilBilly << std::endl;
+    Form form1("First Form", 1, 1);
+    // Form form2("Second Form", 0, 1);
+    // Form form3("Third Form", 151, 1);
+    std::cout << form1 << std::endl;
+    Billy.signForm(form1);
+    EvilBilly.signForm(form1);
+    Billy.signForm(form1);
     Billy.upGrade();
     std::cout << Billy << std::endl;
     Billy.upGrade();

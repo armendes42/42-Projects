@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:20:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 17:09:37 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:50:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ public:
   int getSignGrade(void) const;
   int getExecGrade(void) const;
 
-  int beSigned(Bureaucrat &person);
+  void beSigned(Bureaucrat &person);
 
   class GradeTooHighException : public std::exception{
 
@@ -60,6 +60,16 @@ public:
     virtual const char *what() const throw()
     {
       return ("The grade you try to set is too low");
+    }
+
+  };
+
+  class AlreadySignedException : public std::exception{
+
+  public:
+    virtual const char *what() const throw()
+    {
+      return ("The form is already signed");
     }
 
   };

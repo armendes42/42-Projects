@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 17:00:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:49:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ public:
   public:
     virtual const char *what() const throw()
     {
-      return ("The grade you set is too high");
+      return ("The grade you try to set is too high");
     }
 
   };
@@ -57,20 +57,20 @@ public:
   public:
     virtual const char *what() const throw()
     {
-      return ("The grade you set is too low");
+      return ("The grade you try to set is too low");
     }
 
   };
 
-  // class AlreadySignedException : public std::exception{
-  //
-  // public:
-  //   virtual const char *what() const throw()
-  //   {
-  //     return ("The form is already signed");
-  //   }
-  //
-  // };
+  class AlreadySignedException : public std::exception{
+
+  public:
+    virtual const char *what() const throw()
+    {
+      return ("The form is already signed");
+    }
+
+  };
 
 };
 
