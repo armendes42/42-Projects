@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 18:17:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/16 15:42:32 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/12 18:56:29 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/12 19:31:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef PRESIDENTIALPARDONFORM_H
+# define PRESIDENTIALPARDONFORM_H
 
-# include "Brain.hpp"
+# include "Form.hpp"
 # include <iostream>
 # include <string>
 
-class Animal{
-
-protected:
-  std::string type;
+class PresidentialPardonForm : public Form{
 
 public:
-	Animal(void);
-	Animal(Animal const &T);
-	virtual ~Animal(void);
-	virtual Animal &operator=(Animal const &T);
+	PresidentialPardonForm(std::string target);
+	PresidentialPardonForm(PresidentialPardonForm const &T);
+	~PresidentialPardonForm(void);
+	PresidentialPardonForm &operator=(PresidentialPardonForm const &T);
 
-  virtual void makeSound(void) const;
-
-  std::string getType(void) const;
-
-  virtual Brain *getBrain(void) const = 0;
+  void action(Bureaucrat const & executor) const;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:21:31 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:22:59 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:41:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
   void makeSound(void) const;
 
 	Brain *getBrain(void) const;
+	
 };
 
 #endif
