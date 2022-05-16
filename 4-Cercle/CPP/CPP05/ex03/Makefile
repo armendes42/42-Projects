@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 18:30:18 by armendes          #+#    #+#              #
-#    Updated: 2022/05/12 19:05:36 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/16 16:48:30 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRCS =	main.cpp\
 				Form.cpp\
 				ShrubberyCreationForm.cpp\
 				RobotomyRequestForm.cpp\
-				PresidentialPardonForm.cpp
+				PresidentialPardonForm.cpp\
+				Intern.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -23,13 +24,14 @@ INCLUDES =	Bureaucrat.hpp\
 						Form.hpp\
 						ShrubberyCreationForm.hpp\
 						RobotomyRequestForm.hpp\
-						PresidentialPardonForm.hpp
+						PresidentialPardonForm.hpp\
+						Intern.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME =	Forms
+NAME =	Intern
 
 RM =	rm -rf
 
