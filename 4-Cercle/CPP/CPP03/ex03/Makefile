@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/05 20:48:40 by armendes          #+#    #+#              #
-#    Updated: 2022/05/09 16:33:40 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:07:45 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ NAME =	DiamondTrap
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

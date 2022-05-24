@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 19:46:39 by armendes          #+#    #+#              #
-#    Updated: 2022/05/02 19:18:08 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:06:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME =	Sed
 RM =	rm -rf
 
 %.o:	%.cpp
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

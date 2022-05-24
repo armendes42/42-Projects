@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/05 20:48:40 by armendes          #+#    #+#              #
-#    Updated: 2022/05/09 16:11:53 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:07:34 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ NAME = ScavTrap
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

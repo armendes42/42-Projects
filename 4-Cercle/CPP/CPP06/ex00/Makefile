@@ -5,29 +5,26 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/11 18:30:18 by armendes          #+#    #+#              #
-#    Updated: 2022/05/24 20:08:30 by armendes         ###   ########.fr        #
+#    Created: 2022/05/18 15:55:46 by armendes          #+#    #+#              #
+#    Updated: 2022/05/24 20:08:46 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp\
-				Bureaucrat.cpp\
-				Form.cpp
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	Bureaucrat.hpp\
-						Form.hpp
+# INCLUDES =
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME =	Form
+NAME =	Conversion
 
 RM =	rm -rf
 
-%.o:	%.cpp ${INCLUDES}
+%.o:	%.cpp #${INCLUDES}
 		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile

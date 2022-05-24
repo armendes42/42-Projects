@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 16:34:55 by armendes          #+#    #+#              #
-#    Updated: 2022/05/11 17:51:30 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:08:12 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ NAME =	AMateria
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

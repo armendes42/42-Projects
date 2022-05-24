@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/27 18:27:00 by armendes          #+#    #+#              #
-#    Updated: 2022/04/27 18:30:59 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:06:23 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME =	Address
 RM =	rm -rf
 
 %.o:	%.cpp
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

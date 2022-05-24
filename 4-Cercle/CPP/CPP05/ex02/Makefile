@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 18:30:18 by armendes          #+#    #+#              #
-#    Updated: 2022/05/12 19:05:36 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:08:35 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ NAME =	Forms
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

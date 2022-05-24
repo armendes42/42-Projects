@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 20:24:57 by armendes          #+#    #+#              #
-#    Updated: 2022/05/02 20:47:29 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/24 20:07:06 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME =	Fixed
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
-		${CC} ${FLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
 

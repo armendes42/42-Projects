@@ -5,29 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/11 18:30:18 by armendes          #+#    #+#              #
-#    Updated: 2022/05/24 20:08:30 by armendes         ###   ########.fr        #
+#    Created: 2022/05/24 16:58:39 by armendes          #+#    #+#              #
+#    Updated: 2022/05/24 20:04:08 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp\
-				Bureaucrat.cpp\
-				Form.cpp
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
-
-INCLUDES =	Bureaucrat.hpp\
-						Form.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME =	Form
+NAME =	Serialize
 
 RM =	rm -rf
 
-%.o:	%.cpp ${INCLUDES}
+%.o:	%.cpp
 		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
