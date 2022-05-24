@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Conversion.hpp                                     :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 16:10:25 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/24 20:38:33 by armendes         ###   ########.fr       */
+/*   Created: 2022/05/24 20:39:07 by armendes          #+#    #+#             */
+/*   Updated: 2022/05/24 20:43:27 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERSION_HPP
-# define CONVERSION_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
 # include <iostream>
 # include <string>
 
-class Conversion{
-
-private:
-  std::string
+class Base{
 
 public:
-	Conversion(void);
-	Conversion(Conversion const &T);
-	~Conversion(void);
-	Conversion &operator=(Conversion const &T);
+	virtual ~Base(void);
 
 };
 
