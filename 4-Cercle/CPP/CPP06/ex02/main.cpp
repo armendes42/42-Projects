@@ -6,13 +6,14 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:39:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/25 16:03:41 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:26:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <time.h>
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -25,9 +26,9 @@ Base * generate(void)
   int i = rand() % 3;
   if (i == 0)
     ptr = new A();
-  else if (i == 1)
+  if (i == 1)
     ptr = new B();
-  else if (i == 2)
+  if (i == 2)
     ptr = new C();
   return (ptr);
 }
@@ -39,14 +40,34 @@ void identify(Base *p)
   else if (dynamic_cast<A *>(p))
     std::cout << "It's an A!" << std::endl;
   else if (dynamic_cast<B *>(p))
-    std::cout << "It's an B!" << std::endl;
+    std::cout << "It's a B!" << std::endl;
   else if (dynamic_cast<C *>(p))
-    std::cout << "It's an C!" << std::endl;
+    std::cout << "It's a C!" << std::endl;
 }
 
 void identify(Base &p)
 {
-
+  try
+  {
+    (void)dynamic_cast<A &>(p);
+    std::cout << "It's an A!" << std::endl;
+  }
+  catch (std::exception &e)
+  {}
+  try
+  {
+    (void)dynamic_cast<B &>(p);
+    std::cout << "It's a B!" << std::endl;
+  }
+  catch (std::exception &e)
+  {}
+  try
+  {
+    (void)dynamic_cast<C &>(p);
+    std::cout << "It's a C!" << std::endl;
+  }
+  catch (std::exception &e)
+  {}
 }
 
 int main(void)
@@ -62,4 +83,16 @@ int main(void)
   identify(ptr2);
   identify(ptr3);
   identify(ptr4);
+
+  std::cout << std::endl;
+
+  Base &tmp = *ptr;
+  Base &tmp2 = *ptr2;
+  Base &tmp3 = *ptr3;
+  Base &tmp4 = *ptr4;
+
+  identify(tmp);
+  identify(tmp2);
+  identify(tmp3);
+  identify(tmp4);
 }

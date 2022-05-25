@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 15:55:46 by armendes          #+#    #+#              #
-#    Updated: 2022/05/24 20:08:46 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/25 22:20:42 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-# INCLUDES =
+INCLUDES =	Conversion.hpp
 
 CC =	c++
 
@@ -24,7 +24,7 @@ NAME =	Conversion
 
 RM =	rm -rf
 
-%.o:	%.cpp #${INCLUDES}
+%.o:	%.cpp ${INCLUDES}
 		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
