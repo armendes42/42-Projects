@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:29:37 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 18:01:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:16:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ Fixed	Fixed::operator++(int)
 Fixed	Fixed::operator--()
 {
 	// std::cout << "Pre decrementation operator called" << std::endl;
-	this->_value++;
+	this->_value--;
 	return (*this);
 }
 

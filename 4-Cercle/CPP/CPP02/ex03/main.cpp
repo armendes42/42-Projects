@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:29:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 17:40:07 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:54:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 bool  bsp(Point const a, Point const b, Point const c, Point const point);
 
 int main( void ) {
+
 	Point const a(-4, 4);
 	Point const b(-2, 4);
 	Point const c(-3, 2);

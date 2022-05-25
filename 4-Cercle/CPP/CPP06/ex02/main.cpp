@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:39:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/24 20:57:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/25 16:03:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ Base * generate(void)
   int i = rand() % 3;
   if (i == 0)
     ptr = new A();
-  if (i == 1)
+  else if (i == 1)
     ptr = new B();
-  if (i == 2)
+  else if (i == 2)
     ptr = new C();
   return (ptr);
 }
@@ -46,7 +46,7 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-  
+
 }
 
 int main(void)

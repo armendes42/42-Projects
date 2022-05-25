@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 20:24:57 by armendes          #+#    #+#              #
-#    Updated: 2022/05/24 20:07:17 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/25 17:53:33 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ RM =	rm -rf
 		${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME} Makefile
-
+	
 ${NAME}:	${OBJS}	Makefile
 			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
