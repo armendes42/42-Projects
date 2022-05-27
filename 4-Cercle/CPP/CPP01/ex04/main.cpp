@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:48:14 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 18:08:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:07:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv)
 	std::ofstream	file_replace;
 	file_replace.open(name_of_file_replace, std::ios::out);
 
+	replaced = argv[2];
 	if (replaced.empty() == true)
 	{
 		while (!file.eof() && std::getline(file, str))

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 22:21:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/27 17:00:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:39:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ private:
   int _i;
   float _f;
   double _d;
+  std::string _special;
+  bool _b;
 
 public:
 	Conversion(std::string str);
@@ -35,11 +37,22 @@ public:
   int getInt(void) const;
   float getFloat(void) const;
   double getDouble(void) const;
+  std::string getSpecial(void) const;
+  bool getBool(void) const;
 
+  bool isSpecial(std::string str);
+  bool isInf(std::string str);
+  bool isMinusInf(std::string str);
+  bool isNan(std::string str);
   bool isChar(std::string str);
   bool isInt(std::string str);
   bool isFloat(std::string str);
   bool isDouble(std::string str);
+
+  char toChar(std::string str);
+  int toInt(std::string str);
+  float toFloat(std::string str);
+  double toDouble(std::string str);
 
 };
 

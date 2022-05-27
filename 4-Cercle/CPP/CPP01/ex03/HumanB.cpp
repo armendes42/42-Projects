@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 18:47:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/02 14:33:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:07:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Weapon.hpp"
 #include <iostream>
 
-HumanB::HumanB(std::string name) : _name(name)
+HumanB::HumanB(std::string name) : _weapon(NULL) _name(name)
 {
 	return;
 }
