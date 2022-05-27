@@ -6,11 +6,12 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 15:55:46 by armendes          #+#    #+#              #
-#    Updated: 2022/05/25 22:20:42 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/27 17:00:06 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp
+SRCS =	main.cpp\
+				Conversion.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -18,7 +19,7 @@ INCLUDES =	Conversion.hpp
 
 CC =	c++
 
-CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
+CFLAGS = -Wall -Wextra -Werror -Wshadow -I includes #-std=c++98 -I includes
 
 NAME =	Conversion
 
