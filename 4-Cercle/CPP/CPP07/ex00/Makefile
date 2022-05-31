@@ -6,11 +6,11 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 15:41:15 by armendes          #+#    #+#              #
-#    Updated: 2022/05/31 15:41:47 by armendes         ###   ########.fr        #
+#    Updated: 2022/05/31 17:25:16 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -20,7 +20,7 @@ CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME =	
+NAME =
 
 RM =	rm -rf
 
