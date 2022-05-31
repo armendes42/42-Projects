@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:14:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 17:13:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:52:42 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ ScavTrap::~ScavTrap(void)
 
 void ScavTrap::attack(const std::string &target)
 {
-  if (this->getEnergyPoints() != 0)
+	if (this->getHitPoints() <= 0)
+    std::cout << "ScavTrap " << this->getName() << " is dead!" << std::endl;
+  else if (this->getEnergyPoints() != 0)
   {
     std::cout << "ScavTrap " << this->getName() << " attacks ";
     std::cout << target << ", causing " << this->getAttackDamage();
@@ -62,6 +64,8 @@ void ScavTrap::attack(const std::string &target)
 
 void ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap " << this->getName() << " has entered Gate Keeper mode!";
-	std::cout << std::endl;
+	if (this->getHitPoints() <= 0)
+		std::cout << "ScavTrap " << this->getName() << " is dead!" << std::endl;
+	else
+		std::cout << "ScavTrap " << this->getName() << " has entered Gate Keeper mode!" << std::endl;
 }

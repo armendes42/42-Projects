@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/06 17:59:16 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:43:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int main(void) {
   }
   std::cout << std::endl;
   Foo.beRepaired(5);
+
+  Foo.takeDamage(20);
+  Foo.beRepaired(2);
+  Foo.attack("Bar");
 
   return 0;
 }

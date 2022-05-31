@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 18:12:55 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:59:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int main(void) {
   }
   std::cout << std::endl;
   Foo.beRepaired(5);
+  Foo.takeDamage(20);
+  Foo.beRepaired(2);
+  Foo.attack("Bar");
   std::cout << std::endl;
 
   ScavTrap Arthur("arthur");
@@ -63,6 +66,10 @@ int main(void) {
   std::cout << " and my hit points are " << Diamond.getHitPoints();
   std::cout << " and my energy points are " << Diamond.getEnergyPoints();
   std::cout << " and my attack damage are " << Diamond.getAttackDamage() << std::endl;
+  Diamond.attack("Barry");
+  Diamond.highFivesGuys();
+  Diamond.takeDamage(2020);
+  Diamond.whoAmI();
   Diamond.attack("Barry");
   Diamond.highFivesGuys();
   std::cout << std::endl;

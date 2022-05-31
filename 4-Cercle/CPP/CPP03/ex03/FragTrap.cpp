@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:02:51 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 17:14:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:55:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ FragTrap::~FragTrap(void)
 
 void FragTrap::highFivesGuys(void)
 {
-  std::cout << "Hey Guys do you want to high five?" << std::endl;
+  if (this->getHitPoints() <= 0)
+    std::cout << "FragTrap " << this->getName() << " is dead!" << std::endl;
+  else
+    std::cout << "Hey Guys do you want to high five?" << std::endl;
 }

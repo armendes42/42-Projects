@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:29:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 17:09:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:58:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ void DiamondTrap::attack(const std::string &target)
 
 void DiamondTrap::whoAmI(void)
 {
-  std::cout << "My name is " << this->_name << " and my ClapTrap name is ";
-  std::cout << ClapTrap::_name << std::endl;
+  if (this->getHitPoints() <= 0)
+    std::cout << "DiamondTrap " << this->_name << " is dead!" << std::endl;
+  else
+  {
+    std::cout << "My name is " << this->_name << " and my ClapTrap name is ";
+    std::cout << ClapTrap::_name << std::endl;
+  }
 }
 
 std::string DiamondTrap::getName(void) const

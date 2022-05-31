@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 16:24:14 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:56:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int main(void) {
   }
   std::cout << std::endl;
   Foo.beRepaired(5);
+  Foo.takeDamage(20);
+  Foo.beRepaired(2);
+  Foo.attack("Bar");
   std::cout << std::endl;
 
   ScavTrap Arthur("arthur");
@@ -42,9 +45,14 @@ int main(void) {
   Arthur.attack("david");
   Scav.attack("sergiu");
   Arthur.guardGate();
+  Arthur.takeDamage(200);
+  Arthur.attack("david");
+  Arthur.guardGate();
   std::cout << std::endl;
 
   FragTrap Frag("dupond");
+  Frag.highFivesGuys();
+  Frag.takeDamage(300);
   Frag.highFivesGuys();
   std::cout << std::endl;
 
