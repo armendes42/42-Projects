@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:49:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/31 16:56:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:16:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int main(void) {
   Arthur.attack("david");
   Scav.attack("sergiu");
   Arthur.guardGate();
+  Arthur.beRepaired(5);
   Arthur.takeDamage(200);
   Arthur.attack("david");
   Arthur.guardGate();
@@ -52,8 +53,10 @@ int main(void) {
 
   FragTrap Frag("dupond");
   Frag.highFivesGuys();
+  Frag.attack("david");
   Frag.takeDamage(300);
   Frag.highFivesGuys();
+  Frag.attack("david");
   std::cout << std::endl;
 
   return 0;

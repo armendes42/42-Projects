@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:03:00 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 16:36:23 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:12:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ public:
 	~FragTrap(void);
 	FragTrap &operator=(FragTrap const &T);
 
+	void attack(const std::string &target);
   void highFivesGuys(void);
 
 };
