@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 22:21:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/27 19:39:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:29:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ class Conversion{
 private:
 
   char _c;
-  int _i;
+  long _i;
   float _f;
   double _d;
   std::string _special;
   bool _b;
+  bool _flow_int;
+  bool _flow_float;
+  bool _flow_double;
 
 public:
 	Conversion(std::string str);
@@ -34,11 +37,16 @@ public:
 	Conversion &operator=(Conversion const &T);
 
   char getChar(void) const;
-  int getInt(void) const;
+  long getInt(void) const;
   float getFloat(void) const;
   double getDouble(void) const;
   std::string getSpecial(void) const;
   bool getBool(void) const;
+  bool getFlowInt(void) const;
+  bool getFlowFloat(void) const;
+  bool getFlowDouble(void) const;
+
+  void setFlowInt(bool b);
 
   bool isSpecial(std::string str);
   bool isInf(std::string str);
@@ -50,7 +58,7 @@ public:
   bool isDouble(std::string str);
 
   char toChar(std::string str);
-  int toInt(std::string str);
+  long toInt(std::string str);
   float toFloat(std::string str);
   double toDouble(std::string str);
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:05 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/27 19:45:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:37:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <limits>
+#include <limits.h>
 #include "errno.h"
+#include <math.h>
+#include <climits>
 
 Conversion::Conversion(std::string str)
 {
 	this->_b = false;
+	this->_flow_int = false;
+	this->_flow_float = false;
+	this->_flow_double = false;
 	if (isSpecial(str))
 	{
 		if (isInf(str))
@@ -40,6 +45,8 @@ Conversion::Conversion(std::string str)
 	else if (isInt(str))
 	{
 		this->_i = toInt(str);
+		if (this->_i < INT_MIN || this->_i > INT_MAX)
+			this->_flow_int = true;
 		this->_c = static_cast<char>(this->_i);
 		this->_f = static_cast<float>(this->_i);
 		this->_d = static_cast<double>(this->_i);
@@ -48,16 +55,24 @@ Conversion::Conversion(std::string str)
 	else if (isFloat(str))
 	{
 		this->_f = toFloat(str);
+		if (this->_f == HUGE_VALF || this->_f == -HUGE_VALF)
+			this->_flow_float = true;
 		this->_c = static_cast<char>(this->_f);
 		this->_i = static_cast<int>(this->_f);
+		if (this->_flow_float == true)
+			this->_flow_int = true;
 		this->_d = static_cast<double>(this->_f);
 		this->_special = "NULL";
 	}
 	else if (isDouble(str))
 	{
 		this->_d = toDouble(str);
+		if (this->_d == HUGE_VAL || this->_d == -HUGE_VAL)
+			this->_flow_double = true;
 		this->_c = static_cast<char>(this->_d);
 		this->_i = static_cast<int>(this->_d);
+		if (this->_d < INT_MIN || this->_d > INT_MAX)
+			this->_flow_int = true;
 		this->_f = static_cast<float>(this->_d);
 		this->_special = "NULL";
 	}
@@ -95,7 +110,7 @@ char Conversion::getChar(void) const
   return (this->_c);
 }
 
-int Conversion::getInt(void) const
+long Conversion::getInt(void) const
 {
 	return (this->_i);
 }
@@ -118,6 +133,26 @@ std::string Conversion::getSpecial(void) const
 bool Conversion::getBool(void) const
 {
 	return (this->_b);
+}
+
+bool Conversion::getFlowInt(void) const
+{
+	return (this->_flow_int);
+}
+
+bool Conversion::getFlowFloat(void) const
+{
+	return (this->_flow_float);
+}
+
+bool Conversion::getFlowDouble(void) const
+{
+	return (this->_flow_double);
+}
+
+void Conversion::setFlowInt(bool b)
+{
+	this->_flow_int = b;
 }
 
 bool Conversion::isSpecial(std::string str)
@@ -230,15 +265,12 @@ char Conversion::toChar(std::string str)
 	return (str[0]);
 }
 
-int Conversion::toInt(std::string str)
+long Conversion::toInt(std::string str)
 {
 	long result = strtol(str.c_str(), NULL, 10);
-	if (result < std::numeric_limits<int>::min || result > std::numeric_limits<int>::max)
-	{
-		errno = ERANGE;
-		return (0);
-	}
-	return (static_cast<int>(result));
+	if (result < INT_MIN || result > INT_MAX)
+		this->setFlowInt(true);
+	return (result);
 }
 
 float Conversion::toFloat(std::string str)
@@ -277,7 +309,7 @@ std::ostream	&operator<<(std::ostream &stdout, Conversion const &conv)
 	stdout << "int: ";
 	if (conv.getSpecial().compare("NULL"))
 		stdout << "impossible" << std::endl;
-	else if (conv.getInt() < INT_MIN || conv.getInt() > INT_MAX)
+	else if (conv.getFlowInt() == true)
 		stdout << "underflow or overflow" << std::endl;
 	else
 		stdout << conv.getInt() << std::endl;
@@ -285,15 +317,17 @@ std::ostream	&operator<<(std::ostream &stdout, Conversion const &conv)
 	//float
 	stdout << "float: ";
 	if (conv.getSpecial().compare("NULL"))
-		stdout << conv.getSpecial();
+		stdout << conv.getSpecial() << "f" << std::endl;
+	else if (conv.getFlowFloat() == true)
+		stdout << "underflow or overflow" << std::endl;
 	else
 	{
 		stdout << conv.getFloat();
 		float f = conv.getFloat() - conv.getInt();
 		if (f == 0.0)
 			stdout << ".0";
+		stdout << "f" << std::endl;
 	}
-	stdout << "f" << std::endl;
 
 	//double
 	stdout << "double: ";
