@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/02 16:11:39 by armendes          #+#    #+#              #
-#    Updated: 2022/06/02 16:12:49 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/02 16:32:28 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =
+INCLUDES =	easyfind.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME =
+NAME = EasyFind
 
 RM =	rm -rf
 
