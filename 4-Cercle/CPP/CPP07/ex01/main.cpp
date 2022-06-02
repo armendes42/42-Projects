@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:12:16 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/02 15:17:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:21:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 class Awesome
 {
+  private:
+    int _n;
 	public:
 		Awesome( void ) : _n( 42 ) { return; }
 		int get( void ) const { return this->_n; }
-	private:
-		int _n;
 };
 
 std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get();return o; }

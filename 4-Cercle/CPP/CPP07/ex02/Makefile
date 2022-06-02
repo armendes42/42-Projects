@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/02 15:12:06 by armendes          #+#    #+#              #
-#    Updated: 2022/06/02 15:21:46 by armendes         ###   ########.fr        #
+#    Created: 2022/06/02 15:21:26 by armendes          #+#    #+#              #
+#    Updated: 2022/06/02 15:21:57 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	iter.hpp
+INCLUDES =	Array.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
 
-NAME =	Iter
+NAME =	Array
 
 RM =	rm -rf
 
