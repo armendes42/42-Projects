@@ -1,0 +1,43 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/02 19:32:18 by armendes          #+#    #+#              #
+#    Updated: 2022/06/02 19:32:41 by armendes         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRCS =	main.cpp
+
+OBJS =	${SRCS:.cpp=.o}
+
+INCLUDES =	MutantStack.hpp
+
+CC =	c++
+
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
+
+NAME = MutantStack
+
+RM =	rm -rf
+
+%.o:	%.cpp ${INCLUDES}
+		${CC} ${CFLAGS} -c $< -o $@
+
+all:	${NAME} Makefile
+
+${NAME}:	${OBJS}	Makefile
+			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+
+clean:
+	${RM} ${OBJS}
+
+fclean:		clean
+	${RM} ${NAME}
+
+re:			fclean all
+
+.PHONY:		all clean fclean re

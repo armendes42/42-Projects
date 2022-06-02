@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:26:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/02 16:10:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:39:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
   Array(unsigned int n);
 	Array(Array const &A);
 	~Array(void);
-	Array &operator=(Array const &A);
+	Array<T> &operator=(Array const &A);
   T &operator[](unsigned int const n) const;
 
   unsigned int size(void) const;
