@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/02 15:21:26 by armendes          #+#    #+#              #
-#    Updated: 2022/06/02 15:21:57 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/02 16:10:53 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES =	Array.hpp
 
 CC =	c++
 
-CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -I includes
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
 NAME =	Array
 
