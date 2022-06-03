@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:26:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/02 16:10:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:48:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ int main(int, char**)
       catch (std::exception & e) {
         std::cout << e.what() << std::endl;
       }
+    }
+
+    std::cout << "* \033[1;37m[EMPTY]\033[0m ---------------- *" << std::endl;
+    {
+      Array<int>array;
+
     }
 
     return (0);
