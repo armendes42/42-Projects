@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:57:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/24 20:05:31 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:35:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,7 @@ int main(void)
 
   std::cout << "I = " << tmp->i << std::endl;
   std::cout << "F = " << tmp->f << std::endl;
+
+  std::cout << tmp->i + 4 << std::endl;
+  std::cout << tmp->f + 4 << std::endl;
 }

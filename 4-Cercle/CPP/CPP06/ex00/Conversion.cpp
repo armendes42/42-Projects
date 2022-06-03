@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:06:05 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/31 15:37:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:33:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ std::ostream	&operator<<(std::ostream &stdout, Conversion const &conv)
 	else if ((conv.getInt() >= 0 && conv.getInt() < 32) || conv.getInt() == 127)
 		stdout << "Not displayable" << std::endl;
 	else
-		stdout << conv.getChar() << std::endl;
+		stdout << "'" << conv.getChar() << "'" << std::endl;
 
 	//int
 	stdout << "int: ";
