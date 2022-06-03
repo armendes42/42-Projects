@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:56:49 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/03 16:24:40 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:27:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,9 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 	return;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::action(Bureaucrat const & executor) const
 {
-	try
-	{
-		Form::execute(executor);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		return;
-	}
+	this->execute(executor);
 	std::string str = this->getTarget() + "_shrubbery";
   std::ofstream file(str.c_str());
   if (file.is_open() == false)

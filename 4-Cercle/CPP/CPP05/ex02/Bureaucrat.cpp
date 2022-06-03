@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/03 16:26:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:25:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void Bureaucrat::executeForm(Form const & form)
 {
   try
   {
-    form.execute(*this);
+    form.action(*this);
     std::cout << this->_name << " executed " << form.getName() << std::endl;
   }
   catch (std::exception & e)

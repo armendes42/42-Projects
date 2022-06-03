@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:56:26 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/03 16:25:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:24:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	~RobotomyRequestForm(void);
 	RobotomyRequestForm &operator=(RobotomyRequestForm const &T);
 
-  void execute(Bureaucrat const & executor) const;
+  void action(Bureaucrat const & executor) const;
 
 };
 

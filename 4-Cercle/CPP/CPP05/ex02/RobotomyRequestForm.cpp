@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:56:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/03 16:25:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:24:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,12 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 	return;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::action(Bureaucrat const & executor) const
 {
   srand(time(NULL));
   int random = rand() % 2;
 
-	try
-	{
-		Form::execute(executor);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		return;
-	}
+	this->execute(executor);
   std::cout << "* Drilling Noises *, ";
   if (random == 0)
     std::cout << executor.getName() << " has been perfectly robotomised. * Drilling Noises *" << std::endl;
