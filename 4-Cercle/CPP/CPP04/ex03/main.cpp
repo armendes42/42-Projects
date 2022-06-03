@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:34:51 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 18:28:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:55:03 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int main(void)
   source->learnMateria(new Cure());
   source->learnMateria(new Ice());
   source->learnMateria(new Cure());
-  source->learnMateria(new Ice());
+  AMateria* ice = new Ice();
+  source->learnMateria(ice);
+  delete ice;
 
   ICharacter* me = new Character("me");
 

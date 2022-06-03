@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:54:30 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 18:18:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:56:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 MateriaSource::MateriaSource(void)
 {
-  // std::cout << "A MateriaSource has been created" << std::endl;
+  std::cout << "A MateriaSource has been created" << std::endl;
   for (int i = 0; i < 4; i++)
     this->_materiaLearnTab[i] = NULL;
 	return;
@@ -25,7 +25,7 @@ MateriaSource::MateriaSource(void)
 
 MateriaSource::MateriaSource(MateriaSource const &T)
 {
-  // std::cout << "Copy constructor of MateriaSource has been used" << std::endl;
+  std::cout << "Copy constructor of MateriaSource has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -38,17 +38,17 @@ MateriaSource &MateriaSource::operator=(MateriaSource const &T)
   {
     if (this->_materiaLearnTab[i])
       delete this->_materiaLearnTab[i];
-    this->_materiaLearnTab[i] = T._materiaLearnTab[i];
+    this->_materiaLearnTab[i] = T._materiaLearnTab[i]->clone();
   }
 	return (*this);
 }
 
 MateriaSource::~MateriaSource(void)
 {
-  // std::cout << "A MateriaSource has been destroyed" << std::endl;
+  std::cout << "A MateriaSource has been destroyed" << std::endl;
   for (int i = 0; i < 4; i++)
   {
-    if (this->_materiaLearnTab[i])
+    if (this->_materiaLearnTab[i] != NULL)
       delete this->_materiaLearnTab[i];
   }
 	return;
@@ -56,26 +56,36 @@ MateriaSource::~MateriaSource(void)
 
 void MateriaSource::learnMateria(AMateria* m)
 {
-  int i = 0;
-  while (this->_materiaLearnTab[i] != NULL && i < 4)
-    i++;
-  if (i == 4)
+  if (m == NULL)
   {
-    std::cout << "This Materia Source can't learn more Materia" << std::endl;
+    std::cout << "No Materia to learn" << std::endl;
     return;
   }
-  this->_materiaLearnTab[i] = m;
+  for (int i = 0; i < 4; i++)
+  {
+    if (this->_materiaLearnTab[i] == NULL)
+    {
+      this->_materiaLearnTab[i] = m;
+      std::cout << m->getType() << " has been learned" << std::endl;
+      return;
+    }
+  }
+  std::cout << "This Materia Source can't learn more Materia" << std::endl;
+  return;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-  int i = 0;
-  while (this->_materiaLearnTab[i] != NULL && i < 4)
-  {
-    if (this->_materiaLearnTab[i]->getType() == type)
-      return (this->_materiaLearnTab[i]->clone());
-    i++;
-  }
+  if (type != "ice" && type != "cure")
+    return (NULL);
+  for (int i = 0; i < 4; i++)
+	{
+		if (this->_materiaLearnTab[i] != NULL && !this->_materiaLearnTab[i]->getType().compare(type))
+		{
+			std::cout << type << " has been created" << std::endl;
+			return (this->_materiaLearnTab[i]->clone());
+		}
+	}
   std::cout << "The type of the Materia is unknown!" << std::endl;
-  return (0);
+  return (NULL);
 }

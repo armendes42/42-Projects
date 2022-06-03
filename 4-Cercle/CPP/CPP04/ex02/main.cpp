@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:15:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:29:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:29:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 int main(void)
 {
+
+  // Animal test;
+
   Animal* animalTab[10];
   for (int i = 0; i < 10; i++)
   {

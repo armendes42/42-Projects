@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:42:08 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 18:18:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:53:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
-  // std::cout << "A Cure has been created" << std::endl;
+  std::cout << "A Cure has been created" << std::endl;
 	return;
 }
 
 Cure::Cure(Cure const &T) : AMateria(T)
 {
-  // std::cout << "Copy constructor of Cure has been used" << std::endl;
+  std::cout << "Copy constructor of Cure has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -37,13 +37,13 @@ Cure &Cure::operator=(Cure const &T)
 
 Cure::~Cure(void)
 {
-  // std::cout << "A Cure has been destroyed" << std::endl;
+  std::cout << "A Cure has been destroyed" << std::endl;
 	return;
 }
 
 AMateria* Cure::clone(void) const
 {
-  Cure *new_cure = new Cure();
+  AMateria *new_cure = new Cure();
   return (new_cure);
 }
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:17:42 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:20:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:28:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ Animal::~Animal(void)
 {
 	std::cout << "An Animal has been destroyed" << std::endl;
 	return;
-}
-
-void Animal::makeSound(void) const
-{
-	std::cout << "* Noises *" << std::endl;
 }
 
 std::string Animal::getType(void) const

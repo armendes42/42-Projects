@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:21:31 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/16 15:41:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:25:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ private:
 public:
 	Cat(void);
 	Cat(Cat const &T);
-	~Cat(void);
+	virtual ~Cat(void);
 	Cat &operator=(Cat const &T);
 	virtual Animal &operator=(Animal const &T);
 
   void makeSound(void) const;
 
 	Brain *getBrain(void) const;
-	
+
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:42:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 18:18:04 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:53:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 Ice::Ice(void) : AMateria("ice")
 {
-  // std::cout << "An Ice has been created" << std::endl;
+  std::cout << "An Ice has been created" << std::endl;
 	return;
 }
 
 Ice::Ice(Ice const &T) : AMateria(T)
 {
-  // std::cout << "Copy constructor of Ice has been used" << std::endl;
+  std::cout << "Copy constructor of Ice has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -37,13 +37,13 @@ Ice &Ice::operator=(Ice const &T)
 
 Ice::~Ice(void)
 {
-  // std::cout << "An Ice has been destroyed" << std::endl;
+  std::cout << "An Ice has been destroyed" << std::endl;
 	return;
 }
 
 AMateria* Ice::clone(void) const
 {
-  Ice *new_ice = new Ice();
+  AMateria *new_ice = new Ice();
   return (new_ice);
 }
 

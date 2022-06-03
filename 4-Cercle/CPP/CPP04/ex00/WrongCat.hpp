@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 19:07:07 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/09 19:46:35 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:22:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class WrongCat : public WrongAnimal{
 public:
 	WrongCat(void);
 	WrongCat(WrongCat const &T);
-	~WrongCat(void);
+	virtual ~WrongCat(void);
 	WrongCat &operator=(WrongCat const &T);
 
   void makeSound(void) const;

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:17:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:16:30 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:28:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	virtual ~Animal(void);
 	virtual Animal &operator=(Animal const &T);
 
-  virtual void makeSound(void) const;
+  virtual void makeSound(void) const = 0;
 
   std::string getType(void) const;
 

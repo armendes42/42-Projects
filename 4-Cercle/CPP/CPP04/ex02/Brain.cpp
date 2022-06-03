@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 19:48:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:05:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:26:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Brain::Brain(void)
 {
 	std::cout << "A Brain has been created" << std::endl;
 
-	const std::string txt[5]{"I am a Dog!", "I am a Cat!",
+	const std::string txt[5] = {"I am a Dog!", "I am a Cat!",
 													"I need sleep!", "I eat a lot!",
 													"I love my life!"};
 

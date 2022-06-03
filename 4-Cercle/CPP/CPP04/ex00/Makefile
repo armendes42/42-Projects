@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 18:15:30 by armendes          #+#    #+#              #
-#    Updated: 2022/05/24 20:07:55 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/03 15:18:58 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ OBJS =	${SRCS:.cpp=.o}
 
 INCLUDES =	Animal.hpp\
 						Cat.hpp\
-						Dog.hpp
+						Dog.hpp\
+						WrongAnimal.hpp\
+						WrongCat.hpp\
 
 CC =	c++
 

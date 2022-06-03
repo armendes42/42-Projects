@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:16:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/11 18:18:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:56:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 Character::Character(std::string name)
 {
-  // std::cout << "A Character has been created" << std::endl;
+  std::cout << "A Character has been created" << std::endl;
   this->_name = name;
   for (int i = 0; i < 4; i++)
     this->_materiaTab[i] = NULL;
@@ -27,7 +27,7 @@ Character::Character(std::string name)
 
 Character::Character(Character const &T)
 {
-  // std::cout << "Copy constructor of Character has been used" << std::endl;
+  std::cout << "Copy constructor of Character has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -36,22 +36,31 @@ Character &Character::operator=(Character const &T)
 {
 	if (this == &T)
 		return (*this);
-  this->_name = T._name;
+  for (int i = 0; i < 4; i++)
+	{
+		if (this->_materiaTab[i] != NULL)
+		{
+			delete this->_materiaTab[i];
+			this->_materiaTab[i] = NULL;
+		}
+	}
+  this->_name = T.getName();
   for (int i = 0; i < 4; i++)
   {
-    if (this->_materiaTab[i])
-      delete this->_materiaTab[i];
-    this->_materiaTab[i] = T._materiaTab[i];
+    if (this->_materiaTab[i] != NULL)
+      equip(T._materiaTab[i]->clone());
+    else
+      this->_materiaTab[i] = NULL;
   }
 	return (*this);
 }
 
 Character::~Character(void)
 {
-  // std::cout << "A Character has been destroyed" << std::endl;
+  std::cout << "A Character has been destroyed" << std::endl;
   for (int i = 0; i < 4; i++)
   {
-    if (this->_materiaTab[i])
+    if (this->_materiaTab[i] != NULL)
       delete this->_materiaTab[i];
   }
   return;
@@ -64,43 +73,43 @@ std::string const & Character::getName(void) const
 
 void Character::equip(AMateria* m)
 {
-  int i = 0;
-  while (this->_materiaTab[i] != NULL && i < 4)
-    i++;
-  if (i == 4)
-  {
-    std::cout << "The inventory is full!" << std::endl;
-    return;
-  }
-  this->_materiaTab[i] = m;
+  if (m == NULL)
+	{
+		std::cout << "Invalid AMateria" << std::endl;
+		return ;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materiaTab[i] == NULL)
+		{
+		  this->_materiaTab[i] = m;
+			std::cout << m->getType() << " has been added to " << this->_name << " inventory" << std::endl;
+			return ;
+		}
+	}
+	std::cout << "Inventory is full" << std::endl;
+	return ;
 }
 
 void Character::unequip(int idx)
 {
-  if (idx < 0 || idx > 3)
-  {
-    std::cout << "The index is too low or too big!" << std::endl;
-    return;
-  }
-  if (this->_materiaTab[idx] == NULL)
-  {
-    std::cout << "There is no Materia at this index!" << std::endl;
-    return;
-  }
-  this->_materiaTab[idx] = NULL;
+  if (idx < 0 || idx > 3 || this->_materiaTab[idx] == NULL)
+	{
+		std::cout << "Nothing to unequip" << std::endl;
+		return ;
+	}
+	std::cout << this->_materiaTab[idx]->getType() << " has been removed to " << this->_name << " inventory" << std::endl;
+	this->_materiaTab[idx] = NULL;
+	return ;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-  if (idx < 0 || idx > 3)
-  {
-    std::cout << "The index is too low or too big!" << std::endl;
-    return;
-  }
-  if (this->_materiaTab[idx] == NULL)
-  {
-    std::cout << "There is no Materia at this index!" << std::endl;
-    return;
-  }
-  this->_materiaTab[idx]->use(target);
+  if (idx < 0 || idx > 3 || this->_materiaTab[idx] == NULL)
+	{
+		std::cout << "Invalid AMateria to use" << std::endl;
+		return ;
+	}
+	this->_materiaTab[idx]->use(target);
+	return ;
 }

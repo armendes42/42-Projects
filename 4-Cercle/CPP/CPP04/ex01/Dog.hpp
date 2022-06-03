@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:22:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:23:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:22:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ private:
 public:
 	Dog(void);
 	Dog(Dog const &T);
-	~Dog(void);
+	virtual ~Dog(void);
 	Dog &operator=(Dog const &T);
 	virtual Animal &operator=(Animal const &T);
 
