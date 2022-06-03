@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:20:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 18:50:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:06:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ private:
   int const _sign_grade;
   int const _exec_grade;
 
-  const int highestGrade = 1;
-  const int lowestGrade = 150;
+  static const int highestGrade;
+  static const int lowestGrade;
 
 public:
 	Form(std::string name, int sign_grade, int exec_grade);

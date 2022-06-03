@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:57:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 19:23:52 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:24:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,16 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 	return;
 }
 
-void PresidentialPardonForm::action(Bureaucrat const & executor) const
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-  this->execute(executor);
+	try
+	{
+		Form::execute(executor);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return;
+	}
   std::cout << executor.getName() << " has been forgiven by Zaphod Beeblebrox" << std::endl;
 }

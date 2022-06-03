@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:56:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 19:57:26 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:25:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	~ShrubberyCreationForm(void);
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &T);
 
-  void action(Bureaucrat const & executor) const;
+	void execute(Bureaucrat const & executor) const;
 
 };
 

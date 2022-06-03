@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:05:01 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/16 17:19:56 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:31:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 Intern::Intern(void)
 {
+	std::cout << "An Intern has been created" << std::endl;
 	return;
 }
 
@@ -37,12 +38,13 @@ Intern &Intern::operator=(Intern const &T)
 
 Intern::~Intern(void)
 {
+	std::cout << "An Intern has been destroyed" << std::endl;
 	return;
 }
 
 Form *Intern::makeForm(std::string nameForm, std::string target)
 {
-  t_form_struct formList[]
+  t_form_struct formList[] =
   {
     {"shrubbery creation", new ShrubberyCreationForm(target)},
     {"robotomy request", new RobotomyRequestForm(target)},

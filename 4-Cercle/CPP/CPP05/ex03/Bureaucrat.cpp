@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 19:34:42 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:29:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 #include <iostream>
 #include <string>
 
+const int Bureaucrat::highestGrade = 1;
+const int Bureaucrat::lowestGrade = 150;
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
   if (grade < highestGrade)
     throw GradeTooHighException();
   if (grade > lowestGrade)
     throw GradeTooLowException();
-  // std::cout << "A Bureaucrat has been created" << std::endl;
+  std::cout << "A Bureaucrat has been created" << std::endl;
 	return;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &T)
 {
-  // std::cout << "Copy constructor of Bureaucrat has been used" << std::endl;
+  std::cout << "Copy constructor of Bureaucrat has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -41,7 +44,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &T)
 
 Bureaucrat::~Bureaucrat(void)
 {
-  // std::cout << "A Bureaucrat has been destroyed" << std::endl;
+  std::cout << "A Bureaucrat has been destroyed" << std::endl;
 	return;
 }
 
@@ -91,13 +94,13 @@ void Bureaucrat::executeForm(Form const & form)
 {
   try
   {
-    form.action(*this);
+    form.execute(*this);
     std::cout << this->_name << " executed " << form.getName() << std::endl;
   }
   catch (std::exception & e)
   {
-    std::cout << this->_name << " couldn't execute " << form.getName();
-    std::cout << " because " << e.what() << std::endl;
+    std::cerr << this->_name << " couldn't execute " << form.getName();
+    std::cerr << " because " << e.what() << std::endl;
   }
 }
 

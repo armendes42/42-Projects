@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:31:53 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 16:17:05 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:03:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ private:
   std::string const _name;
   int _grade;
 
-  const int highestGrade = 1;
-  const int lowestGrade = 150;
+  static const int highestGrade;
+  static const int lowestGrade;
 
 public:
 	Bureaucrat(std::string name, int grade);

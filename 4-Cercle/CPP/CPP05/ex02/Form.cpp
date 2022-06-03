@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:21:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/12 19:58:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:15:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 #include <iostream>
 #include <string>
 
-Form::Form(std::string name, std::string target, int sign_grade, int exec_grade) : _target(target), _name(name), _sign_grade(sign_grade), _exec_grade(exec_grade)
+const int Form::highestGrade = 1;
+const int Form::lowestGrade = 150;
+
+Form::Form(std::string name, std::string target, int sign_grade, int exec_grade) : _name(name), _target(target), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
-  // std::cout << "A Form has been created" << std::endl;
   this->_signed = false;
   if (sign_grade < highestGrade || exec_grade < highestGrade)
     throw GradeTooHighException();
   if (sign_grade > lowestGrade || exec_grade > lowestGrade)
     throw GradeTooLowException();
+  std::cout << "A Form has been created" << std::endl;
 	return;
 }
 
 Form::Form(Form const &T) : _name(T._name), _sign_grade(T._sign_grade), _exec_grade(T._exec_grade)
 {
-  // std::cout << "Copy constructor of Form has been used" << std::endl;
+  std::cout << "Copy constructor of Form has been used" << std::endl;
 	*this = T;
 	return;
 }
@@ -42,7 +45,7 @@ Form &Form::operator=(Form const &T)
 
 Form::~Form(void)
 {
-  // std::cout << "A Form has been destroyed" << std::endl;
+  std::cout << "A Form has been destroyed" << std::endl;
 	return;
 }
 
