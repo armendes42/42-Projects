@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:22:01 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:25:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:28:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Dog::Dog(void)
 Dog::Dog(Dog const &T)
 {
   std::cout << "Copy constructor of Dog has been used" << std::endl;
+  this->_brain = new Brain();
 	*this = T;
 	return;
 }

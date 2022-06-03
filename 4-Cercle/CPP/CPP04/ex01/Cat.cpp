@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:21:45 by armendes          #+#    #+#             */
-/*   Updated: 2022/05/10 16:23:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:28:35 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Cat::Cat(void)
 Cat::Cat(Cat const &T)
 {
   std::cout << "Copy constructor of Cat has been used" << std::endl;
+  this->_brain = new Brain();
 	*this = T;
 	return;
 }
