@@ -1,0 +1,29 @@
+/* XPM */
+static char *_0b0a3a020894fc4aa1068fd1543dff2rn6wZxyXgqRKIle3[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c #E1C57E",
+"X c #EECD79",
+"o c #F8D781",
+"O c #FFDF8E",
+"+ c #FFEDB4",
+/* pixels */
+
+"oOoOoXoXoOoOoXXO",
+"+XOoOoOo+oOoOoOo",
+"oOoOoOoOoXoOoOoO",
+"OoO+OoXoOoOo+oOo",
+"oOXOoOo+oOoOoOXO",
+"OoOoOoXoOoXoOoOo",
+"oOoX+OoOoOoOoO+X",
+"OoOoOoOoO+OoOXOo",
+"oXoOoOXOoOoOoOoO",
+"OoO+Oo+oXoOXOoOo",
+"oOoOoOoOoOoO+OXO",
+"OXOoOXOoOoOoOoOo",
+"oOoOoOoOoOXOoOoO",
+"O+OoXoOo+oOoX+Oo",
+"XOoOoOoOoOoOoOoO",
+"OoOo+oOoOXOoOoOo"
+};
