@@ -6,13 +6,13 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 16:12:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:46:30 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static	void	free_all(t_win *win)
+void	free_all(t_win *win)
 {
 	if (win)
 	{

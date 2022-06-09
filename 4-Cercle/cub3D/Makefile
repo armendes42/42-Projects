@@ -6,14 +6,15 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:49:33 by armendes          #+#    #+#              #
-#    Updated: 2022/06/09 16:29:51 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/09 16:59:08 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	srcs/main.c\
 				srcs/error.c\
 				srcs/init_struct.c\
-				srcs/loops.c
+				srcs/loops.c\
+				srcs/game_loop.c
 
 LIB_DIR =	libs/libft libs/gnl libs/mlx
 

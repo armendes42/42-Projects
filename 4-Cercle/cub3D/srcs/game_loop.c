@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macro.h                                            :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 15:06:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 17:44:39 by armendes         ###   ########.fr       */
+/*   Created: 2022/06/09 16:56:10 by armendes          #+#    #+#             */
+/*   Updated: 2022/06/09 17:50:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACRO_H
-# define MACRO_H
+#include "cub3D.h"
 
-# include <math.h>
+static void	update(t_win *win)
+{
+	(void)win;
+}
 
-# define ARGNB_ERR "You should input only a map with .cub extension"
-# define MALLOC_ERR "Memory allocation error"
-
-# define FOV_ANGLE ((60 * M_PI) / 180)
-
-# define ESC 0xff1b
-# define K_W 119
-# define K_A 97
-# define K_S 115
-# define K_D 100
-# define ARR_UP 126
-# define ARR_LT 65361
-# define ARR_RT 65363
-# define ARR_DN 125
-
-#endif
+int	game_loop(t_win *win)
+{
+	update(win);
+	// render(win);
+	return (0);
+}
