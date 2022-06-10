@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 18:25:49 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 18:56:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:02:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_sprite	*import_sprite(t_win *win, char *path)
 			&sprite->iw, &sprite->ih);
 	if (!sprite->img)
 		error(win, SPRITE_ERR);
-	if (sprite->iw != win->tile_size || sprite->ih != win->tile_size)
+	if (sprite->iw != win->sprite_size || sprite->ih != win->sprite_size)
 		error(win, SPRITE_ERR);
 	sprite->addr = mlx_get_data_addr(sprite->img, &sprite->bpp,
 			&sprite->ll, &sprite->endian);

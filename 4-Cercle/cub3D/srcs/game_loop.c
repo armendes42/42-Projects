@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:56:10 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 19:05:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:07:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static void	render_map(t_win *win)
 		while (win->map->map[i][++j])
 		{
 			if (win->map->map[i][j] == '1')
-				draw_sprite(win, i * win->tile_size, j * win->tile_size, 0);
+				draw_sprite(win, i * win->sprite_size * MINIMAP_SCALE_FACTOR,
+						j * win->sprite_size * MINIMAP_SCALE_FACTOR, 0);
 			else
-				draw_sprite(win, i * win->tile_size, j * win->tile_size, 1);
+				draw_sprite(win, i * win->sprite_size * MINIMAP_SCALE_FACTOR,
+						j * win->sprite_size * MINIMAP_SCALE_FACTOR, 1);
 		}
 	}
 }
@@ -57,5 +59,6 @@ int	game_loop(t_win *win)
 {
 	// update(win);
 	render(win);
+	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->img->img, 0, 0);
 	return (0);
 }

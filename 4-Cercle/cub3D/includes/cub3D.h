@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:41:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 19:18:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:02:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_win
 	int				win_height;
 	int				tile_size;
 	int				num_rays;
+	int				sprite_size;
 	t_img			*img;
 	t_key			*key;
 	t_player	*player;

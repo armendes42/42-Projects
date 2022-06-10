@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:28:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 19:25:30 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:08:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,31 @@ static void	map_init(t_win *win)
 	win->map->map = malloc(sizeof(char *) * 5);
 	if (!win->map->map)
 		error(win, MALLOC_ERR);
-	win->map->map[0] = malloc(sizeof(char) * 5);
-	if (!win->map->map[0])
-		error(win, MALLOC_ERR);
-	win->map->map[1] = malloc(sizeof(char) * 5);
-	if (!win->map->map[1])
-		error(win, MALLOC_ERR);
-	win->map->map[2] = malloc(sizeof(char) * 5);
-	if (!win->map->map[2])
-		error(win, MALLOC_ERR);
-	win->map->map[3] = malloc(sizeof(char) * 5);
-	if (!win->map->map[3])
-		error(win, MALLOC_ERR);
-	win->map->map[0] = "1111";
-	win->map->map[1] = "1001";
-	win->map->map[2] = "1001";
-	win->map->map[3] = "1111";
-	win->map->map[4] = NULL;
+	// win->map->map[0] = malloc(sizeof(char) * 5);
+	// if (!win->map->map[0])
+	// 	error(win, MALLOC_ERR);
+	// win->map->map[1] = malloc(sizeof(char) * 5);
+	// if (!win->map->map[1])
+	// 	error(win, MALLOC_ERR);
+	// win->map->map[2] = malloc(sizeof(char) * 5);
+	// if (!win->map->map[2])
+	// 	error(win, MALLOC_ERR);
+	// win->map->map[3] = malloc(sizeof(char) * 5);
+	// if (!win->map->map[3])
+	// 	error(win, MALLOC_ERR);
+	win->map->map[0] = "1111111111111";
+	win->map->map[1] = "1000000100001";
+	win->map->map[2] = "1001000000001";
+	win->map->map[3] = "1111111111111";
+	win->map->map[4] = 0;
 	win->map->height = 4;
-	win->map->length = 4;
+	win->map->length = 13;
 }
 
 static void	win_last_init(t_win *win)
 {
 	win->tile_size = 16;
+	win->sprite_size = 16;
 	win->win_width = win->map->length * win->tile_size;
 	win->win_height = win->map->height * win->tile_size;
 	win->num_rays = win->win_width;
@@ -91,7 +92,7 @@ static void	sprite_init(t_win *win)
 	win->sprites = malloc(sizeof(t_sprite *) * 4);
 	if (!win->sprites)
 		error(win, MALLOC_ERR);
-	win->sprites[0] = import_sprite(win, "img/Dirt.xpm");
+	win->sprites[0] = import_sprite(win, "img/MinimapWall.xpm");
 	win->sprites[1] = import_sprite(win, "img/MinimapEmpty.xpm");
 	win->sprites[2] = import_sprite(win, "img/MinimapPlayer.xpm");
 	win->sprites[3] = NULL;
