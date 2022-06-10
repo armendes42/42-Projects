@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:28:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/10 15:08:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:50:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,9 @@ static void	map_init(t_win *win)
 	win->map->map = malloc(sizeof(char *) * 5);
 	if (!win->map->map)
 		error(win, MALLOC_ERR);
-	// win->map->map[0] = malloc(sizeof(char) * 5);
-	// if (!win->map->map[0])
-	// 	error(win, MALLOC_ERR);
-	// win->map->map[1] = malloc(sizeof(char) * 5);
-	// if (!win->map->map[1])
-	// 	error(win, MALLOC_ERR);
-	// win->map->map[2] = malloc(sizeof(char) * 5);
-	// if (!win->map->map[2])
-	// 	error(win, MALLOC_ERR);
-	// win->map->map[3] = malloc(sizeof(char) * 5);
-	// if (!win->map->map[3])
-	// 	error(win, MALLOC_ERR);
 	win->map->map[0] = "1111111111111";
 	win->map->map[1] = "1000000100001";
-	win->map->map[2] = "1001000000001";
+	win->map->map[2] = "100100000P001";
 	win->map->map[3] = "1111111111111";
 	win->map->map[4] = 0;
 	win->map->height = 4;
@@ -78,8 +66,8 @@ static void	player_init(t_win *win)
 		error(win, MALLOC_ERR);
 	win->player->x = 0;
 	win->player->y = 0;
-	win->player->width = 5;
-	win->player->height = 5;
+	// win->player->width = 5;
+	// win->player->height = 5;
 	win->player->turn_direction = 0;
 	win->player->turn_speed = 0;
 	win->player->rotation_angle = M_PI / 2;

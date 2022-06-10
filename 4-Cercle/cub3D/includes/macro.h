@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:06:40 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/10 15:10:06 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:08:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # define IMG_ERR "An error occured with the image"
 
 # define FOV_ANGLE (60 * (M_PI / 180))
-
-# define MINIMAP_SCALE_FACTOR 1.0
 
 # define ESC 0xff1b
 # define K_W 119

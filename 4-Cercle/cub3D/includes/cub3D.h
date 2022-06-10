@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:41:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/10 15:02:33 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:44:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include <math.h>
 
 typedef struct s_img
@@ -45,8 +46,8 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	width;
-	float	height;
+	// float	width;
+	// float	height;
 	int		turn_direction; //-1 if left, +1 if right
 	int		walk_direction; //-1 if back, +1 if front
 	float	rotation_angle;
@@ -95,5 +96,6 @@ void			loops(t_win *win);
 int				game_loop(t_win *win);
 void			draw_sprite(t_win *win, int y, int x, int index);
 t_sprite	*import_sprite(t_win *win, char *path);
+void			get_player_pos(t_win *win);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:22:38 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/09 16:58:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:52:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_movement_key(int key)
 {
-	if (key == K_W || key == K_A || key == K_S || key == K_D)
+	if (key == K_W || key == ARR_LT || key == K_S || key == ARR_RT)
 		return (1);
 	return (0);
 }
