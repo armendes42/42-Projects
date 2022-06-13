@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:32:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/10 17:11:50 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:16:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		error(win, ARGNB_ERR);
 	win = initialize_window(av);
-	// setup();
-	get_player_pos(win);
 	loops(win);
-	mlx_loop(win->mlx_ptr);
 	free_all(win);
 	return (0);
 }

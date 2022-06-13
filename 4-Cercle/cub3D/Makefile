@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:49:33 by armendes          #+#    #+#              #
-#    Updated: 2022/06/09 19:21:11 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/13 17:41:51 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,12 @@ SRCS =	srcs/main.c\
 				srcs/error.c\
 				srcs/init_struct.c\
 				srcs/loops.c\
-				srcs/game_loop.c\
 				srcs/utils.c\
+				srcs/move_player.c\
+				srcs/rotate_player.c\
+				srcs/raycast.c\
+				srcs/draw.c\
+				srcs/draw_utils.c
 
 LIB_DIR =	libs/libft libs/gnl libs/mlx
 
