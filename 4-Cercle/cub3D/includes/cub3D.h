@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:41:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/13 17:43:20 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:47:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,6 @@ typedef struct s_map
 	int		length;
 }								t_map;
 
-typedef struct s_sprite
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		ll;
-	int		endian;
-	int		iw;
-	int		ih;
-}				t_sprite;
-
 typedef struct s_keys
 {
 	int	key_w;
@@ -131,10 +120,9 @@ typedef struct s_win
 	int				num_rays;
 	int				sprite_size;
 	t_keys		keys;
-	t_img			*img;
+	t_img			sprite[4];
 	t_player	player;
 	t_map			map;
-	t_sprite	**sprites;
 }								t_win;
 
 void			error(t_win *win, char *err_msg);
@@ -142,11 +130,12 @@ void			free_all(t_win *win);
 t_win			*initialize_window(char **av);
 void			loops(t_win *win);
 void			draw_sprite(t_win *win, int y, int x, int index);
-t_sprite	*import_sprite(t_win *win, char *path);
 void			move_player(t_win *win);
 void			rotate_player_left(t_win *win);
 void			rotate_player_right(t_win *win);
 void			raycast(t_win *win);
 void			drawing(t_ray *ray, t_win *win);
+void			text_vertic(t_line *line, t_img text, t_ray *ray, t_win *win);
+void			color_vertic(t_line *line, unsigned int const color, t_win *win);
 
 #endif

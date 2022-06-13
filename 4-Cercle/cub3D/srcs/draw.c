@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:35:28 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/13 17:38:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:48:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void	draw_side(t_line *line, double wall_x,
 		t_ray *ray, t_win *win)
 {
-	t_img const	tex_view_by_player[TEXTURE_MAX] = {
-		win->tex_img[e_EA],
-		win->tex_img[e_WE],
-		win->tex_img[e_SO],
-		win->tex_img[e_NO]
+	t_img const	tex_view_by_player[4] = {
+		win->sprite[e_EA],
+		win->sprite[e_WE],
+		win->sprite[e_SO],
+		win->sprite[e_NO]
 	};
 	int			tex_x;
 	t_img		tex;
@@ -27,7 +27,7 @@ static void	draw_side(t_line *line, double wall_x,
 
 	tex = tex_view_by_player[e_NO];
 	i = 0;
-	while (++i < TEXTURE_MAX)
+	while (++i < 4)
 		if (i == ray->side)
 			tex = tex_view_by_player[i];
 	tex_x = (int)(wall_x * (double)tex.width);
@@ -41,7 +41,7 @@ static void	draw_side(t_line *line, double wall_x,
 	text_vertic(line, tex, ray, win);
 }
 
-uint32_t	create_rgb(int r, int g, int b)
+u_int32_t	create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
@@ -71,7 +71,7 @@ void	drawing(t_ray *ray, t_win *win)
 	else
 		wall_x = win->player.x + ray->perpwalldist * ray->raydir_x;
 	wall_x -= floor(wall_x);
-	if (cub3d->map.map[ray->map_y][ray->map_x] == '1')
+	if (win->map.map[ray->map_y][ray->map_x] == '1')
 		draw_side(&line, wall_x, ray, win);
 	draw_ceiling_floor(&line, ray, win);
 }
