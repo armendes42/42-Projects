@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:41:47 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/13 17:47:37 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:14:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	**map;
-	int		height;
-	int		length;
+	char					**map;
+	unsigned char	c_color[3];
+	unsigned char	f_color[3];
+	int						height;
+	int						length;
 }								t_map;
 
 typedef struct s_keys
@@ -121,6 +123,7 @@ typedef struct s_win
 	int				sprite_size;
 	t_keys		keys;
 	t_img			sprite[4];
+	t_img			mlx_img;
 	t_player	player;
 	t_map			map;
 }								t_win;

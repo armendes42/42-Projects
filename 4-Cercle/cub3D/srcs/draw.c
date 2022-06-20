@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:35:28 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/13 17:48:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:12:55 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ u_int32_t	create_rgb(int r, int g, int b)
 
 static void	draw_ceiling_floor(t_line *line, t_ray *ray, t_win *win)
 {
-	unsigned char const	*c = win->map.c_couleur;
-	unsigned char const	*f = win->map.f_couleur;
+	unsigned char const	*c = win->map.c_color;
+	unsigned char const	*f = win->map.f_color;
 
 	line->start = 0;
 	line->end = ray->draw_start;

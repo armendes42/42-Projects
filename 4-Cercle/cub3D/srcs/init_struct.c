@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:28:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/06/13 16:27:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:17:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	set_win_to_zero(t_win *win)
 {
 	win->mlx_ptr = NULL;
 	win->win_ptr = NULL;
-	win->img = NULL;
-	win->sprites = NULL;
 }
 
 static void	map_init(t_win *win)
@@ -60,9 +58,9 @@ static void	sprite_init(t_win *win)
 	win->sprites = malloc(sizeof(t_sprite *) * 4);
 	if (!win->sprites)
 		error(win, MALLOC_ERR);
-	win->sprites[0] = import_sprite(win, "img/MinimapWall.xpm");
-	win->sprites[1] = import_sprite(win, "img/MinimapEmpty.xpm");
-	win->sprites[2] = import_sprite(win, "img/MinimapPlayer.xpm");
+	// win->sprites[0] = import_sprite(win, "img/MinimapWall.xpm");
+	// win->sprites[1] = import_sprite(win, "img/MinimapEmpty.xpm");
+	// win->sprites[2] = import_sprite(win, "img/MinimapPlayer.xpm");
 	win->sprites[3] = NULL;
 }
 
