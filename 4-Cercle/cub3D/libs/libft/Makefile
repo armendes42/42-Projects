@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 00:07:24 by armendes          #+#    #+#              #
-#    Updated: 2021/10/13 17:30:37 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/20 22:40:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	=	ft_atoi.c		\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
 			ft_putstr_fd.c	\
+			ft_split.c		\
 			ft_strchr.c		\
 			ft_strdup.c		\
 			ft_strjoin.c	\
@@ -43,9 +44,8 @@ SRCS	=	ft_atoi.c		\
 			ft_strrchr.c	\
 			ft_substr.c		\
 			ft_tolower.c	\
-			ft_toupper.c
-
-BONUS	=	ft_lstadd_back.c	\
+			ft_toupper.c	\
+			ft_lstadd_back.c	\
 			ft_lstadd_front.c	\
 			ft_lstclear.c		\
 			ft_lstdelone.c		\
@@ -54,8 +54,6 @@ BONUS	=	ft_lstadd_back.c	\
 			ft_lstmap.c			\
 			ft_lstnew.c			\
 			ft_lstsize.c		\
-
-BONUSOBJS =	${BONUS:.c=.o}
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -72,15 +70,12 @@ all:		${NAME}
 $(NAME):	${OBJS}
 			ar -rcs ${NAME} ${OBJS}
 
-bonus:		${BONUSOBJS} ${OBJS}
-			ar -rcs ${NAME} ${OBJS} ${BONUSOBJS}
-
 clean:	
-			${RM} ${OBJS} ${BONUSOBJS}
+			${RM} ${OBJS}
 
 fclean:		clean
 			${RM} ${NAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re

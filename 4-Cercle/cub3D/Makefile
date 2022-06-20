@@ -6,20 +6,31 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:49:33 by armendes          #+#    #+#              #
-#    Updated: 2022/06/13 17:47:01 by armendes         ###   ########.fr        #
+#    Updated: 2022/06/20 22:41:42 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	srcs/main.c\
-				srcs/error.c\
-				srcs/init_struct.c\
-				srcs/loops.c\
-				srcs/move_player.c\
-				srcs/rotate_player.c\
-				srcs/raycast.c\
-				srcs/draw.c\
-				srcs/draw_utils.c
-				# srcs/utils.c\
+SRCS =	main.c\
+		exec/draw_tools.c\
+		exec/drawing.c\
+		exec/key_control.c\
+		exec/player_init.c\
+		exec/player_mov.c\
+		exec/player_rotate.c\
+		exec/ray_casting_set.c\
+		exec/ray_casting.c\
+		exec/start_game.c\
+		exec/text_init.c\
+		utils/exit_util.c\
+		utils/exit.c\
+		utils/utils.c\
+		parser/parsing_map_part.c\
+		parser/parsing_map_part2.c\
+		parser/parsing_map.c\
+		parser/parsing_tex_part.c\
+		parser/parsing_tex.c\
+		parser/parsing.c\
+		parser/set_mapinfo.c\
 
 LIB_DIR =	libs/libft libs/gnl libs/mlx
 
