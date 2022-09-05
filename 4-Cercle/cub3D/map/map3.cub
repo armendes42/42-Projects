@@ -1,12 +1,11 @@
 
-EA ./tex/east_texture.xpm
 NO  ./tex/north_texture.xpm
     SO  ./tex/south_texture.xpm
 WE ./tex/west_texture.xpm
+EA ./tex/east_texture.xpm
 
-
-    F 220,100,0
-C 225,30,0
+F 32,251,1
+C 225,30,1
 
 11111
 1N111111111

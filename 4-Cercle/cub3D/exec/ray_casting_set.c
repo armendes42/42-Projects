@@ -6,7 +6,7 @@
 /*   By: xuwang <xuwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:03:29 by xuwang            #+#    #+#             */
-/*   Updated: 2022/02/24 14:38:22 by xuwang           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:35:53 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ void	set_perpwalldist(t_raycast *ray, t_player *player)
 void	set_lineheight(t_raycast *ray)
 {
 	ray->line_height = (int)(WIN_HEIGHT / ray->perpwalldist);
+	// printf("line heightss %d\n", ray->line_height);
 }
 
 void	set_drawinfo(t_raycast *ray, t_player *player)
 {
 	ray->draw_start = (-ray->line_height / 2 + ((WIN_HEIGHT / 2)
 				* player->cam_height));
+	// printf("ray->start %d\n", ray->draw_start);
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
 	ray->draw_end = (ray->line_height / 2 + ((WIN_HEIGHT / 2)

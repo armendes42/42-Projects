@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_part2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuwang <xuwang@42.student.fr>              +#+  +:+       +#+        */
+/*   By: xuwang <xuwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:25:58 by xuwang            #+#    #+#             */
-/*   Updated: 2022/03/22 19:46:52 by xuwang           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:27:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	get_player_pos(t_cub3d *cub3d, t_idx pos, int i, char direction)
 {
 	cub3d->player.pos_x = (double)pos.j + 0.5;
 	cub3d->player.pos_y = (double)pos.i - i + 1 + 0.5;
+	printf("pos_x%f\n", cub3d->player.pos_x);
+	printf("pos_y%f\n", cub3d->player.pos_y);
 	cub3d->player.direction = direction;
 }
 

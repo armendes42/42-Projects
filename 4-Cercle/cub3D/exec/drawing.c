@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xuwang <xuwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:56:29 by xuwang            #+#    #+#             */
-/*   Updated: 2022/06/20 22:24:54 by armendes         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:35:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	draw_ceiling_floor(t_line *line, t_raycast *ray, t_cub3d *cub3d)
 	line->start = 0;
 	line->end = ray->draw_start;
 	color_vertic(line, create_rgb(c[0], c[1], c[2]), cub3d);
+	printf("rgb%d\n", create_rgb(c[0], c[1], c[2]));
 	line->start = ray->draw_end;
 	line->end = WIN_HEIGHT;
 	color_vertic(line, create_rgb(f[0], f[1], f[2]), cub3d);
