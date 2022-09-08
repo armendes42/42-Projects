@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/09/05 15:07:31 by armendes         ###   ########.fr        #
+#    Updated: 2022/09/08 15:06:04 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	easyfind.hpp
+INCLUDES =	iterator_traits.hpp\
+						reverse_iterator.hpp
 
 CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME = EasyFind
+NAME = Containers
 
 RM =	rm -rf
 
