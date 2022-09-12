@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:13:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/12 17:58:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:54:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,17 @@ namespace ft
 		};
 
 	};
+
+	template<class InputIt>
+	typename ft::iterator_traits<InputIt>::difference_type
+	distance(InputIt first, InputIt last)
+	{
+		typename ft::iterator_traits<InputIt>::difference_type size = 0;
+		if (first == last)
+			return (0);
+		for (; first != last; ++first, ++size);
+		return (size);
+	}
 
 }
 
