@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:25:46 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/06 19:06:01 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:14:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ namespace ft
 			template< class U >
 			reverse_iterator& operator=( const reverse_iterator<U>& other )
 			{
-				if (if (this == &other)
+				if (this == &other)
 					return (*this);
 				this->current = other.current
 				return (*this);
