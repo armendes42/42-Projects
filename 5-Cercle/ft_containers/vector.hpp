@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/13 18:42:02 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:08:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,8 +294,9 @@ namespace ft
 
 		void push_back (const value_type& val)
 		{
-			size_type new_size;
-			if (this->_end == this->_capacity)
+			size_type n = ft::distance(this->_begin, this->_end);
+
+			if (n > this->capacity())
 			{
 				size_type new_size = (this->size() > 0) ? this->size() * 2 : 1;
 				this->reserve(new_size);
@@ -312,12 +313,21 @@ namespace ft
 
 		iterator insert (iterator position, const value_type& val)
 		{
-
+			this->insert(position, 1, val);
+			return (this->begin() + position);
 		};
 
 		void insert (iterator position, size_type n, const value_type& val)
 		{
-
+			if (this->size() + n >= this->capacity())
+				reserve(this->size() + n);
+			else
+				reserve(this->size() * 2);
+			if (position == this->_end)
+			{
+				for (size_type i = 0; i < n; i++)
+					push_back(val);
+			}
 		};
 
 		template <class InputIterator>
