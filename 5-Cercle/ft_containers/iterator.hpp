@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:13:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/12 19:54:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:58:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ namespace ft
 	template <typename Iterator>
 	class random_access_iterator : ft::iterator<random_access_iterator_tag, Iterator>
 	{
-		private:
-		pointer			_current;
-
-
 		public:
 
 		typedef					Iterator																																	iterator_type;
@@ -43,7 +39,7 @@ namespace ft
 		{
 			if (this == &other)
 				return (*this);
-			this->_current = other._current
+			this->_current = other._current;
 			return (*this);
 		};
 
@@ -59,7 +55,7 @@ namespace ft
 
 		pointer operator->() const
 		{
-			return (&(operator*());
+			return (&(operator*()));
 		};
 
 		reference	operator[](difference_type n) const
@@ -69,13 +65,13 @@ namespace ft
 
 		random_access_iterator&		operator++()
 		{
-			++(_current);
+			++(this->_current);
 			return *this;
 		};
 
 		random_access_iterator&		operator--()
 		{
-			--(_current);
+			--(this->_current);
 			return *this;
 		};
 
@@ -196,6 +192,9 @@ namespace ft
 		{
 			return (rhs.base() >= lhs.base());
 		};
+
+		private:
+		pointer			_current;
 
 	};
 

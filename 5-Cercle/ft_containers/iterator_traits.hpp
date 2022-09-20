@@ -6,12 +6,14 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:29:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/09 17:11:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:06:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_TRAITS_HPP
 # define ITERATOR_TRAITS_HPP
+
+# include <cstddef>
 
 namespace ft
 {

@@ -6,29 +6,30 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/14 17:08:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:40:09 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
+# include <exception>
+# include <stdexcept>
 # include "iterator_traits.hpp"
 # include "iterator.hpp"
+# include "reverse_iterator.hpp"
+# include "equal.hpp"
+# include "enable_if.hpp"
+# include "is_integral.hpp"
+# include "nullptr.hpp"
 # include "lexicographical_compare.hpp"
 
 namespace ft
 {
 
-	template <typename T, typename Alloc = allocator<T>>
+	template < class T, class Alloc = std::allocator<T> >
 	class vector
 	{
-		private:
-
-		allocator_type	_alloc;
-		pointer					_begin;
-		pointer					_end;
-		size_type				_capacity;
 
 		public:
 
@@ -40,10 +41,10 @@ namespace ft
 		typedef typename allocator_type::const_pointer								const_pointer;
 		typedef typename ft::random_access_iterator<value_type>				iterator;
 		typedef typename ft::random_access_iterator<const value_type> const_iterator;
-		typedef typename ft::reverse_iterator<value_type>							iterator;
-		typedef typename ft::reverse_iterator<const value_type> 			const_iterator;
-		typedef typename std::ptrdiff_t																difference_type;
-		typedef typename std::size_t																	size_type;
+		typedef typename ft::reverse_iterator<value_type>							reverse_iterator;
+		typedef typename ft::reverse_iterator<const value_type> 			const_reverse_iterator;
+		typedef typename allocator_type::size_type            size_type;
+		typedef typename allocator_type::difference_type      difference_type;
 
 
 		//Constructors, Destructor and Overload of =
@@ -69,9 +70,9 @@ namespace ft
 		};
 
 		template <class InputIterator>
-    vector(InputIterator first, InputIterator last,
+    	vector(InputIterator first, InputIterator last,
     				const allocator_type& alloc = allocator_type(),
-						typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr) : _alloc(alloc), _begin(NULL), _end(NULL), _capacity(0)
+						typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_) : _alloc(alloc), _begin(NULL), _end(NULL), _capacity(0)
 		{
 			size_type n = ft::distance(first, last);
 			this->_begin = this->_alloc.allocate(n);
@@ -106,7 +107,7 @@ namespace ft
 			if (this == &x)
 				return (*this);
 			this->clear();
-			this->insert(this->_end, x._begin, x._end;
+			this->insert(this->_end, x._begin, x._end);
 			return (*this);
 		};
 
@@ -181,7 +182,7 @@ namespace ft
 				while (this->size() > n)
 				{
 					--this->_end();
-					this->_alloc.destroy(this->_end)
+					this->_alloc.destroy(this->_end);
 				}
 			}
 			else
@@ -270,13 +271,13 @@ namespace ft
 
 		//Modifiers Functions
 		template <class InputIterator>
-  	void assign (InputIterator first, InputIterator last,
-		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
+  		void assign (InputIterator first, InputIterator last,
+		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
 		{
 			this->clear();
 			size_type n = ft::distance(first, last);
 			this->reserve(n);
-			for (; n > 0; n--. this->_end++, first++)
+			for (; n > 0; n--, this->_end++, first++)
 			{
 				this->_alloc.construct(this->_end, *first);
 			}
@@ -331,7 +332,7 @@ namespace ft
 		};
 
 		template <class InputIterator>
-    void insert (iterator position, InputIterator first, InputIterator last)
+    	void insert (iterator position, InputIterator first, InputIterator last)
 		{
 
 		};
@@ -383,56 +384,53 @@ namespace ft
 
 		};
 
+		private:
+
+		allocator_type	_alloc;
+		pointer					_begin;
+		pointer					_end;
+		size_type				_capacity;
+
 	};
 
 	template <class T, class Alloc>
-  bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
-		if (lhs.size() != rhs.size())
-			return (false);
-		else
-		{
-			for (size_type i = 0; i < lsh.size(); i++)
-			{
-				if (lhs[i] != rhs[i])
-					return (false);
-			}
-		}
-		return (true);
+		return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
 	};
 
 	template <class T, class Alloc>
-  bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 		return (!(lhs == rhs));
 	};
 
 	template <class T, class Alloc>
-  bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	};
 
 	template <class T, class Alloc>
-  bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 		return (rhs < lhs);
 	};
 
 	template <class T, class Alloc>
-  bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 		return (!(rhs < lhs));
 	};
 
 	template <class T, class Alloc>
-  bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+  	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 		return (!(lhs < rhs));
 	};
 
 	template <class T, class Alloc>
-  void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+  	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
 	{
 		x.swap(y);
 	};
