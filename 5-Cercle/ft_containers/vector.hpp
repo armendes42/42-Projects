@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/20 14:40:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:21:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,66 +48,62 @@ namespace ft
 
 
 		//Constructors, Destructor and Overload of =
-		explicit vector(const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(NULL), _end(NULL), _capacity(0) {};
+		explicit vector(const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_) {};
 
 		explicit vector(size_type n, const value_type& val = value_type(),
-                 const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(NULL), _end(NULL), _capacity(n)
+                 const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
 		{
 			try
 			{
-				this->_begin = this->_alloc.allocate(n);
+				_begin = _alloc.allocate(n);
 			}
 			catch (std::exception &e)
 			{
 				throw std::length_error("ft::vector");
 			}
-			this->_end = this->_begin;
-			for (size_type i = 0; i < n; i++)
+			_end = _begin;
+			for (size_t i = 0; i < n; ++i, ++_end)
 			{
 				this->_alloc.construct(this->_end, val);
-				this->_end++;
 			}
+			_capacity = _end;
 		};
 
 		template <class InputIterator>
     	vector(InputIterator first, InputIterator last,
     				const allocator_type& alloc = allocator_type(),
-						typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_) : _alloc(alloc), _begin(NULL), _end(NULL), _capacity(0)
+						typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
 		{
-			size_type n = ft::distance(first, last);
-			this->_begin = this->_alloc.allocate(n);
-			this->_end = this->_begin;
-			for(size_type i = 0; i < n; i++)
+			difference_type n = ft::distance(first, last);
+			_begin = _alloc.allocate(n);
+			_capacity = _begin + n;
+			_end = _begin;
+			for(; n > 0; --n, ++_end, ++first)
 			{
-				this->_alloc.construct(this->_end, *first);
-				this->_end++;
-				first++;
+				_alloc.construct(_end, *first);
 			}
 		};
 
-		vector(const vector& x) : _alloc(x._alloc), _begin(NULL), _end(NULL), _capacity(x._capacity)
+		vector(const vector& x) : _alloc(x._alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
 		{
-			this->_begin = this->_alloc.allocate(x.size());
-			this->_end = this->_begin;
-			for (size_type i = 0; i < x.size(); i++)
-			{
-				this->_alloc.construct(this->_end, x[i]);
-				this->_end++;
-			}
+			insert(begin(), x.begin(), x.end());
 		};
 
 		~vector()
 		{
-			this->clear();
-			this->_alloc.deallocate(this->_begin, this->_capacity);
+			if (_begin != nullptr_)
+			{
+				clear();
+				_alloc.deallocate(_begin, capacity());
+			}
 		};
 
 		vector& operator=(const vector& x)
 		{
 			if (this == &x)
 				return (*this);
-			this->clear();
-			this->insert(this->_end, x._begin, x._end);
+			clear();
+			insert(end(), x.begin(), x.end());
 			return (*this);
 		};
 
@@ -191,8 +187,8 @@ namespace ft
 
 		size_type capacity() const
 		{
-			return (this->_capacity - this->_begin);
-		};
+			return static_cast<size_type>(this->_capacity - this->_begin);
+		}
 
 		bool empty() const
 		{
@@ -329,9 +325,9 @@ namespace ft
 				for (size_type i = 0; i < n; i++)
 					push_back(val);
 			}
-		};
+		}
 
-		template <class InputIterator>
+		/*template <class InputIterator>
     	void insert (iterator position, InputIterator first, InputIterator last)
 		{
 
@@ -345,7 +341,7 @@ namespace ft
 		iterator erase (iterator first, iterator last)
 		{
 
-		};
+		};*/
 
 		void swap (vector& x)
 		{
@@ -389,7 +385,7 @@ namespace ft
 		allocator_type	_alloc;
 		pointer					_begin;
 		pointer					_end;
-		size_type				_capacity;
+		pointer					_capacity;
 
 	};
 
