@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/20 16:21:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:37:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,58 +110,48 @@ namespace ft
 		//Iterators Functions
 		iterator begin()
 		{
-			return (this->_begin);
+			return (iterator(_begin));
 		};
 
 		const_iterator begin() const
 		{
-			return (this->_begin);
+			return (const_iterator(_begin));
 		};
 
 		iterator end()
 		{
-			if (this->empty())
-				return (this->_begin);
-			return (this->_end);
+			return (iterator(_end));
 		};
 
 		const_iterator end() const
 		{
-			if (this->empty())
-				return (this->_begin);
-			return (this->_end);
+			return (const_iterator(_end));
 		};
 
 		reverse_iterator rbegin()
 		{
-			return (reverse_iterator(this->_end));
+			return (reverse_iterator(_end));
 		};
 
 		const_reverse_iterator rbegin() const
 		{
-			return (reverse_iterator(this->_end));
+			return (const_reverse_iterator(_end));
 		};
 
 		reverse_iterator rend()
 		{
-			return (reverse_iterator(this->_begin));
+			return (reverse_iterator(_begin));
 		};
 
 		const_reverse_iterator rend() const
 		{
-			return (reverse_iterator(this->_begin));
+			return (const_reverse_iterator(_begin));
 		};
 
 		//Capacity Functions
 		size_type size() const
 		{
-			size_type result;
-			while (this->_begin && this->_begin != this->_end)
-			{
-				this->_begin++;
-				result++;
-			}
-			return (result);
+			return static_cast<size_type>(_end - _begin);
 		};
 
 		size_type max_size() const
@@ -171,64 +161,69 @@ namespace ft
 
 		void resize(size_type n, value_type val = value_type())
 		{
-			if (n > this->max_size())
+			const size_type cap = capacity();
+			size_type old_size = size();
+
+			if (n > max_size())
 				throw (std::length_error("vector::resize"));
-			else if (n < this->size())
+			else if (n < size())
 			{
-				while (this->size() > n)
-				{
-					--this->_end();
-					this->_alloc.destroy(this->_end);
-				}
+				while (size() > n)
+					_alloc.destroy(--_end);
 			}
 			else
-				this->insert(this->_end, n - this->size(), val);
+			{
+				if (n > cap)
+				{
+					if ((cap * 2) >= n)
+						reserve(cap * 2);
+					else
+						reserve(n);
+				}
+				for (; old_size < n; ++old_size, ++_end)
+					_alloc.construct(_end, val);
+			}
 		};
 
 		size_type capacity() const
 		{
-			return static_cast<size_type>(this->_capacity - this->_begin);
+			return static_cast<size_type>(_capacity - _begin);
 		}
 
 		bool empty() const
 		{
-			if (this->size() == 0)
-				return (true);
-			return (false);
+			return (size() == 0);
 		};
 
 		void reserve(size_type n)
 		{
-			if (n > this->max_size())
+			pointer old_begin = _begin;
+			pointer tmp_begin = _begin;
+			pointer old_end = _end;
+			const size_type old_cap = capacity();
+
+			if (n > max_size())
 				throw (std::length_error("vector::reserve"));
-			else if (n > this->_capacity)
+			if (n > capacity())
 			{
-				pointer ex_begin = this->_begin;
-				pointer ex_end = this->_end;
-				size_type ex_capacity = this->capacity();
-				size_type ex_size = this->size();
-				this->_begin = this->_alloc.allocate(n);
-				this->_capacity = this->_begin + n;
-				this->_end = this->_begin;
-				while (ex_begin != ex_end)
-				{
-					this->_alloc.construct(this->_end, *ex_begin);
-					this->_end++;
-					ex_begin++;
-				}
-				this->_alloc.deallocate(ex_begin - ex_size, ex_capacity);
+				_begin = _alloc.allocate(n, old_begin);
+				_capacity = _begin + n;
+				_end = _begin;
+				for (; tmp_begin != old_end; ++end, ++tmp_begin)
+					_alloc.construct(_end, *tmp_begin);
+				_alloc.deallocate(old_begin, old_cap);
 			}
 		};
 
 		//Element access
 		reference operator[] (size_type n)
 		{
-			return (*(this->_begin + n));
+			return (*(_begin + n));
 		};
 
 		const_reference operator[] (size_type n) const
 		{
-			return (*(this->_begin + n));
+			return (*(_begin + n));
 		};
 
 		reference at (size_type n)
