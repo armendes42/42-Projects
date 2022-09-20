@@ -6,24 +6,24 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/09/20 14:40:33 by armendes         ###   ########.fr        #
+#    Updated: 2022/09/20 14:53:27 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	enable_if.hpp\
-		equal.hpp\
-		is_integral.hpp\
-		lexicographical_compare.hpp\
-		pair.hpp\
-		iterator_traits.hpp\
-		iterator.hpp\
-		reverse_iterator.hpp\
-		vector.hpp\
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	iterator_traits.hpp\
-						reverse_iterator.hpp
+INCLUDES =	enable_if.hpp\
+			equal.hpp\
+			is_integral.hpp\
+			lexicographical_compare.hpp\
+			pair.hpp\
+			iterator_traits.hpp\
+			iterator.hpp\
+			nullptr.hpp\
+			reverse_iterator.hpp\
+			vector.hpp\
 
 CC =	c++
 
