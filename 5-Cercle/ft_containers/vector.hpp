@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/20 17:03:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:41:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ namespace ft
 		typedef typename allocator_type::const_pointer								const_pointer;
 		typedef typename ft::random_access_iterator<value_type>				iterator;
 		typedef typename ft::random_access_iterator<const value_type> const_iterator;
-		typedef typename ft::reverse_iterator<value_type>							reverse_iterator;
-		typedef typename ft::reverse_iterator<const value_type> 			const_reverse_iterator;
-		typedef typename allocator_type::size_type            size_type;
-		typedef typename allocator_type::difference_type      difference_type;
+		typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
+		typedef typename ft::reverse_iterator<const_iterator> 			const_reverse_iterator;
+		typedef typename size_t            size_type;
+		typedef typename ft::iterator_traits<iterator>::difference_type      difference_type;
 
 
 		//Constructors, Destructor and Overload of =
@@ -209,7 +209,7 @@ namespace ft
 				_begin = _alloc.allocate(n, old_begin);
 				_capacity = _begin + n;
 				_end = _begin;
-				for (; tmp_begin != old_end; ++end, ++tmp_begin)
+				for (; tmp_begin != old_end; ++_end, ++tmp_begin)
 					_alloc.construct(_end, *tmp_begin);
 				_alloc.deallocate(old_begin, old_cap);
 			}
@@ -384,7 +384,7 @@ namespace ft
 
 		void clear()
 		{
-			const size_type size = size();
+			const size_type size = this->size();
 
 			for (size_type i = 0; i < size; ++i)
 			{
