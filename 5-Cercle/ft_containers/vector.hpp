@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/22 15:41:06 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:59:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 		typedef typename ft::random_access_iterator<const value_type> const_iterator;
 		typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
 		typedef typename ft::reverse_iterator<const_iterator> 			const_reverse_iterator;
-		typedef typename size_t            size_type;
+		typedef size_t            size_type;
 		typedef typename ft::iterator_traits<iterator>::difference_type      difference_type;
 
 
@@ -110,7 +110,7 @@ namespace ft
 		//Iterators Functions
 		iterator begin()
 		{
-			return (iterator(_begin));
+			return (iterator(this->_begin));
 		};
 
 		const_iterator begin() const

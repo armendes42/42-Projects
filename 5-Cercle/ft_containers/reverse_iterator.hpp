@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:25:46 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/20 14:13:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/26 14:22:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ namespace ft
 		explicit reverse_iterator(iterator_type x) : current(x) { }
 
 		template< class U >
-		reverse_iterator(const reverse_iterator<U>& other) : current(other.current) { }
+		reverse_iterator(const reverse_iterator<U>& other) : current(other.base()) { }
+
+		virtual ~reverse_iterator(void) {}
 
 		template< class U >
 		reverse_iterator& operator=( const reverse_iterator<U>& other )
