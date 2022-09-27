@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:13:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/26 17:53:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:43:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ namespace ft
 {
 
 	template <typename Iterator>
-	class random_access_iterator : ft::iterator<random_access_iterator_tag, Iterator>
+	class random_access_iterator : public ft::iterator<random_access_iterator_tag, Iterator>
 	{
 		public:
 
 		typedef typename		ft::iterator<random_access_iterator_tag, Iterator>::iterator_category	iterator_category;
 		typedef typename		ft::iterator<random_access_iterator_tag, Iterator>::value_type				value_type;
 		typedef typename		ft::iterator<random_access_iterator_tag, Iterator>::difference_type		difference_type;
-		typedef T*																						pointer;
-		typedef T&																						reference;
+		typedef typename		ft::iterator<random_access_iterator_tag, Iterator>::pointer					pointer;
+		typedef typename		ft::iterator<random_access_iterator_tag, Iterator>::reference			reference;
 
 		random_access_iterator() : _current() {}
 		explicit random_access_iterator(pointer x) : _current(x) {}
-		random_access_iterator(random_access_iterator &other) : _current(other._current) {}
-		virtual ~random_access_iterator() { _current = NULL}
+		random_access_iterator(random_access_iterator const &other) : _current(other._current) {}
+		virtual ~random_access_iterator() { _current = NULL; }
 
 		random_access_iterator& operator=(const random_access_iterator &other)
 		{

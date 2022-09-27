@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/26 16:59:59 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:42:42 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ namespace ft
 		//Iterators Functions
 		iterator begin()
 		{
-			return (iterator(this->_begin));
+			return (iterator(_begin));
 		};
 
 		const_iterator begin() const
@@ -130,22 +130,22 @@ namespace ft
 
 		reverse_iterator rbegin()
 		{
-			return (reverse_iterator(_end));
+			return (reverse_iterator(end()));
 		};
 
 		const_reverse_iterator rbegin() const
 		{
-			return (const_reverse_iterator(_end));
+			return (const_reverse_iterator(end()));
 		};
 
 		reverse_iterator rend()
 		{
-			return (reverse_iterator(_begin));
+			return (reverse_iterator(begin()));
 		};
 
 		const_reverse_iterator rend() const
 		{
-			return (const_reverse_iterator(_begin));
+			return (const_reverse_iterator(begin()));
 		};
 
 		//Capacity Functions
@@ -307,7 +307,7 @@ namespace ft
 		{
 			const difference_type size = ft::distance(begin(), position);
 
-			resize(size() + n);
+			resize(this->size() + n);
 			position = begin() + size;
 
 			size_type rhs = ft::distance(position, end() - n);
@@ -324,18 +324,8 @@ namespace ft
     	void insert (iterator position, InputIterator first, InputIterator last,
 		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
 		{
-			const difference_type size = ft::distance(begin(), position);
-			const size_type n = ft::distance(first, last);
-
-			resize(size() + n);
-			position = begin() + size;
-
-			size_type rhs = ft::distance(position, end() - n);
-			pointer  old_end = _end - n - 1;
-			for (size_type i = 0; i < rhs; ++i, --old_end)
-				*(_end - i - 1) = *old_end;
-			for (size_type i = 0; i < n && first != last; ++i, ++first)
-				position[i] = *first;
+			for (; first != last; ++first)
+				position = insert(position, *first) + 1;
 		};
 		
 		iterator erase (iterator position)
@@ -367,7 +357,7 @@ namespace ft
 
 			pointer tmp_begin = _begin;
 			pointer tmp_end = _end;
-			size_type tmp_capacity = _capacity;
+			pointer tmp_capacity = _capacity;
 			allocator_type tmp_alloc = _alloc;
 
 			_begin = x._begin;

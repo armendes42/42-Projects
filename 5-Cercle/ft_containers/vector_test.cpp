@@ -404,119 +404,119 @@ void	vector_testing(void) {
 	std::cout << std::endl;
 	vector_constructor_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Operators Test ********** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_operator_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Operators Test ********** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_operator_test();
 	
-	// /* ****************************** Iterators ***************************** */
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Begin Test ************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_begin_test();
+	/* ****************************** Iterators ***************************** */
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Begin Test ************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_begin_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector End Test **************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_end_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector End Test **************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_end_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Rbegin Test ************* */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_rbegin_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Rbegin Test ************* */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_rbegin_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Rend Test *************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_rend_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Rend Test *************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_rend_test();
 
-	// /* ****************************** Capacity ****************************** */
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Size Test *************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_size_test();
+	/* ****************************** Capacity ****************************** */
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Size Test *************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_size_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Maxsize Test ************ */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_maxsize_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Maxsize Test ************ */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_maxsize_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Resize Test ************* */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_resize_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Resize Test ************* */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_resize_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Capacity Test *********** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_capacity_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Capacity Test *********** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_capacity_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Empty Test ************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_empty_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Empty Test ************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_empty_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Reserve Test ************ */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_reserve_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Reserve Test ************ */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_reserve_test();
 
-	// /* *************************** Element Access *************************** */
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Subscript Operator Test * */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_subscript_operator_test();
+	/* *************************** Element Access *************************** */
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Subscript Operator Test * */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_subscript_operator_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector At Test ***************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_at_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector At Test ***************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_at_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Front Test ************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_front_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Front Test ************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_front_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Back Test *************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_back_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Back Test *************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_back_test();
 
-	// /* ****************************** Modifiers ***************************** */
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Assign Test ************* */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_assign_test();
+	/* ****************************** Modifiers ***************************** */
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Assign Test ************* */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_assign_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Insert Test ************* */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_insert_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Insert Test ************* */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_insert_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Erase Test ************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_erase_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Erase Test ************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_erase_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Swap Test *************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_swap_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Swap Test *************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_swap_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Clear Test *************** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_clear_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Clear Test *************** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_clear_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector Get_Allocator Test ****** */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_get_allocator_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector Get_Allocator Test ****** */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_get_allocator_test();
 
-	// std::cout << std::endl;
-	// std::cout << "\033[1;35m/* ******** Vector NM_Swap Test ************ */\033[0m" << std::endl;
-	// std::cout << std::endl;
-	// vector_nm_swap_test();
+	std::cout << std::endl;
+	std::cout << "\033[1;35m/* ******** Vector NM_Swap Test ************ */\033[0m" << std::endl;
+	std::cout << std::endl;
+	vector_nm_swap_test();
 
 	std::cout << std::endl;
 }
