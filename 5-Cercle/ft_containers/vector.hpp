@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/27 14:42:42 by armendes         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:28:12 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ namespace ft
 		typedef typename allocator_type::const_reference							const_reference;
 		typedef typename allocator_type::pointer											pointer;
 		typedef typename allocator_type::const_pointer								const_pointer;
-		typedef typename ft::random_access_iterator<value_type>				iterator;
-		typedef typename ft::random_access_iterator<const value_type> const_iterator;
-		typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
-		typedef typename ft::reverse_iterator<const_iterator> 			const_reverse_iterator;
+		typedef ft::random_access_iterator<value_type>				iterator;
+		typedef ft::random_access_iterator<const value_type> const_iterator;
+		typedef ft::reverse_iterator<iterator>							reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator> 			const_reverse_iterator;
 		typedef size_t            size_type;
 		typedef typename ft::iterator_traits<iterator>::difference_type      difference_type;
 
@@ -86,7 +86,15 @@ namespace ft
 
 		vector(const vector& x) : _alloc(x._alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
 		{
-			insert(begin(), x.begin(), x.end());
+			size_type n = x.size();
+
+			this->_begin = this->_alloc.allocate(n);
+			this->_end = this->_begin;
+			this->_capacity = this->_end + n;
+			
+			pointer tmp = x._begin;
+			for (; n != 0; n--)
+				this->_alloc.construct(this->_end++, *tmp++);
 		};
 
 		~vector()
@@ -161,12 +169,13 @@ namespace ft
 
 		void resize(size_type n, value_type val = value_type())
 		{
-			const size_type cap = capacity();
-			size_type old_size = size();
+			const size_type	cap = capacity();
+			size_type		old_size = size();
 
 			if (n > max_size())
-				throw (std::length_error("vector::resize"));
-			else if (n < size())
+				throw std::length_error("vector::resize");
+			
+			if (n < old_size)
 			{
 				while (size() > n)
 					_alloc.destroy(--_end);
@@ -180,7 +189,7 @@ namespace ft
 					else
 						reserve(n);
 				}
-				for (; old_size < n; ++old_size, ++_end)
+				for ( ; old_size < n; ++old_size, ++_end)
 					_alloc.construct(_end, val);
 			}
 		};
@@ -305,49 +314,59 @@ namespace ft
 
 		void insert (iterator position, size_type n, const value_type& val)
 		{
-			const difference_type size = ft::distance(begin(), position);
+			size_type pos = ft::distance(begin(), position);
 
-			resize(this->size() + n);
-			position = begin() + size;
-
-			size_type rhs = ft::distance(position, end() - n);
-			pointer old_end = _end - n - 1;
-
-			for (size_type i = 0; i < rhs; ++i, --old_end)
-				*(_end - i - 1) = *old_end;
-
-			for (size_type i = 0; i < n; ++i)
-				position[i] = val;
+			resize(size() + n);
+			position = begin() + pos;
+			
+			size_type toMoveRight = ft::distance(position, end() - n);
+			pointer oldEnd = _end - n - 1;
+			for (size_type i = 0; i < toMoveRight; i++) {
+				*(_end - i - 1) = *oldEnd--;
+			}
+			for (size_type i = 0; i < n; i++) {
+				*(position + i) = val;
+			}
 		}
 
 		template <class InputIterator>
     	void insert (iterator position, InputIterator first, InputIterator last,
 		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
 		{
-			for (; first != last; ++first)
-				position = insert(position, *first) + 1;
+			size_type pos = ft::distance(begin(), position);
+			size_type n = ft::distance(first, last);
+
+			resize(size() + n);
+			position = begin() + pos;
+			
+			size_type toMoveRight = ft::distance(position, end() - n);
+			pointer oldEnd = _end - n - 1;
+			for (size_type i = 0; i < toMoveRight; i++) {
+				*(_end - i - 1) = *oldEnd--;
+			}
+			for (size_type i = 0; i < n && first != last; i++, first++) {
+				*(position + i) = *first;
+			}
 		};
 		
 		iterator erase (iterator position)
 		{
-			iterator ret = position;
+			iterator pos = position;
+			size_type toDestroyPos = ft::distance(begin(), position);
 
-			for (; position != end(); ++position)
-			{
-				_alloc.destroy(&*position);
-				_alloc.construct(&*position, *(position + 1));
-			}
+			_alloc.destroy(_begin + toDestroyPos);
+
+			for (; pos + 1 != end(); ++pos)
+				*pos = *(pos + 1);
 			--_end;
-			return (ret);
+			return iterator(position);
 		};
 
 		iterator erase (iterator first, iterator last)
 		{
-			iterator ret = first;
-
 			for (; first != last; --last)
 				erase(first);
-			return (ret);
+			return iterator(first);
 		};
 
 		void swap (vector& x)
