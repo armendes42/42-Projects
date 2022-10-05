@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/29 16:28:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:12:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,387 +33,386 @@ namespace ft
 
 		public:
 
-		typedef T																											value_type;
-		typedef Alloc																									allocator_type;
-		typedef typename allocator_type::reference										reference;
-		typedef typename allocator_type::const_reference							const_reference;
-		typedef typename allocator_type::pointer											pointer;
-		typedef typename allocator_type::const_pointer								const_pointer;
-		typedef ft::random_access_iterator<value_type>				iterator;
-		typedef ft::random_access_iterator<const value_type> const_iterator;
-		typedef ft::reverse_iterator<iterator>							reverse_iterator;
-		typedef ft::reverse_iterator<const_iterator> 			const_reverse_iterator;
-		typedef size_t            size_type;
-		typedef typename ft::iterator_traits<iterator>::difference_type      difference_type;
+			typedef T	value_type;
+			typedef Alloc	allocator_type;
+			typedef typename allocator_type::reference	reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer	pointer;
+			typedef typename allocator_type::const_pointer	const_pointer;
+			typedef ft::random_access_iterator<value_type>	iterator;
+			typedef ft::random_access_iterator<const value_type> const_iterator;
+			typedef ft::reverse_iterator<iterator>	reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+			typedef size_t	size_type;
+			typedef std::ptrdiff_t	difference_type;
 
+		private:
+		
+			T *_array;
+			A _alloc;
+			size_type _size;
+			size_type  _allocSize;
 
-		//Constructors, Destructor and Overload of =
-		explicit vector(const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_) {};
+		public:
 
-		explicit vector(size_type n, const value_type& val = value_type(),
-                 const allocator_type& alloc = allocator_type()) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
-		{
-			try
+			//Constructors, Destructor and Overload of =
+			explicit vector(const allocator_type& alloc = allocator_type()) : _alloc(alloc)
 			{
-				_begin = _alloc.allocate(n);
-			}
-			catch (std::exception &e)
+				_array = _alloc.allocate(0);
+				_allocSize = 0;
+				_size = 0;
+			};
+
+			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _size(n)
 			{
-				throw std::length_error("ft::vector");
-			}
-			_end = _begin;
-			for (size_t i = 0; i < n; ++i, ++_end)
+				_allocSize = n;
+				_array = _alloc.allocate(n);
+				for(size_type i = 0; i < n; i++) {
+					_alloc.construct(&_array[i], val);
+					}
+			};
+
+			template <class InputIterator>
+			vector(InputIterator first, InputIterator last,
+						const allocator_type& alloc = allocator_type(),
+							typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0) : _alloc(alloc)
 			{
-				this->_alloc.construct(this->_end, val);
-			}
-			_capacity = _end;
-		};
+				_array = NULL;
+				_size = 0;
+				_allocSize = 0;
+				assign(first, last);
+			};
 
-		template <class InputIterator>
-    	vector(InputIterator first, InputIterator last,
-    				const allocator_type& alloc = allocator_type(),
-						typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_) : _alloc(alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
-		{
-			difference_type n = ft::distance(first, last);
-			_begin = _alloc.allocate(n);
-			_capacity = _begin + n;
-			_end = _begin;
-			for(; n > 0; --n, ++_end, ++first)
+			vector(const vector& x) : _alloc(x._alloc)
 			{
-				_alloc.construct(_end, *first);
-			}
-		};
+				_array = NULL;
+				_size = 0;
+				_allocSize = 0;
+				*this = x;
+			};
 
-		vector(const vector& x) : _alloc(x._alloc), _begin(nullptr_), _end(nullptr_), _capacity(nullptr_)
-		{
-			size_type n = x.size();
-
-			this->_begin = this->_alloc.allocate(n);
-			this->_end = this->_begin;
-			this->_capacity = this->_end + n;
-			
-			pointer tmp = x._begin;
-			for (; n != 0; n--)
-				this->_alloc.construct(this->_end++, *tmp++);
-		};
-
-		~vector()
-		{
-			if (_begin != nullptr_)
+			~vector()
 			{
 				clear();
 				_alloc.deallocate(_begin, capacity());
-			}
-		};
+			};
 
-		vector& operator=(const vector& x)
-		{
-			if (this == &x)
+			vector& operator=(const vector& x)
+			{
+				assign(x.begin(), x.end());
 				return (*this);
-			clear();
-			insert(end(), x.begin(), x.end());
-			return (*this);
-		};
+			};
 
-		//Iterators Functions
-		iterator begin()
-		{
-			return (iterator(_begin));
-		};
-
-		const_iterator begin() const
-		{
-			return (const_iterator(_begin));
-		};
-
-		iterator end()
-		{
-			return (iterator(_end));
-		};
-
-		const_iterator end() const
-		{
-			return (const_iterator(_end));
-		};
-
-		reverse_iterator rbegin()
-		{
-			return (reverse_iterator(end()));
-		};
-
-		const_reverse_iterator rbegin() const
-		{
-			return (const_reverse_iterator(end()));
-		};
-
-		reverse_iterator rend()
-		{
-			return (reverse_iterator(begin()));
-		};
-
-		const_reverse_iterator rend() const
-		{
-			return (const_reverse_iterator(begin()));
-		};
-
-		//Capacity Functions
-		size_type size() const
-		{
-			return static_cast<size_type>(_end - _begin);
-		};
-
-		size_type max_size() const
-		{
-			return (allocator_type().max_size());
-		};
-
-		void resize(size_type n, value_type val = value_type())
-		{
-			const size_type	cap = capacity();
-			size_type		old_size = size();
-
-			if (n > max_size())
-				throw std::length_error("vector::resize");
-			
-			if (n < old_size)
+			//Iterators Functions
+			iterator begin()
 			{
-				while (size() > n)
-					_alloc.destroy(--_end);
-			}
-			else
+				return (_array);
+			};
+
+			const_iterator begin() const
 			{
-				if (n > cap)
+				return (_array);
+			};
+
+			iterator end()
+			{
+				return (_array + _size);
+			};
+
+			const_iterator end() const
+			{
+				return (_array + _size);
+			};
+
+			reverse_iterator rbegin()
+			{
+				return (reverse_iterator(end()));
+			};
+
+			const_reverse_iterator rbegin() const
+			{
+				return (const_reverse_iterator(end()));
+			};
+
+			reverse_iterator rend()
+			{
+				return (reverse_iterator(begin()));
+			};
+
+			const_reverse_iterator rend() const
+			{
+				return (const_reverse_iterator(begin()));
+			};
+
+			//Capacity Functions
+			size_type size() const
+			{
+				return (_size);
+			};
+
+			size_type max_size() const
+			{
+				return (allocator_type().max_size());
+			};
+
+			void resize(size_type n, value_type val = value_type())
+			{
+				if (size < this->_size)
 				{
-					if ((cap * 2) >= n)
-						reserve(cap * 2);
-					else
-						reserve(n);
+					while (size < this->_size)
+						this->_alloc.destroy(&this->_array[--this->_size]);
 				}
-				for ( ; old_size < n; ++old_size, ++_end)
-					_alloc.construct(_end, val);
-			}
-		};
+				else
+				{
+					size_type const &tmp = this->_size;
 
-		size_type capacity() const
-		{
-			return static_cast<size_type>(_capacity - _begin);
-		}
+					if (size <= this->_allocSize)
+						;
+					else if (size <= tmp * 2)
+						this->reserve(tmp * 2);
+					else
+						this->reserve(size);
+					while (this->_size < size)
+						this->_alloc.construct(&this->_array[this->_size++], val);
+				}
+			};
 
-		bool empty() const
-		{
-			return (size() == 0);
-		};
-
-		void reserve(size_type n)
-		{
-			pointer old_begin = _begin;
-			pointer tmp_begin = _begin;
-			pointer old_end = _end;
-			const size_type old_cap = capacity();
-
-			if (n > max_size())
-				throw (std::length_error("vector::reserve"));
-			if (n > capacity())
+			size_type capacity() const
 			{
-				_begin = _alloc.allocate(n, old_begin);
-				_capacity = _begin + n;
-				_end = _begin;
-				for (; tmp_begin != old_end; ++_end, ++tmp_begin)
-					_alloc.construct(_end, *tmp_begin);
-				_alloc.deallocate(old_begin, old_cap);
+				return (_allocSize);
 			}
-		};
 
-		//Element access
-		reference operator[] (size_type n)
-		{
-			return (*(_begin + n));
-		};
-
-		const_reference operator[] (size_type n) const
-		{
-			return (*(_begin + n));
-		};
-
-		reference at (size_type n)
-		{
-			if (n >= size())
-				throw (std::out_of_range("vector::checkRange"));
-			return (*(_begin + n));
-		};
-
-		const_reference at (size_type n) const
-		{
-			if (n >= size())
-				throw (std::out_of_range("vector::checkRange"));
-			return (*(_begin + n));
-		};
-
-		reference front()
-		{
-			return (*_begin);
-		};
-
-		const_reference front() const
-		{
-			return (*_begin);
-		};
-
-		reference back()
-		{
-			return (*(_end - 1));
-		};
-
-		const_reference back() const
-		{
-			return (*(_end - 1));
-		};
-
-		//Modifiers Functions
-		template <class InputIterator>
-  		void assign (InputIterator first, InputIterator last,
-		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
-		{
-			clear();
-			reserve(ft::distance(first, last));
-			for (; first != last; ++_end, ++first)
+			bool empty() const
 			{
-				_alloc.construct(_end, *first);
-			}
-		};
+				return (_size == 0 ? true : false);
+			};
 
-		void assign (size_type n, const value_type& val)
-		{
-			clear();
-			reserve(n);
-			for (; n > 0; --n, ++_end)
+			void reserve(size_type n)
 			{
-				_alloc.construct(_end, val);
+				if (n > max_size())
+					throw std::length_error("vector::reserve");
+				size_type y = -1;
+				if (_allocSize < n)
+				{
+					T *newArr = _alloc.allocate(n + 1);
+					while (++y <= n && y < size())
+					{
+						_alloc.construct(&newArr[y], _array[y]);
+						_alloc.destroy(_array + y);
+					}
+					_alloc.deallocate(_array, size());
+					_allocSize = n;
+					_array = newArr;
+				}
+			};
+
+			//Element access
+			reference operator[] (size_type n)
+			{
+				return (_array[n]);
+			};
+
+			const_reference operator[] (size_type n) const
+			{
+				return (_array[n]);
+			};
+
+			reference at (size_type n)
+			{
+				std::stringstream str;
+				if (pos > size())
+				{
+					str << "vector::_M_range_check: __n (which is " << pos << ") >= size() (which is " << size() << ")";
+					throw std::out_of_range(str.str());
+				}
+				else
+					return (_array[pos]);
+			};
+
+			const_reference at (size_type n) const
+			{
+				std::stringstream str;
+				if (pos > size())
+				{
+					str << "vector::_M_range_check: __n (which is " << pos << ") >= size() (which is " << size() << ")";
+					throw std::out_of_range(str.str());
+				}
+				else
+					return (_array[pos]);
+			};
+
+			reference front()
+			{
+				return (*(begin()));
+			};
+
+			const_reference front() const
+			{
+				return (*(begin()));
+			};
+
+			reference back()
+			{
+				return (*(end() - 1));
+			};
+
+			const_reference back() const
+			{
+				return (*(end() - 1));
+			};
+
+			//Modifiers Functions
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0)
+			{
+				clear();
+				insert(begin(), first, last);
+			};
+
+			void assign (size_type n, const value_type& val)
+			{
+				clear();
+        		resize(n, val);
+			};
+
+			void push_back (const value_type& val)
+			{
+				if (_size + 1 > _allocSize)
+				{
+					if (_size > 0)
+						reserve(_size * 2);
+					else
+						reserve(1);
+				}
+				_alloc.construct(&_array[_size], val);
+				_size++;
+			};
+
+			void pop_back()
+			{
+				erase(end() - 1);
+			};
+
+			iterator insert (iterator position, const value_type& val)
+			{
+				difference_type delta = pos - begin();
+				insert(pos, 1, value);
+				return (begin() + delta);
+			};
+
+			void insert (iterator position, size_type n, const value_type& val)
+			{
+				size_type		len = position - this->begin();
+
+				if (_size + n > _allocSize)
+				{
+					if (_size + n > _allocSize * 2)
+						this->reserve(_size + n);
+					else if (_size > 0)
+					{
+						if (_size == 0)
+							reserve(n);
+						this->reserve(_size * 2);
+					}
+					else
+						this->reserve(1);
+				}
+				for (size_type i = 0 ; i < n ; i++)
+					_alloc.construct(_array + _size + i, val);
+				for (int i = _size - 1 ; i >= 0 && i >= (int)len ; i--)
+					_array[i + n] = _array[i];
+				for (size_type i = len ; i < len + n ; i++)
+					_array[i] = val;
+				_size = _size + n;
 			}
-		};
 
-		void push_back (const value_type& val)
-		{
-			if (_end == _capacity)
-				reserve(size() > 0 ? size() * 2 : 1);
-			_alloc.construct(_end, val);
-			++_end;
-		};
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0)
+			{
+				size_type len = position - this->begin();
+				size_type n = 0;
 
-		void pop_back()
-		{
-			_alloc.destroy(_end);
-			--_end;
-		};
-
-		iterator insert (iterator position, const value_type& val)
-		{
-			insert(position, 1, val);
-			return (iterator(position));
-		};
-
-		void insert (iterator position, size_type n, const value_type& val)
-		{
-			size_type pos = ft::distance(begin(), position);
-
-			resize(size() + n);
-			position = begin() + pos;
+				for (InputIT tmp = first ; tmp != last && n <= this->max_size() ; tmp++)
+					n++;
+				if (_size + n > _allocSize)
+				{
+					if (_size + n > _allocSize * 2)
+						this->reserve(_size + n);
+					else if (_size >= 0)
+					{
+						if (_size == 0)
+							reserve(n);
+						this->reserve(_size * 2);
+					}
+					else
+						this->reserve(1);
+				}
+				for (size_type i = 0 ; i < n ; i++)
+					_alloc.construct(_array + _size + i, *first);
+				for (int i = _size - 1 ; i >= 0 && i >= (int)len ; i--)
+					_array[i + n] = _array[i];
+				for (size_type i = len ; i < len + n ; i++)
+					_array[i] = *first++;
+				_size = _size + n;
+			};
 			
-			size_type toMoveRight = ft::distance(position, end() - n);
-			pointer oldEnd = _end - n - 1;
-			for (size_type i = 0; i < toMoveRight; i++) {
-				*(_end - i - 1) = *oldEnd--;
-			}
-			for (size_type i = 0; i < n; i++) {
-				*(position + i) = val;
-			}
-		}
-
-		template <class InputIterator>
-    	void insert (iterator position, InputIterator first, InputIterator last,
-		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
-		{
-			size_type pos = ft::distance(begin(), position);
-			size_type n = ft::distance(first, last);
-
-			resize(size() + n);
-			position = begin() + pos;
-			
-			size_type toMoveRight = ft::distance(position, end() - n);
-			pointer oldEnd = _end - n - 1;
-			for (size_type i = 0; i < toMoveRight; i++) {
-				*(_end - i - 1) = *oldEnd--;
-			}
-			for (size_type i = 0; i < n && first != last; i++, first++) {
-				*(position + i) = *first;
-			}
-		};
-		
-		iterator erase (iterator position)
-		{
-			iterator pos = position;
-			size_type toDestroyPos = ft::distance(begin(), position);
-
-			_alloc.destroy(_begin + toDestroyPos);
-
-			for (; pos + 1 != end(); ++pos)
-				*pos = *(pos + 1);
-			--_end;
-			return iterator(position);
-		};
-
-		iterator erase (iterator first, iterator last)
-		{
-			for (; first != last; --last)
-				erase(first);
-			return iterator(first);
-		};
-
-		void swap (vector& x)
-		{
-			if (this == &x)
-				return ;
-
-			pointer tmp_begin = _begin;
-			pointer tmp_end = _end;
-			pointer tmp_capacity = _capacity;
-			allocator_type tmp_alloc = _alloc;
-
-			_begin = x._begin;
-			_end = x._end;
-			_capacity = x._capacity;
-			_alloc = x._alloc;
-
-			x._begin = tmp_begin;
-			x._end = tmp_end;
-			x._capacity = tmp_capacity;
-			x._alloc = tmp_alloc;
-
-		};
-
-		void clear()
-		{
-			const size_type size = this->size();
-
-			for (size_type i = 0; i < size; ++i)
+			iterator erase (iterator position)
 			{
-				--_end;
-				_alloc.destroy(_end);
-			}
-		};
+				return (erase(pos, pos + 1));
+			};
 
-		//Allocator Function
-		allocator_type get_allocator() const
-		{
-			return (allocator_type());
-		};
+			iterator erase (iterator first, iterator last)
+			{
+				iterator ret = first;
+				size_t len = last - first;
+				iterator end = this->end();
 
-		private:
+				while (last != end)
+				{
+					*first = *last;
+					++first; ++last;
+				}
+				while (len-- > 0)
+					_alloc.destroy(&_array[--_size]);
+				return (ret);
+			};
 
-		allocator_type	_alloc;
-		pointer					_begin;
-		pointer					_end;
-		pointer					_capacity;
+			void swap (vector& x)
+			{
+				if (this == &x)
+					return ;
+
+				pointer tmp_begin = _begin;
+				pointer tmp_end = _end;
+				pointer tmp_capacity = _capacity;
+				allocator_type tmp_alloc = _alloc;
+
+				_begin = x._begin;
+				_end = x._end;
+				_capacity = x._capacity;
+				_alloc = x._alloc;
+
+				x._begin = tmp_begin;
+				x._end = tmp_end;
+				x._capacity = tmp_capacity;
+				x._alloc = tmp_alloc;
+
+			};
+
+			void clear()
+			{
+				if (empty())
+					return ;
+				erase(begin(), end());
+			};
+
+			//Allocator Function
+			allocator_type get_allocator() const
+			{
+				return (_alloc);
+			};
 
 	};
 
