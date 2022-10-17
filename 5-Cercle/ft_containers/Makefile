@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/09/26 17:18:46 by armendes         ###   ########.fr        #
+#    Updated: 2022/10/17 15:01:22 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ INCLUDES =	enable_if.hpp\
 			nullptr.hpp\
 			reverse_iterator.hpp\
 			vector.hpp\
+			nullptr.hpp
 
 CC =	c++
 
