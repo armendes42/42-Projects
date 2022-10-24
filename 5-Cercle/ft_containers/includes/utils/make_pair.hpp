@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enable_if.hpp                                      :+:      :+:    :+:   */
+/*   make_pair.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:59:58 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/08 19:02:08 by armendes         ###   ########.fr       */
+/*   Created: 2022/10/24 15:37:56 by armendes          #+#    #+#             */
+/*   Updated: 2022/10/24 15:39:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENABLE_IF_HPP
-# define ENABLE_IF_HPP
+#ifndef MAKE_PAIR_HPP
+# define MAKE_PAIR_HPP
 
-namespace ft
-{
+namespace ft {
 
-	template <bool Cond, class T = void>
-	struct enable_if {};
+	template <class T1, class T2>
+	pair<T1,T2> make_pair (T1 x, T2 y) {
 
-	template<class T>
-	struct enable_if<true, T>
-	{
-		typedef T type;
-	};
+		ft::pair<T1, T2>	retPair(x, y);
 
-}
+		return (retPair);
+	}
+};
 
 #endif

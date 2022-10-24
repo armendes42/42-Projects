@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:23:16 by armendes          #+#    #+#             */
-/*   Updated: 2022/09/08 19:04:09 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:14:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ namespace ft
 		for (; first1 != last1; ++first1, ++first2)
 		{
 			if (!(*first1 == *first2))
-			return false;
+				return (false);
 		}
-		return true;
+		return (true);
 
 	}
 
@@ -33,10 +33,10 @@ namespace ft
 	{
 		for (; first1 != last1; ++first1, ++first2)
 		{
-        if (!p(*first1, *first2))
-            return false;
-    }
-    return true;
+			if (!p(*first1, *first2))
+				return (false);
+		}
+		return (true);
 	}
 
 }
