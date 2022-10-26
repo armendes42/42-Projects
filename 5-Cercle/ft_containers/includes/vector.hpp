@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/24 17:33:10 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:37:00 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,144 +286,185 @@ namespace ft
 				return (*(this->_end - 1));
 			}
 
-		//Modifiers Functions
-		template <class InputIterator>
-  		void assign (InputIterator first, InputIterator last,
-		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
-		{
-			clear();
-			reserve(ft::distance(first, last));
-			for (; first != last; ++_end, ++first)
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
-				_alloc.construct(_end, *first);
+				this->clear();
+				difference_type n = ft::distance(first, last);
+				reserve(n);
+				while (first != last)
+				{
+					this->_alloc.construct(this->_start + this->_size, *first);
+					++first;
+					this->_size++;
+				}
+				this->_end = this->_start + this->_size;
 			}
-		}
 
-		void assign (size_type n, const value_type& val)
-		{
-			clear();
-			reserve(n);
-			for (; n > 0; --n, ++_end)
+			void assign (size_type n, const value_type& val)
 			{
-				_alloc.construct(_end, val);
+				this->clear();
+				reserve(n);
+				while (n != 0)
+				{
+					this->_alloc.construct(this->_start + this->_size, val);
+					this->_size++;
+					n--;
+				}
+				this->_end = this->_start + this->_size;
 			}
-		}
 
-		void push_back (const value_type& val)
-		{
-			if (_end == _capacity)
-				reserve(size() > 0 ? size() * 2 : 1);
-			_alloc.construct(_end, val);
-			++_end;
-		}
+			void push_back (const value_type& val)
+			{
+				if (this->_size == this->_capacity)
+					this->resize(this->_size + 1, val);
+				else
+				{
+					this->_alloc.construct(this->_start + this->_size, val);
+					this->_size++;
+				}
+				this->_end = this->_start + this->_size;
+			}
 
-		void pop_back()
-		{
-			_alloc.destroy(_end);
-			--_end;
-		}
+			void pop_back()
+			{
+				if (this->empty() == false)
+				{
+					this->_alloc.destroy(--this->_end);
+					this->_size--;
+				}
+			}
 
-		iterator insert (iterator position, const value_type& val)
-		{
-			insert(position, 1, val);
-			return (iterator(position));
-		}
+			iterator insert (iterator position, const value_type& val)
+			{
+				difference_type			newSize = ft::distance(this->begin(), position);
 
-		void insert (iterator position, size_type n, const value_type& val)
-		{
-			size_type pos = ft::distance(begin(), position);
+				insert(position, 1, val);
+				return iterator(this->begin() + newSize);
+			}
 
-			resize(size() + n);
-			position = begin() + pos;
+			void insert (iterator position, size_type n, const value_type& val)
+			{
+				difference_type	beginToPosition = ft::distance(this->begin(), position);
+				difference_type	beginToEnd = ft::distance(this->begin(), this->end());
+				difference_type	newSize = n;
+				iterator		previousEnd;
+				iterator		end;
+
+				this->resize(this->_size + newSize);
+
+				previousEnd = this->begin() + beginToEnd;
+				position = this->begin() + beginToPosition;
+				end = this->_start + this->_size;
+				this->_end = this->_start + this->_size;
+				while (previousEnd != position)
+				{
+					*(--end) = *(--previousEnd);
+				}
+				while (0 < n)
+				{
+					*position++ = val;
+					n--;
+				}
+			}
+
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
+			{
+				difference_type	beginToPosition = ft::distance(this->begin(), position);
+				difference_type	beginToEnd = ft::distance(this->begin(), this->end());
+				difference_type	newSize = ft::distance(first, last);
+				iterator		previousEnd;
+				iterator		end;
+
+				this->resize(this->_size + newSize);
+
+				previousEnd = this->begin() + beginToEnd;
+				position = this->begin() + beginToPosition;
+				end = this->end();
+				while (previousEnd != position)
+				{
+					*(--end) = *(--previousEnd);
+				}
+				while (first != last)
+				{
+					*position = *first;
+					position++;
+					first++;
+				}
+				this->_end = this->_start + this->_size;
+			}
 			
-			size_type toMoveRight = ft::distance(position, end() - n);
-			pointer oldEnd = _end - n - 1;
-			for (size_type i = 0; i < toMoveRight; i++) {
-				*(_end - i - 1) = *oldEnd--;
-			}
-			for (size_type i = 0; i < n; i++) {
-				*(position + i) = val;
-			}
-		}
-
-		template <class InputIterator>
-    	void insert (iterator position, InputIterator first, InputIterator last,
-		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr_)
-		{
-			size_type pos = ft::distance(begin(), position);
-			size_type n = ft::distance(first, last);
-
-			resize(size() + n);
-			position = begin() + pos;
-			
-			size_type toMoveRight = ft::distance(position, end() - n);
-			pointer oldEnd = _end - n - 1;
-			for (size_type i = 0; i < toMoveRight; i++) {
-				*(_end - i - 1) = *oldEnd--;
-			}
-			for (size_type i = 0; i < n && first != last; i++, first++) {
-				*(position + i) = *first;
-			}
-		}
-		
-		iterator erase (iterator position)
-		{
-			iterator pos = position;
-			size_type toDestroyPos = ft::distance(begin(), position);
-
-			_alloc.destroy(_begin + toDestroyPos);
-
-			for (; pos + 1 != end(); ++pos)
-				*pos = *(pos + 1);
-			--_end;
-			return iterator(position);
-		}
-
-		iterator erase (iterator first, iterator last)
-		{
-			for (; first != last; --last)
-				erase(first);
-			return iterator(first);
-		}
-
-		void swap (vector& x)
-		{
-			if (this == &x)
-				return ;
-
-			pointer tmp_begin = _begin;
-			pointer tmp_end = _end;
-			pointer tmp_capacity = _capacity;
-			allocator_type tmp_alloc = _alloc;
-
-			_begin = x._begin;
-			_end = x._end;
-			_capacity = x._capacity;
-			_alloc = x._alloc;
-
-			x._begin = tmp_begin;
-			x._end = tmp_end;
-			x._capacity = tmp_capacity;
-			x._alloc = tmp_alloc;
-
-		}
-
-		void clear()
-		{
-			const size_type size = this->size();
-
-			for (size_type i = 0; i < size; ++i)
+			iterator erase (iterator position)
 			{
-				--_end;
-				_alloc.destroy(_end);
+				return (this->erase(position, position + 1));
 			}
-		}
 
-		//Allocator Function
-		allocator_type get_allocator() const
-		{
-			return (allocator_type());
-		}
+			iterator erase (iterator first, iterator last)
+			{
+				size_type	rangeToDelete = ft::distance(first, last);
+				iterator	tmp = first;
+
+				while (last != this->end())
+				{
+					*first = *last;
+					++first;
+					++last;
+				}
+				for (size_type i = 0; i < rangeToDelete; i++)
+				{
+					this->_alloc.destroy((this->_start + this->_size));
+					this->_size--;
+					this->_end--;
+				}
+				return (tmp);
+			}
+
+			void swap (vector& x)
+			{
+				allocator_type	tmpAlloc;
+				size_type		tmpSize;
+				size_type		tmpCapacity;
+				pointer			tmpStart;
+				pointer			tmpEnd;
+
+				tmpAlloc = this->_alloc;
+				tmpSize = this->_size;
+				tmpCapacity = this->_capacity;
+				tmpStart = this->_start;
+				tmpEnd = this->_end;
+
+				this->_alloc = x._alloc;
+				this->_size = x._size;
+				this->_capacity = x._capacity;
+				this->_start = x._start;
+				this->_end = x._end;
+
+				x._alloc = tmpAlloc;
+				x._size = tmpSize;
+				x._capacity = tmpCapacity;
+				x._start = tmpStart;
+				x._end = tmpEnd;
+			}
+
+			void clear(void)
+			{
+				size_type len = this->size();
+
+				for (size_type i = 0; i < len; i++)
+				{
+					this->_end--;
+					this->_alloc.destroy(this->_end);
+				}
+				this->_size = 0;
+			}
+
+			allocator_type get_allocator() const
+			{
+				return (this->_alloc);
+			}
 
 		private:
 

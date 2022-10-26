@@ -6,11 +6,11 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/10/17 15:01:22 by armendes         ###   ########.fr        #
+#    Updated: 2022/10/26 16:49:09 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	vector_test.cpp
+SRCS =	#vector_test.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
