@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:13:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/24 16:37:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:06:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ namespace ft
 
 			vector_iterator(vector_iterator const &other)
 			{
-				this->_current = pther._current;
+				this->_current = other._current;
 			}
 
 			virtual ~vector_iterator() {}
@@ -53,47 +53,47 @@ namespace ft
 
 			friend bool	operator==(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element == rhs._element)
+				if (lhs._current == rhs._current)
 					return (true);
 				return (false);
 			}
 
 			friend bool	operator!=(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element != rhs._element)
+				if (lhs._current != rhs._current)
 					return (true);
 				return (false);
 			}
 
 			friend bool	operator<(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element < rhs._element)
+				if (lhs._current < rhs._current)
 					return (true);
 				return (false);
 			}
 
 			friend bool	operator>(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element > rhs._element)
+				if (lhs._current > rhs._current)
 					return (true);
 				return (false);
 			}
 
 			friend bool	operator<=(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element <= rhs._element)
+				if (lhs._current <= rhs._current)
 					return (true);
 				return (false);
 			}
 
 			friend bool	operator>=(vector_iterator const & lhs, vector_iterator const & rhs)
 			{
-				if (lhs._element >= rhs._element)
+				if (lhs._current >= rhs._current)
 					return (true);
 				return (false);
 			}
 
-			vector_iterator	operator++(void)
+			vector_iterator	&operator++(void)
 			{
 				++(this->_current);
 				return (*this);
@@ -106,7 +106,7 @@ namespace ft
 				return (tmp);
 			}
 
-			vector_iterator&	operator--(void)
+			vector_iterator	&operator--(void)
 			{
 				this->_current--;
 				return (*this);
@@ -126,12 +126,12 @@ namespace ft
 
 			friend vector_iterator	operator+(difference_type n, vector_iterator const &rhs)
 			{
-				return (rhs._element + n);
+				return (rhs._current + n);
 			};
 
 			friend difference_type	operator+(vector_iterator const &lhs, vector_iterator const &rhs)
 			{
-				return (lhs._element + rhs._element);
+				return (lhs._current + rhs._current);
 			};
 
 			vector_iterator	operator+=(difference_type const & rhs)
@@ -146,12 +146,12 @@ namespace ft
 
 			friend vector_iterator	operator-(difference_type n, vector_iterator const &rhs)
 			{
-				return (rhs._element - n);
+				return (rhs._current - n);
 			};
 
 			friend difference_type	operator-(vector_iterator const &lhs, vector_iterator const &rhs)
 			{
-				return (lhs._element - rhs._element);
+				return (lhs._current - rhs._current);
 			};
 
 			vector_iterator	operator-=( difference_type const & rhs )
@@ -189,6 +189,19 @@ namespace ft
 
 
 	};
+
+	template <class InputIterator>
+	typename iterator_traits<InputIterator>::difference_type difference(InputIterator start, InputIterator end)
+    {
+		typename iterator_traits<InputIterator>::difference_type len = 0;
+
+		while (start != end)
+        {
+			len++;
+			++start;
+		}
+		return (len);
+	}
 
 };
 

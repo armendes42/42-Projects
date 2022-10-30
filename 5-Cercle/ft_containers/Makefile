@@ -6,25 +6,25 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/10/26 16:49:09 by armendes         ###   ########.fr        #
+#    Updated: 2022/10/30 23:12:06 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	#vector_test.cpp
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
 INCLUDES =	enable_if.hpp\
 			equal.hpp\
 			is_integral.hpp\
-			lexicographical_compare.hpp\
-			pair.hpp\
 			iterator_traits.hpp\
-			iterator.hpp\
-			nullptr.hpp\
+			lexicographical_compare.hpp\
+			make_pair.hpp\
+			pair.hpp\
+			red_black_iterator.hpp\
 			reverse_iterator.hpp\
+			vector_iterator.hpp\
 			vector.hpp\
-			nullptr.hpp
 
 CC =	c++
 

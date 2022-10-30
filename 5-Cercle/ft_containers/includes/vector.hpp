@@ -6,12 +6,22 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/26 16:37:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:28:15 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
+
+# include <memory>
+# include <stdexcept>
+# include "enable_if.hpp"
+# include "equal.hpp"
+# include "is_integral.hpp"
+# include "iterator_traits.hpp"
+# include "lexicographical_compare.hpp"
+# include "reverse_iterator.hpp"
+# include "vector_iterator.hpp"
 
 namespace ft
 {
@@ -65,14 +75,14 @@ namespace ft
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
 				this->_alloc = alloc;
-				this->_size = ft::distance(first, last);
+				this->_size = ft::difference(first, last);
 				this->_capacity = this->_size;
 				this->_start = this->_alloc.allocate(this->_capacity);
 				this->_end = this->_start;
 
 				while (first != last)
 				{
-					this->alloc.construct(this->_end, *first);
+					this->_alloc.construct(this->_end, *first);
 					++first;
 					this->_end++;
 				}
@@ -99,13 +109,16 @@ namespace ft
 
 			virtual ~vector()
 			{
-				this->clear();
-				this->_alloc.deallocate(this->_start, this->_capacity);
+				if (this->_start != NULL)
+				{
+					this->clear();
+					this->_alloc.deallocate(this->_start, this->_capacity);
+				}
 			}
 
 			vector& operator=(const vector& x)
 			{
-				if (*this == rhs)
+				if (this == &x)
 					return (*this);
 				this->clear();
 				this->insert(this->end(), x.begin(), x.end());
@@ -179,7 +192,7 @@ namespace ft
 					else if (n <= this->_size * 2)
 						this->reserve(this->_size * 2);
 					else
-						this->reserve(size);
+						this->reserve(n);
 					while (this->_size < n)
 					{
 						this->_alloc.construct(this->_start + this->_size, val);
@@ -211,7 +224,7 @@ namespace ft
 					throw std::length_error("Error : Alloc size is greater than max_size");
 				if (capacity <= this->capacity())
 					return ;
-				difference_type len = ft::distance(itBegin, itEnd);
+				difference_type len = ft::difference(itBegin, itEnd);
 				if (capacity < (size_t)len)
 					throw std::bad_alloc();
 				res._alloc = this->_alloc;
@@ -244,12 +257,12 @@ namespace ft
 
 			reference operator[] (size_type n)
 			{
-				return (this->start[n]);
+				return (*(this->_start + n));
 			}
 
 			const_reference operator[] (size_type n) const
 			{
-				return (this->start[n]);
+				return (*(this->_start + n));
 			}
 
 			reference at (size_type n)
@@ -291,7 +304,7 @@ namespace ft
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
 				this->clear();
-				difference_type n = ft::distance(first, last);
+				difference_type n = ft::difference(first, last);
 				reserve(n);
 				while (first != last)
 				{
@@ -338,7 +351,7 @@ namespace ft
 
 			iterator insert (iterator position, const value_type& val)
 			{
-				difference_type			newSize = ft::distance(this->begin(), position);
+				difference_type			newSize = ft::difference(this->begin(), position);
 
 				insert(position, 1, val);
 				return iterator(this->begin() + newSize);
@@ -346,8 +359,8 @@ namespace ft
 
 			void insert (iterator position, size_type n, const value_type& val)
 			{
-				difference_type	beginToPosition = ft::distance(this->begin(), position);
-				difference_type	beginToEnd = ft::distance(this->begin(), this->end());
+				difference_type	beginToPosition = ft::difference(this->begin(), position);
+				difference_type	beginToEnd = ft::difference(this->begin(), this->end());
 				difference_type	newSize = n;
 				iterator		previousEnd;
 				iterator		end;
@@ -373,9 +386,9 @@ namespace ft
 			void insert (iterator position, InputIterator first, InputIterator last,
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
-				difference_type	beginToPosition = ft::distance(this->begin(), position);
-				difference_type	beginToEnd = ft::distance(this->begin(), this->end());
-				difference_type	newSize = ft::distance(first, last);
+				difference_type	beginToPosition = ft::difference(this->begin(), position);
+				difference_type	beginToEnd = ft::difference(this->begin(), this->end());
+				difference_type	newSize = ft::difference(first, last);
 				iterator		previousEnd;
 				iterator		end;
 
@@ -404,7 +417,7 @@ namespace ft
 
 			iterator erase (iterator first, iterator last)
 			{
-				size_type	rangeToDelete = ft::distance(first, last);
+				size_type	rangeToDelete = ft::difference(first, last);
 				iterator	tmp = first;
 
 				while (last != this->end())
@@ -466,13 +479,13 @@ namespace ft
 				return (this->_alloc);
 			}
 
-		private:
+			private:
 
-			allocator_type	_alloc;
-			size_type		_size;
-			size_type		_capacity;
-			pointer			_start;
-			pointer			_end;
+				allocator_type	_alloc;
+				size_type		_size;
+				size_type		_capacity;
+				pointer			_start;
+				pointer			_end;
 
 	};
 
