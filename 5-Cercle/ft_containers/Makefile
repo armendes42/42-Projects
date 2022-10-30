@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/10/30 23:12:06 by armendes         ###   ########.fr        #
+#    Updated: 2022/10/30 23:36:03 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ INCLUDES =	enable_if.hpp\
 			red_black_iterator.hpp\
 			reverse_iterator.hpp\
 			vector_iterator.hpp\
+			stack.hpp\
 			vector.hpp\
 
 CC =	c++
