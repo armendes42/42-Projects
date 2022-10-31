@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:37:19 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/30 23:28:15 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/31 00:08:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ namespace ft
 				}
 			}
 
-			vector (const vector& src)
+			vector(const vector& src)
 			{
 
 				size_type	n = src.size();
