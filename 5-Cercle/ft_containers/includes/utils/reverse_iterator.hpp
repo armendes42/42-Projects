@@ -6,12 +6,14 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:25:46 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/24 16:57:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/31 21:50:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REVERSE_ITERATOR_HPP
 # define REVERSE_ITERATOR_HPP
+
+# include "iterator_traits.hpp"
 
 namespace ft
 {

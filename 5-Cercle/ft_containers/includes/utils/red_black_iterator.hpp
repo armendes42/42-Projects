@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 17:35:21 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/30 23:10:48 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/31 21:46:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ namespace ft
 
             red_black_iterator &operator=(red_black_iterator const &other)
             {
-                if (this = &other)
+                if (this == &other)
                     return (*this);
                 this->_node = other._node;
                 if (other._sentinal != NULL)

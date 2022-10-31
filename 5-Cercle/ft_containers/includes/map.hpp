@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 23:42:22 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/31 21:44:18 by armendes         ###   ########.fr       */
+/*   Updated: 2022/10/31 21:51:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <limits>
 # include "equal.hpp"
 # include "lexicographical_compare.hpp"
+# include "make_pair.hpp"
+# include "pair.hpp"
 # include "red_black_iterator.hpp"
 # include "reverse_iterator.hpp"
 
@@ -122,7 +124,7 @@ namespace ft
 
             const_iterator end() const
             {
-                return (const_iterator(this->_sentinal, this->sentinal));
+                return (const_iterator(this->_sentinal, this->_sentinal));
             }
 
             reverse_iterator rbegin()
@@ -132,7 +134,7 @@ namespace ft
 
             const_reverse_iterator rbegin() const
             {
-                return (const_reverse_iterator(const_iterator(tihs->_sentinal, tihs->_sentinal)));
+                return (const_reverse_iterator(const_iterator(this->_sentinal, this->_sentinal)));
             }
 
             reverse_iterator rend()
@@ -308,7 +310,7 @@ namespace ft
                 return (itEnd);
             }
 
-            pair<iterator, iterator> equal_range(const key &k)
+            ft::pair<iterator, iterator> equal_range(const key_type &k)
             {
                 ft::pair<iterator, iterator> ret;
                 ret.first = this->lower_bound(k);
@@ -316,7 +318,7 @@ namespace ft
                 return (ret);
             }
 
-            pair<const_iterator, const_iterator> equal_range(const key &k) const
+            ft::pair<const_iterator, const_iterator> equal_range(const key_type &k) const
             {
                 ft::pair<const_iterator, const_iterator> ret;
                 ret.first = this->lower_bound(k);
@@ -371,7 +373,7 @@ namespace ft
                 if (node->_parent == this->_sentinal)
                     this->_root = tmp;
                 else if (node == node->_parent->_right)
-                    node->_aprent->_right = tmp;
+                    node->_parent->_right = tmp;
                 else
                     node->_parent->_left = tmp;
                 tmp->_right = node;
@@ -441,7 +443,7 @@ namespace ft
                         tmp = toFix->_parent->_parent->_left;
                         if (tmp != this->_sentinal && tmp->_color == RED)
                         {
-                            tmp->_color == BLACK;
+                            tmp->_color = BLACK;
                             toFix->_parent->_color = BLACK;
                             toFix->_parent->_parent->_color = RED;
                             toFix = toFix->_parent->_parent;
@@ -534,7 +536,7 @@ namespace ft
                             if (toFix->_parent->_color != NONE)
                                 toFix->_parent->_color = BLACK;
                             if (tmp->_right->_color != NONE)
-                                tmp->_right->_color = BLACK
+                                tmp->_right->_color = BLACK;
                             _leftRotate(toFix->_parent);
                             toFix = this->_root;
                         }
