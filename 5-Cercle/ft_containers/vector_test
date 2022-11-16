@@ -1,0 +1,45 @@
+vector assign:[32;1m OK! [0m
+vector assignment:[32;1m OK! [0m
+vector assign_mixed:[32;1m OK! [0m
+vector assign_range:[32;1m OK! [0m
+vector at:[32;1m OK! [0m
+vector back:[32;1m OK! [0m
+vector clear:[32;1m OK! [0m
+vector comparisons_eq:[32;1m OK! [0m
+vector comparisons_ge:[32;1m OK! [0m
+vector comparisons_gt:[32;1m OK! [0m
+vector comparisons_le:[32;1m OK! [0m
+vector comparisons_lt:[32;1m OK! [0m
+vector comparisons_ne:[32;1m OK! [0m
+vector ctor_copy:[32;1m OK! [0m
+vector ctor:[32;1m OK! [0m
+vector ctor_range:[32;1m OK! [0m
+vector ctor_size:[32;1m OK! [0m
+vector empty:[32;1m OK! [0m
+vector erase:[32;1m OK! [0m
+vector erase_mixed:[32;1m OK! [0m
+vector erase_range:[32;1m OK! [0m
+vector front:[32;1m OK! [0m
+vector get_allocator:[32;1m OK! [0m
+vector index_operator:[32;1m OK! [0m
+vector insert:[32;1m OK! [0m
+vector insert_mixed:[32;1m OK! [0m
+vector insert_range:[32;1m OK! [0m
+vector insert_size:[32;1m OK! [0m
+[31;1merror compiling tests/vector/iterator_comparisons.cpp[0m
+vector iterator_comparisons:[31;1m KO! [0m
+[31;1merror compiling tests/vector/iterator.cpp[0m
+vector iterator:[31;1m KO! [0m
+vector max_size:[32;1m OK! [0m
+vector pop_back:[32;1m OK! [0m
+vector push_back:[32;1m OK! [0m
+[31;1merror compiling tests/vector/random.cpp[0m//////////////////////
+vector random:[31;1m KO! [0m
+vector reserve:[32;1m OK! [0m
+vector resize:[32;1m OK! [0m
+[31;1merror compiling tests/vector/riterator_comparisons.cpp[0m
+vector riterator_comparisons:[31;1m KO! [0m////////////////////
+[31;1merror compiling tests/vector/riterator.cpp[0m
+vector riterator:[31;1m KO! [0m /////////////////////////
+vector swap:[32;1m OK! [0m
+vector typedefs:[32;1m OK! [0m

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:29:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/24 15:27:45 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:29:39 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ namespace ft
 	template <typename _Iterator>
   	struct iterator_traits
 	{
+		typedef typename _Iterator::iterator_category	  iterator_category;
   		typedef typename _Iterator::value_type            value_type;
 		typedef typename _Iterator::difference_type       difference_type;
     	typedef typename _Iterator::pointer               pointer;
@@ -46,22 +47,22 @@ namespace ft
 	template <typename T>
   	struct iterator_traits<T*>
 	{
-  		typedef random_access_iterator_tag	iterator_category;
-		typedef T							value_type;
-  		typedef std::ptrdiff_t				difference_type;
-  		typedef T*							pointer;
-  		typedef T&							reference;
+  		typedef std::random_access_iterator_tag	iterator_category;
+		typedef typename remove_cv<T>::type		value_type;
+  		typedef std::ptrdiff_t					difference_type;
+  		typedef T*								pointer;
+  		typedef T&								reference;
 	};
 
-	template <typename T>
-	struct iterator_traits<const T*>
-	{
-		typedef random_access_iterator_tag	iterator_category;
-		typedef T							value_type;
-		typedef std::ptrdiff_t				difference_type;
-		typedef const T*					pointer;
-		typedef const T&					reference;
-	};
+	// template <typename T>
+	// struct iterator_traits<const T*>
+	// {
+	// 	typedef random_access_iterator_tag	iterator_category;
+	// 	typedef T							value_type;
+	// 	typedef std::ptrdiff_t				difference_type;
+	// 	typedef const T*					pointer;
+	// 	typedef const T&					reference;
+	// };
 
 
 };

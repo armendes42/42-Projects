@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:34:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/10/24 15:21:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:30:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,42 @@ namespace ft
 	template<> struct is_integral<long long> : public true_type {};
 	template<> struct is_integral<unsigned long> : public true_type {};
 	template<> struct is_integral<unsigned long long> : public true_type {};
+
+	template <typename T>
+	struct remove_const
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct remove_const<const T>
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct remove_volatile
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct remove_volatile<volatile T>
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct remove_cv
+	{
+		typedef typename remove_volatile<typename remove_const<T>::type>::type type;
+	};
+
+	template <typename T, typename U>
+	struct is_same : public false_type {};
+
+	template <typename T>
+	struct is_same<T, T> : public true_type {};
 
 };
 
