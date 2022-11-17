@@ -6,12 +6,12 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 23:13:03 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/16 23:34:52 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:58:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_ITERATOR_HPP
-# include TREE_ITERATOR_HPP
+# define TREE_ITERATOR_HPP
 
 # include <iterator>
 # include "tree_algo.hpp"
@@ -34,6 +34,11 @@ namespace ft
             typedef DiffType                            difference_type;
             typedef const_tree_iterator<T, DiffType>    const_iterator;
 
+        private:
+            typedef typename tree_node_types<T>::end_node_pointer   end_node_pointer;
+            typedef typename tree_node_types<T>::node_pointer       node_pointer;
+
+        public:
             tree_iterator() : ptr(NULL) { }
 
             tree_iterator(end_node_pointer p) : ptr(p) { }
@@ -112,9 +117,6 @@ namespace ft
             }
 
         private:
-            typedef typename tree_node_types<T>::end_node_pointer   end_node_pointer;
-            typedef typename tree_node_types<T>::node_pointer       node_pointer;
-
             end_node_pointer ptr;
     };
 
@@ -129,6 +131,11 @@ namespace ft
             typedef DiffType                        difference_type;
             typedef tree_iterator<T, DiffType>      non_const_iterator;
 
+        private:
+            typedef typename tree_node_types<T>::end_node_pointer   end_node_pointer;
+            typedef typename tree_node_types<T>::node_pointer       node_pointer;
+
+        public:
             const_tree_iterator() : ptr(NULL) { }
 
             const_tree_iterator(end_node_pointer p) : ptr(p) { }
@@ -209,9 +216,6 @@ namespace ft
             }
 
         private:
-            typedef typename tree_node_types<T>::end_node_pointer   end_node_pointer;
-            typedef typename tree_node_types<T>::node_pointer       node_pointer;
-
             end_node_pointer ptr;
     };
 

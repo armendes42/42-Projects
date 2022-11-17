@@ -6,12 +6,12 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:57:09 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/16 23:12:38 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:53:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_ALGO_HPP
-# include TREE_ALGO_HPP
+# define TREE_ALGO_HPP
 
 # include <cstddef>
 # include "tree_types.hpp"
@@ -97,7 +97,7 @@ namespace ft
     }
 
     template <typename NodePtr>
-    void tree_rotate_left(NodePtr& root, NodePtr ptr)
+    void tree_rotate_left(NodePtr& root, NodePtr node)
     {
         if (node == root)
             root = node->right;
@@ -105,7 +105,7 @@ namespace ft
     }
 
     template <typename NodePtr>
-    void tree_rotate_right(NodePtr& root, NodePtr ptr)
+    void tree_rotate_right(NodePtr& root, NodePtr node)
     {
         if (node == root)
             root = node->left;
@@ -170,7 +170,7 @@ namespace ft
                     z = z->get_parent();
                     z->is_black = true;
                     z = z->get_parent();
-                    z->is_black = (z == root)
+                    z->is_black = (z == root);
                 }
                 else
                 {

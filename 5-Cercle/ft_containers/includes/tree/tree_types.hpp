@@ -6,12 +6,12 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:45:23 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/16 21:54:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:46:16 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_TYPES_HPP
-# include TREE_TYPES_HPP
+# define TREE_TYPES_HPP
 
 # include <cstddef>
 

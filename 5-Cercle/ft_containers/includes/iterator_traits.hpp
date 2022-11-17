@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:29:35 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/16 21:29:39 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:51:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ITERATOR_TRAITS_HPP
 
 # include <cstddef>
+# include "is_integral.hpp"
 
 namespace ft
 {
