@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:39:51 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:47:08 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:50:19 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,110 +20,108 @@ namespace ft
 	template <typename It, typename Container>
 	class vector_iterator
 	{
-	public:
-	    // clang-format off
-	    typedef It                                              iterator_type;
-	    typedef typename iterator_traits<It>::iterator_category iterator_category;
-	    typedef typename iterator_traits<It>::value_type        value_type;
-	    typedef typename iterator_traits<It>::difference_type   difference_type;
-	    typedef typename iterator_traits<It>::reference         reference;
-	    typedef typename iterator_traits<It>::pointer           pointer;
-	    // clang-format on
+		public:
+		    typedef It                                              iterator_type;
+		    typedef typename iterator_traits<It>::iterator_category iterator_category;
+		    typedef typename iterator_traits<It>::value_type        value_type;
+		    typedef typename iterator_traits<It>::difference_type   difference_type;
+		    typedef typename iterator_traits<It>::reference         reference;
+		    typedef typename iterator_traits<It>::pointer           pointer;
 
-	public:
-	    vector_iterator()
-	        : elem_(iterator_type())
-	    {
-	    }
+		public:
+		    vector_iterator()
+		        : elem_(iterator_type())
+		    {
+		    }
 
-	    explicit vector_iterator(const iterator_type& it)
-	        : elem_(it)
-	    {
-	    }
+		    explicit vector_iterator(const iterator_type& it)
+		        : elem_(it)
+		    {
+		    }
 
-	    template <typename Iter>
-	    vector_iterator(const vector_iterator<
-	                    Iter, typename enable_if<is_same<Iter, typename Container::pointer>::value,
-	                                             Container>::type>& it)
-	        : elem_(it.base())
-	    {
-	    }
+		    template <typename Iter>
+		    vector_iterator(const vector_iterator<
+		                    Iter, typename enable_if<is_same<Iter, typename Container::pointer>::value,
+		                                             Container>::type>& it)
+		        : elem_(it.base())
+		    {
+		    }
 
-	    ~vector_iterator(){};
+		    ~vector_iterator(){};
 
-	    vector_iterator& operator=(const vector_iterator& other)
-	    {
-	        elem_ = other.elem_;
-	        return *this;
-	    }
+		    vector_iterator& operator=(const vector_iterator& other)
+		    {
+		        elem_ = other.elem_;
+		        return *this;
+		    }
 
-	public:
-	    const iterator_type& base() const
-	    {
-	        return elem_;
-	    }
+		public:
+		    const iterator_type& base() const
+		    {
+		        return elem_;
+		    }
 
-	    reference operator*() const
-	    {
-	        return *elem_;
-	    }
+		    reference operator*() const
+		    {
+		        return *elem_;
+		    }
 
-	    pointer operator->() const
-	    {
-	        return elem_;
-	    }
+		    pointer operator->() const
+		    {
+		        return elem_;
+		    }
 
-	    vector_iterator& operator++()
-	    {
-	        ++elem_;
-	        return *this;
-	    }
+		    vector_iterator& operator++()
+		    {
+		        ++elem_;
+		        return *this;
+		    }
 
-	    vector_iterator operator++(int)
-	    {
-	        return vector_iterator(elem_++);
-	    }
+		    vector_iterator operator++(int)
+		    {
+		        return vector_iterator(elem_++);
+		    }
 
-	    vector_iterator& operator--()
-	    {
-	        --elem_;
-	        return *this;
-	    }
+		    vector_iterator& operator--()
+		    {
+		        --elem_;
+		        return *this;
+		    }
 
-	    vector_iterator operator--(int)
-	    {
-	        return vector_iterator(elem_--);
-	    }
+		    vector_iterator operator--(int)
+		    {
+		        return vector_iterator(elem_--);
+		    }
 
-	    reference operator[](difference_type n)
-	    {
-	        return *(elem_ + n);
-	    }
+		    reference operator[](difference_type n)
+		    {
+		        return *(elem_ + n);
+		    }
 
-	    vector_iterator& operator+=(difference_type n)
-	    {
-	        elem_ += n;
-	        return *this;
-	    }
+		    vector_iterator& operator+=(difference_type n)
+		    {
+		        elem_ += n;
+		        return *this;
+		    }
 
-	    vector_iterator operator+(difference_type n) const
-	    {
-	        return vector_iterator(elem_ + n);
-	    }
+		    vector_iterator operator+(difference_type n) const
+		    {
+		        return vector_iterator(elem_ + n);
+		    }
 
-	    vector_iterator& operator-=(difference_type n)
-	    {
-	        elem_ -= n;
-	        return *this;
-	    }
+		    vector_iterator& operator-=(difference_type n)
+		    {
+		        elem_ -= n;
+		        return *this;
+		    }
 
-	    vector_iterator operator-(difference_type n) const
-	    {
-	        return vector_iterator(elem_ - n);
-	    }
+		    vector_iterator operator-(difference_type n) const
+		    {
+		        return vector_iterator(elem_ - n);
+		    }
 
-	protected:
-	    It elem_;
+		protected:
+		    It elem_;
 	};
 
 	template <typename ItL, typename ItR, typename Container>
