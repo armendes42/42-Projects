@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:17:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:36:34 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:15:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define MAP_HPP
 
 # include <memory>
-
 # include "iterator.hpp"
-# include "tree/tree.hpp"
+# include "tree.hpp"
 
 namespace ft
 {
@@ -24,25 +23,19 @@ namespace ft
 	class map_value_type_compare : public std::binary_function<Key, Key, bool>
 	{
 		public:
-		    typedef Key first_argument_type;
-		    typedef Key second_argument_type;
-		    typedef bool result_type;
+		    typedef Key		first_argument_type;
+		    typedef Key		second_argument_type;
+		    typedef bool	result_type;
 
 		public:
-		    map_value_type_compare()
-		        : comp_()
-		    {
-		    }
+		    map_value_type_compare() : _comp() { }
 
-		    map_value_type_compare(const Compare& c)
-		        : comp_(c)
-		    {
-		    }
+		    map_value_type_compare(const Compare& c) : _comp(c) { }
 
 		public:
 		    const Compare& key_comp() const
 		    {
-		        return comp_;
+		        return _comp;
 		    }
 
 		    bool operator()(const T& x, const T& y) const
@@ -62,11 +55,11 @@ namespace ft
 
 		    void swap(map_value_type_compare& other)
 		    {
-		        std::swap(comp_, other.comp_);
+		        std::swap(_comp, other._comp);
 		    }
 
 		protected:
-		    Compare comp_;
+		    Compare _comp;
 	};
 
 	template <typename Key, typename T, typename Compare>
@@ -108,9 +101,9 @@ namespace ft
 		      	friend class map;
 
 			    public:
-			        typedef value_type first_argument_type;
-			        typedef value_type second_argument_type;
-			        typedef bool result_type;
+			        typedef value_type	first_argument_type;
+			        typedef value_type	second_argument_type;
+			        typedef bool				result_type;
 
 			    public:
 			        bool operator()(const value_type& x, const value_type& y) const
@@ -119,70 +112,54 @@ namespace ft
 			        }
 
 			    protected:
-			        value_compare(const key_compare& c)
-			            : comp(c)
-			        {
-			        }
+			        value_compare(const key_compare& c) : _comp(c) { }
 
 			    protected:
-			        key_compare comp;
+			        key_compare _comp;
 	    };
 
 		public:
-		    map()
-		        : tree_(vt_compare())
-		    {
-		    }
+		    map() : _tree(vt_compare()) { }
 
-		    explicit map(const key_compare& comp, const allocator_type& alloc = allocator_type())
-		        : tree_(vt_compare(comp), alloc)
-		    {
-		    }
+		    explicit map(const key_compare& comp, const allocator_type& alloc = allocator_type()) : _tree(vt_compare(comp), alloc) { }
 
 		    template <typename InputIt>
 		    map(InputIt first, InputIt last, const key_compare& comp = key_compare(),
 		        const allocator_type& alloc = allocator_type())
-		        : tree_(vt_compare(comp), alloc)
+		        : _tree(vt_compare(comp), alloc)
 		    {
 		        insert(first, last);
 		    }
 
-		    map(const map& other)
-		        : tree_(other.tree_)
-		    {
-		    }
+		    map(const map& other) : _tree(other._tree) { }
 
 		    map& operator=(const map& other)
 		    {
-		        tree_ = other.tree_;
+		        _tree = other._tree;
 		        return *this;
 		    }
 
-		    ~map()
-		    {
-		    }
+		    ~map() { }
 
 		public:
 		    allocator_type get_allocator() const
 		    {
-		        return tree_.get_allocator();
+		        return _tree.get_allocator();
 		    }
 
 		    T& at(const key_type& key)
 		    {
 		        iterator it = find(key);
-		        if (it == end()) {
+		        if (it == end())
 		            throw std::out_of_range("Key not found");
-		        }
 		        return it->second;
 		    }
 
 		    const T& at(const key_type& key) const
 		    {
 		        const_iterator it = find(key);
-		        if (it == end()) {
+		        if (it == end())
 		            throw std::out_of_range("Key not found");
-		        }
 		        return it->second;
 		    }
 
@@ -193,22 +170,22 @@ namespace ft
 
 		    iterator begin()
 		    {
-		        return tree_.begin();
+		        return _tree.begin();
 		    }
 
 		    const_iterator begin() const
 		    {
-		        return tree_.begin();
+		        return _tree.begin();
 		    }
 
 		    iterator end()
 		    {
-		        return tree_.end();
+		        return _tree.end();
 		    }
 
 		    const_iterator end() const
 		    {
-		        return tree_.end();
+		        return _tree.end();
 		    }
 
 		    reverse_iterator rbegin()
@@ -233,117 +210,117 @@ namespace ft
 
 		    bool empty() const
 		    {
-		        return tree_.empty();
+		        return _tree.empty();
 		    }
 
 		    size_type size() const
 		    {
-		        return tree_.size();
+		        return _tree.size();
 		    }
 
 		    size_type max_size() const
 		    {
-		        return tree_.max_size();
+		        return _tree.max_size();
 		    }
 
 		    void clear()
 		    {
-		        tree_.clear();
+		        _tree.clear();
 		    }
 
 		    pair<iterator, bool> insert(const value_type& value)
 		    {
-		        return tree_.insert(value);
+		        return _tree.insert(value);
 		    }
 
 		    iterator insert(iterator hint, const value_type& value)
 		    {
-		        return tree_.insert(hint, value);
+		        return _tree.insert(hint, value);
 		    }
 
 		    template <typename InputIt>
 		    void insert(InputIt first, InputIt last)
 		    {
-		        tree_.insert(first, last);
+		        _tree.insert(first, last);
 		    }
 
 		    void erase(iterator pos)
 		    {
-		        tree_.erase(const_iterator(pos));
+		        _tree.erase(const_iterator(pos));
 		    }
 
 		    void erase(iterator first, iterator last)
 		    {
-		        tree_.erase(first, last);
+		        _tree.erase(first, last);
 		    }
 
 		    size_type erase(const key_type& key)
 		    {
-		        return tree_.erase(key);
+		        return _tree.erase(key);
 		    }
 
 		    void swap(map& other)
 		    {
-		        tree_.swap(other.tree_);
+		        _tree.swap(other._tree);
 		    }
 
 		    size_type count(const key_type& key) const
 		    {
-		        return tree_.count(key);
+		        return _tree.count(key);
 		    }
 
 		    iterator find(const key_type& key)
 		    {
-		        return tree_.find(key);
+		        return _tree.find(key);
 		    }
 
 		    const_iterator find(const key_type& key) const
 		    {
-		        return tree_.find(key);
+		        return _tree.find(key);
 		    }
 
 		    pair<iterator, iterator> equal_range(const key_type& key)
 		    {
-		        return tree_.equal_range(key);
+		        return _tree.equal_range(key);
 		    }
 
 		    pair<const_iterator, const_iterator> equal_range(const key_type& key) const
 		    {
-		        return tree_.equal_range(key);
+		        return _tree.equal_range(key);
 		    }
 
 		    iterator lower_bound(const key_type& key)
 		    {
-		        return tree_.lower_bound(key);
+		        return _tree.lower_bound(key);
 		    }
 
 		    const_iterator lower_bound(const key_type& key) const
 		    {
-		        return tree_.lower_bound(key);
+		        return _tree.lower_bound(key);
 		    }
 
 		    iterator upper_bound(const key_type& key)
 		    {
-		        return tree_.upper_bound(key);
+		        return _tree.upper_bound(key);
 		    }
 
 		    const_iterator upper_bound(const key_type& key) const
 		    {
-		        return tree_.upper_bound(key);
+		        return _tree.upper_bound(key);
 		    }
 
 		    key_compare key_comp() const
 		    {
-		        return tree_.value_comp().key_comp();
+		        return _tree.value_comp().key_comp();
 		    }
 
 		    value_compare value_comp() const
 		    {
-		        return value_compare(tree_.value_comp().key_comp());
+		        return value_compare(_tree.value_comp().key_comp());
 		    }
 
 		private:
-		    base tree_;
+		    base _tree;
 	};
 
 	template <typename Key, typename T, typename Compare, typename Allocator>

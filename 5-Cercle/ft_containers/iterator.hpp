@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:33:36 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:35:51 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:16:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ITERATOR_HPP
 
 # include <iterator>
-
 # include "type_traits.hpp"
 
 namespace ft
@@ -54,46 +53,32 @@ namespace ft
 		    typedef typename iterator_traits<It>::pointer         pointer;
 
 		public:
-		    reverse_iterator()
-		        : current()
-		    {
-		    }
+		    reverse_iterator() : _curr() { }
 
-		    reverse_iterator(const reverse_iterator& it)
-		        : current(it.current)
-		    {
-		    }
+		    reverse_iterator(const reverse_iterator& it) : _curr(it._curr) { }
 
-		    explicit reverse_iterator(iterator_type it)
-		        : current(it)
-		    {
-		    }
+		    explicit reverse_iterator(iterator_type it) : _curr(it)	{ }
 
 		    template <typename Iter>
-		    reverse_iterator(const reverse_iterator<Iter>& it)
-		        : current(it.base())
-		    {
-		    }
+		    reverse_iterator(const reverse_iterator<Iter>& it) : _curr(it.base()) { }
 
-		    ~reverse_iterator()
-		    {
-		    }
+		    ~reverse_iterator() { }
 
 		    reverse_iterator& operator=(const reverse_iterator& other)
 		    {
-		        current = other.current;
+		        _curr = other._curr;
 		        return *this;
 		    }
 
 		public:
 		    iterator_type base() const
 		    {
-		        return current;
+		        return _curr;
 		    }
 
 		    reference operator*() const
 		    {
-		        It tmp = current;
+		        It tmp = _curr;
 		        return *--tmp;
 		    }
 
@@ -104,45 +89,45 @@ namespace ft
 
 		    reverse_iterator& operator++()
 		    {
-		        --current;
+		        --_curr;
 		        return *this;
 		    }
 
 		    reverse_iterator operator++(int)
 		    {
-		        return reverse_iterator(current--);
+		        return reverse_iterator(_curr--);
 		    }
 
 		    reverse_iterator& operator--()
 		    {
-		        ++current;
+		        ++_curr;
 		        return *this;
 		    }
 
 		    reverse_iterator operator--(int)
 		    {
-		        return reverse_iterator(current++);
+		        return reverse_iterator(_curr++);
 		    }
 
 		    reverse_iterator operator+(difference_type n) const
 		    {
-		        return reverse_iterator(current - n);
+		        return reverse_iterator(_curr - n);
 		    }
 
 		    reverse_iterator& operator+=(difference_type n)
 		    {
-		        current -= n;
+		        _curr -= n;
 		        return *this;
 		    }
 
 		    reverse_iterator operator-(difference_type n) const
 		    {
-		        return reverse_iterator(current + n);
+		        return reverse_iterator(_curr + n);
 		    }
 
 		    reverse_iterator& operator-=(difference_type n)
 		    {
-		        current += n;
+		        _curr += n;
 		        return *this;
 		    }
 
@@ -152,7 +137,7 @@ namespace ft
 		    }
 
 		protected:
-		    It current;
+		    It _curr;
 	};
 
 	template <typename ItL, typename ItR>

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:37:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:42:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:17:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define TREE_ITERATOR_HPP
 
 # include <iterator>
-
 # include "tree_algorithm.hpp"
 # include "tree_types.hpp"
 
@@ -39,40 +38,31 @@ namespace ft
 		    typedef typename tree_node_types<T>::node_pointer      node_pointer;
 
 		public:
-		    tree_iterator()
-		        : ptr(NULL)
-		    {
-		    }
+		    tree_iterator() : _ptr(NULL) { }
 
-		    tree_iterator(end_node_pointer p)
-		        : ptr(p)
-		    {
-		    }
+		    tree_iterator(end_node_pointer p) : _ptr(p) { }
 
-		    tree_iterator(node_pointer p)
-		        : ptr(static_cast<end_node_pointer>(p))
-		    {
-		    }
+		    tree_iterator(node_pointer p) : _ptr(static_cast<end_node_pointer>(p)) { }
 
 		public:
 		    end_node_pointer& base()
 		    {
-		        return ptr;
+		        return _ptr;
 		    }
 
 		    const end_node_pointer& base() const
 		    {
-		        return ptr;
+		        return _ptr;
 		    }
 
-		    node_pointer node_ptr() const
+		    node_pointer node__ptr() const
 		    {
-		        return static_cast<node_pointer>(ptr);
+		        return static_cast<node_pointer>(_ptr);
 		    }
 
 		    reference operator*() const
 		    {
-		        return static_cast<node_pointer>(ptr)->value;
+		        return static_cast<node_pointer>(_ptr)->value;
 		    }
 
 		    pointer operator->() const
@@ -82,7 +72,7 @@ namespace ft
 
 		    tree_iterator& operator++()
 		    {
-		        ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(ptr));
+		        _ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(_ptr));
 		        return *this;
 		    }
 
@@ -95,7 +85,7 @@ namespace ft
 
 		    tree_iterator& operator--()
 		    {
-		        ptr = tree_iter_prev<node_pointer>(ptr);
+		        _ptr = tree_iter_prev<node_pointer>(_ptr);
 		        return *this;
 		    }
 
@@ -108,12 +98,12 @@ namespace ft
 
 		    bool operator==(const tree_iterator& other) const
 		    {
-		        return ptr == other.ptr;
+		        return _ptr == other._ptr;
 		    }
 
 		    bool operator==(const const_iterator& other) const
 		    {
-		        return ptr == other.base();
+		        return _ptr == other.base();
 		    }
 
 		    bool operator!=(const tree_iterator& other) const
@@ -127,7 +117,7 @@ namespace ft
 		    }
 
 		private:
-		    end_node_pointer ptr;
+		    end_node_pointer _ptr;
 	};
 
 	template <typename T, typename DiffType>
@@ -146,45 +136,33 @@ namespace ft
 		    typedef typename tree_node_types<T>::node_pointer      node_pointer;
 
 		public:
-		    const_tree_iterator()
-		        : ptr(NULL)
-		    {
-		    }
+		    const_tree_iterator() : _ptr(NULL) { }
 
-		    const_tree_iterator(end_node_pointer p)
-		        : ptr(p)
-		    {
-		    }
+		    const_tree_iterator(end_node_pointer p) : __ptr(p) { }
 
-		    const_tree_iterator(node_pointer p)
-		        : ptr(static_cast<end_node_pointer>(p))
-		    {
-		    }
+		    const_tree_iterator(node_pointer p) : _ptr(static_cast<end_node_pointer>(p)) { }
 
-		    const_tree_iterator(non_const_iterator it)
-		        : ptr(it.base())
-		    {
-		    }
+		    const_tree_iterator(non_const_iterator it) : _ptr(it.base()) { }
 
 		public:
 		    end_node_pointer& base()
 		    {
-		        return ptr;
+		        return _ptr;
 		    }
 
 		    const end_node_pointer& base() const
 		    {
-		        return ptr;
+		        return _ptr;
 		    }
 
-		    node_pointer node_ptr() const
+		    node_pointer node__ptr() const
 		    {
-		        return static_cast<node_pointer>(ptr);
+		        return static_cast<node_pointer>(_ptr);
 		    }
 
 		    reference operator*() const
 		    {
-		        return static_cast<node_pointer>(ptr)->value;
+		        return static_cast<node_pointer>(_ptr)->value;
 		    }
 
 		    pointer operator->() const
@@ -194,7 +172,7 @@ namespace ft
 
 		    const_tree_iterator& operator++()
 		    {
-		        ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(ptr));
+		        _ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(_ptr));
 		        return *this;
 		    }
 
@@ -207,7 +185,7 @@ namespace ft
 
 		    const_tree_iterator& operator--()
 		    {
-		        ptr = tree_iter_prev<node_pointer>(ptr);
+		        _ptr = tree_iter_prev<node_pointer>(_ptr);
 		        return *this;
 		    }
 
@@ -220,12 +198,12 @@ namespace ft
 
 		    bool operator==(const const_tree_iterator& other) const
 		    {
-		        return ptr == other.ptr;
+		        return _ptr == other._ptr;
 		    }
 
 		    bool operator==(const non_const_iterator& other) const
 		    {
-		        return ptr == other.base();
+		        return _ptr == other.base();
 		    }
 
 		    bool operator!=(const const_tree_iterator& other) const
@@ -239,7 +217,7 @@ namespace ft
 		    }
 
 		private:
-		    end_node_pointer ptr;
+		    end_node_pointer _ptr;
 	};
 
 }

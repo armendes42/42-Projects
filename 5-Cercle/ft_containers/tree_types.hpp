@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:35:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:43:03 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:01:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ namespace ft
 		    node_pointer left;
 
 		public:
-		    tree_end_node()
-		        : left(NULL)
-		    {
-		    }
+		    tree_end_node() : left(NULL) { }
 	};
 
 	template <typename T>
@@ -62,12 +59,7 @@ namespace ft
 		    T value;
 
 		public:
-		    tree_node()
-		        : right(NULL),
-		          parent(NULL),
-		          is_black(false)
-		    {
-		    }
+		    tree_node() : right(NULL), parent(NULL), is_black(false) { }
 
 		    node_pointer get_parent() const
 		    {

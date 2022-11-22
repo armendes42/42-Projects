@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:39:51 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:50:19 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:27:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,205 +29,193 @@ namespace ft
 		    typedef typename iterator_traits<It>::pointer           pointer;
 
 		public:
-		    vector_iterator()
-		        : elem_(iterator_type())
-		    {
-		    }
+		    vector_iterator() : _elem(iterator_type()) { }
 
-		    explicit vector_iterator(const iterator_type& it)
-		        : elem_(it)
-		    {
-		    }
+		    explicit vector_iterator(const iterator_type& it) : _elem(it) { }
 
 		    template <typename Iter>
-		    vector_iterator(const vector_iterator<
-		                    Iter, typename enable_if<is_same<Iter, typename Container::pointer>::value,
-		                                             Container>::type>& it)
-		        : elem_(it.base())
-		    {
-		    }
+		    vector_iterator(const vector_iterator<Iter, typename enable_if<is_same<Iter, typename Container::pointer>::value, Container>::type>& it) : _elem(it.base()) { }
 
-		    ~vector_iterator(){};
+		    ~vector_iterator() { };
 
 		    vector_iterator& operator=(const vector_iterator& other)
 		    {
-		        elem_ = other.elem_;
-		        return *this;
+		        _elem = other._elem;
+		        return (*this);
 		    }
 
 		public:
 		    const iterator_type& base() const
 		    {
-		        return elem_;
+		        return (_elem);
 		    }
 
 		    reference operator*() const
 		    {
-		        return *elem_;
+		        return (*_elem);
 		    }
 
 		    pointer operator->() const
 		    {
-		        return elem_;
+		        return (_elem);
 		    }
 
 		    vector_iterator& operator++()
 		    {
-		        ++elem_;
-		        return *this;
+		        ++_elem;
+		        return (*this);
 		    }
 
 		    vector_iterator operator++(int)
 		    {
-		        return vector_iterator(elem_++);
+		        return (vector_iterator(_elem++));
 		    }
 
 		    vector_iterator& operator--()
 		    {
-		        --elem_;
-		        return *this;
+		        --_elem;
+		        return (*this);
 		    }
 
 		    vector_iterator operator--(int)
 		    {
-		        return vector_iterator(elem_--);
+		        return (vector_iterator(_elem--));
 		    }
 
 		    reference operator[](difference_type n)
 		    {
-		        return *(elem_ + n);
+		        return (*(_elem + n));
 		    }
 
 		    vector_iterator& operator+=(difference_type n)
 		    {
-		        elem_ += n;
-		        return *this;
+		        _elem += n;
+		        return (*this);
 		    }
 
 		    vector_iterator operator+(difference_type n) const
 		    {
-		        return vector_iterator(elem_ + n);
+		        return (vector_iterator(_elem + n));
 		    }
 
 		    vector_iterator& operator-=(difference_type n)
 		    {
-		        elem_ -= n;
-		        return *this;
+		        _elem -= n;
+		        return (*this);
 		    }
 
 		    vector_iterator operator-(difference_type n) const
 		    {
-		        return vector_iterator(elem_ - n);
+		        return (vector_iterator(_elem - n));
 		    }
 
 		protected:
-		    It elem_;
+		    It _elem;
 	};
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator==(const vector_iterator<ItL, Container>& lhs,
 	                       const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() == rhs.base();
+	    return (lhs.base() == rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator==(const vector_iterator<It, Container>& lhs,
 	                       const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() == rhs.base();
+	    return (lhs.base() == rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator!=(const vector_iterator<ItL, Container>& lhs,
 	                       const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() != rhs.base();
+	    return (lhs.base() != rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator!=(const vector_iterator<It, Container>& lhs,
 	                       const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() != rhs.base();
+	    return (lhs.base() != rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator>(const vector_iterator<ItL, Container>& lhs,
 	                      const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() > rhs.base();
+	    return (lhs.base() > rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator>(const vector_iterator<It, Container>& lhs,
 	                      const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() > rhs.base();
+	    return (lhs.base() > rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator<(const vector_iterator<ItL, Container>& lhs,
 	                      const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() < rhs.base();
+	    return (lhs.base() < rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator<(const vector_iterator<It, Container>& lhs,
 	                      const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() < rhs.base();
+	    return (lhs.base() < rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator>=(const vector_iterator<ItL, Container>& lhs,
 	                       const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() >= rhs.base();
+	    return (lhs.base() >= rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator>=(const vector_iterator<It, Container>& lhs,
 	                       const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() >= rhs.base();
+	    return (lhs.base() >= rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline bool operator<=(const vector_iterator<ItL, Container>& lhs,
 	                       const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() <= rhs.base();
+	    return (lhs.base() <= rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline bool operator<=(const vector_iterator<It, Container>& lhs,
 	                       const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() <= rhs.base();
+	    return (lhs.base() <= rhs.base());
 	}
 
 	template <typename ItL, typename ItR, typename Container>
 	inline typename vector_iterator<ItL, Container>::difference_type
 	operator-(const vector_iterator<ItL, Container>& lhs, const vector_iterator<ItR, Container>& rhs)
 	{
-	    return lhs.base() - rhs.base();
+	    return (lhs.base() - rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline typename vector_iterator<It, Container>::difference_type
 	operator-(const vector_iterator<It, Container>& lhs, const vector_iterator<It, Container>& rhs)
 	{
-	    return lhs.base() - rhs.base();
+	    return (lhs.base() - rhs.base());
 	}
 
 	template <typename It, typename Container>
 	inline vector_iterator<It, Container>
-	operator+(typename vector_iterator<It, Container>::difference_type n,
-	          const vector_iterator<It, Container>& it)
+	operator+(typename vector_iterator<It, Container>::difference_type n, const vector_iterator<It, Container>& it)
 	{
-	    return vector_iterator<It, Container>(it.base() + n);
+	    return (vector_iterator<It, Container>(it.base() + n));
 	}
 }
 

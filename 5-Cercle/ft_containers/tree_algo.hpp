@@ -6,15 +6,15 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:01:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:41:00 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:00:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_ALGO_HPP
 # define TREE_ALGO_HPP
 
-# include "tree_types.hpp"
 # include <cstddef>
+# include "tree_types.hpp"
 
 namespace ft
 {
@@ -27,43 +27,37 @@ namespace ft
 	template <typename NodePtr>
 	NodePtr tree_max(NodePtr ptr)
 	{
-	    while (ptr->right != NULL) {
+	    while (ptr->right != NULL)
 	        ptr = ptr->right;
-	    }
 	    return ptr;
 	}
 
 	template <typename NodePtr>
 	NodePtr tree_min(NodePtr ptr)
 	{
-	    while (ptr->left != NULL) {
+	    while (ptr->left != NULL)
 	        ptr = ptr->left;
-	    }
 	    return ptr;
 	}
 
 	template <typename IterPtr, typename NodePtr>
 	IterPtr tree_iter_next(NodePtr ptr)
 	{
-	    if (ptr->right != NULL) {
+	    if (ptr->right != NULL)
 	        return tree_min(ptr->right);
-	    }
-	    while (!tree_is_left_child(ptr)) {
+	    while (!tree_is_left_child(ptr))
 	        ptr = ptr->get_parent();
-	    }
 	    return ptr->parent;
 	}
 
 	template <typename NodePtr, typename IterPtr>
 	IterPtr tree_iter_prev(IterPtr ptr)
 	{
-	    if (ptr->left != NULL) {
+	    if (ptr->left != NULL)
 	        return tree_max(ptr->left);
-	    }
 	    NodePtr nptr = static_cast<NodePtr>(ptr);
-	    while (tree_is_left_child(nptr)) {
+	    while (tree_is_left_child(nptr))
 	        nptr = nptr->get_parent();
-	    }
 	    return nptr->parent;
 	}
 
@@ -71,18 +65,15 @@ namespace ft
 	void tree_rotate_left(NodePtr node)
 	{
 	    NodePtr ptr = node->right;
-
 	    node->right = ptr->left;
-	    if (ptr->left != NULL) {
+	    if (ptr->left != NULL)
 	        ptr->left->set_parent(node);
-	    }
 	    ptr->left = node;
 	    ptr->parent = node->parent;
-	    if (tree_is_left_child(node)) {
+	    if (tree_is_left_child(node))
 	        node->parent->left = ptr;
-	    } else {
+	    else
 	        node->get_parent()->right = ptr;
-	    }
 	    node->set_parent(ptr);
 	}
 
@@ -90,47 +81,39 @@ namespace ft
 	void tree_rotate_right(NodePtr node)
 	{
 	    NodePtr ptr = node->left;
-
 	    node->left = ptr->right;
-	    if (ptr->right != NULL) {
+	    if (ptr->right != NULL)
 	        ptr->right->set_parent(node);
-	    }
 	    ptr->right = node;
 	    ptr->parent = node->parent;
-	    if (tree_is_left_child(node)) {
+	    if (tree_is_left_child(node))
 	        node->parent->left = ptr;
-	    } else {
+			else
 	        node->get_parent()->right = ptr;
-	    }
 	    node->set_parent(ptr);
 	}
 
 	template <typename NodePtr>
 	void tree_rotate_left(NodePtr& root, NodePtr node)
 	{
-	    if (node == root) {
+	    if (node == root)
 	        root = node->right;
-	    }
-
 	    tree_rotate_left(node);
 	}
 
 	template <typename NodePtr>
 	void tree_rotate_right(NodePtr& root, NodePtr node)
 	{
-	    if (node == root) {
+	    if (node == root)
 	        root = node->left;
-	    }
-
 	    tree_rotate_right(node);
 	}
 
 	template <typename NodePtr>
 	inline bool tree_node_is_black(NodePtr node)
 	{
-	    if (node == NULL || node->is_black) {
+	    if (node == NULL || node->is_black)
 	        return true;
-	    }
 	    return false;
 	}
 
@@ -173,22 +156,26 @@ namespace ft
 	void tree_insert_fix(NodePtr root, NodePtr z)
 	{
 	    z->is_black = z == root; // case 0
-	    while (z != root && !z->get_parent()->is_black) {
-	        if (tree_is_left_child(z->get_parent())) {
+	    while (z != root && !z->get_parent()->is_black)
+			{
+	        if (tree_is_left_child(z->get_parent()))
+					{
 	            NodePtr uncle = z->get_parent()->get_parent()->right;
-
-	            if (!tree_node_is_black(uncle)) { // case 1
+	            if (!tree_node_is_black(uncle))
+							{ // case 1
 	                uncle->is_black = true;
 	                z = z->get_parent();
 	                z->is_black = true;
 	                z = z->get_parent();
 	                z->is_black = z == root; // Color red except if z's grandparent is root
-	            } else {
-	                if (!tree_is_left_child(z)) { // case 2
+	            }
+							else
+							{
+	                if (!tree_is_left_child(z))
+									{ // case 2
 	                    z = z->get_parent();
 	                    tree_rotate_left(z);
 	                }
-
 	                // case 3
 	                z = z->get_parent();
 	                z->is_black = true;
@@ -197,21 +184,25 @@ namespace ft
 	                tree_rotate_right(z);
 	                return;
 	            }
-	        } else {
+	        }
+					else
+					{
 	            NodePtr uncle = z->get_parent()->parent->left;
-
-	            if (!tree_node_is_black(uncle)) { // case 1
+	            if (!tree_node_is_black(uncle))
+							{ // case 1
 	                uncle->is_black = true;
 	                z = z->get_parent();
 	                z->is_black = true;
 	                z = z->get_parent();
 	                z->is_black = z == root; // Color red except if z's grandparent is root
-	            } else {
-	                if (tree_is_left_child(z)) { // case 2
+	            }
+							else
+							{
+	                if (tree_is_left_child(z))
+									{ // case 2
 	                    z = z->get_parent();
 	                    tree_rotate_right(z);
 	                }
-
 	                // case 3
 	                z = z->get_parent();
 	                z->is_black = true;
@@ -299,30 +290,33 @@ namespace ft
 	{
 	    // Double black nodes always start as a null pointer
 	    NodePtr x = NULL;
-
-	    while (root != x && tree_node_is_black(x)) {
-	        if (x == x_parent->left) {
+	    while (root != x && tree_node_is_black(x))
+			{
+	        if (x == x_parent->left)
+					{
 	            NodePtr w = x_parent->right;
-
-	            if (!w->is_black) { // case 1
+	            if (!w->is_black)
+							{ // case 1
 	                x_parent->is_black = false;
 	                w->is_black = true;
 	                tree_rotate_left(root, x_parent);
 	                w = x_parent->right;
 	            }
-
-	            if (tree_node_is_black(w->left) && tree_node_is_black(w->right)) { // case 2 && case 3
+	            if (tree_node_is_black(w->left) && tree_node_is_black(w->right))
+							{ // case 2 && case 3
 	                w->is_black = false;
 	                x = x_parent;
 	                x_parent = x->get_parent();
-	            } else {
-	                if (tree_node_is_black(w->right)) { // case 4
+	            }
+							else
+							{
+	                if (tree_node_is_black(w->right))
+									{ // case 4
 	                    w->is_black = false;
 	                    tree_rotate_right(root, w);
 	                    w = x_parent->right;
 	                    w->is_black = true;
 	                }
-
 	                // case 5
 	                w->is_black = x_parent->is_black;
 	                x_parent->is_black = true;
@@ -331,28 +325,32 @@ namespace ft
 	                x = root;
 	                break;
 	            }
-	        } else {
+	        }
+					else
+					{
 	            NodePtr w = x_parent->left;
-
-	            if (!w->is_black) { // case 1
+	            if (!w->is_black)
+							{ // case 1
 	                x_parent->is_black = false;
 	                w->is_black = true;
 	                tree_rotate_right(root, x_parent);
 	                w = x_parent->left;
 	            }
-
-	            if (tree_node_is_black(w->right) && tree_node_is_black(w->left)) { // case 2 && case 3
+	            if (tree_node_is_black(w->right) && tree_node_is_black(w->left))
+							{ // case 2 && case 3
 	                w->is_black = false;
 	                x = x_parent;
 	                x_parent = x->get_parent();
-	            } else {
-	                if (tree_node_is_black(w->left)) { // case 4
+	            }
+							else
+							{
+	                if (tree_node_is_black(w->left))
+									{ // case 4
 	                    w->is_black = false;
 	                    tree_rotate_left(root, w);
 	                    w = x_parent->left;
 	                    w->is_black = true;
 	                }
-
 	                // case 5
 	                w->is_black = x_parent->is_black;
 	                x_parent->is_black = true;
@@ -363,9 +361,8 @@ namespace ft
 	            }
 	        }
 	    }
-	    if (x) { // case 0 + 2 when parent was red
+	    if (x) // case 0 + 2 when parent was red
 	        x->is_black = true;
-	    }
 	}
 
 	template <typename NodePtr>
@@ -373,17 +370,15 @@ namespace ft
 	{
 	    node->is_black = pos->is_black;
 	    node->parent = pos->parent;
-	    if (tree_is_left_child(pos)) {
+	    if (tree_is_left_child(pos))
 	        node->parent->left = node;
-	    } else {
+	    else
 	        node->get_parent()->right = node;
-	    }
 	    node->left = pos->left;
 	    node->left->set_parent(node);
 	    node->right = pos->right;
-	    if (node->right) {
+	    if (node->right)
 	        node->right->set_parent(node);
-	    }
 	}
 
 	template <typename NodePtr>
@@ -391,62 +386,54 @@ namespace ft
 	{
 	    NodePtr y = target;
 	    // Find node to replace target if target has 2 child (in order successor)
-	    if (y->left != NULL && y->right != NULL) {
+	    if (y->left != NULL && y->right != NULL)
 	        y = tree_min(target->right);
-	    }
-
 	    // x is NULL or y's only child
 	    NodePtr x;
-	    if (y->left != NULL) {
+	    if (y->left != NULL)
 	        x = y->left;
-	    } else {
+	    else
 	        x = y->right;
 	    }
-
 	    // Keep track of x's parent
 	    NodePtr x_parent = y->get_parent();
-
 	    // Replace y with x
-	    if (x != NULL) {
+	    if (x != NULL)
 	        x->parent = y->parent;
-	    }
-	    if (tree_is_left_child(y)) {
+	    if (tree_is_left_child(y))
+			{
 	        y->parent->left = x;
-	        if (root == y) {
+	        if (root == y)
 	            root = x;
-	        }
-	    } else {
+	    }
+			else
+			{
 	        // If y is target's right child, update x_parent because target will be replaced by y later
-	        if (target->right == y) {
+	        if (target->right == y)
 	            x_parent = y;
-	        }
 	        y->get_parent()->right = x;
 	    }
-
 	    // Keep track of removed color before possibly transplanting y into target's place
 	    bool removed_black = y->is_black;
-
 	    // If y is target's in order successor, transplant y into target's place
-	    if (y != target) {
+	    if (y != target)
+			{
 	        tree_transplant_node(target, y);
-	        if (target == root) {
+	        if (target == root)
 	            root = y;
-	        }
 	    }
-
 	    // Balance tree only if a black node was removed
-	    if (removed_black) {
+	    if (removed_black)
+			{
 	        // Tree is empty, nothing to do (root double black case)
-	        if (root == NULL) {
+	        if (root == NULL)
 	            return;
-	        }
-
 	        // x is red, color it black
-	        if (x != NULL) {
+	        if (x != NULL)
+					{
 	            x->is_black = true;
 	            return;
 	        }
-
 	        tree_delete_fix(root, x_parent);
 	    }
 	}
