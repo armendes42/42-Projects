@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:27:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:25:25 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:01:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ namespace ft
 
 		    allocator_type get_allocator() const
 		    {
-		        return (alloc);
+		        return (_alloc);
 		    }
 
 		    reference at(size_type pos)
@@ -233,7 +233,8 @@ namespace ft
 		    {
 		        if (new_cap > capacity())
 						{
-		            check_size(new_cap);
+								if (new_cap > max_size())
+				            throw std::length_error("vector::reserve");
 		            pointer new_start = _alloc.allocate(new_cap);
 		            pointer new_end;
 		            new_end = construct_range(new_start, _start, _end);

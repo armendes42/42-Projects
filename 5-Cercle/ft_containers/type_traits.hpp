@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:59:12 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 15:38:28 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:37:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ namespace ft
 
 	    operator value_type() const
 	    {
-	        return value;
+	        return (value);
 	    }
 
 	    value_type operator()() const
 	    {
-	        return value;
+	        return (value);
 	    }
 	};
 

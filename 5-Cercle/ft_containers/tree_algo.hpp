@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:01:54 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:00:13 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:45:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
 	template <typename NodePtr>
 	inline bool tree_is_left_child(NodePtr ptr)
 	{
-	    return ptr == ptr->parent->left;
+	    return (ptr == ptr->parent->left);
 	}
 
 	template <typename NodePtr>
@@ -29,7 +29,7 @@ namespace ft
 	{
 	    while (ptr->right != NULL)
 	        ptr = ptr->right;
-	    return ptr;
+	    return (ptr);
 	}
 
 	template <typename NodePtr>
@@ -37,28 +37,28 @@ namespace ft
 	{
 	    while (ptr->left != NULL)
 	        ptr = ptr->left;
-	    return ptr;
+	    return (ptr);
 	}
 
 	template <typename IterPtr, typename NodePtr>
 	IterPtr tree_iter_next(NodePtr ptr)
 	{
 	    if (ptr->right != NULL)
-	        return tree_min(ptr->right);
+	        return (tree_min(ptr->right));
 	    while (!tree_is_left_child(ptr))
 	        ptr = ptr->get_parent();
-	    return ptr->parent;
+	    return (ptr->parent);
 	}
 
 	template <typename NodePtr, typename IterPtr>
 	IterPtr tree_iter_prev(IterPtr ptr)
 	{
 	    if (ptr->left != NULL)
-	        return tree_max(ptr->left);
+	        return (tree_max(ptr->left));
 	    NodePtr nptr = static_cast<NodePtr>(ptr);
 	    while (tree_is_left_child(nptr))
 	        nptr = nptr->get_parent();
-	    return nptr->parent;
+	    return (nptr->parent);
 	}
 
 	template <typename NodePtr>
@@ -113,8 +113,8 @@ namespace ft
 	inline bool tree_node_is_black(NodePtr node)
 	{
 	    if (node == NULL || node->is_black)
-	        return true;
-	    return false;
+	        return (true);
+	    return (false);
 	}
 
 	/*
@@ -387,19 +387,26 @@ namespace ft
 	    NodePtr y = target;
 	    // Find node to replace target if target has 2 child (in order successor)
 	    if (y->left != NULL && y->right != NULL)
+			{
 	        y = tree_min(target->right);
+			}
 	    // x is NULL or y's only child
 	    NodePtr x;
 	    if (y->left != NULL)
+			{
 	        x = y->left;
+			}
 	    else
+			{
 	        x = y->right;
 	    }
 	    // Keep track of x's parent
 	    NodePtr x_parent = y->get_parent();
 	    // Replace y with x
 	    if (x != NULL)
+			{
 	        x->parent = y->parent;
+			}
 	    if (tree_is_left_child(y))
 			{
 	        y->parent->left = x;

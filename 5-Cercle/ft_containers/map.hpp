@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 12:17:41 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:15:56 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:57:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ namespace ft
 		public:
 		    const Compare& key_comp() const
 		    {
-		        return _comp;
+		        return (_comp);
 		    }
 
 		    bool operator()(const T& x, const T& y) const
 		    {
-		        return key_comp()(x.first, y.first);
+		        return (key_comp()(x.first, y.first));
 		    }
 
 		    bool operator()(const Key& x, const T& y) const
 		    {
-		        return key_comp()(x, y.first);
+		        return (key_comp()(x, y.first));
 		    }
 
 		    bool operator()(const T& x, const Key& y) const
 		    {
-		        return key_comp()(x.first, y);
+		        return (key_comp()(x.first, y));
 		    }
 
 		    void swap(map_value_type_compare& other)
@@ -108,7 +108,7 @@ namespace ft
 			    public:
 			        bool operator()(const value_type& x, const value_type& y) const
 			        {
-			            return comp(x.first, y.first);
+			            return (_comp(x.first, y.first));
 			        }
 
 			    protected:
@@ -136,7 +136,7 @@ namespace ft
 		    map& operator=(const map& other)
 		    {
 		        _tree = other._tree;
-		        return *this;
+		        return (*this);
 		    }
 
 		    ~map() { }
@@ -144,7 +144,7 @@ namespace ft
 		public:
 		    allocator_type get_allocator() const
 		    {
-		        return _tree.get_allocator();
+		        return (_tree.get_allocator());
 		    }
 
 		    T& at(const key_type& key)
@@ -152,7 +152,7 @@ namespace ft
 		        iterator it = find(key);
 		        if (it == end())
 		            throw std::out_of_range("Key not found");
-		        return it->second;
+		        return (it->second);
 		    }
 
 		    const T& at(const key_type& key) const
@@ -160,67 +160,67 @@ namespace ft
 		        const_iterator it = find(key);
 		        if (it == end())
 		            throw std::out_of_range("Key not found");
-		        return it->second;
+		        return (it->second);
 		    }
 
 		    T& operator[](const key_type& key)
 		    {
-		        return insert(ft::make_pair(key, T())).first->second;
+		        return (insert(ft::make_pair(key, T())).first->second);
 		    }
 
 		    iterator begin()
 		    {
-		        return _tree.begin();
+		        return (_tree.begin());
 		    }
 
 		    const_iterator begin() const
 		    {
-		        return _tree.begin();
+		        return (_tree.begin());
 		    }
 
 		    iterator end()
 		    {
-		        return _tree.end();
+		        return (_tree.end());
 		    }
 
 		    const_iterator end() const
 		    {
-		        return _tree.end();
+		        return (_tree.end());
 		    }
 
 		    reverse_iterator rbegin()
 		    {
-		        return reverse_iterator(end());
+		        return (reverse_iterator(end()));
 		    }
 
 		    const_reverse_iterator rbegin() const
 		    {
-		        return const_reverse_iterator(end());
+		        return (const_reverse_iterator(end()));
 		    }
 
 		    reverse_iterator rend()
 		    {
-		        return reverse_iterator(begin());
+		        return (reverse_iterator(begin()));
 		    }
 
 		    const_reverse_iterator rend() const
 		    {
-		        return const_reverse_iterator(begin());
+		        return (const_reverse_iterator(begin()));
 		    }
 
 		    bool empty() const
 		    {
-		        return _tree.empty();
+		        return (_tree.empty());
 		    }
 
 		    size_type size() const
 		    {
-		        return _tree.size();
+		        return (_tree.size());
 		    }
 
 		    size_type max_size() const
 		    {
-		        return _tree.max_size();
+		        return (_tree.max_size());
 		    }
 
 		    void clear()
@@ -230,12 +230,12 @@ namespace ft
 
 		    pair<iterator, bool> insert(const value_type& value)
 		    {
-		        return _tree.insert(value);
+		        return (_tree.insert(value));
 		    }
 
 		    iterator insert(iterator hint, const value_type& value)
 		    {
-		        return _tree.insert(hint, value);
+		        return (_tree.insert(hint, value));
 		    }
 
 		    template <typename InputIt>
@@ -256,7 +256,7 @@ namespace ft
 
 		    size_type erase(const key_type& key)
 		    {
-		        return _tree.erase(key);
+		        return (_tree.erase(key));
 		    }
 
 		    void swap(map& other)
@@ -266,57 +266,57 @@ namespace ft
 
 		    size_type count(const key_type& key) const
 		    {
-		        return _tree.count(key);
+		        return (_tree.count(key));
 		    }
 
 		    iterator find(const key_type& key)
 		    {
-		        return _tree.find(key);
+		        return (_tree.find(key));
 		    }
 
 		    const_iterator find(const key_type& key) const
 		    {
-		        return _tree.find(key);
+		        return (_tree.find(key));
 		    }
 
 		    pair<iterator, iterator> equal_range(const key_type& key)
 		    {
-		        return _tree.equal_range(key);
+		        return (_tree.equal_range(key));
 		    }
 
 		    pair<const_iterator, const_iterator> equal_range(const key_type& key) const
 		    {
-		        return _tree.equal_range(key);
+		        return (_tree.equal_range(key));
 		    }
 
 		    iterator lower_bound(const key_type& key)
 		    {
-		        return _tree.lower_bound(key);
+		        return (_tree.lower_bound(key));
 		    }
 
 		    const_iterator lower_bound(const key_type& key) const
 		    {
-		        return _tree.lower_bound(key);
+		        return (_tree.lower_bound(key));
 		    }
 
 		    iterator upper_bound(const key_type& key)
 		    {
-		        return _tree.upper_bound(key);
+		        return (_tree.upper_bound(key));
 		    }
 
 		    const_iterator upper_bound(const key_type& key) const
 		    {
-		        return _tree.upper_bound(key);
+		        return (_tree.upper_bound(key));
 		    }
 
 		    key_compare key_comp() const
 		    {
-		        return _tree.value_comp().key_comp();
+		        return (_tree.value_comp().key_comp());
 		    }
 
 		    value_compare value_comp() const
 		    {
-		        return value_compare(_tree.value_comp().key_comp());
+		        return (value_compare(_tree.value_comp().key_comp()));
 		    }
 
 		private:
@@ -333,42 +333,42 @@ namespace ft
 	inline bool operator==(const map<Key, T, Compare, Allocator>& lhs,
 	                       const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return (lhs.size() == rhs.size()) && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+	    return ((lhs.size() == rhs.size()) && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	inline bool operator!=(const map<Key, T, Compare, Allocator>& lhs,
 	                       const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return !(lhs == rhs);
+	    return (!(lhs == rhs));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	inline bool operator<(const map<Key, T, Compare, Allocator>& lhs,
 	                      const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	    return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	inline bool operator<=(const map<Key, T, Compare, Allocator>& lhs,
 	                       const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return !(rhs < lhs);
+	    return (!(rhs < lhs));
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	inline bool operator>(const map<Key, T, Compare, Allocator>& lhs,
 	                      const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return rhs < lhs;
+	    return (rhs < lhs);
 	}
 
 	template <typename Key, typename T, typename Compare, typename Allocator>
 	inline bool operator>=(const map<Key, T, Compare, Allocator>& lhs,
 	                       const map<Key, T, Compare, Allocator>& rhs)
 	{
-	    return !(lhs < rhs);
+	    return (!(lhs < rhs));
 	}
 }
 

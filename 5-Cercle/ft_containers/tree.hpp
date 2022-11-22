@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 22:03:04 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:19:47 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:52:41 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft
 		    typedef T                                                value_type;
 		    typedef Compare                                          value_compare;
 		    typedef Allocator                                        allocator_type;
-		    typedef typename allocator_type::_sizetype               _sizetype;
+		    typedef typename allocator_type::size_type								 size_type;
 		    typedef typename allocator_type::difference_type         difference_type;
 		    typedef value_type&                                      reference;
 		    typedef const value_type&                                const_reference;
@@ -39,9 +39,9 @@ namespace ft
 		    typedef const_tree_iterator<value_type, difference_type> const_iterator;
 
 		private:
-		    typedef typename tree_node_types<value_type>::_end_nodetype        _end_nodetype;
+		    typedef typename tree_node_types<value_type>::end_node_type        end_node_type;
 		    typedef typename tree_node_types<value_type>::node_type            node_type;
-		    typedef typename tree_node_types<value_type>::_end_nodepointer     _end_nodepointer;
+		    typedef typename tree_node_types<value_type>::end_node_pointer     end_node_pointer;
 		    typedef typename tree_node_types<value_type>::node_pointer         node_pointer;
 		    typedef typename allocator_type::template rebind<node_type>::other node_allocator;
 
@@ -65,10 +65,10 @@ namespace ft
 		    tree& operator=(const tree& other)
 		    {
 		        if (this == &other)
-		            return *this;
+		            return (*this);
 		        tree tmp(other);
 		        swap(tmp);
-		        return *this;
+		        return (*this);
 		    }
 
 		    ~tree()
@@ -79,43 +79,42 @@ namespace ft
 		public:
 		    allocator_type get_allocator() const
 		    {
-		        return _value_alloc;
+		        return (_value_alloc);
 		    }
 
 		    iterator begin()
 		    {
-		        return iterator(_begin_iter);
+		        return (iterator(_begin_iter));
 		    }
 
 		    const_iterator begin() const
 		    {
-		        return const_iterator(_begin_iter);
+		        return (const_iterator(_begin_iter));
 		    }
 
 		    iterator end()
 		    {
-		        return iterator(end_node());
+		        return (iterator(end_node()));
 		    }
 
 		    const_iterator end() const
 		    {
-		        return const_iterator(end_node());
+		        return (const_iterator(end_node()));
 		    }
 
 		    bool empty() const
 		    {
-		        return size() == _sizetype(0);
+		        return (size() == size_type(0));
 		    }
 
-		    _sizetype size() const
+		    size_type size() const
 		    {
-		        return _size;
+		        return (_size);
 		    }
 
-		    _sizetype max_size() const
+		    size_type max_size() const
 		    {
-		        return std::min(_alloc.max_size(),
-		                        static_cast<_sizetype>(std::numeric_limits<difference_type>::max()));
+		        return (std::min(_alloc.max_size(), static_cast<size_type>(std::numeric_limits<difference_type>::max())));
 		    }
 
 		    void clear()
@@ -128,17 +127,17 @@ namespace ft
 
 		    value_compare& value_comp()
 		    {
-		        return _comp;
+		        return (_comp);
 		    }
 
 		    const value_compare& value_comp() const
 		    {
-		        return _comp;
+		        return (_comp);
 		    }
 
 		    pair<iterator, bool> insert(const value_type& value)
 		    {
-		        _end_nodepointer parent;
+		        end_node_pointer parent;
 		        node_pointer& child = find_pos(parent, value);
 		        bool inserted = false;
 		        iterator it(child);
@@ -147,18 +146,18 @@ namespace ft
 		            it = insert_at(child, parent, value);
 		            inserted = true;
 		        }
-		        return ft::make_pair(it, inserted);
+		        return (ft::make_pair(it, inserted));
 		    }
 
 		    iterator insert(const_iterator hint, const value_type& value)
 		    {
-		        _end_nodepointer parent;
+		        end_node_pointer parent;
 		        node_pointer dummy;
 		        node_pointer& child = find_pos(iterator(hint.base()), parent, value, dummy);
 		        iterator it(child);
 		        if (child == NULL)
 		            it = insert_at(child, parent, value);
-		        return it;
+		        return (it);
 		    }
 
 		    template <typename InputIt>
@@ -178,7 +177,7 @@ namespace ft
 		        tree_remove_node(end_node()->left, ptr);
 		        delete_node(ptr);
 		        _size--;
-		        return iterator(next.base());
+		        return (iterator(next.base()));
 		    }
 
 		    void erase(const_iterator first, const_iterator last)
@@ -188,13 +187,13 @@ namespace ft
 		    }
 
 		    template <typename Key>
-		    _sizetype erase(const Key& key)
+		    size_type erase(const Key& key)
 		    {
 		        const_iterator it = find(key);
 		        if (it == end())
-		            return _sizetype(0);
+		            return (size_type(0));
 		        erase(it);
-		        return _sizetype(1);
+		        return (size_type(1));
 		    }
 
 		    void swap(tree& other)
@@ -222,116 +221,116 @@ namespace ft
 		    }
 
 		    template <typename Key>
-		    _sizetype count(const Key& key) const
+		    size_type count(const Key& key) const
 		    {
-		        return find_pointer(key) == NULL ? _sizetype(0) : _sizetype(1);
+		        return (find_pointer(key) == NULL ? size_type(0) : size_type(1));
 		    }
 
 		    template <typename Key>
 		    iterator find(const Key& key)
 		    {
-		        return find_key<iterator>(key);
+		        return (find_key<iterator>(key));
 		    }
 
 		    template <typename Key>
 		    const_iterator find(const Key& key) const
 		    {
-		        return find_key<const_iterator>(key);
+		        return (find_key<const_iterator>(key));
 		    }
 
 		    template <typename Key>
 		    pair<iterator, iterator> equal_range(const Key& key)
 		    {
-		        pair<_end_nodepointer, _end_nodepointer> range = eq_range(key);
-		        return ft::make_pair(iterator(range.first), iterator(range.second));
+		        pair<end_node_pointer, end_node_pointer> range = eq_range(key);
+		        return (ft::make_pair(iterator(range.first), iterator(range.second)));
 		    }
 
 		    template <typename Key>
 		    pair<const_iterator, const_iterator> equal_range(const Key& key) const
 		    {
-		        pair<_end_nodepointer, _end_nodepointer> range = eq_range(key);
-		        return ft::make_pair(const_iterator(range.first), const_iterator(range.second));
+		        pair<end_node_pointer, end_node_pointer> range = eq_range(key);
+		        return (ft::make_pair(const_iterator(range.first), const_iterator(range.second)));
 		    }
 
 		    template <typename Key>
 		    iterator lower_bound(const Key& key)
 		    {
-		        return iterator(low_bound(key));
+		        return (iterator(low_bound(key)));
 		    }
 
 		    template <typename Key>
 		    const_iterator lower_bound(const Key& key) const
 		    {
-		        return const_iterator(low_bound(key));
+		        return (const_iterator(low_bound(key)));
 		    }
 
 		    template <typename Key>
 		    iterator upper_bound(const Key& key)
 		    {
-		        return iterator(up_bound(key));
+		        return (iterator(up_bound(key)));
 		    }
 
 		    template <typename Key>
 		    const_iterator upper_bound(const Key& key) const
 		    {
-		        return const_iterator(up_bound(key));
+		        return (const_iterator(up_bound(key)));
 		    }
 
 		private:
 		    template <typename Iter, typename Key>
 		    Iter find_key(const Key& key) const
 		    {
-		        _end_nodepointer ptr = find_pointer(key);
-		        return ptr == NULL ? Iter(end_node()) : Iter(ptr);
+		        end_node_pointer ptr = find_pointer(key);
+		        return (ptr == NULL ? Iter(end_node()) : Iter(ptr));
 		    }
 
 		    template <typename Key>
-		    _end_nodepointer low_bound(const Key& key) const
+		    end_node_pointer low_bound(const Key& key) const
 		    {
 		        node_pointer ptr = root();
-		        _end_nodepointer pos = end_node();
+		        end_node_pointer pos = end_node();
 		        while (ptr != NULL)
 						{
 		            if (!value_comp()(ptr->value, key))
 								{
-		                pos = static_cast<_end_nodepointer>(ptr);
+		                pos = static_cast<end_node_pointer>(ptr);
 		                ptr = ptr->left;
 		            }
 								else
 		                ptr = ptr->right;
 		        }
-		        return pos;
+		        return (pos);
 		    }
 
 		    template <typename Key>
-		    _end_nodepointer up_bound(const Key& key) const
+		    end_node_pointer up_bound(const Key& key) const
 		    {
 		        node_pointer ptr = root();
-		        _end_nodepointer pos = end_node();
+		        end_node_pointer pos = end_node();
 		        while (ptr != NULL)
 						{
 		            if (value_comp()(key, ptr->value))
 								{
-		                pos = static_cast<_end_nodepointer>(ptr);
+		                pos = static_cast<end_node_pointer>(ptr);
 		                ptr = ptr->left;
 		            }
 								else
 		                ptr = ptr->right;
 		        }
-		        return pos;
+		        return (pos);
 		    }
 
 		    template <typename Key>
-		    pair<_end_nodepointer, _end_nodepointer> eq_range(const Key& key) const
+		    pair<end_node_pointer, end_node_pointer> eq_range(const Key& key) const
 		    {
 		        node_pointer ptr = root();
-		        _end_nodepointer low = end_node();
-		        _end_nodepointer up = end_node();
+		        end_node_pointer low = end_node();
+		        end_node_pointer up = end_node();
 		        while (ptr != NULL)
 						{
 		            if (value_comp()(key, ptr->value))
 								{
-		                up = low = static_cast<_end_nodepointer>(ptr);
+		                up = low = static_cast<end_node_pointer>(ptr);
 		                ptr = ptr->left;
 		            }
 								else if (value_comp()(ptr->value, key))
@@ -340,16 +339,16 @@ namespace ft
 		            }
 								else
 								{
-		                low = static_cast<_end_nodepointer>(ptr);
+		                low = static_cast<end_node_pointer>(ptr);
 		                if (ptr->right != NULL)
-		                    up = static_cast<_end_nodepointer>(tree_min(ptr->right));
+		                    up = static_cast<end_node_pointer>(tree_min(ptr->right));
 		                break;
 		            }
 		        }
-		        return ft::make_pair(low, up);
+		        return (ft::make_pair(low, up));
 		    }
 
-		    iterator insert_at(node_pointer& pos, _end_nodepointer parent, const value_type& value)
+		    iterator insert_at(node_pointer& pos, end_node_pointer parent, const value_type& value)
 		    {
 		        pos = construct_node(value);
 		        pos->parent = parent;
@@ -358,27 +357,27 @@ namespace ft
 		        ++_size;
 		        node_pointer ptr = pos;
 		        tree_insert_fix(end_node()->left, ptr);
-		        return iterator(ptr);
+		        return (iterator(ptr));
 		    }
 
 		    node_pointer root() const
 		    {
-		        return end_node()->left;
+		        return (end_node()->left);
 		    }
 
 		    node_pointer* root_ptr() const
 		    {
-		        return &(end_node()->left);
+		        return (&(end_node()->left));
 		    }
 
-		    _end_nodepointer end_node()
+		    end_node_pointer end_node()
 		    {
-		        return static_cast<_end_nodepointer>(&_end_node);
+		        return (static_cast<end_node_pointer>(&_end_node));
 		    }
 
-		    _end_nodepointer end_node() const
+		    end_node_pointer end_node() const
 		    {
-		        return const_cast<_end_nodepointer>(&_end_node);
+		        return (const_cast<end_node_pointer>(&_end_node));
 		    }
 
 		    node_pointer construct_node(const value_type& value)
@@ -388,11 +387,11 @@ namespace ft
 		        new_node->right = NULL;
 		        new_node->parent = NULL;
 		        _value_alloc.construct(&new_node->value, value);
-		        return new_node;
+		        return (new_node);
 		    }
 
 		    template <typename Key>
-		    _end_nodepointer find_pointer(const Key& key) const
+		    end_node_pointer find_pointer(const Key& key) const
 		    {
 		        node_pointer ptr = root();
 		        while (ptr != NULL)
@@ -407,14 +406,14 @@ namespace ft
 		            }
 								else
 								{
-		                return static_cast<_end_nodepointer>(ptr);
+		                return (static_cast<end_node_pointer>(ptr));
 		            }
 		        }
-		        return NULL;
+		        return (NULL);
 		    }
 
 		    template <typename Key>
-		    node_pointer& find_pos(_end_nodepointer& parent, const Key& key) const
+		    node_pointer& find_pos(end_node_pointer& parent, const Key& key) const
 		    {
 		        node_pointer node = root();
 		        node_pointer* ptr = root_ptr();
@@ -430,8 +429,8 @@ namespace ft
 		                }
 										else
 										{
-		                    parent = static_cast<_end_nodepointer>(node);
-		                    return node->left;
+		                    parent = static_cast<end_node_pointer>(node);
+		                    return (node->left);
 		                }
 		            }
 								else if (value_comp()(node->value, key))
@@ -444,23 +443,23 @@ namespace ft
 		                }
 										else
 										{
-		                    parent = static_cast<_end_nodepointer>(node);
-		                    return node->right;
+		                    parent = static_cast<end_node_pointer>(node);
+		                    return (node->right);
 		                }
 		            }
 								else
 								{
 		                // key == node->value
-		                parent = static_cast<_end_nodepointer>(node);
-		                return *ptr;
+		                parent = static_cast<end_node_pointer>(node);
+		                return (*ptr);
 		            }
 		        }
-		        parent = static_cast<_end_nodepointer>(end_node());
-		        return parent->left;
+		        parent = static_cast<end_node_pointer>(end_node());
+		        return (parent->left);
 		    }
 
 		    template <typename Key>
-		    node_pointer& find_pos(iterator hint, _end_nodepointer& parent, const Key& key,
+		    node_pointer& find_pos(iterator hint, end_node_pointer& parent, const Key& key,
 		                           node_pointer& dummy) const
 		    {
 		        if (hint == end() || value_comp()(key, *hint))
@@ -473,16 +472,16 @@ namespace ft
 		                if (hint.base()->left == NULL)
 										{
 		                    parent = hint.base();
-		                    return parent->left;
+		                    return (parent->left);
 		                }
 										else
 										{
 		                    parent = prev.base();
-		                    return prev.node_ptr()->right;
+		                    return (prev.node_ptr()->right);
 		                }
 		            }
 		            // value <= *prev
-		            return find_pos(parent, key);
+		            return (find_pos(parent, key));
 		        }
 						else if (value_comp()(*hint, key))
 						{
@@ -495,20 +494,20 @@ namespace ft
 		                if (hint.node_ptr()->right == NULL)
 										{
 		                    parent = hint.base();
-		                    return hint.node_ptr()->right;
+		                    return (hint.node_ptr()->right);
 		                }
 										else
 										{
 		                    parent = next.base();
-		                    return parent->left;
+		                    return (parent->left);
 		                }
 		            }
 		            // *next <= value
-		            return find_pos(parent, key);
+		            return (find_pos(parent, key));
 		        }
 		        parent = hint.base();
 		        dummy = hint.node_ptr();
-		        return dummy;
+		        return (dummy);
 		    }
 
 		    void delete_node(node_pointer node)
@@ -532,9 +531,9 @@ namespace ft
 		    node_allocator _alloc;
 		    allocator_type _value_alloc;
 		    value_compare _comp;
-		    _end_nodetype _end_node;
-		    _end_nodepointer _begin_iter;
-		    _sizetype _size;
+		    end_node_type _end_node;
+		    end_node_pointer _begin_iter;
+		    size_type _size;
 	};
 }
 

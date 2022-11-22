@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:35:55 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:01:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:34:48 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ namespace ft
 
 		    node_pointer get_parent() const
 		    {
-		        return static_cast<node_pointer>(parent);
+		        return (static_cast<node_pointer>(parent));
 		    }
 
 		    void set_parent(node_pointer ptr)

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:37:17 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:17:10 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:47:25 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TREE_ITERATOR_HPP
 
 # include <iterator>
-# include "tree_algorithm.hpp"
+# include "tree_algo.hpp"
 # include "tree_types.hpp"
 
 namespace ft
@@ -47,73 +47,73 @@ namespace ft
 		public:
 		    end_node_pointer& base()
 		    {
-		        return _ptr;
+		        return (_ptr);
 		    }
 
 		    const end_node_pointer& base() const
 		    {
-		        return _ptr;
+		        return (_ptr);
 		    }
 
-		    node_pointer node__ptr() const
+		    node_pointer node_ptr() const
 		    {
-		        return static_cast<node_pointer>(_ptr);
+		        return (static_cast<node_pointer>(_ptr));
 		    }
 
 		    reference operator*() const
 		    {
-		        return static_cast<node_pointer>(_ptr)->value;
+		        return (static_cast<node_pointer>(_ptr)->value);
 		    }
 
 		    pointer operator->() const
 		    {
-		        return &(operator*());
+		        return (&(operator*()));
 		    }
 
 		    tree_iterator& operator++()
 		    {
 		        _ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(_ptr));
-		        return *this;
+		        return (*this);
 		    }
 
 		    tree_iterator operator++(int)
 		    {
 		        tree_iterator t = *this;
 		        ++(*this);
-		        return t;
+		        return (t);
 		    }
 
 		    tree_iterator& operator--()
 		    {
 		        _ptr = tree_iter_prev<node_pointer>(_ptr);
-		        return *this;
+		        return (*this);
 		    }
 
 		    tree_iterator operator--(int)
 		    {
 		        tree_iterator t = *this;
 		        --(*this);
-		        return t;
+		        return (t);
 		    }
 
 		    bool operator==(const tree_iterator& other) const
 		    {
-		        return _ptr == other._ptr;
+		        return (_ptr == other._ptr);
 		    }
 
 		    bool operator==(const const_iterator& other) const
 		    {
-		        return _ptr == other.base();
+		        return (_ptr == other.base());
 		    }
 
 		    bool operator!=(const tree_iterator& other) const
 		    {
-		        return !(*this == other);
+		        return (!(*this == other));
 		    }
 
 		    bool operator!=(const const_iterator& other) const
 		    {
-		        return !(*this == other);
+		        return (!(*this == other));
 		    }
 
 		private:
@@ -138,7 +138,7 @@ namespace ft
 		public:
 		    const_tree_iterator() : _ptr(NULL) { }
 
-		    const_tree_iterator(end_node_pointer p) : __ptr(p) { }
+		    const_tree_iterator(end_node_pointer p) : _ptr(p) { }
 
 		    const_tree_iterator(node_pointer p) : _ptr(static_cast<end_node_pointer>(p)) { }
 
@@ -147,73 +147,73 @@ namespace ft
 		public:
 		    end_node_pointer& base()
 		    {
-		        return _ptr;
+		        return (_ptr);
 		    }
 
 		    const end_node_pointer& base() const
 		    {
-		        return _ptr;
+		        return (_ptr);
 		    }
 
-		    node_pointer node__ptr() const
+		    node_pointer node_ptr() const
 		    {
-		        return static_cast<node_pointer>(_ptr);
+		        return (static_cast<node_pointer>(_ptr));
 		    }
 
 		    reference operator*() const
 		    {
-		        return static_cast<node_pointer>(_ptr)->value;
+		        return (static_cast<node_pointer>(_ptr)->value);
 		    }
 
 		    pointer operator->() const
 		    {
-		        return &(operator*());
+		        return (&(operator*()));
 		    }
 
 		    const_tree_iterator& operator++()
 		    {
 		        _ptr = tree_iter_next<end_node_pointer>(static_cast<node_pointer>(_ptr));
-		        return *this;
+		        return (*this);
 		    }
 
 		    const_tree_iterator operator++(int)
 		    {
 		        const_tree_iterator t = *this;
 		        ++(*this);
-		        return t;
+		        return (t);
 		    }
 
 		    const_tree_iterator& operator--()
 		    {
 		        _ptr = tree_iter_prev<node_pointer>(_ptr);
-		        return *this;
+		        return (*this);
 		    }
 
 		    const_tree_iterator operator--(int)
 		    {
 		        const_tree_iterator t = *this;
 		        --(*this);
-		        return t;
+		        return (t);
 		    }
 
 		    bool operator==(const const_tree_iterator& other) const
 		    {
-		        return _ptr == other._ptr;
+		        return (_ptr == other._ptr);
 		    }
 
 		    bool operator==(const non_const_iterator& other) const
 		    {
-		        return _ptr == other.base();
+		        return (_ptr == other.base());
 		    }
 
 		    bool operator!=(const const_tree_iterator& other) const
 		    {
-		        return !(*this == other);
+		        return (!(*this == other));
 		    }
 
 		    bool operator!=(const non_const_iterator& other) const
 		    {
-		        return !(*this == other);
+		        return (!(*this == other));
 		    }
 
 		private:

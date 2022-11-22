@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:56:07 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:08:12 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:30:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,50 +37,50 @@ namespace ft
 	    {
 	        first = other.first;
 	        second = other.second;
-	        return *this;
+	        return (*this);
 	    }
 	};
 
 	template <typename T1, typename T2>
 	pair<T1, T2> make_pair(T1 x, T2 y)
 	{
-	    return pair<T1, T2>(x, y);
+	    return (pair<T1, T2>(x, y));
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator==(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return lhs.first == rhs.first && lhs.second == rhs.second;
+	    return (lhs.first == rhs.first && lhs.second == rhs.second);
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator!=(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return !(lhs == rhs);
+	    return (!(lhs == rhs));
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator<(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return (lhs.first < rhs.first) || (!(rhs.first < lhs.first) && lhs.second < rhs.second);
+	    return ((lhs.first < rhs.first) || (!(rhs.first < lhs.first) && lhs.second < rhs.second));
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator<=(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return !(rhs < lhs);
+	    return (!(rhs < lhs));
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator>(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return rhs < lhs;
+	    return (rhs < lhs);
 	}
 
 	template <typename T1, typename T2>
 	inline bool operator>=(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 	{
-	    return !(lhs < rhs);
+	    return (!(lhs < rhs));
 	}
 
 	template <typename InputIt1, typename InputIt2>
@@ -89,9 +89,9 @@ namespace ft
 	    for (; first1 != last1; ++first1, (void)++first2)
 			{
 	        if (!(*first1 == *first2))
-	            return false;
+	            return (false);
 	    }
-	    return true;
+	    return (true);
 	}
 
 	template <typename InputIt1, typename InputIt2, typename BinaryPredicate>
@@ -100,9 +100,9 @@ namespace ft
 	    for (; first1 != last1; ++first1, (void)++first2)
 			{
 	        if (!p(*first1, *first2))
-	            return false;
+	            return (false);
 	    }
-	    return true;
+	    return (true);
 	}
 
 	template <typename InputIt1, typename InputIt2>
@@ -111,11 +111,11 @@ namespace ft
 	    for (; first2 != last2; ++first1, (void)++first2)
 			{
 	        if (first1 == last1 || *first1 < *first2)
-	            return true;
+	            return (true);
 	        if (*first2 < *first1)
-	            return false;
+	            return (false);
 	    }
-	    return false;
+	    return (false);
 	}
 
 	template <typename InputIt1, typename InputIt2, typename Compare>
@@ -124,11 +124,11 @@ namespace ft
 	    for (; first2 != last2; ++first1, (void)++first2)
 			{
 	        if (first1 == last1 || comp(*first1, *first2))
-	            return true;
+	            return (true);
 	        if (comp(*first2, *first1))
-	            return false;
+	            return (false);
 	    }
-	    return false;
+	    return (false);
 	}
 }
 
