@@ -6,7 +6,7 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/10/30 23:36:03 by armendes         ###   ########.fr        #
+#    Updated: 2022/11/23 18:32:29 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,17 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-INCLUDES =	enable_if.hpp\
-			equal.hpp\
-			is_integral.hpp\
-			iterator_traits.hpp\
-			lexicographical_compare.hpp\
-			make_pair.hpp\
-			pair.hpp\
-			red_black_iterator.hpp\
-			reverse_iterator.hpp\
-			vector_iterator.hpp\
-			stack.hpp\
-			vector.hpp\
+INCLUDES =	iterator.hpp\
+						map.hpp\
+						stack.hpp\
+						tree_algo.hpp\
+						tree.hpp\
+						tree_iterator.hpp\
+						tree_types.hpp\
+						type_traits.hpp\
+						utility.hpp\
+						vector_iterator.hpp\
+						vector.hpp\
 
 CC =	c++
 

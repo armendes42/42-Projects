@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:27:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 17:01:24 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:23:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ namespace ft
 
 		    size_type max_size() const
 		    {
-		        return (std::min(_alloc.max_size(), static_cast<size_type>(std::numeric_limits<difference_type>::max())));
+						return (allocator_type().max_size());
 		    }
 
 		    void reserve(size_type new_cap)
