@@ -6,13 +6,17 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/11/23 18:32:29 by armendes         ###   ########.fr        #
+#    Updated: 2022/11/24 21:57:20 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.cpp
+SRCS_FT =	main_vector_ft.cpp
 
-OBJS =	${SRCS:.cpp=.o}
+SRCS_STD =	main_vector_std.cpp
+
+OBJS_FT =	${SRCS_FT:.cpp=.o}
+
+OBJS_STD =	${SRCS_STD:.cpp=.o}
 
 INCLUDES =	iterator.hpp\
 						map.hpp\
@@ -30,23 +34,28 @@ CC =	c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I includes
 
-NAME = containers
+NAME_FT = containers_ft
+
+NAME_STD =	containers_std
 
 RM =	rm -rf
 
 %.o:	%.cpp ${INCLUDES}
 		${CC} ${CFLAGS} -c $< -o $@
 
-all:	${NAME} Makefile
+all:	${NAME_FT} ${NAME_STD} Makefile
 
-${NAME}:	${OBJS}	Makefile
-			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+${NAME_FT}:	${OBJS_FT} Makefile
+			${CC} ${CFLAGS} ${OBJS_FT} -o ${NAME_FT}
+
+${NAME_STD}:	${OBJS_STD} Makefile
+			${CC} ${CFLAGS} ${OBJS_STD} -o ${NAME_STD}
 
 clean:
-	${RM} ${OBJS}
+	${RM} ${OBJS_FT} ${OBJS_STD}
 
 fclean:		clean
-	${RM} ${NAME}
+	${RM} ${NAME_FT} ${NAME_STD}
 
 re:			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:51:59 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/22 16:31:17 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:48:02 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ namespace ft
 		    typedef typename container_type::const_reference const_reference;
 
 		public:
-		    explicit stack(const container_type& cont = container_type()) : _c(cont) { }
+		    explicit stack(const container_type& cont = container_type()) : c(cont) { }
 
-		    stack(const stack& other) : _c(other._c) { }
+		    stack(const stack& other) : c(other.c) { }
 
 		    stack& operator=(const stack& other)
 		    {
-		        _c = other._c;
+		        c = other.c;
 		        return (*this);
 		    }
 
@@ -43,32 +43,32 @@ namespace ft
 		public:
 		    reference top()
 		    {
-		        return (_c.back());
+		        return (c.back());
 		    }
 
 		    const_reference top() const
 		    {
-		        return (_c.back());
+		        return (c.back());
 		    }
 
 		    bool empty() const
 		    {
-		        return (_c.empty());
+		        return (c.empty());
 		    }
 
 		    size_type size() const
 		    {
-		        return (_c.size());
+		        return (c.size());
 		    }
 
 		    void push(const value_type& value)
 		    {
-		        _c.push_back(value);
+		        c.push_back(value);
 		    }
 
 		    void pop()
 		    {
-		        _c.pop_back();
+		        c.pop_back();
 		    }
 
 		    template <typename T1, typename C1>
@@ -78,13 +78,13 @@ namespace ft
 		    friend bool operator<(const stack<T1, C1>& lhs, const stack<T1, C1>& rhs);
 
 		protected:
-		    container_type _c;
+		    container_type c;
 	};
 
 	template <typename T, typename Container>
 	inline bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-	    return (lhs._c == rhs._c);
+	    return (lhs.c == rhs.c);
 	}
 
 	template <typename T, typename Container>
@@ -96,7 +96,7 @@ namespace ft
 	template <typename T, typename Container>
 	inline bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-	    return (lhs._c < rhs._c);
+	    return (lhs.c < rhs.c);
 	}
 
 	template <typename T, typename Container>
