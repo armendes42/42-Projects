@@ -6,13 +6,13 @@
 #    By: armendes <armendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 16:04:22 by armendes          #+#    #+#              #
-#    Updated: 2022/11/24 21:57:20 by armendes         ###   ########.fr        #
+#    Updated: 2022/11/25 00:14:51 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_FT =	main_vector_ft.cpp
+SRCS_FT =	main_ft.cpp
 
-SRCS_STD =	main_vector_std.cpp
+SRCS_STD =	main_std.cpp
 
 OBJS_FT =	${SRCS_FT:.cpp=.o}
 
