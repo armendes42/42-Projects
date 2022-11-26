@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 21:57:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/25 01:33:44 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:43:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ void test_constructor_vector(void)
     vector<int> first;
     print_vector(first);
     cout << endl;
-    
+
     cout << "\033[1;34mConstructor Vector: Allocator\033[0;m" << endl;
     allocator<int> alloc;
     vector<int> second(alloc);
     print_vector(second);
     cout << endl;
-    
+
     cout << "\033[1;34mConstructor Vector: Count Values\033[0;m" << endl;
     vector<int> third(5, 1, alloc);
     print_vector(third);
     cout << endl;
-    
+
     cout << "\033[1;34mConstructor Vector: Other Vector\033[0;m" << endl;
     vector<int> fourth(third);
     print_vector(fourth);
@@ -522,6 +522,7 @@ void test_constructor_map(void)
     cout << "\033[1;34mConstructor Map : Copy\033[0;m" << endl;
     map<char, int> fourth(first);
     print_map(fourth);
+		cout << endl;
 }
 
 void test_operator_equal_map(void)
@@ -534,11 +535,221 @@ void test_operator_equal_map(void)
     map<char, int> second;
     second = first;
     print_map(second);
+	cout << endl;
 }
 
-void test_get_allocator_map(void)
+// void test_get_allocator_map(void)
+// {
+//
+// }
+
+void test_at_map(void)
 {
-    
+	cout << "\033[1;34mAt Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first.at('c') << endl;
+	cout << endl;
+}
+
+void test_operator_square_brackets_map(void)
+{
+	cout << "\033[1;34mOperator [] Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first['b'] << endl;
+	cout << endl;
+}
+
+void test_begin_map(void)
+{
+	cout << "\033[1;34mBegin Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first.begin()->second << endl;
+	cout << endl;
+}
+
+void test_end_map(void)
+{
+	cout << "\033[1;34mEnd Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first.end()->second << endl;
+	cout << endl;
+}
+
+void test_rbegin_map(void)
+{
+	cout << "\033[1;34mRbegin Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first.rbegin()->second << endl;
+	cout << endl;
+}
+
+void test_rend_map(void)
+{
+	cout << "\033[1;34mRend Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	cout << first.rend()->second << endl;
+	cout << endl;
+}
+
+void test_empty_map(void)
+{
+	cout << "\033[1;34mEmpty Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	map<char, int> second;
+	cout << first.empty() << " " << second.empty() << endl;
+	cout << endl;
+}
+
+void test_size_map(void)
+{
+	cout << "\033[1;34mSize Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	map<char, int> second;
+	cout << first.size() << " " << second.size() << endl;
+	cout << endl;
+}
+
+void test_max_size_map(void)
+{
+	cout << "\033[1;34mMax Size Map\033[0;m" << endl;
+	map<char, int> first;
+	cout << first.max_size() << endl;
+	cout << endl;
+}
+
+void test_clear_map(void)
+{
+	cout << "\033[1;34mClear Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	print_map(first);
+	first.clear();
+	print_map(first);
+	cout << endl;
+}
+
+void test_insert_map(void)
+{
+	cout << "\033[1;34mInsert Map : Value\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+    first['b'] = 2;
+    first['c'] = 3;
+	first['d'] = 4;
+	print_map(first);
+	cout << endl;
+	pair<char, int> p1('e', 5);
+	first.insert(p1);
+	print_map(first);
+	cout << endl;
+
+	cout << "\033[1;34mInsert Map : Pos Value\033[0;m" << endl;
+	map<char, int> second;
+	second['a'] = 1;
+    second['b'] = 2;
+    second['c'] = 3;
+	second['d'] = 4;
+	print_map(second);
+	cout << endl;
+	map<char, int>::iterator it = second.begin();
+	pair<char, int> p2('f', 6);
+	second.insert(it, p2);
+	print_map(second);
+	cout << endl;
+
+	cout << "\033[1;34mInsert Map : Range\033[0;m" << endl;
+	map<char, int> third;
+	third['a'] = 1;
+    third['b'] = 2;
+    third['c'] = 3;
+	third['d'] = 4;
+	print_map(third);
+	cout << endl;
+	map<char, int> fourth;
+	fourth['e'] = 5;
+    fourth['f'] = 6;
+    fourth['g'] = 7;
+	fourth['h'] = 8;
+	map<char, int>::iterator it1 = fourth.begin();
+	map<char, int>::iterator it2 = fourth.end();
+	third.insert(it1, it2);
+	print_map(third);
+	cout << endl;
+}
+
+void test_erase_map(void)
+{
+	cout << "\033[1;34mErase Map : Pos\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	print_map(first);
+	map<char, int>::iterator it = first.begin();
+	first.erase(it);
+	print_map(first);
+	cout << endl;
+
+	cout << "\033[1;34mErase Map : Range\033[0;m" << endl;
+	map<char, int> second;
+	second['a'] = 1;
+	second['b'] = 2;
+	second['c'] = 3;
+	second['d'] = 4;
+	print_map(second);
+	map<char, int>::iterator it1 = second.begin();
+	map<char, int>::iterator it2 = second.end();
+	second.erase(it1, it2);
+	print_map(second);
+	cout << endl;
+
+	cout << "\033[1;34mErase Map : Key\033[0;m" << endl;
+	map<char, int> third;
+	third['a'] = 1;
+	third['b'] = 2;
+	third['c'] = 3;
+	third['d'] = 4;
+	print_map(third);
+
+	second.erase();
+	print_map(third);
+	cout << endl;
 }
 
 void main_map(void)
@@ -546,14 +757,26 @@ void main_map(void)
     cout << "\033[1;4;32mMAP STD\033[0;m" << endl << endl;
     test_constructor_map();
     test_operator_equal_map();
-    test_get_allocator_map();
+    // test_get_allocator_map();
+	test_at_map();
+	test_operator_square_brackets_map();
+	test_begin_map();
+	test_end_map();
+	test_rbegin_map();
+	test_rend_map();
+	test_empty_map();
+	test_size_map();
+	test_max_size_map();
+	test_clear_map();
+	test_insert_map();
+	test_erase_map();
 }
 
 //STACK
 
 // void main_stack(void)
 // {
-    
+
 // }
 
 int main(void)
