@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 21:57:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/26 16:45:11 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:29:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ using namespace std;
 
 //VECTOR
 
-template <typename T>
-void print_vector(const vector<T> &vec)
+void print_vector(vector<int> &vec)
 {
     for (size_t i = 0; i < vec.size(); i++)
     {
@@ -587,7 +586,12 @@ void test_end_map(void)
     first['b'] = 2;
     first['c'] = 3;
 	first['d'] = 4;
-	cout << first.end()->second << endl;
+	map<char, int>::iterator it = first.begin();
+	it++;
+	it++;
+	it++;
+	it++;
+	cout << (it == first.end()) << endl;
 	cout << endl;
 }
 
@@ -611,7 +615,12 @@ void test_rend_map(void)
     first['b'] = 2;
     first['c'] = 3;
 	first['d'] = 4;
-	cout << first.rend()->second << endl;
+	map<char, int>::reverse_iterator rit = first.rbegin();
+	rit++;
+	rit++;
+	rit++;
+	rit++;
+	cout << (rit == first.rend()) << endl;
 	cout << endl;
 }
 
@@ -751,6 +760,230 @@ void test_erase_map(void)
 	cout << endl;
 }
 
+void test_swap_map(void)
+{
+	cout << "\033[1;34mSwap Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int> second;
+	second['e'] = 5;
+	second['f'] = 6;
+	second['g'] = 7;
+	second['h'] = 8;
+	print_map(first);
+	print_map(second);
+	cout << endl;
+	first.swap(second);
+	print_map(first);
+	print_map(second);
+	cout << endl;
+}
+
+void test_count_map(void)
+{
+	cout << "\033[1;34mCount Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	cout << first.count('b') << " " << first.count('e') << endl;
+	cout << endl;
+}
+
+void test_find_map(void)
+{
+	cout << "\033[1;34mFind Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	cout << first.find('c')->second << endl;
+	cout << endl;
+}
+
+void test_equal_range_map(void)
+{
+	cout << "\033[1;34mEqual Range Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	pair<map<char, int>::iterator, map<char, int>::iterator> p = first.equal_range('b');
+	for (; p.first != p.second; (p.first)++)
+		cout << p.first->second << endl;
+	cout << endl;
+}
+
+void test_lower_bound_map(void)
+{
+	cout << "\033[1;34mLower Bound Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int>::iterator it = first.lower_bound('b');
+	cout << it->second << endl;
+	cout << endl;
+}
+
+void test_upper_bound_map(void)
+{
+	cout << "\033[1;34mLower Bound Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int>::iterator it = first.upper_bound('b');
+	cout << it->second << endl;
+	cout << endl;
+}
+
+void test_key_comp_map(void)
+{
+	cout << "\033[1;34mKey Comp Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int>::key_compare k_c = first.key_comp();
+	bool before = k_c(first.begin()->second, 0); // 1 < 0
+	bool after = k_c(0, first.begin()->second); // 0 < 1
+	cout << before << " " << after << endl;
+	cout << endl;
+}
+
+void test_value_comp_map(void)
+{
+	cout << "\033[1;34mValue Comp Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int>::value_compare v_c = first.value_comp();
+	pair<char, int> p1('a', 1);
+	pair<char, int> p2('b', 2);
+	bool before = v_c(p1, p2); // 1 < 2
+	bool after = v_c(p2, p1); // 2 < 1
+	cout << before << " " << after << endl;
+	cout << endl;
+}
+
+void test_relational_equal_map(void)
+{
+	cout << "\033[1;34mRelational == Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first == second) << endl;
+	cout << (first == third) << endl;
+	cout << endl;
+}
+
+void test_relational_non_equal_map(void)
+{
+	cout << "\033[1;34mRelational != Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first != second) << endl;
+	cout << (first != third) << endl;
+	cout << endl;
+}
+
+void test_relational_less_map(void)
+{
+	cout << "\033[1;34mRelational < Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first < second) << endl;
+	cout << (first < third) << endl;
+	cout << endl;
+}
+
+void test_relational_less_equal_map(void)
+{
+	cout << "\033[1;34mRelational <= Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first <= second) << endl;
+	cout << (first <= third) << endl;
+	cout << endl;
+}
+
+void test_relational_more_map(void)
+{
+	cout << "\033[1;34mRelational > Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first > second) << endl;
+	cout << (first > third) << endl;
+	cout << endl;
+}
+
+void test_relational_more_equal_map(void)
+{
+	cout << "\033[1;34mRelational >= Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	map<char, int> second;
+	second['b'] = 2;
+	map<char, int> third;
+	third['a'] = 1;
+	cout << (first >= second) << endl;
+	cout << (first >= third) << endl;
+	cout << endl;
+}
+
+void test_std_swap_map(void)
+{
+	cout << "\033[1;34mSTD Swap Map\033[0;m" << endl;
+	map<char, int> first;
+	first['a'] = 1;
+	first['b'] = 2;
+	first['c'] = 3;
+	first['d'] = 4;
+	map<char, int> second;
+	second['e'] = 5;
+	second['f'] = 6;
+	second['g'] = 7;
+	second['h'] = 8;
+	print_map(first);
+	print_map(second);
+	cout << endl;
+	swap(first, second);
+	print_map(first);
+	print_map(second);
+	cout << endl;
+}
+
 void main_map(void)
 {
     cout << "\033[1;4;32mMAP STD\033[0;m" << endl << endl;
@@ -769,18 +1002,240 @@ void main_map(void)
 	test_clear_map();
 	test_insert_map();
 	test_erase_map();
+	test_swap_map();
+	test_count_map();
+	test_find_map();
+	test_equal_range_map();
+	test_lower_bound_map();
+	test_upper_bound_map();
+	test_key_comp_map();
+	test_value_comp_map();
+	test_relational_equal_map();
+    test_relational_non_equal_map();
+    test_relational_less_map();
+    test_relational_less_equal_map();
+    test_relational_more_map();
+    test_relational_more_equal_map();
+	test_std_swap_map();
 }
 
 //STACK
 
-// void main_stack(void)
-// {
+void print_stack(stack<int> &st)
+{
+	while (st.empty() == 0)
+    {
+        cout << st.top() << endl;
+		st.pop();
+    }
+}
 
-// }
+void test_constructor_stack(void)
+{
+	cout << "\033[1;34mConstructor Stack : Empty\033[0;m" << endl;
+	stack<int> first;
+	// print_stack(first);
+	cout << endl;
+
+	cout << "\033[1;34mConstructor Stack : Other Stack\033[0;m" << endl;
+	first.push(2);
+	first.push(3);
+	stack<int> second(first);
+	print_stack(second);
+	cout << endl;
+}
+
+void test_operator_equal_stack(void)
+{
+	cout << "\033[1;34mOperator = Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second = first;
+	print_stack(first);
+	cout << endl;
+	print_stack(second);
+	cout << endl;
+}
+
+void test_top_stack(void)
+{
+	cout << "\033[1;34mTop Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	cout << first.top() << endl;
+	cout << endl;
+}
+
+void test_empty_stack(void)
+{
+	cout << "\033[1;34mEmpty Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	cout << first.empty() << " " << second.empty() << endl;
+	cout << endl;
+}
+
+void test_size_stack(void)
+{
+	cout << "\033[1;34mSize Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	cout << first.size() << endl;
+	cout << endl;
+}
+
+void test_push_stack(void)
+{
+	cout << "\033[1;34mPush Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	print_stack(first);
+	cout << endl;
+}
+
+void test_pop_stack(void)
+{
+	cout << "\033[1;34mPop Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	first.push(4);
+	first.pop();
+	print_stack(first);
+	cout << endl;
+}
+
+void test_relational_equal_stack(void)
+{
+	cout << "\033[1;34mRelational == Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first == second) << endl;
+	cout << (first == third) << endl;
+	cout << endl;
+}
+
+void test_relational_non_equal_stack(void)
+{
+	cout << "\033[1;34mRelational != Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first != second) << endl;
+	cout << (first != third) << endl;
+	cout << endl;
+}
+
+void test_relational_less_stack(void)
+{
+	cout << "\033[1;34mRelational < Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first < second) << endl;
+	cout << (first < third) << endl;
+	cout << endl;
+}
+
+void test_relational_less_equal_stack(void)
+{
+	cout << "\033[1;34mRelational <= Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first <= second) << endl;
+	cout << (first <= third) << endl;
+	cout << endl;
+}
+
+void test_relational_more_stack(void)
+{
+	cout << "\033[1;34mRelational > Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first > second) << endl;
+	cout << (first > third) << endl;
+	cout << endl;
+}
+
+void test_relational_more_equal_stack(void)
+{
+	cout << "\033[1;34mRelational >= Stack\033[0;m" << endl;
+	stack<int> first;
+	first.push(2);
+	first.push(3);
+	stack<int> second;
+	second.push(1);
+	second.push(2);
+	stack<int> third;
+	third.push(2);
+	third.push(3);
+	cout << (first >= second) << endl;
+	cout << (first >= third) << endl;
+	cout << endl;
+}
+
+
+void main_stack(void)
+{
+	cout << "\033[1;4;32mSTACK STD\033[0;m" << endl << endl;
+	test_constructor_stack();
+	test_operator_equal_stack();
+	test_top_stack();
+	test_empty_stack();
+	test_size_stack();
+	test_push_stack();
+	test_pop_stack();
+	test_relational_equal_stack();
+    test_relational_non_equal_stack();
+    test_relational_less_stack();
+    test_relational_less_equal_stack();
+    test_relational_more_stack();
+    test_relational_more_equal_stack();
+}
 
 int main(void)
 {
     main_vector();
     main_map();
-    // main_stack();
+    main_stack();
 }

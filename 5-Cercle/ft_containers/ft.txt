@@ -1,0 +1,495 @@
+[1;4;32mVECTOR STD[0;m
+
+[1;34mConstructor Vector: Empty[0;m
+
+[1;34mConstructor Vector: Allocator[0;m
+
+[1;34mConstructor Vector: Count Values[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+Element 4 is 1
+
+[1;34mConstructor Vector: Other Vector[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+Element 4 is 1
+
+[1;34mConstructor Vector: Range[0;m
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+
+[1;34mOperator = Vector[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+
+Element 0 is 2
+Element 1 is 2
+Element 2 is 2
+Element 3 is 2
+
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+
+[1;34mAssign Vector : Count Values[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+
+Element 0 is 2
+Element 1 is 2
+Element 2 is 2
+
+[1;34mAssign Vector : Range[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Element 3 is 1
+
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+
+[1;34mGet Allocator Vector[0;m
+1
+2
+3
+4
+5
+
+[1;34mAt Vector[0;m
+Element 2 is 6
+Element 4 is 10
+
+[1;34mOperator [] Vector[0;m
+5
+4
+3
+2
+1
+
+[1;34mFront Vector[0;m
+2
+
+[1;34mBack Vector[0;m
+9
+
+[1;34mData Vector[0;m
+1
+2
+3
+4
+5
+
+[1;34mBegin Vector[0;m
+1
+
+[1;34mEnd Vector[0;m
+5
+
+[1;34mRbegin Vector[0;m
+5
+
+[1;34mRend Vector[0;m
+1
+
+[1;34mEmpty Vector[0;m
+1
+
+0
+
+[1;34mSize Vector[0;m
+3
+
+[1;34mMax Size Vector[0;m
+2305843009213693951
+
+[1;34mCapacity Vector[0;m
+3
+
+[1;34mReserve Vector[0;m
+3
+6
+
+[1;34mClear Vector[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+Size of vector is 3
+size of vector is 0
+
+[1;34mInsert Vector : Pos value[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 2
+Element 3 is 1
+
+
+[1;34mInsert Vector : Pos Count Values[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 3
+Element 3 is 3
+Element 4 is 1
+
+
+[1;34mInsert Vector : Range[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+Element 5 is 1
+
+
+[1;34mErase Vector : Pos[0;m
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+
+Element 0 is 1
+Element 1 is 2
+Element 2 is 4
+Element 3 is 5
+
+
+[1;34mErase Vector : Range[0;m
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+Element 5 is 6
+Element 6 is 7
+
+Element 0 is 1
+Element 1 is 2
+Element 2 is 5
+Element 3 is 6
+Element 4 is 7
+
+[1;34mPush Back Vector[0;m
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+Element 5 is 6
+
+[1;34mPop Back Vector[0;m
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+Element 4 is 5
+
+Element 0 is 1
+Element 1 is 2
+Element 2 is 3
+Element 3 is 4
+
+[1;34mResize Vector[0;m
+Size is 3
+Size is 6
+
+[1;34mSwap Vector[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+Element 0 is 5
+Element 1 is 5
+Element 2 is 5
+Element 3 is 5
+
+
+Element 0 is 5
+Element 1 is 5
+Element 2 is 5
+Element 3 is 5
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+[1;34mRelational == Vector[0;m
+1
+0
+0
+
+[1;34mRelational != Vector[0;m
+0
+1
+1
+
+[1;34mRelational < Vector[0;m
+0
+1
+1
+
+[1;34mRelational <= Vector[0;m
+1
+1
+1
+
+[1;34mRelational > Vector[0;m
+0
+0
+0
+
+[1;34mRelational >= Vector[0;m
+1
+0
+0
+
+[1;34mstd::swap Vector[0;m
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+Element 0 is 2
+Element 1 is 2
+Element 2 is 2
+Element 3 is 2
+Element 4 is 2
+
+
+Element 0 is 2
+Element 1 is 2
+Element 2 is 2
+Element 3 is 2
+Element 4 is 2
+
+Element 0 is 1
+Element 1 is 1
+Element 2 is 1
+
+[1;4;32mMAP STD[0;m
+
+[1;34mConstructor Map : Empty[0;m
+{ }
+
+[1;34mConstructor Map : Compare and Allocator[0;m
+{ }
+
+[1;34mConstructor Map : Range[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+
+[1;34mConstructor Map : Copy[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+
+[1;34mOperator = Map[0;m
+{ (a:1) (b:2) (c:3) }
+
+[1;34mAt Map[0;m
+3
+
+[1;34mOperator [] Map[0;m
+2
+
+[1;34mBegin Map[0;m
+1
+
+[1;34mEnd Map[0;m
+1
+
+[1;34mRbegin Map[0;m
+4
+
+[1;34mRend Map[0;m
+1
+
+[1;34mEmpty Map[0;m
+0 1
+
+[1;34mSize Map[0;m
+4 0
+
+[1;34mMax Size Map[0;m
+230584300921369395
+
+[1;34mClear Map[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ }
+
+[1;34mInsert Map : Value[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+
+{ (a:1) (b:2) (c:3) (d:4) (e:5) }
+
+[1;34mInsert Map : Pos Value[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+
+{ (a:1) (b:2) (c:3) (d:4) (f:6) }
+
+[1;34mInsert Map : Range[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+
+{ (a:1) (b:2) (c:3) (d:4) (e:5) (f:6) (g:7) (h:8) }
+
+[1;34mErase Map : Pos[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ (b:2) (c:3) (d:4) }
+
+[1;34mErase Map : Range[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ }
+
+[1;34mErase Map : Key[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ (a:1) (b:2) (d:4) }
+
+[1;34mSwap Map[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ (e:5) (f:6) (g:7) (h:8) }
+
+{ (e:5) (f:6) (g:7) (h:8) }
+{ (a:1) (b:2) (c:3) (d:4) }
+
+[1;34mCount Map[0;m
+1 0
+
+[1;34mFind Map[0;m
+3
+
+[1;34mEqual Range Map[0;m
+2
+
+[1;34mLower Bound Map[0;m
+2
+
+[1;34mLower Bound Map[0;m
+3
+
+[1;34mKey Comp Map[0;m
+0 1
+
+[1;34mValue Comp Map[0;m
+1 0
+
+[1;34mRelational == Map[0;m
+0
+1
+
+[1;34mRelational != Map[0;m
+1
+0
+
+[1;34mRelational < Map[0;m
+1
+0
+
+[1;34mRelational <= Map[0;m
+1
+1
+
+[1;34mRelational > Map[0;m
+0
+0
+
+[1;34mRelational >= Map[0;m
+0
+1
+
+[1;34mSTD Swap Map[0;m
+{ (a:1) (b:2) (c:3) (d:4) }
+{ (e:5) (f:6) (g:7) (h:8) }
+
+{ (e:5) (f:6) (g:7) (h:8) }
+{ (a:1) (b:2) (c:3) (d:4) }
+
+[1;4;32mSTACK STD[0;m
+
+[1;34mConstructor Stack : Empty[0;m
+
+[1;34mConstructor Stack : Other Stack[0;m
+3
+2
+
+[1;34mOperator = Stack[0;m
+3
+2
+
+3
+2
+
+[1;34mTop Stack[0;m
+3
+
+[1;34mEmpty Stack[0;m
+0 1
+
+[1;34mSize Stack[0;m
+2
+
+[1;34mPush Stack[0;m
+3
+2
+
+[1;34mPop Stack[0;m
+3
+2
+
+[1;34mRelational == Stack[0;m
+0
+1
+
+[1;34mRelational != Stack[0;m
+1
+0
+
+[1;34mRelational < Stack[0;m
+0
+0
+
+[1;34mRelational <= Stack[0;m
+0
+1
+
+[1;34mRelational > Stack[0;m
+1
+0
+
+[1;34mRelational >= Stack[0;m
+1
+1
+
