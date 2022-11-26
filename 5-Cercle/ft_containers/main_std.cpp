@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 21:57:56 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/26 16:43:46 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:45:11 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -746,8 +746,7 @@ void test_erase_map(void)
 	third['c'] = 3;
 	third['d'] = 4;
 	print_map(third);
-
-	second.erase();
+	third.erase('c');
 	print_map(third);
 	cout << endl;
 }
