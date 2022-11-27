@@ -6,7 +6,7 @@
 /*   By: armendes <armendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:27:15 by armendes          #+#    #+#             */
-/*   Updated: 2022/11/23 18:23:32 by armendes         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:31:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,27 +260,27 @@ namespace ft
 		    void insert(iterator pos, size_type count, const value_type& value)
 		    {
 		        if (count != 0)
-						{
+				{
 		            const size_type extra_space = _end_cap - _end;
 		            if (extra_space >= count)
-								{
+					{
 		                const size_type elems_after = end() - pos;
 		                pointer old_end = _end;
 		                if (elems_after > count)
-										{
+						{
 		                    _end = construct_range(_end, _end - count, _end);
 		                    std::copy_backward(pos.base(), old_end - count, old_end);
 		                    std::fill_n(pos, count, value);
 		                }
-										else
-										{
+						else
+						{
 		                    _end = construct_range(_end, _end + (count - elems_after), value);
 		                    _end = construct_range(_end, pos.base(), old_end);
 		                    std::fill(pos.base(), old_end, value);
 		                }
 		            }
-								else
-								{
+					else
+					{
 		                const size_type new_size = calculate_growth(count);
 		                pointer new_start = _alloc.allocate(new_size);
 		                pointer new_end;
@@ -540,7 +540,7 @@ namespace ft
 		        if (n >= size())
 						{
 		            std::stringstream ss;
-		            ss << "Index " << n << " is out of range (size = " << size();
+		            ss << "Index " << n << " is out of range (size = " << size() << ")";
 		            throw std::out_of_range(ss.str());
 		        }
 		    }
