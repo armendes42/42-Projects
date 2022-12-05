@@ -1,25 +1,33 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get -y install \
-    wget \
-    php \
-    php-cgi \
-    php-mysql \
-    php-fpm \
-    php-pdo \
-    php-gd php-cli \
-    php-mbstring \
-    && rm -rf /var/lib/apt/lists/*
+#Install necessary package from php
 
-COPY    ./conf/www.conf /var/www/html
+RUN apt-get update && apt-get -y install \
+wget \
+php \
+php-cgi \
+php-mysql \
+php-fpm \
+php-pdo \
+php-gd php-cli \
+php-mbstring \
+&& rm -rf /var/lib/apt/lists/*
+
+#Copy the necessary tools to download wordpress
+
+COPY ./conf/www.conf /var/www/html/
+
+#Create the folder to enable php start
 
 RUN mkdir /run/php
 
-COPY ./tools/create_wordpress.sh /usr/local/bin
-ENTRYPOINT [ "/usr/local/bin/create_wordpress.sh" ]
+#Launch script
 
-WORKDIR /var/www/html
+COPY ./tools/create_wordpress.sh /usr/local/bin/
+ENTRYPOINT ["create_wordpress.sh"]
 
-EXPOSE  9000
+WORKDIR /var/www/html/
 
-CMD [ "/usr/sbin/php-fpm7.3", "-F" ]
+EXPOSE 9000
+
+CMD ["/usr/sbin/php-fpm7.3", "-F"]

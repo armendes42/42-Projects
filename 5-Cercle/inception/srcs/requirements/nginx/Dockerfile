@@ -1,19 +1,17 @@
-FROM    debian:buster
+#Precise with what our image will be built
+FROM debian:buster
 
-RUN     apt-get update
-RUN     apt-get install -y nginx openssl \
-        && rm -rf /var/lib/apt/lists/*
+#Install nginx with RUN
+RUN apt-get update && apt-get -y install nginx \
+openssl \
+&& rm -rf /var/lib/apt/lists/*
 
-RUN     mkdir /etc/nginx/ssl
-RUN     openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
-        -out /etc/nginx/ssl/armendes.crt \
-        -keyout /etc/nginx/ssl/armendes.key \
-        -subj "/C=FR/ST=Paris/L=Paris/O=42School/OU=armendes/CN=armendes/"
+#Generate a self certificate
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/ssl/armendes.42.fr.pem -keyout /etc/ssl/armendes.42.fr.key -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=armendes/CN=armendes.42.fr"
 
-COPY    ./conf/nginx.conf /etc/nginx/conf.d
+#Copy the new configuration inside nginx
+COPY conf/nginx.conf /etc/nginx/conf.d
 
-RUN     mkdir -p /run/nginx
+EXPOSE 443
 
-EXPOSE  443
-
-CMD [ "nginx", "-g", "daemon_off;" ]
+CMD ["nginx", "-g", "daemon off;"]
