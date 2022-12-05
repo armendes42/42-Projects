@@ -1,55 +1,65 @@
-version: '3'
-
+version: '3.8'
 services:
-  nginx:
-    container_name: nginx
-    build: ./requirements/nginx
-    ports:
-      - 443:443
-    volumes:
-      - wordpress_data:/var/www/html
-    restart: always
-    networks:
-      - network
 
   mariadb:
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     container_name: mariadb
-    build: ./requirements/mariadb
+    build: requirements/mariadb
+    image: mariadb:v_final
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
-      - network
+      - docker_network
     restart: always
-    env_file:
-      - .env
 
   wordpress:
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
     container_name: wordpress
+    build: requirements/wordpress
+    image: wordpress:v_final
     depends_on:
       - mariadb
-    build: ./requirements/wordpress
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - wordpress_data:/var/www/html
     networks:
-      - network
+      - docker_network
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    restart: always
+
+  nginx:
+    container_name: nginx
+    build: requirements/nginx
+    image: nginx:v_final
+    depends_on :
+      - wordpress
+    networks:
+      - docker_network
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    restart: always
+
+networks:
+  docker_network:
 
 volumes:
-  mariadb_data:
+  db_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/armendes/data/mysql
+      device: /home/llescure/data/mysql
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/armendes/data/wordpress
+      device: /home/llescure/data/wordpress
       o: bind
-
-networks:
-  network:
-    driver: bridge
