@@ -55,11 +55,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/llescure/data/mysql
+      device: /home/armendes/data/mysql
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/llescure/data/wordpress
+      device: /home/armendes/data/wordpress
       o: bind
