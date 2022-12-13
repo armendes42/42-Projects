@@ -1,0 +1,63 @@
+version: '3.8'
+services:
+
+  mariadb:
+    environment:
+     - MYSQL_DATABASE=${MYSQL_DATABASE}
+     - MYSQL_USER=${MYSQL_USER}
+     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    container_name: mariadb
+    build: requirements/mariadb
+    volumes:
+     - db_data:/var/lib/mysql
+    networks:
+     - docker_network
+    restart: always
+
+  wordpress:
+    environment: 
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
+    container_name: wordpress
+    build: requirements/wordpress
+    depends_on: 
+      - mariadb
+    networks:
+      - docker_network
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    restart: always
+
+  nginx:
+    container_name: nginx
+    build: requirements/nginx
+    depends_on :
+      - wordpress
+    networks:
+      - docker_network
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    restart: always
+
+networks:
+  docker_network:
+
+volumes:
+  db_data: 
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/armendes/data/mysql
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/armendes/data/wordpress
+      o: bind
+
